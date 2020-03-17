@@ -3,7 +3,7 @@ const config = require('../../config/config')
 const embeds = require('../../config/embeds')
 
 const addHelpField = info => {
-    const infoDescription = Object.entries(info).map(desc => `\`${desc[0]}\` ${desc[1]}`)
+    const infoDescription = Object.entries(info).map(desc => `\`$${desc[0]}\` ${desc[1]}`)
     return `${infoDescription}`.replace(/,/g, '\n')
 }
 
