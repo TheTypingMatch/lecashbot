@@ -1,0 +1,20 @@
+{
+  "name": "le-cash-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.5",
+    "path": "^0.12.7"
+  }
+}
