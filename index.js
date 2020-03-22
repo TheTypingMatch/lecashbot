@@ -2,6 +2,9 @@ const Discord = require('discord.js')
 const fs = require('fs')
 const dotenv = require('dotenv')
 
+// Models
+const User = require('./src/models/user.model')
+
 dotenv.config()
 
 // config
@@ -10,6 +13,7 @@ const cooldowns = require('./config/cooldowns')
 
 // utils
 const log = require('./src/utils/log')
+const reward = require('./src/utils/reward')
 
 // database connection
 const mongoDB = require('mongodb')
@@ -51,29 +55,58 @@ client.on('guildRemove', () => refreshActivity())
 client.on('guildMemberAdd', () => refreshActivity())
 client.on('guildMemberRemove', () => refreshActivity())
 
-client.on('message', msg => {
-    
-    if (msg.author.bot)
-        return
-    
-    // DM handler
+let msgCooldowns = []
 
-    if (!msg.content.startsWith(prefix))
-        return
-    
-    /*
+// msg reward cooldown
+setInterval(() => {
+    msgCooldowns = []
+}, cooldowns.msgCooldown)
 
-        1. Check if the user is a bot
-        2. Check if the message starts with a prefix
-        3. Check if the user is banned
-        4. Check if the user has developer permissions
-        5. Check if the user has an account
+client.on('message', async msg => {
 
-    */
+    const userId = msg.author.id
     
     // Handle commands
     const args = msg.content.slice(prefix.length).trim().split(/ +/g)
     const cmd = args.shift().toLowerCase()
+    const generalCmds = ['help', 'create', 'total', 'leaderboard', 'ping', 'faq', 'event']
+    
+    // Check if the user is a bot
+    if (msg.author.bot) return
+    
+    // DM handler
+
+    // Check if the user has an account.
+    const user = await User.findOne({
+        discordId: userId
+    })
+
+    // Add user to message reward cooldown
+    if (!msgCooldowns.includes(userId))
+        reward(userId)
+
+    msgCooldowns.push(userId)
+
+    // Check if the message starts with a prefix
+    if (!msg.content.startsWith(prefix)) return
+    
+    if (!user && !generalCmds.includes(cmd))
+        return msg.reply('You must `$create` an account before using any other commands!')
+
+    // Check if the user is banned
+    if (user.banned) 
+        return msg.reply('You have been banned from the bot.')
+
+    /*
+
+        [x] Check if the user is a bot
+        [x] Check if the message starts with a prefix
+        [x] Check if the user has an account
+        [x] Check if the user is banned
+        [ ] Check if the user has developer permissions
+        [ ] DM handler
+
+    */
 
     const commands = require('./src/commands')
     commands.run(cmd, msg, client, args)
