@@ -69,7 +69,7 @@ client.on('message', async msg => {
     // Handle commands
     const args = msg.content.slice(prefix.length).trim().split(/ +/g)
     const cmd = args.shift().toLowerCase()
-    const generalCmds = ['help', 'create', 'total', 'leaderboard', 'ping', 'faq', 'event']
+    const generalCmds = ['help', 'register', 'total', 'leaderboard', 'ping', 'faq', 'event']
     
     // Check if the user is a bot
     if (msg.author.bot) return
@@ -80,9 +80,9 @@ client.on('message', async msg => {
     const user = await User.findOne({
         discordId: userId
     })
-
+    
     // Add user to message reward cooldown
-    if (!msgCooldowns.includes(userId))
+    if (!msgCooldowns.includes(userId) && user)
         reward(userId)
 
     msgCooldowns.push(userId)
@@ -94,7 +94,7 @@ client.on('message', async msg => {
         return msg.reply('You must `$create` an account before using any other commands!')
 
     // Check if the user is banned
-    if (user.banned) 
+    if (user && user.banned) 
         return msg.reply('You have been banned from the bot.')
 
     /*

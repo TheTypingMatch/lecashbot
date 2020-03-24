@@ -14,7 +14,6 @@ module.exports = (msg, client, args) => {
         .setAuthor('Info', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(embeds.description)
         .addField('General', addInfoField(embeds.general))
         .addField('Contributors', addInfoField(embeds.contributors))
         .addField('Contribute', addInfoField(embeds.contribute))

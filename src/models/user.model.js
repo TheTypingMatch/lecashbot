@@ -49,21 +49,18 @@ const articleSchema = new mongoose.Schema({
             amount: 0
         }
     }, 
-    coolDowns: {
+    cooldowns: {
         type: Object, 
         required: false, 
         default: {
-            commands: {
-                bet: 0, 
-                daily: 0, 
-                delete: new Date(), 
-                coinflip: 0, 
-                give: 0, 
-                report: 0, 
-                suggest: 0, 
-                withdraw: 0
-            },
-            getCash: 0
+            bet: 0, 
+            daily: 0, 
+            delete: new Date(), 
+            coinflip: 0, 
+            give: 0, 
+            report: 0, 
+            suggest: 0, 
+            withdraw: 0
         }
     }
 })
