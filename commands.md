@@ -1,33 +1,33 @@
 # General Commands
-[x] balance
-[ ] bet
-[ ] botinfo
-[ ] coinflip
-[x] register (mkprofile | create)
-[ ] daily
-[ ] donate
-[ ] event
-[ ] faq
-[ ] gift (give)
-[ ] guess
-[x] help
-[ ] leaderboard
-[ ] ping
-[ ] profile
-[ ] report
-[ ] suggest
-[ ] total
+- [x] balance
+- [ ] bet
+- [ ] botinfo
+- [ ] coinflip
+- [x] register (mkprofile | create)
+- [ ] daily
+- [ ] donate
+- [ ] event
+- [ ] faq
+- [ ] gift (give)
+- [ ] guess
+- [x] help
+- [ ] leaderboard
+- [ ] ping
+- [ ] profile
+- [ ] report
+- [ ] suggest
+- [ ] total
 
 
 # Developer Commands
-[ ] uptime
+- [ ] uptime
 
 
 # Admin Commands
-[ ] ban
-[ ] unban
-[ ] edit (edits user info)
+- [ ] ban
+- [ ] unban
+- [ ] edit (edits user info)
 
 
 # Future Version Commands
-[ ] lottery
+- [ ] lottery
