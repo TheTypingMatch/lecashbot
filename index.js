@@ -99,13 +99,13 @@ client.on('message', async msg => {
 
     /*
 
-        [x] Check if the user is a bot
-        [x] Check if the message starts with a prefix
-        [x] Check if the user has an account
-        [x] Check if the user is banned
-        [ ] Check if the user has developer permissions
-        [ ] DM handler
-
+        Check if the...
+        [x] user is a bot
+        [x] message starts with a prefix
+        [x] user has an account
+        [x] user is banned
+        [ ] user has developer permissions
+    
     */
 
     const commands = require('./src/commands')
