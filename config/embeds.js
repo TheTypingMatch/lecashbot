@@ -20,11 +20,29 @@ module.exports = {
         }, 
         miscellaneous: {
             event: ' - View the current event, if any.', 
-            botinfo: ' - Important bot information.', 
+            info: ' - Important bot information.', 
             create: ' - Make a profile using your NT account.', 
             delete: ' - Delete your profile using your NT account.',
             report: ' `<reason>` - Report a bug in the bot.',
             suggest: ' `<idea>` - Suggest an idea for LeCashBot.'
+        }
+    },
+    info: {
+        general: {
+            author: '**Author** - LeSirH',
+            creationDate: '**Creation Date** - June 7 2019', 
+            prefix: '**Prefix** - $' 
+        },
+        contributors: {
+            lesirh: '**LeSirH** - Owner', 
+            damienVesper: '**Damien Vesper** - Developer'
+        }, 
+        contribute: {
+            msg: 'Want to contribute to LeCashBot?',
+            link: 'View the repo on **[GitHub](https://github.com/TheTypingMatch/le-cash-bot)**.'
+        },
+        donors: {
+            donors: '**Donors** - Use `$donate` to view donations.'
         }
     }
 }
