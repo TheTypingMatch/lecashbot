@@ -39,7 +39,8 @@ module.exports = {
         }, 
         contribute: {
             msg: 'Want to contribute to LeCashBot?',
-            link: 'View the repo on **[GitHub](https://github.com/TheTypingMatch/le-cash-bot)**.'
+            link: 'View the repo on **[GitHub](https://github.com/TheTypingMatch/le-cash-bot)**.',
+            server: '\nJoin the **[LeCashBot Discord](https://discord.gg/UspVEng)**!'
         },
         donors: {
             donors: '**Donors** - Use `$donate` to view donations.'
