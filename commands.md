@@ -1,12 +1,11 @@
 # General Commands
 - [x] balance
 - [ ] bet
-- [ ] botinfo
+- [x] info
 - [ ] coinflip
-- [x] register (mkprofile | create)
+- [x] register
 - [ ] daily
 - [ ] donate
-- [ ] event
 - [ ] faq
 - [ ] gift (give)
 - [ ] guess

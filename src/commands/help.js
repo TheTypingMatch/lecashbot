@@ -14,6 +14,7 @@ module.exports = (msg, client, args) => {
         .setAuthor('Help', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
+        .setDescription(embeds.description)
         .addField('Guides', addHelpField(embeds.guides))
         .addField('Economy', addHelpField(embeds.economy))
         .addField('Games', addHelpField(embeds.games))
