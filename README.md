@@ -56,10 +56,12 @@ Replace `<uri>` and `<token>` with your database connection URI and bot token.
     <th><a href="https://github.com/Le-SirH">Le-SirH</a></th>
     <th><a href="https://github.com/RHarr6306">RHarr6306</a></th>
     <th><a href="https://github.com/DamienVesper">DamienVesper</a></th>
+    <th><a href="https://github.com/techdude1-dev">techdude1-dev</a></th>
   </tr>
   <tr>
     <td><img width="200" src="https://avatars3.githubusercontent.com/u/46948579?s=460&v=4"></td>
     <td><img width="200" src="https://avatars2.githubusercontent.com/u/55287042?s=460&v=4"></td>
     <td><img width="200" src="https://avatars3.githubusercontent.com/u/34838468?s=400&v=4"></td>
+    <td><img width="200" src="https://avatars2.githubusercontent.com/u/52178694?s=460&u=f059bd53f361aac4a57f0f88344ab401ca025f9d&v=4"></td>
   </tr>
 </table>
