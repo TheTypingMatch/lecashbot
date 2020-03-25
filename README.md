@@ -28,9 +28,10 @@
 - Games
 
 ## Contribute
-Clone the repository & install required dependencies:
+1. Fork the repository
+2. Clone the repository & install required dependencies:
 ```
-$ git clone git@github.com:TheTypingMatch/le-cash-bot.git
+$ git clone git@github.com:YOUR_GITHUB_USERNAME/le-cash-bot.git
 $ npm install
 ```
 
