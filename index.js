@@ -102,7 +102,7 @@ client.on('message', async msg => {
     
     // Add user to message reward cooldown
     if (!msgCooldowns.includes(userId) && user)
-        reward(userId)
+        reward(userId, client)
 
     msgCooldowns.push(userId)
 

@@ -1,16 +1,17 @@
 const User = require('../models/user.model')
+const log = require('../utils/log')
 
-const reward = async userId => {
+const reward = async (userId, client) => {
     const randReward = Math.floor(Math.random() * 50 + 50)
     const user = await User.findOne({
         discordId: userId
     })
     const userBalance = user.balance
-    User.updateOne({
-        discordId: userId
-    }, {
+    User.updateOne({ discordId: userId }, { 
         balance: userBalance + randReward
     }, err => console.log(err ? err : `User ${userId} just earned $${randReward}.`))
+
+    return log('cash', `**${user.name}** earned $**${randReward}**.`, client)
 }
 
 module.exports = reward
