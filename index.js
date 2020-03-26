@@ -16,23 +16,23 @@ const log = require('./src/utils/log')
 const reward = require('./src/utils/reward')
 const date = require('./src/utils/date')
 
-// database connection
-const mongoDB = require('mongodb')
-const mongoose = require('mongoose')
-
-mongoDB.connect(config.db.uri, config.db.uriParams)
-    .then(() => console.log('Successfully connected to database.'))
-    .catch(err => log('error', err))
-
-mongoose.connect(config.db.uri, config.db.uriParams)
-    .catch(err => log('error', err))
-
 const prefix = config.prefix
 const client = new Discord.Client({
     disableEveryone: true, 
     fetchAllMembers: true, 
     sync: true
 })
+
+// database connection
+const mongoDB = require('mongodb')
+const mongoose = require('mongoose')
+
+mongoDB.connect(config.db.uri, config.db.uriParams)
+    .then(() => console.log('Successfully connected to database.'))
+    .catch(err => log('error', err, client))
+
+mongoose.connect(config.db.uri, config.db.uriParams)
+    .catch(err => log('error', err, client))
 
 const refreshActivity = () => {
     client.user.setPresence({
@@ -54,7 +54,7 @@ const resetDailyStreak = async () => {
         if (notCollected && user.dailyStreak) {
             dailiesReset += 1
             User.update({ discordId: user.discordId }, { dailyStreak: 0 }, err => {
-                log('error', err)
+                log('error', err, client)
             })
         }
         console.log(`${dailiesReset} users' daily streaks have been reset.`)
@@ -134,4 +134,4 @@ client.on('message', async msg => {
 
 client.login(config.token)
     .then(() => console.log('Successfully logged in.'))
-    .catch(err => log('error', err))
+    .catch(err => log('error', err, client))

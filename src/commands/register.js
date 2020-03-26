@@ -25,7 +25,7 @@ module.exports = async (msg, client, args) => {
         })
         user.save(err => {
             if (err) {
-                log('error', err)
+                log('error', err, client)
                 return msg.reply('Error creating account. Contact a LeCashBot dev!')
             } else return msg.reply('Success! See `$help` for information on commands')
         })

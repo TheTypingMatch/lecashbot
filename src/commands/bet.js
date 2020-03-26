@@ -67,11 +67,11 @@ const makeBet = async (msg, user, bet) => {
                 chance: didWin[1], 
                 amount: bet
             }
-        }, err => err ? log('error', err) : sendRecordEmbed(msg, previousBet))
+        }, err => err ? log('error', err, client) : sendRecordEmbed(msg, previousBet))
     }
     
     User.updateOne(userId, newBal, err => {
-        if (err) log('error', err)
+        if (err) log('error', err, client)
     })
 
 }

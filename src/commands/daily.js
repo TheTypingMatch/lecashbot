@@ -31,7 +31,7 @@ const sendReward = (msg, user) => {
         msg.channel.send(err ? 'An error occurred.' : dailyEmbed)
         if (err) {
             msg.chanenl.send('An error occurred. This is being reported to the developers.')
-            log('error', err)
+            log('error', err, client)
         }
     })
 

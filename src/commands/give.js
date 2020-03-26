@@ -13,7 +13,7 @@ const sendSuccessEmbed = (msg, err) => {
         
     if (err) {
         succeessEmbed.setDescription('An error occurred.')
-        log('error', err)
+        log('error', err, client)
     }
 
     msg.channel.send(successEmbed)
