@@ -5,7 +5,7 @@
 - [ ] coinflip
 - [x] register
 - [x] daily
-- [ ] donate
+- [x] donate
 - [ ] faq
 - [ ] gift (give)
 - [ ] guess
