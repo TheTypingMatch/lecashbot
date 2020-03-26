@@ -1,6 +1,6 @@
 # General Commands
 - [x] balance
-- [ ] bet
+- [x] bet
 - [x] info
 - [ ] coinflip
 - [x] register
