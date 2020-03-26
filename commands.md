@@ -11,7 +11,7 @@
 - [ ] guess
 - [x] help
 - [ ] leaderboard
-- [ ] ping
+- [x] ping
 - [ ] profile
 - [ ] report
 - [ ] suggest

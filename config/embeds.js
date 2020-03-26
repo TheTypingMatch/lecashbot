@@ -12,7 +12,7 @@ module.exports = {
             leaderboard: ' - View the wealthiest of all LeCashBot users.', 
             total: ' - View the amount of cash there exists in the economy.', 
             profile: ' `<user>` - View yours or another user\'s profile.', 
-            balance: ' `<user>` - View yours or another user\'s balance.'
+            bal: ' `<user>` - View yours or another user\'s balance.'
         }, 
         games: {
             bet: '`<amount>` - Play roulette.', 
