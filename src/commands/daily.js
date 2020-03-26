@@ -39,7 +39,7 @@ const sendReward = (msg, user) => {
 
 const sendTimeLeft = (msg, user, dailyCooldown) => {
 
-    const hoursLeft = 24 - date.toHours(dailyCooldown)
+    const hoursLeft = date.toHours(cooldowns.daily) - date.toHours(dailyCooldown)
     const isMinutes = (hoursLeft < 1)
     const timeLeft = isMinutes ? date.toMinutes(hoursLeft) : hoursLeft
 
