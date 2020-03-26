@@ -110,7 +110,7 @@ client.on('message', async msg => {
     if (!msg.content.startsWith(prefix)) return
     
     if (!user && !generalCmds.includes(cmd))
-        return msg.reply('You must `$create` an account before using any other commands!')
+        return msg.reply('You must `$register` an account before using any other commands!')
 
     // Check if the user is banned
     if (user && user.banned) 
