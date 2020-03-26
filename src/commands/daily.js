@@ -3,6 +3,7 @@ const User = require('../models/user.model')
 const cooldowns = require('../../config/cooldowns')
 const config = require('../../config/config')
 const date = require('../utils/date')
+const log = require('../utils/log')
 
 const sendReward = (msg, user) => {
 
@@ -56,7 +57,7 @@ const sendTimeLeft = (msg, user, dailyCooldown) => {
 module.exports = async (msg, client, args) => {
 
     const user = await User.findOne({ discordId: msg.author.id })
-    
+
     const lastDaily = user.cooldowns.daily
     const dailyCooldown = new Date() - lastDaily
     const isWithinTimeout = (user && dailyCooldown >= cooldowns.daily)

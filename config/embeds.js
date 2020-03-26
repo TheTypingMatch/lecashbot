@@ -45,5 +45,33 @@ module.exports = {
         donors: {
             donors: '**Donors** - Use `$donate` to view donations.'
         }
+    }, 
+    donate: {
+        donateLink: 'Donate to LeCashBot **[here](https://www.nitrotype.com/racer/lecashbot)**',
+        donors: {
+            "Jisoo": "157M",
+            "Hysteria": "145.000001M",
+            "Volatile": "100M",
+            "Tendons": "80M",
+            "〠【DV◎RAK】〠": "25M",
+            "TypeOnederful": "20M",
+            "PJCrowley": "20M",
+            "Shanon": "15M",
+            "Nike": "10M",
+            "Tracy": "8.6M",
+            "ℭopy": "6.9M",
+            "✨DαɱιҽɳVҽʂρҽɾ✨": "5.46942M",
+            "TheProdigyHenry": "3.141592M",
+            "[RRR1] Cliffarina": "1.234567M",
+            "!": "500K",
+            "Dapp3rDuck": "500K",
+            "miles": "300K",
+            "Arc!": "300K",
+            "シ𝓳𝓾𝓲𝓬𝓎𝓏シ": "300K",
+            "ElijahRapper": "200K",
+            "[STR] Teen_GohanTM": "150K",
+            "HighVoltage": "100K", 
+            "Metro": "100K"
+        }
     }
 }

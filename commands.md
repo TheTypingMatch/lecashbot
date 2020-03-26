@@ -4,7 +4,7 @@
 - [x] info
 - [ ] coinflip
 - [x] register
-- [ ] daily
+- [x] daily
 - [ ] donate
 - [ ] faq
 - [ ] gift (give)
