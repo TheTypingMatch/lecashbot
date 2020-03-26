@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const config = require('../../config/config')
 const User = require('../models/user.model')
+const format = require('../utils/format')
 
 module.exports = async (msg, client, args) => {
 
@@ -13,7 +14,7 @@ module.exports = async (msg, client, args) => {
         .setAuthor('Total', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(`All users have a total of $**${total}**.`)
+        .setDescription(`All users have a total of $**${format.currency(total)}**.`)
 
     return msg.channel.send(totalEmbed)
 

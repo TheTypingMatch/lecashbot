@@ -4,6 +4,7 @@ const cooldowns = require('../../config/cooldowns')
 const config = require('../../config/config')
 const date = require('../utils/date')
 const log = require('../utils/log')
+const format = require('../utils/format')
 
 const sendReward = (msg, user) => {
 
@@ -19,7 +20,7 @@ const sendReward = (msg, user) => {
         .setAuthor('Daily', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(`${user.name} just earned $**${reward}** with a streak of **${user.dailyStreak + 1}**!`)
+        .setDescription(`${user.name} just earned $**${format.currency(reward)}** with a streak of **${user.dailyStreak + 1}**!`)
 
     User.updateOne({ 
         discordId: msg.author.id 

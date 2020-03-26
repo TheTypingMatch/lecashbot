@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const config = require('../../config/config')
 const User = require('../models/user.model')
+const format = require('../utils/format')
 const log = require('../utils/log')
 
 const sendSuccessEmbed = (msg, err) => {
@@ -21,6 +22,8 @@ const sendSuccessEmbed = (msg, err) => {
 }
 
 module.exports = async (msg, client, args) => {
+
+    if (!args[0]) return msg.reply('No user given.')
     
     const receiverId = { discordId: args[0].replace(/<|@|!|>/g, '') }
     const userId = { discordId: msg.author.id }
@@ -37,7 +40,7 @@ module.exports = async (msg, client, args) => {
     const gift = parseInt(args[1])
 
     if (userBal < gift)
-        return msg.reply(`You do not have enough in your balance: $**${user.balance}**`)
+        return msg.reply(`You do not have enough in your balance: $**${format.currency(user.balance)}**`)
 
     User.updateOne(receiverId, { balance: receiverBal + gift }, err => {
         if (err) sendSuccessEmbed(msg, err)

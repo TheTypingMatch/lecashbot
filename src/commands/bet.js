@@ -3,6 +3,7 @@ const User = require('../models/user.model')
 const cooldowns = require('../../config/cooldowns')
 const config = require('../../config/config')
 const date = require('../utils/date')
+const format = require('../utils/format')
 const log = require('../utils/log')
 
 const sendRecordEmbed = (msg, previousBet) => {
@@ -12,7 +13,7 @@ const sendRecordEmbed = (msg, previousBet) => {
         .setAuthor('New Highest Bet!', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(`Previous best: $**${previousBet}**`)
+        .setDescription(`Previous best: $**${format.currency(previousBet)}**`)
 
     msg.channel.send(recordBetEmbed)
 
@@ -25,7 +26,7 @@ const sendBetEmbed = (msg, bet, didWin) => {
         .setAuthor('Bet', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(`You ${(didWin[0]) ? 'won' : 'lost'} $**${bet}**.`)
+        .setDescription(`You ${(didWin[0]) ? 'won' : 'lost'} $**${format.currency(bet)}**.`)
         .addField('Chances', `**${didWin[1]}**%`)
 
     msg.channel.send(betEmbed)
@@ -36,7 +37,7 @@ const getHighestBet = async msg => {
     
     const user = await User.findOne({ discordId: msg.author.id })
     const bestBet = user.highestBet
-    const message = `Your highest bet is $**${bestBet.amount}** with a chance of **${bestBet.chance}**%.`
+    const message = `Your highest bet is $**${format.currency(bestBet.amount)}** with a chance of **${bestBet.chance}**%.`
     
     return msg.channel.send(message)
 
