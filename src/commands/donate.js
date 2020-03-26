@@ -10,7 +10,7 @@ const addDonateField = info => {
 module.exports = (msg, client, args) => {
 
     let donateEmbed = new Discord.RichEmbed()
-        .setColor(0x2ecc71)
+        .setColor(config.colors.green)
         .setAuthor('Donate', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)

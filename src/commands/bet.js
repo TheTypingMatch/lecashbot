@@ -8,7 +8,7 @@ const log = require('../utils/log')
 const sendRecordEmbed = (msg, previousBet) => {
 
     let recordBetEmbed = new Discord.RichEmbed()
-        .setColor(0x2ecc71)
+        .setColor(config.colors.green)
         .setAuthor('New Highest Bet!', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
@@ -21,7 +21,7 @@ const sendRecordEmbed = (msg, previousBet) => {
 const sendBetEmbed = (msg, bet, didWin) => {
 
     let betEmbed = new Discord.RichEmbed()
-        .setColor(0x2ecc71)
+        .setColor(didWin[0] ? config.colors.green : config.colors.red)
         .setAuthor('Bet', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
@@ -43,7 +43,7 @@ const getHighestBet = async msg => {
 }
 
 const win = bet => {
-    const chances = Math.round((750 / (bet - 200)) + (750 / Math.sqrt(bet)) * 100) / 100
+    const chances = Math.round((750 / (bet - 200)) + (750 / Math.sqrt(bet)) * 100) / 100 + 5
     const randomNum = Math.random() * 100
 
     return [(randomNum < chances) ? true : false, chances]

@@ -10,7 +10,7 @@ module.exports = async (msg, client, args) => {
     const result = user ? `${user.name}'s balance is **$${user.balance}**.` : err
     
     let balanceEmbed = new Discord.RichEmbed()
-        .setColor(0x2ecc71)
+        .setColor(config.colors.green)
         .setAuthor('Balance', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)

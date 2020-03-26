@@ -10,7 +10,7 @@ const addInfoField = info => {
 module.exports = (msg, client, args) => {
 
     let helpEmbed = new Discord.RichEmbed()
-        .setColor(0x2ecc71)
+        .setColor(config.colors.green)
         .setAuthor('Info', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
