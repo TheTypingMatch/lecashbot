@@ -19,7 +19,7 @@ const sendReward = (msg, user) => {
         .setAuthor('Daily', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(`${user.name} just earned $**${reward}**!`)
+        .setDescription(`${user.name} just earned $**${reward}** with a streak of **${user.dailyStreak + 1}**!`)
 
     User.updateOne({ 
         discordId: msg.author.id 
