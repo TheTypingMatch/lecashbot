@@ -14,6 +14,7 @@ const cooldowns = require('./config/cooldowns')
 // utils
 const log = require('./src/utils/log')
 const reward = require('./src/utils/reward')
+const date = require('./src/utils/date')
 
 // database connection
 const mongoDB = require('mongodb')
@@ -43,9 +44,27 @@ const refreshActivity = () => {
     })
 }
 
+const resetDailyStreak = async () => {
+
+    const activeUsers = await User.find({ banned: false })
+    let dailiesReset = 0
+    activeUsers.forEach(user => {
+        const cooldown = user.cooldowns.daily
+        const notCollected = (date.toHours(new Date()) - date.toHours(cooldown) > 36)
+        if (notCollected && user.dailyStreak) {
+            dailiesReset += 1
+            User.update({ discordId: user.discordId }, { dailyStreak: 0 }, err => {
+                log('error', err)
+            })
+        }
+        console.log(`${dailiesReset} users' daily streaks have been reset.`)
+    })
+
+}
+
 client.on('ready', () => {
     refreshActivity()
-    // Autobackup profile interval
+    setInterval(resetDailyStreak, cooldowns.dailyReset)
 })
 
 // Command handler
