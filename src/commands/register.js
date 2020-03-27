@@ -16,8 +16,7 @@ module.exports = async (msg, client, args) => {
         discordId: msg.author.id
     })
 
-    if (userExists) 
-        return msg.reply('You already have an account!')
+    if (userExists) return msg.reply('You already have an account!')
 
     // validate link
     const ntLink = args[0]

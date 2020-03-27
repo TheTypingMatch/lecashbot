@@ -13,7 +13,7 @@
 - [ ] leaderboard
 - [x] ping
 - [x] profile
-- [ ] report
+- [x] report
 - [ ] suggest
 - [x] total
 
