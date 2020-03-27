@@ -116,17 +116,6 @@ client.on('message', async msg => {
     if (user && user.banned) 
         return msg.reply('You have been banned from the bot.')
 
-    /*
-
-        Check if the...
-        [x] user is a bot
-        [x] message starts with a prefix
-        [x] user has an account
-        [x] user is banned
-        [ ] user has developer permissions
-    
-    */
-
     const commands = require('./src/commands')
     commands.run(cmd, msg, client, args)
     
