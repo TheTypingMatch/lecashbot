@@ -14,7 +14,7 @@ module.exports = async (msg, client, args) => {
         .setAuthor('Total', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(`All users have a total of $**${format.currency(total)}**.`)
+        .setDescription(`All **${userBalances.length}** users have a total of $**${format.currency(total)}**.`)
 
     return msg.channel.send(totalEmbed)
 
