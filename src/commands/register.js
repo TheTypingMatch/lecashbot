@@ -5,6 +5,11 @@ const validateLink = link => link.includes('nitrotype.com/racer/') ? true : fals
 
 module.exports = async (msg, client, args) => {
     
+    if (!args[0]) return msg.reply('You need to include your nitrotype profile link!')
+
+    if (User.find({ nitroTypeLink: args[0] })) 
+        return msg.reply('Someone is already registered with this account!')
+
     // check if the user already has an account
     const userExists = await User.findOne({
         discordId: msg.author.id
