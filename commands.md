@@ -14,7 +14,7 @@
 - [x] ping
 - [x] profile
 - [x] report
-- [ ] suggest
+- [x] suggest
 - [x] total
 
 
