@@ -41,9 +41,7 @@ const sendReward = (msg, user) => {
 const sendTimeLeft = (msg, user, dailyCooldown) => {
 
     const hoursLeft = date.toHours(cooldowns.daily) - date.toHours(dailyCooldown)
-    console.log(hoursLeft)
     const isMinutes = (hoursLeft < 1)
-    console.log(isMinutes)
     const timeLeft = isMinutes ? hoursLeft * 60 : hoursLeft
 
     let cooldownEmbed = new Discord.RichEmbed()
