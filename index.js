@@ -1,5 +1,4 @@
 const Discord = require('discord.js')
-const fs = require('fs')
 const dotenv = require('dotenv')
 
 // Models
@@ -47,24 +46,27 @@ const refreshActivity = () => {
 const resetDailyStreak = async () => {
 
     const activeUsers = await User.find({ banned: false })
-    let dailiesReset = 0
+    if (!activeUsers) return
+
     activeUsers.forEach(user => {
+
         const cooldown = user.cooldowns.daily
-        const notCollected = (date.toHours(new Date()) - date.toHours(cooldown) > 36)
-        if (notCollected && user.dailyStreak) {
-            dailiesReset += 1
-            User.update({ discordId: user.discordId }, { dailyStreak: 0 }, err => {
-                log('error', err, client)
-            })
-        }
-        console.log(`${dailiesReset} users' daily streaks have been reset.`)
+        const notCollected = (date.toHours(new Date() - cooldown) > 36)
+        const userId = { discordId: user.discordId }
+
+        if (notCollected && user.dailyStreak)
+            User.update(userId, { dailyStreak: 0 }, err => log('error', err, client))
+
     })
 
 }
 
+let msgCooldowns = []
+
 client.on('ready', () => {
-    refreshActivity()
+    setInterval(() => msgCooldowns = [], cooldowns.msgCooldown)
     setInterval(resetDailyStreak, cooldowns.dailyReset)
+    refreshActivity()
 })
 
 // Command handler
@@ -73,13 +75,6 @@ client.on('guildCreate', () => refreshActivity())
 client.on('guildRemove', () => refreshActivity())
 client.on('guildMemberAdd', () => refreshActivity())
 client.on('guildMemberRemove', () => refreshActivity())
-
-let msgCooldowns = []
-
-// msg reward cooldown
-setInterval(() => {
-    msgCooldowns = []
-}, cooldowns.msgCooldown)
 
 client.on('message', async msg => {
 
@@ -96,12 +91,10 @@ client.on('message', async msg => {
     // DM handler
 
     // Check if the user has an account.
-    const user = await User.findOne({
-        discordId: userId
-    })
+    const user = await User.findOne({ discordId: userId })
     
     // Add user to message reward cooldown
-    if (!msgCooldowns.includes(userId) && user)
+    if (user && !msgCooldowns.includes(userId))
         reward(userId, client)
 
     msgCooldowns.push(userId)

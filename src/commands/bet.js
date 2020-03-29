@@ -1,19 +1,17 @@
-const Discord = require('discord.js')
 const User = require('../models/user.model')
-const cooldowns = require('../../config/cooldowns')
-const config = require('../../config/config')
-const date = require('../utils/date')
-const format = require('../utils/format')
+const { RichEmbed } = require('discord.js')
+const { colors, version } = require('../../config/config')
+const { currency } = require('../utils/format')
 const log = require('../utils/log')
 
 const sendRecordEmbed = (msg, previousBet) => {
 
-    let recordBetEmbed = new Discord.RichEmbed()
-        .setColor(config.colors.green)
+    let recordBetEmbed = new RichEmbed()
+        .setColor(colors.green)
         .setAuthor('New Highest Bet!', msg.author.avatarURL)
         .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(`Previous best: $**${format.currency(previousBet)}**`)
+        .setFooter(`LeCashBot v${version}`)
+        .setDescription(`Previous best: $**${currency(previousBet)}**`)
 
     msg.channel.send(recordBetEmbed)
 
@@ -21,12 +19,12 @@ const sendRecordEmbed = (msg, previousBet) => {
 
 const sendBetEmbed = (msg, bet, didWin) => {
 
-    let betEmbed = new Discord.RichEmbed()
-        .setColor(didWin[0] ? config.colors.green : config.colors.red)
+    let betEmbed = new RichEmbed()
+        .setColor(didWin[0] ? colors.green : colors.red)
         .setAuthor('Bet', msg.author.avatarURL)
         .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(`You ${(didWin[0]) ? 'won' : 'lost'} $**${format.currency(bet)}**.`)
+        .setFooter(`LeCashBot v${version}`)
+        .setDescription(`You ${(didWin[0]) ? 'won' : 'lost'} $**${currency(bet)}**.`)
         .addField('Chances', `**${didWin[1]}**%`)
 
     msg.channel.send(betEmbed)
@@ -37,17 +35,19 @@ const getHighestBet = async msg => {
     
     const user = await User.findOne({ discordId: msg.author.id })
     const bestBet = user.highestBet
-    const message = `Your highest bet is $**${format.currency(bestBet.amount)}** with a chance of **${bestBet.chance}**%.`
+    const message = `Your highest bet is $**${currency(bestBet.amount)}** with a chance of **${bestBet.chance}**%.`
     
     return msg.channel.send(message)
 
 }
 
 const win = bet => {
+
     const chances = Math.round((750 / (bet - 200)) + (750 / Math.sqrt(bet)) * 100) / 100 + 5
     const randomNum = Math.random() * 100
 
     return [(randomNum < chances) ? true : false, chances]
+    
 }
 
 const makeBet = async (msg, user, bet) => {
@@ -92,8 +92,6 @@ module.exports = async (msg, client, args) => {
     if (!user) return msg.channel.send('An error occurred.')
 
     // Check if the user has enough in their balance to bet.
-    if (user.balance >= bet) 
-        return makeBet(msg, user, bet)
-    return msg.reply(`You do not have enough in your balance: $${user.balance}`)
+    return (user.balance >= bet) ? makeBet(msg, user, bet) : msg.reply(`Insufficient bal: $${user.balance}`)
 
 }

@@ -1,29 +1,30 @@
-const Discord = require('discord.js')
-const config = require('../../config/config')
 const User = require('../models/user.model')
-const format = require('../utils/format')
+const { RichEmbed } = require('discord.js')
+const { colors, version } = require('../../config/config')
+const { currency } = require('../utils/format')
 
 module.exports = async (msg, client, args) => {
 
     const userId = args[0] ? args[0].replace(/<|@|!|>/g, '') : msg.author.id
     const user = await User.findOne({ discordId: userId })
+    const { name, nitroTypeLink, balance, dailyStreak, highestBet } = user
 
-    let profileEmbed = new Discord.RichEmbed()
+    let profileEmbed = new RichEmbed()
         .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${config.version}`)
+        .setFooter(`LeCashBot v${version}`)
 
     if (user) {
         profileEmbed
-            .setColor(config.colors.green)
-            .setAuthor(`${user.name}'s Profile`, msg.author.avatarURL)
-            .setDescription(`View ${user.name}'s profile [here](${user.nitroTypeLink})`)
-            .addField('Balance', `$**${format.currency(user.balance)}**`)
-            .addField('Daily Streak', `**${user.dailyStreak}** day${user.dailyStreak > 1 ? 's' : ''}`)
-            .addField('Highest Bet', `$**${format.currency(user.highestBet.amount)}**`, true)
-            .addField('Chance', `**${user.highestBet.chance}**%`, true)
+            .setColor(colors.green)
+            .setAuthor(`${name}'s Profile`, msg.author.avatarURL)
+            .setDescription(`View ${name}'s profile [here](${nitroTypeLink})`)
+            .addField('Balance', `$**${currency(balance)}**`)
+            .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)
+            .addField('Highest Bet', `$**${currency(highestBet.amount)}**`, true)
+            .addField('Chance', `**${highestBet.chance}**%`, true)
     } else {
         profileEmbed
-            .setColor(config.colors.red)
+            .setColor(colors.red)
             .setAuthor(`Unknown Profile`, msg.author.avatarURL)
             .setDescription('This user does not have an account!')
     }

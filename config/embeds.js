@@ -1,6 +1,6 @@
 module.exports = {
     helpInfo: {
-        description: 'A Discord.js bot based on the NitroType currency.',
+        desc: 'A Discord.js bot based on the NitroType currency.',
         guides: {
             faq: ' - Display frequently asked questions.', 
             donate: ' - Display donators.'
@@ -19,7 +19,7 @@ module.exports = {
             coinflip: '`<side>` `<amount>` - Flip a coin.', 
             guess: '`<maxrange>` - Guess a number.'
         }, 
-        miscellaneous: {
+        misc: {
             info: ' - Important bot information.', 
             register: ' - Make a profile using your NT account.', 
             delete: ' - Delete your profile using your NT account.',

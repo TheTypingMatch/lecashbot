@@ -4,6 +4,7 @@ const client = require('../../index')
 const Discord = require('discord.js')
 
 const sendErrorEmbed = (msg, client) => {
+    
     let errorEmbed = new Discord.RichEmbed()
         .setColor(config.colors.red)
         .setAuthor('ERROR')
@@ -12,6 +13,7 @@ const sendErrorEmbed = (msg, client) => {
         .setDescription(`\`\`\`js\n${msg}\`\`\``)
     
     client.channels.get('692123000602099712').send(errorEmbed)
+
 }
 
 const logEarnings = (msg, client) => {

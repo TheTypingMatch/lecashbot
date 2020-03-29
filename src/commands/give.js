@@ -1,16 +1,16 @@
-const Discord = require('discord.js')
-const config = require('../../config/config')
 const User = require('../models/user.model')
-const format = require('../utils/format')
+const { RichEmbed } = require('discord.js')
+const { colors, version } = require('../../config/config')
+const { currency } = require('../utils/format')
 const log = require('../utils/log')
 
 const sendSuccessEmbed = (msg, err) => {
 
-    let successEmbed = new Discord.RichEmbed()
-        .setColor(err ? config.colors.red : config.colors.green)
+    let successEmbed = new RichEmbed()
+        .setColor(err ? colors.red : colors.green)
         .setAuthor(`${err ? 'Error' : 'Success!'}`, msg.author.avatarURL)
         .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${config.version}`)
+        .setFooter(`LeCashBot v${version}`)
         
     if (err) {
         succeessEmbed.setDescription('An error occurred.')
@@ -40,7 +40,7 @@ module.exports = async (msg, client, args) => {
     const gift = parseInt(args[1])
 
     if (userBal < gift)
-        return msg.reply(`You do not have enough in your balance: $**${format.currency(user.balance)}**`)
+        return msg.reply(`You do not have enough in your balance: $**${currency(user.balance)}**`)
 
     User.updateOne(receiverId, { balance: receiverBal + gift }, err => {
         if (err) sendSuccessEmbed(msg, err)

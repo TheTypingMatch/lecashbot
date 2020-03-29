@@ -1,7 +1,7 @@
-const Discord = require('discord.js')
-const config = require('../../config/config')
 const User = require('../models/user.model')
-const format = require('../utils/format')
+const { RichEmbed } = require('discord.js')
+const { colors, version } = require('../../config/config')
+const { currency } = require('../utils/format')
 
 module.exports = async (msg, client, args) => {
 
@@ -9,12 +9,12 @@ module.exports = async (msg, client, args) => {
     const userBalances = activeUsers.map(user => user.balance)
     const total = userBalances.reduce((t, bal) => t + bal)
 
-    let totalEmbed = new Discord.RichEmbed()
-        .setColor(config.colors.green)
+    let totalEmbed = new RichEmbed()
+        .setColor(colors.green)
         .setAuthor('Total', msg.author.avatarURL)
         .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${config.version}`)
-        .setDescription(`All **${userBalances.length}** users have a total of $**${format.currency(total)}**.`)
+        .setFooter(`LeCashBot v${version}`)
+        .setDescription(`All **${userBalances.length}** users have a total of $**${currency(total)}**.`)
 
     return msg.channel.send(totalEmbed)
 
