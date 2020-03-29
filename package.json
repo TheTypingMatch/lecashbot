@@ -1,10 +1,14 @@
 {
   "name": "le-cash-bot",
+  "jest": {
+    "verbose": true
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js", 
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +17,7 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
+    "jest": "^25.2.4",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.5",
     "path": "^0.12.7"

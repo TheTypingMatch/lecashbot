@@ -10,7 +10,7 @@
 - [x] gift (give)
 - [ ] guess
 - [x] help
-- [ ] leaderboard
+- [x] leaderboard
 - [x] ping
 - [x] profile
 - [x] report
