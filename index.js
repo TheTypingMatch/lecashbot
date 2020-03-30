@@ -94,8 +94,7 @@ client.on('message', async msg => {
     const user = await User.findOne({ discordId: userId })
     
     // Add user to message reward cooldown
-    if (user && !msgCooldowns.includes(userId))
-        reward(userId, client)
+    if (user && !user.banned && !msgCooldowns.includes(userId)) reward(userId, client)
 
     msgCooldowns.push(userId)
 
