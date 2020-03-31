@@ -1,11 +1,7 @@
 const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
 const { general, contributors, contribute, donors } = require('../../config/embeds').info
-
-const addInfoField = info => {
-    const infoDescription = Object.entries(info).map(desc => `${desc[1]}`)
-    return `${infoDescription}`.replace(/,/g, '\n')
-}
+const { addDescriptionField } = require('../utils/field')
 
 module.exports = (msg, client, args) => {
 
@@ -14,10 +10,10 @@ module.exports = (msg, client, args) => {
         .setAuthor('Info', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
-        .addField('General', addInfoField(general))
-        .addField('Contributors', addInfoField(contributors))
-        .addField('Contribute', addInfoField(contribute))
-        .addField('Donors', addInfoField(donors))
+        .addField('General', addDescriptionField(general))
+        .addField('Contributors', addDescriptionField(contributors))
+        .addField('Contribute', addDescriptionField(contribute))
+        .addField('Donors', addDescriptionField(donors))
 
     return msg.channel.send(helpEmbed)
 

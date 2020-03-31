@@ -7,7 +7,7 @@
 - [x] daily
 - [x] donate
 - [ ] faq
-- [x] gift (give)
+- [x] give
 - [ ] guess
 - [x] help
 - [x] leaderboard
@@ -16,6 +16,7 @@
 - [x] report
 - [x] suggest
 - [x] total
+- [ ] withdraw
 
 
 # Developer Commands

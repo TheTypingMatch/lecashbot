@@ -1,11 +1,7 @@
 const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
 const { donateLink, donors } = require('../../config/embeds').donate
-
-const addDonateField = info => {
-    const infoDescription = Object.entries(info).map(desc => `**${desc[0]}** - ${desc[1]}`)
-    return `${infoDescription}`.replace(/,/g, '\n')
-}
+const { addTitleField } = require('../utils/field')
 
 module.exports = (msg, client, args) => {
 
@@ -15,7 +11,7 @@ module.exports = (msg, client, args) => {
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(donateLink)
-        .addField('Donors', addDonateField(donors))
+        .addField('Donors', addTitleField(donors))
 
     return msg.channel.send(donateEmbed)
 

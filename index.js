@@ -116,3 +116,4 @@ client.on('message', async msg => {
 client.login(config.token)
     .then(() => console.log('Successfully logged in.'))
     .catch(err => log('error', err, client))
+ 
