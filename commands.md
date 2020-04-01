@@ -2,13 +2,11 @@
 - [x] balance
 - [x] bet
 - [x] info
-- [ ] coinflip
 - [x] register
 - [x] daily
 - [x] donate
 - [ ] faq
 - [x] give
-- [ ] guess
 - [x] help
 - [x] leaderboard
 - [x] ping
@@ -16,7 +14,7 @@
 - [x] report
 - [x] suggest
 - [x] total
-- [ ] withdraw
+- [x] withdraw
 
 
 # Developer Commands

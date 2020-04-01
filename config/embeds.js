@@ -15,9 +15,7 @@ module.exports = {
             bal: ' `<user>` - View yours or another user\'s balance.'
         }, 
         games: {
-            bet: '`<amount>` - Play roulette.', 
-            coinflip: '`<side>` `<amount>` - Flip a coin.', 
-            guess: '`<maxrange>` - Guess a number.'
+            bet: '`<amount>` - Play roulette.'
         }, 
         misc: {
             info: ' - Important bot information.', 
