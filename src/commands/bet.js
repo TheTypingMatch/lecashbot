@@ -1,7 +1,7 @@
 const User = require('../models/user.model')
 const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
-const { currency } = require('../utils/format')
+const { currency, int } = require('../utils/format')
 const log = require('../utils/log')
 
 const sendRecordEmbed = (msg, previousBet) => {
@@ -79,10 +79,10 @@ const makeBet = async (msg, user, bet) => {
 
 module.exports = async (msg, client, args) => {
 
+    if (!args[0] || !int(args[0])) return msg.reply('Undefined bet amount: Use `$bet <amount>`.')
     if (args[0] == 'high') return getHighestBet(msg)
-    if (!args[0]) return msg.reply('Undefined bet amount: Use `$bet <amount>`.')
 
-    const bet = parseInt(args[0])
+    const bet = int(args[0])
 
     // Make sure the bet is at least $250
     if (bet < 250) return msg.reply('Bets must be at least $250!')

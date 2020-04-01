@@ -1,7 +1,7 @@
 const User = require('../models/user.model')
 const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
-const { currency } = require('../utils/format')
+const { currency, int } = require('../utils/format')
 const log = require('../utils/log')
 
 const sendSuccessEmbed = (msg, err) => {
@@ -31,13 +31,13 @@ module.exports = async (msg, client, args) => {
     const user = await User.findOne(userId)
     
     if (userId.discordId === receiverId.discordId) return msg.reply('You can\'t gift yourself!')
-    if (!args[1]) return msg.reply('No amount given.')
+    if (!args[1] || !int(args[1])) return msg.reply('No amount given.')
     if (!user || !receiver) return msg.reply('User not found!')
     if (args[1] < 100) return msg.reply('Minimum gift amount is $**100**.')
     
     const receiverBal = receiver.balance
     const userBal = user.balance
-    const gift = parseInt(args[1])
+    const gift = int(args[1])
 
     if (userBal < gift)
         return msg.reply(`You do not have enough in your balance: $**${currency(user.balance)}**`)
