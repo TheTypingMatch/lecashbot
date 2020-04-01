@@ -45,7 +45,7 @@ const refreshActivity = () => {
 
 const resetDailyStreak = async () => {
 
-    const activeUsers = await User.find({ banned: false })
+    const activeUsers = await User.findMany({ banned: false })
     if (!activeUsers) return
 
     activeUsers.forEach(user => {
