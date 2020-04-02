@@ -15,7 +15,7 @@ module.exports = {
         yellow: 0xF09F19, 
         green: 0x40AC7B
     },
-    version: '0.0.0',
+    version: '1.0.0',
     token: process.env.TOKEN,
     prefix: '$',
     devMode: false, 
