@@ -17,11 +17,14 @@ const sendErrorEmbed = (msg, client) => {
 }
 
 const logEarnings = (msg, client) => {
+
     let logEmbed = new Discord.RichEmbed()
         .setColor(config.colors.green)
         .setDescription(msg)
 
-    return client.channels.get('691405983636783194').send(logEmbed)
+    const logChannelIds = ['691405983636783194', '587716900721786880']
+    return logChannelIds.forEach(channel => client.channels.get(channel).send(logEmbed))
+
 }
 
 module.exports = (type, msg, client) => {
