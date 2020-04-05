@@ -22,7 +22,10 @@ const logEarnings = (msg, client) => {
         .setDescription(msg)
 
     const logChannelIds = ['691405983636783194', '587716900721786880']
-    return logChannelIds.forEach(channel => client.channels.get(channel).send(logEmbed))
+    return logChannelIds.forEach(channel => {
+        const logChannel = client.channels.get(channel)
+        if (logChannel) logChannel.send(logEmbed)
+    })
 
 }
 
