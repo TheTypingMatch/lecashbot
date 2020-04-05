@@ -45,7 +45,7 @@ module.exports = async (msg, client, args) => {
     User.updateOne(receiverId, { balance: receiverBal + gift }, err => {
         if (err) sendSuccessEmbed(msg, err)
     })
-    
     User.updateOne(userId, { balance: userBal - gift }, err => sendSuccessEmbed(msg, err))
+    client.users.get(receiverId.discordId).send(`**${user.name}** just sent you $**${gift}**!`)
 
 }
