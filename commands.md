@@ -5,7 +5,7 @@
 - [x] register
 - [x] daily
 - [x] donate
-- [ ] faq
+- [x] faq
 - [x] give
 - [x] help
 - [x] leaderboard

@@ -1,6 +1,5 @@
 const fs = require('fs')
 const config = require('../../config/config')
-const client = require('../../index')
 const Discord = require('discord.js')
 
 const sendErrorEmbed = (msg, client) => {
@@ -29,7 +28,7 @@ const logEarnings = (msg, client) => {
 
 module.exports = (type, msg, client) => {
     if (config.logEnabled) {
-        fs.appendFile(`./logs/${type}.log`, `${msg}\n`, err => console.log(err ? err : msg))
+        fs.appendFile(`./logs/${type}.log`, `${msg} - ${new Date()}\n`, err => console.log(err ? err : msg))
         switch (type) {
             case 'error': sendErrorEmbed(msg, client)
             case 'cash': logEarnings(msg, client)
