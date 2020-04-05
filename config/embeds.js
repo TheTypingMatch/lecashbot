@@ -71,5 +71,19 @@ module.exports = {
             "HighVoltage": "100K", 
             "Metro": "100K"
         }
-    }
+    }, 
+    faqInfo: [
+        {
+            q: 'Can I add this bot to my server?', 
+            a: 'Previously, LeCashBot was exclusive to the NitroType server but you may now invite it with `$info`.'
+        }, 
+        {
+            q: 'How do I sign up for the bot?', 
+            a: 'Use the `$register` command with your NitroType profile link. \nFor example: `$register https://www.nitrotype.com/racer/mrh110`'
+        }, 
+        {
+            q: 'How can I contribute to the bot?', 
+            a: 'If you would like to help out with the bot, it is recommended you join the Discord through `$info` or check our [GitHub](https://github.com/TheTypingMatch/le-cash-bot).'
+        }
+    ]
 }
