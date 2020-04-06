@@ -12,7 +12,9 @@ const reward = async (userId, client) => {
     const userBalance = user.balance
     User.updateOne({ discordId: userId }, { 
         balance: userBalance + randReward
-    }, err => console.log(err ? err : `User ${userId} just earned $${randReward}.`))
+    }, err => {
+        if (err) log('error', err, client)
+    })
 
     return log('cash', `**${user.name}** earned $**${randReward}**.`, client)
 
