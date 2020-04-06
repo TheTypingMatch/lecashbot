@@ -87,11 +87,17 @@ client.on('message', async msg => {
     
     // Check if the user is a bot
     if (msg.author.bot) return
-    
-    // DM handler
 
     // Check if the user has an account.
     const user = await User.findOne({ discordId: userId })
+
+    // Updates user name/discriminator in DB
+    if (user && user.name !== msg.author.username) {
+        console.log(`Updated username ${user.name} to ${msg.author.username}`)
+        User.updateOne({ discordId: userId }, { name: msg.author.username }, err => {
+            if (err) log('error', err, client)
+        })
+    }
     
     // Add user to message reward cooldown
     if (user && !user.banned && !msgCooldowns.includes(userId)) reward(userId, client)

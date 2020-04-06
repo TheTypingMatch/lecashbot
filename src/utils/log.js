@@ -1,28 +1,32 @@
 const fs = require('fs')
-const config = require('../../config/config')
 const Discord = require('discord.js')
+const { logEnabled, channels, colors, version } = require('../../config/config')
 
 const sendErrorEmbed = (msg, client) => {
     
-    let errorEmbed = new Discord.RichEmbed()
-        .setColor(config.colors.red)
+    let errEmbed = new Discord.RichEmbed()
+        .setColor(colors.red)
         .setAuthor('ERROR')
         .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${config.version}`)
+        .setFooter(`LeCashBot v${version}`)
         .setDescription(`\`\`\`js\n${msg}\`\`\``)
     
-    client.channels.get('692123000602099712').send(errorEmbed)
+    const errChannels = channels.error
+    return errChannels.forEach(channel => {
+        const errChannel = client.channels.get(channel)
+        if (errChannel) errChannel.send(errEmbed)
+    })
 
 }
 
 const logEarnings = (msg, client) => {
 
     let logEmbed = new Discord.RichEmbed()
-        .setColor(config.colors.green)
+        .setColor(colors.green)
         .setDescription(msg)
 
-    const logChannelIds = ['691405983636783194', '587716900721786880']
-    return logChannelIds.forEach(channel => {
+    const logChannels = channels.log
+    return logChannels.forEach(channel => {
         const logChannel = client.channels.get(channel)
         if (logChannel) logChannel.send(logEmbed)
     })
@@ -30,11 +34,11 @@ const logEarnings = (msg, client) => {
 }
 
 module.exports = (type, msg, client) => {
-    if (config.logEnabled) {
+    if (logEnabled) {
         fs.appendFile(`./logs/${type}.log`, `${msg} - ${new Date()}\n`, err => console.log(err ? err : msg))
         switch (type) {
-            case 'error': sendErrorEmbed(msg, client)
-            case 'cash': logEarnings(msg, client)
+            case 'error': return sendErrorEmbed(msg, client)
+            case 'cash': return logEarnings(msg, client)
         }
     }
 }
