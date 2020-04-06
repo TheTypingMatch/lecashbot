@@ -6,8 +6,7 @@ const reward = async (userId, client) => {
     const randReward = Math.floor(Math.random() * 50 + 50)
     const user = await User.findOne({ discordId: userId })
 
-    if (!user) 
-        return log('error', `User not found: ${user}`)
+    if (!user) return log('error', `User not found: ${user}`)
 
     const userBalance = user.balance
     User.updateOne({ discordId: userId }, { 

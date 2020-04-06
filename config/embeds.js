@@ -51,6 +51,7 @@ module.exports = {
             "Hysteria": "145.000001M",
             "Volatile": "100M",
             "Tendons": "80M",
+            "T---": "25.000001M",
             "〠【DV◎RAK】〠": "25M",
             "TypeOnederful": "20M",
             "PJCrowley": "20M",
