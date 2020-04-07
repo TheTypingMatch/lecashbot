@@ -6,6 +6,5 @@ module.exports = {
         const cmdPath = path.join(__dirname, `./commands/${cmd}.js`)
         if (fs.existsSync(cmdPath))
             require(`./commands/${cmd}`)(msg, client, args)
-        else msg.reply('That command doesn\'t exist!')
     }
 }
