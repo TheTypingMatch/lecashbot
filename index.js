@@ -45,7 +45,7 @@ const refreshActivity = () => {
 
 const resetDailyStreak = async () => {
 
-    const activeUsers = await User.findMany({ banned: false })
+    const activeUsers = await User.find({ banned: false })
     if (!activeUsers) return
 
     activeUsers.forEach(user => {
@@ -54,8 +54,10 @@ const resetDailyStreak = async () => {
         const notCollected = (date.toHours(new Date() - cooldown) > 36)
         const userId = { discordId: user.discordId }
 
-        if (notCollected && user.dailyStreak)
-            User.update(userId, { dailyStreak: 0 }, err => log('error', err, client))
+        if (notCollected && user.dailyStreak) {
+            User.updateOne(userId, { dailyStreak: 0 }, err => log('error', err, client))
+            console.log(`Daily Streak reset for user ${user.name}`)
+        }
 
     })
 
