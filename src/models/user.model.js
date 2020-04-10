@@ -62,6 +62,11 @@ const articleSchema = new mongoose.Schema({
             suggest: 0, 
             withdraw: 0
         }
+    },
+    dev: {
+        type: Boolean, 
+        required: false, 
+        default: false
     }
 })
 
