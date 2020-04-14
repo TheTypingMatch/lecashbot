@@ -67,6 +67,11 @@ const articleSchema = new mongoose.Schema({
         type: Boolean, 
         required: false, 
         default: false
+    }, 
+    admin: {
+        type: Boolean, 
+        required: false, 
+        default: false
     }
 })
 
