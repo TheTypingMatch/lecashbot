@@ -13,7 +13,7 @@ module.exports = async (msg, client, args) => {
     if (!user.dev) {
         User.update({ discordId: userId }, { banned: false }, e => {
             err = 'There was an error unbanning this user.'
-            log('error', e)
+            log('error', e, client)
         })
     } else err = 'You can\'t unban a developer!'
 
