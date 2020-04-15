@@ -7,9 +7,16 @@ module.exports = {
 
         const cmdPath = path.join(__dirname, `./commands/${cmd}.js`)
         const devPath = path.join(__dirname, `./commands/dev/${cmd}.js`)
-        const isDev = await User.findOne({ discordId: msg.author.id })
+        const adminPath = path.join(__dirname, `./commands/admin/${cmd}.js`)
 
-        if (fs.existsSync(devPath) && isDev.dev) require(devPath)(msg, client, args)
+        const isDev = await User.findOne({ discordId: msg.author.id })
+        const isAdmin = await User.findOne({ discordId: msg.author.id })
+
+        const hasAdminPerms = (fs.existsSync(adminPath) && isAdmin.admin)
+        const hasDevPerms = (fs.existsSync(devPath) && isDev.dev)
+
+        if (hasDevPerms) require(devPath)(msg, client, args)
+        else if (hasAdminPerms) require(adminPath)(msg, client, args)
         else if (fs.existsSync(cmdPath)) require(cmdPath)(msg, client, args)
 
     }
