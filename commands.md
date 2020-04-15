@@ -22,9 +22,8 @@
 
 
 # Admin Commands
-- [ ] ban
-- [ ] unban
-- [ ] edit (edits user info)
+- [x] ban
+- [x] unban
 
 
 # Future Version Commands
