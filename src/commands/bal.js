@@ -7,12 +7,15 @@ module.exports = async (msg, client, args) => {
 
     const err = 'This user does not have an account!'
     const userId = args[0] ? args[0].replace(/<|@|!|>/g, '') : msg.author.id
-    const user = await User.findOne({ discordId: userId })
+    
+    const isNotId = (isNaN(parseInt(userId)))
+    const userData = (isNotId) ? { name: args.join(' ').trim() } : { discordId: userId }
+    const user = await User.findOne(userData)
     const result = user ? `${user.name}'s balance is **$${currency(user.balance)}**.` : err
     
     let balanceEmbed = new RichEmbed()
         .setColor(colors.green)
-        .setAuthor('Balance', client.users.get(userId).avatarURL)
+        .setAuthor('Balance', client.users.get((isNotId) ? user.discordId : userId).avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(result)
