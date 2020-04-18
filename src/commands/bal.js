@@ -12,7 +12,7 @@ module.exports = async (msg, client, args) => {
     
     let balanceEmbed = new RichEmbed()
         .setColor(colors.green)
-        .setAuthor('Balance', msg.author.avatarURL)
+        .setAuthor('Balance', client.users.get(userId).avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(result)

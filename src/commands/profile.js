@@ -16,7 +16,7 @@ module.exports = async (msg, client, args) => {
     if (user) {
         profileEmbed
             .setColor(colors.green)
-            .setAuthor(`${name}'s Profile`, msg.author.avatarURL)
+            .setAuthor(`${name}'s Profile`, client.users.get(userId).avatarURL)
             .setDescription(`View ${name}'s profile [here](${nitroTypeLink})`)
             .addField('Balance', `$**${currency(balance)}**`)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)
