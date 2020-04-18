@@ -54,12 +54,13 @@ module.exports = async (msg, client, args) => {
             donor: donor
         }
 
+        const userAvatar = client.users.get((isNotId) ? user.discordId : userId)
         const userBadges = addBadges(badges)
         if (userBadges) profileEmbed.addField('Contributions', `${userBadges}`)
         
         profileEmbed
             .setColor(colors.green)
-            .setAuthor(`${name}'s Profile`, client.users.get((isNotId) ? user.discordId : userId).avatarURL)
+            .setAuthor(`${name}'s Profile`, userAvatar ? userAvatar.avatarURL : msg.author.avatarURL)
             .setDescription(`View ${name}'s profile [here](${nitroTypeLink})`)
             .addField('Balance', `$**${currency(balance)}**`)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)

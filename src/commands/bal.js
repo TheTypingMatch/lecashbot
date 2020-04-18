@@ -13,9 +13,11 @@ module.exports = async (msg, client, args) => {
     const user = await User.findOne(userData)
     const result = user ? `${user.name}'s balance is **$${currency(user.balance)}**.` : err
     
+    const userAvatar = client.users.get((isNotId) ? user.discordId : userId)
+
     let balanceEmbed = new RichEmbed()
         .setColor(colors.green)
-        .setAuthor('Balance', client.users.get((isNotId) ? user.discordId : userId).avatarURL)
+        .setAuthor('Balance', userAvatar ? userAvatar.avatarURL : msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(result)
