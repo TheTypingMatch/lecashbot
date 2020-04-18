@@ -28,29 +28,38 @@ const addBadges = badges => {
 module.exports = async (msg, client, args) => {
 
     const userId = args[0] ? args[0].replace(/<|@|!|>/g, '') : msg.author.id
-    const user = await User.findOne({ discordId: userId })
-    const { name, nitroTypeLink, balance, dailyStreak, highestBet } = user
 
-    const badges = {
-        owner: (user.owner),
-        admin: (user.admin), 
-        developer: (user.dev),
-        tester: (user.tester),
-        donor: (user.donor)
-    }
+    const isNotId = (isNaN(parseInt(userId)))
+    const userData = (isNotId) ? { name: args.join(' ').trim() } : { discordId: userId }
+    const user = await User.findOne(userData)
 
     let profileEmbed = new RichEmbed()
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
-
+    
+        
     if (user) {
+            
+        const { 
+            name, nitroTypeLink, balance, 
+            dailyStreak, highestBet, owner, 
+            admin, dev, tester, donor
+        } = user
+    
+        const badges = {
+            owner: owner,
+            admin: admin, 
+            developer: dev,
+            tester: tester,
+            donor: donor
+        }
 
         const userBadges = addBadges(badges)
         if (userBadges) profileEmbed.addField('Contributions', `${userBadges}`)
         
         profileEmbed
             .setColor(colors.green)
-            .setAuthor(`${name}'s Profile`, client.users.get(userId).avatarURL)
+            .setAuthor(`${name}'s Profile`, client.users.get((isNotId) ? user.discordId : userId).avatarURL)
             .setDescription(`View ${name}'s profile [here](${nitroTypeLink})`)
             .addField('Balance', `$**${currency(balance)}**`)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)
