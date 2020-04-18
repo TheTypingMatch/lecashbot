@@ -72,6 +72,21 @@ const articleSchema = new mongoose.Schema({
         type: Boolean, 
         required: false, 
         default: false
+    }, 
+    donor: {
+        type: Boolean,
+        required: false, 
+        default: false
+    }, 
+    tester: {
+        type: Boolean, 
+        required: false, 
+        default: false
+    }, 
+    owner: {
+        type: Boolean, 
+        required: false, 
+        default: false
     }
 })
 
