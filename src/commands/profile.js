@@ -44,21 +44,23 @@ module.exports = async (msg, client, args) => {
         .setFooter(`LeCashBot v${version}`)
 
     if (user) {
+
+        const userBadges = addBadges(badges)
+        if (userBadges) profileEmbed.addField('Contributions', `${userBadges}`)
+        
         profileEmbed
             .setColor(colors.green)
             .setAuthor(`${name}'s Profile`, client.users.get(userId).avatarURL)
             .setDescription(`View ${name}'s profile [here](${nitroTypeLink})`)
-            .addField('Contributions', `${addBadges(badges)}`)
             .addField('Balance', `$**${currency(balance)}**`)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)
             .addField('Highest Bet', `$**${currency(highestBet.amount)}**`, true)
             .addField('Chance', `**${highestBet.chance}**%`, true)
-    } else {
-        profileEmbed
-            .setColor(colors.red)
-            .setAuthor(`Unknown Profile`, msg.author.avatarURL)
-            .setDescription('This user does not have an account!')
-    }
+
+    } else profileEmbed
+        .setColor(colors.red)
+        .setAuthor(`Unknown Profile`, msg.author.avatarURL)
+        .setDescription('This user does not have an account!')
 
     return msg.channel.send(profileEmbed)
 
