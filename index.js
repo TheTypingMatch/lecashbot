@@ -34,9 +34,10 @@ mongoose.connect(config.db.uri, config.db.uriParams)
     .catch(err => log('error', err, client))
 
 const refreshActivity = () => {
+    const guilds = client.guilds.size
     client.user.setPresence({
         game: {
-            name: config.devMode ? 'In Development' : `${client.users.size} users on Nitro Type`,
+            name: config.devMode ? 'In Development' : `${client.users.size} users, ${guilds} servers`,
             type: config.devMode ? 'PLAYING' : 'WATCHING'
         },
         status: config.devMode ? 'dnd' : 'online'
