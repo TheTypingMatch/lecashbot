@@ -2,7 +2,6 @@ const User = require('../models/user.model')
 const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
 const { currency, int } = require('../utils/format')
-const log = require('../utils/log')
 
 let statusColor = colors.yellow
 let message = ''
@@ -10,13 +9,10 @@ let message = ''
 const withdraw = (client, msg, user, amount, notifEmbed) => {
     User.updateOne({ discordId: msg.author.id }, {
         balance: user.balance - amount
-    }, err => {
-        if (err) {
-            log('error', err)
-            statusColor = colors.red
-            message = 'An error occurred.'
-        }
-    })
+    }, err => checkErr(err, client, () => {
+        statusColor = colors.red
+        message = 'An error occurred.'
+    }))
     client.users.get('296862365503193098').send(notifEmbed)
 }
 
@@ -38,15 +34,9 @@ module.exports = async (msg, client, args) => {
         .setFooter(`LeCashBot v${version}`)
         .setDescription(`$**${currency(amount)}** withdrawn to [${user.name}](${user.nitroTypeLink}).`)
 
-    if (userBal < 100000)
-        message = 'You do not have enough money to withdraw: $**100,000** minimum'
-
-    else if (userBal < amount) 
-        message = `You do not have enough cash: $**${currency(userBal)}**`
-
-    else if (amount < 100000)
-        message = 'You must withdraw at least $**100,000**.'
-
+    if (userBal < 100000) message = 'You do not have enough money to withdraw: $**100,000** minimum'
+    else if (userBal < amount) message = `You do not have enough cash: $**${currency(userBal)}**`
+    else if (amount < 100000) message = 'You must withdraw at least $**100,000**.'
     else {
         withdraw(client, msg, user, amount, notifEmbed)
         statusColor = colors.green

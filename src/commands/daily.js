@@ -1,10 +1,10 @@
 const User = require('../models/user.model')
+const checkErr = require('../utils/checkErr')
 const { RichEmbed } = require('discord.js')
 const { daily } = require('../../config/cooldowns')
 const { colors, version } = require('../../config/config')
 const { toHours } = require('../utils/date')
 const { currency } = require('../utils/format')
-const log = require('../utils/log')
 
 const sendReward = (msg, user) => {
 
@@ -25,14 +25,11 @@ const sendReward = (msg, user) => {
         balance: balance + reward, 
         dailyStreak: dailyStreak + 1,
         cooldowns: cooldowns
-    }, err => {
-        if (err) log('error', err, client)
-        return msg.channel.send(err ? 'An error occurred.' : dailyEmbed)
-    })
+    }, err => checkErr(err, client, () => msg.channel.send(dailyEmbed)))
 
 }
 
-const sendTimeLeft = (msg, user, dailyCooldown) => {
+const sendTimeLeft = (msg, dailyCooldown) => {
 
     const hoursLeft = toHours(daily - dailyCooldown)
     const isMinutes = (hoursLeft < 1)
@@ -57,6 +54,6 @@ module.exports = async (msg, client, args) => {
     const dailyCooldown = new Date() - lastDaily
     const isWithinTimeout = (user && dailyCooldown >= daily)
 
-    return (isWithinTimeout) ? sendReward(msg, user) : sendTimeLeft(msg, user, dailyCooldown)
+    return (isWithinTimeout) ? sendReward(msg, user) : sendTimeLeft(msg, dailyCooldown)
 
 }
