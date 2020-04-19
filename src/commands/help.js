@@ -3,11 +3,6 @@ const { colors, version } = require('../../config/config')
 const { desc, guides, economy, games, misc } = require('../../config/embeds').helpInfo
 const { addCommandField } = require('../utils/field')
 
-const addHelpField = info => {
-    const infoDescription = Object.entries(info).map(desc => `\`$${desc[0]}\` ${desc[1]}`)
-    return `${infoDescription}`.replace(/,/g, '\n')
-}
-
 module.exports = (msg, client, args) => {
 
     let helpEmbed = new RichEmbed()
