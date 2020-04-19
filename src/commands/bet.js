@@ -1,8 +1,8 @@
 const User = require('../models/user.model')
+const checkErr = require('../utils/checkErr')
 const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
 const { currency, int } = require('../utils/format')
-const log = require('../utils/log')
 
 const sendRecordEmbed = (msg, previousBet) => {
 
@@ -50,13 +50,13 @@ const win = bet => {
     
 }
 
-const makeBet = async (msg, user, bet) => {
+const makeBet = async (msg, { highestBet, balance }, bet) => {
 
     const didWin = win(bet)
     sendBetEmbed(msg, bet, didWin)
 
-    const previousBet = user.highestBet.amount
-    const previousBal = user.balance
+    const previousBet = highestBet.amount
+    const previousBal = balance
     const userId = { discordId: msg.author.id }
     const newBal = {
         balance: (didWin[0]) ? (previousBal + bet) : (previousBal - bet)
@@ -68,12 +68,10 @@ const makeBet = async (msg, user, bet) => {
                 chance: didWin[1], 
                 amount: bet
             }
-        }, err => err ? log('error', err, client) : sendRecordEmbed(msg, previousBet))
+        }, err => checkErr(err, client, () => sendRecordEmbed(msg, previousBet)))
     }
     
-    User.updateOne(userId, newBal, err => {
-        if (err) log('error', err, client)
-    })
+    User.updateOne(userId, newBal, err => checkErr(err, client))
 
 }
 
