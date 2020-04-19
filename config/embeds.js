@@ -33,7 +33,8 @@ module.exports = {
         },
         contributors: {
             lesirh: '**LeSirH** - Owner', 
-            damienVesper: '**Damien Vesper** - Developer'
+            damienVesper: '**Damien Vesper** - Developer',
+            techDude: '**tech_dude1 - Developer'
         }, 
         contribute: {
             msg: 'Want to contribute to LeCashBot?',

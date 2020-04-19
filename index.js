@@ -1,21 +1,19 @@
 const Discord = require('discord.js')
-const dotenv = require('dotenv')
+require('dotenv').config()
 
 // Models
 const User = require('./src/models/user.model')
 
-dotenv.config()
-
 // config
-const config = require('./config/config')
-const cooldowns = require('./config/cooldowns')
+const { prefix, db, devMode, token } = require('./config/config')
+const { msgCooldown, dailyReset } = require('./config/cooldowns')
 
 // utils
 const log = require('./src/utils/log')
 const reward = require('./src/utils/reward')
-const date = require('./src/utils/date')
+const { toHours } = require('./src/utils/date')
+const checkErr = require('./src/utils/checkErr')
 
-const prefix = config.prefix
 const client = new Discord.Client({
     disableEveryone: true, 
     fetchAllMembers: true, 
@@ -26,21 +24,23 @@ const client = new Discord.Client({
 const mongoDB = require('mongodb')
 const mongoose = require('mongoose')
 
-mongoDB.connect(config.db.uri, config.db.uriParams)
-    .then(() => console.log('Successfully connected to database.'))
-    .catch(err => log('error', err, client))
+mongoDB.connect(db.uri, db.uriParams, err => {
+    if (err) log('error', err, client)
+    else console.log('Successfully connected to database.')
+})
 
-mongoose.connect(config.db.uri, config.db.uriParams)
-    .catch(err => log('error', err, client))
+mongoose.connect(db.uri, db.uriParams, err => {
+    if (err) log('error', err, client)
+})
 
 const refreshActivity = () => {
-    const guilds = client.guilds.size
+    const { users, guilds } = client
     client.user.setPresence({
         game: {
-            name: config.devMode ? 'In Development' : `${client.users.size} users, ${guilds} servers`,
-            type: config.devMode ? 'PLAYING' : 'WATCHING'
+            name: devMode ? 'In Development' : `${users.size} users, ${guilds.size} servers`,
+            type: devMode ? 'PLAYING' : 'WATCHING'
         },
-        status: config.devMode ? 'dnd' : 'online'
+        status: devMode ? 'dnd' : 'online'
     })
 }
 
@@ -51,13 +51,15 @@ const resetDailyStreak = async () => {
 
     activeUsers.forEach(user => {
 
-        const cooldown = user.cooldowns.daily
-        const notCollected = (date.toHours(new Date() - cooldown) > 36)
-        const userId = { discordId: user.discordId }
+        const { cooldowns, discordId, dailyStreak, name } = user
+        const notCollected = (toHours(new Date() - cooldowns.daily) > 36)
+        const userId = { discordId: discordId }
 
-        if (notCollected && user.dailyStreak) {
-            User.updateOne(userId, { dailyStreak: 0 }, err => log('error', err, client))
-            console.log(`Daily Streak reset for user ${user.name}`)
+        if (notCollected && dailyStreak) {
+            User.updateOne(userId, { dailyStreak: 0 }, err => {
+                if (err) log('error', err, client)
+                else console.log(`Daily Streak reset for user ${name}`)
+            })
         }
 
     })
@@ -67,12 +69,10 @@ const resetDailyStreak = async () => {
 let msgCooldowns = []
 
 client.on('ready', () => {
-    setInterval(() => msgCooldowns = [], cooldowns.msgCooldown)
-    setInterval(resetDailyStreak, cooldowns.dailyReset)
+    setInterval(() => msgCooldowns = [], msgCooldown)
+    setInterval(resetDailyStreak, dailyReset)
     refreshActivity()
 })
-
-// Command handler
 
 client.on('guildCreate', () => refreshActivity())
 client.on('guildRemove', () => refreshActivity())
@@ -83,12 +83,11 @@ client.on('message', async msg => {
 
     const userId = msg.author.id
     
-    // Handle commands
+    // Handle command arguments
     const args = msg.content.slice(prefix.length).trim().split(/ +/g)
     const cmd = args.shift().toLowerCase()
-    const generalCmds = ['help', 'register', 'total', 'leaderboard', 'ping', 'faq', 'event']
+    const generalCmds = ['help', 'register', 'total', 'leaderboard', 'ping', 'faq']
     
-    // Check if the user is a bot
     if (msg.author.bot) return
 
     // Check if the user has an account.
@@ -96,33 +95,29 @@ client.on('message', async msg => {
 
     // Updates user name/discriminator in DB
     if (user && user.name !== msg.author.username) {
-        console.log(`Updated username ${user.name} to ${msg.author.username}`)
-        User.updateOne({ discordId: userId }, { name: msg.author.username }, err => {
-            if (err) log('error', err, client)
-        })
+        const updatedName = { name: msg.author.username }
+        User.updateOne({ discordId: userId }, updatedName, err => checkErr(err, client, () => {
+            console.log(`Updated username ${user.name} to ${msg.author.username}`)
+        }))
     }
     
     // Add user to message reward cooldown
     if (user && !user.banned && !msgCooldowns.includes(userId)) reward(userId, client)
-
     msgCooldowns.push(userId)
 
     // Check if the message starts with a prefix
     if (!msg.content.startsWith(prefix)) return
     
-    if (!user && !generalCmds.includes(cmd))
+    if (!user && !generalCmds.includes(cmd)) 
         return msg.reply('You must `$register` an account before using any other commands!')
 
-    // Check if the user is banned
-    if (user && user.banned) 
-        return msg.reply('You have been banned from the bot.')
+    if (user && user.banned) return msg.reply('You have been banned from the bot.')
 
-    const commands = require('./src/commands')
-    commands.run(cmd, msg, client, args)
+    // Command handler
+    require('./src/commands').run(cmd, msg, client, args)
     
 })
 
-client.login(config.token)
+client.login(token)
     .then(() => console.log('Successfully logged in.'))
     .catch(err => log('error', err, client))
- 
