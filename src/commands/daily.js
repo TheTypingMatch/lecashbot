@@ -6,7 +6,7 @@ const { colors, version } = require('../../config/config')
 const { toHours } = require('../utils/date')
 const { currency } = require('../utils/format')
 
-const sendReward = (msg, user) => {
+const sendReward = (msg, user, client) => {
 
     const { balance, dailyStreak, cooldowns } = user
     const userId = { discordId: msg.author.id }
@@ -54,6 +54,6 @@ module.exports = async (msg, client, args) => {
     const dailyCooldown = new Date() - lastDaily
     const isWithinTimeout = (user && dailyCooldown >= daily)
 
-    return (isWithinTimeout) ? sendReward(msg, user) : sendTimeLeft(msg, dailyCooldown)
+    return (isWithinTimeout) ? sendReward(msg, user, client) : sendTimeLeft(msg, dailyCooldown)
 
 }
