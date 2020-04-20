@@ -50,7 +50,7 @@ const win = bet => {
     
 }
 
-const makeBet = async (msg, { highestBet, balance }, bet) => {
+const makeBet = async (msg, { highestBet, balance }, bet, client) => {
 
     const didWin = win(bet)
     sendBetEmbed(msg, bet, didWin)
@@ -90,6 +90,6 @@ module.exports = async (msg, client, args) => {
     if (!user) return msg.channel.send('An error occurred.')
 
     // Check if the user has enough in their balance to bet.
-    return (user.balance >= bet) ? makeBet(msg, user, bet) : msg.reply(`Insufficient bal: $${user.balance}`)
+    return (user.balance >= bet) ? makeBet(msg, user, bet, client) : msg.reply(`Insufficient bal: $${user.balance}`)
 
 }
