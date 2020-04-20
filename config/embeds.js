@@ -43,6 +43,9 @@ module.exports = {
         },
         donors: {
             donors: '**Donors** - Use `$donate` to view donations.'
+        }, 
+        invite: {
+            invite: 'Invite LeCashBot [**here**](https://discordapp.com/oauth2/authorize?client_id=586645522614583306&permissions=134073664&scope=bot).'
         }
     }, 
     donate: {
