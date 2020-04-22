@@ -74,6 +74,7 @@ client.on('ready', () => {
     refreshActivity()
 })
 
+client.on('error', err => checkErr(err, client))
 client.on('guildCreate', () => refreshActivity())
 client.on('guildRemove', () => refreshActivity())
 client.on('guildMemberAdd', () => refreshActivity())
