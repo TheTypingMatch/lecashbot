@@ -3,6 +3,7 @@ const checkErr = require('../utils/checkErr')
 const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
 const { currency, int } = require('../utils/format')
+const { betTime } = require('../../config/cooldowns')
 
 const sendRecordEmbed = (msg, previousBet) => {
 
@@ -59,7 +60,7 @@ const makeBet = async (msg, { highestBet, balance }, bet, client) => {
     const previousBal = balance
     const userId = { discordId: msg.author.id }
     const newBal = {
-        balance: (didWin[0]) ? (previousBal + bet) : (previousBal - bet)
+        balance: (didWin[0]) ? (previousBal + bet) : (previousBal - bet),
     }
 
     if (previousBet < bet && didWin[0]) {
@@ -85,9 +86,19 @@ module.exports = async (msg, client, args) => {
     // Make sure the bet is at least $250
     if (bet < 250) return msg.reply('Bets must be at least $250!')
 
-    // Fetch the user from db
     const user = await User.findOne({ discordId: msg.author.id })
+    
+    const lastBet = user.cooldowns.bet
+    const betCooldown = new Date() - lastBet
+    const isWithinTimeout = (user && betCooldown >= betTime)
+    
+    const cooldowns = user.cooldowns
+    cooldowns.bet = new Date()
+
+    if (!isWithinTimeout) return msg.channel.send('You must wait **5 seconds** before you can use this command again.')
+    else User.updateOne({ discordId: user.discordId }, { cooldowns: cooldowns }, err => checkErr(err, client))
     if (!user) return msg.channel.send('An error occurred.')
+
 
     // Check if the user has enough in their balance to bet.
     return (user.balance >= bet) ? makeBet(msg, user, bet, client) : msg.reply(`Insufficient bal: $${user.balance}`)
