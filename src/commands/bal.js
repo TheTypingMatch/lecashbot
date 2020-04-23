@@ -11,7 +11,7 @@ module.exports = async ({ author, channel }, client, args) => {
     const isNotId = (isNaN(parseInt(userId)))
     const userData = (isNotId) ? { name: args.join(' ').trim() } : { discordId: userId }
     const user = await User.findOne(userData)
-    const result = user ? `${user.name}'s balance is **$${currency(user.balance)}**.` : err
+    const result = user ? `**${user.name}**'s balance is **$${currency(user.balance)}**.` : err
     
     const userAvatar = client.users.get((isNotId) ? user.discordId : userId)
 
