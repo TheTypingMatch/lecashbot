@@ -5,6 +5,11 @@ const { colors, version } = require('../../config/config')
 const { currency, int } = require('../utils/format')
 const { betTime } = require('../../config/cooldowns')
 
+const cooldownEmbed = new RichEmbed()
+    .setColor(colors.yellow)
+    .setFooter(`LeCashBot v${version}`)
+    .setDescription('You must wait **3 seconds** before you can use this command again.')
+
 const sendRecordEmbed = (msg, previousBet) => {
 
     let recordBetEmbed = new RichEmbed()
@@ -95,8 +100,15 @@ module.exports = async (msg, client, args) => {
     const cooldowns = user.cooldowns
     cooldowns.bet = new Date()
 
-    if (!isWithinTimeout) return msg.channel.send('You must wait **5 seconds** before you can use this command again.')
-    else User.updateOne({ discordId: user.discordId }, { cooldowns: cooldowns }, err => checkErr(err, client))
+    if (!isWithinTimeout) {
+
+        cooldownEmbed
+            .setAuthor('Bet', msg.author.avatarURL)
+            .setTimestamp(new Date())
+
+        return msg.channel.send(cooldownEmbed)
+        
+    } else User.updateOne({ discordId: user.discordId }, { cooldowns: cooldowns }, err => checkErr(err, client))
     if (!user) return msg.channel.send('An error occurred.')
 
 
