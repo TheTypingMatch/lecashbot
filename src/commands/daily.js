@@ -3,7 +3,7 @@ const checkErr = require('../utils/checkErr')
 const { RichEmbed } = require('discord.js')
 const { daily } = require('../../config/cooldowns')
 const { colors, version } = require('../../config/config')
-const { toHours } = require('../utils/date')
+const { toHours, toMinutes } = require('../utils/date')
 const { currency } = require('../utils/format')
 
 const sendReward = (msg, user, client) => {
@@ -31,16 +31,23 @@ const sendReward = (msg, user, client) => {
 
 const sendTimeLeft = (msg, dailyCooldown) => {
 
-    const hoursLeft = toHours(daily - dailyCooldown)
-    const isMinutes = (hoursLeft < 1)
-    const timeLeft = isMinutes ? hoursLeft * 60 : hoursLeft
+    let timeLength = 'seconds'
+    let timeLeft = daily - dailyCooldown
+
+    if ((timeLeft / 1000) > 60 && toHours(timeLeft) < 1) {
+        timeLength = 'minutes'
+        timeLeft = toMinutes(timeLeft)
+    } else if (toHours(timeLeft) > 1) {
+        timeLength = 'hours'
+        timeLeft = toHours(timeLeft)
+    } else timeLeft = timeLeft / 1000
 
     let cooldownEmbed = new RichEmbed()
         .setColor(colors.yellow)
         .setAuthor('Daily', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
-        .setDescription(`You can collect your daily reward in **${Math.round(timeLeft)}** ${isMinutes ? 'minutes' : 'hours'}`)
+        .setDescription(`You can collect your daily reward in **${Math.ceil(timeLeft)}** ${timeLength}`)
     
     return msg.channel.send(cooldownEmbed)
 
