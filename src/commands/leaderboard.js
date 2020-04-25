@@ -51,7 +51,7 @@ const handleCashLb = (msg, users) => {
 
     let userPosition = 'N/A'
     let userBalance = 'N/A'
-    sortedUsers.forEach(({ discordId, balance }, index) => {
+    sortedUsers.reverse().forEach(({ discordId, balance }, index) => {
         if (discordId === msg.author.id) {
             userPosition = index + 1
             userBalance = balance
