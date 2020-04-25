@@ -22,7 +22,7 @@ module.exports = {
         ],
         error: ['692123000602099712']
     },
-    version: '1.2.3',
+    version: '1.2.4',
     token: process.env.TOKEN,
     prefix: '$',
     devMode: false, 
