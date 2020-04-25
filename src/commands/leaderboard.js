@@ -22,7 +22,7 @@ const handleBetLb = (msg, users) => {
     const topTen = getTopTen(sortedUsers)
     
     topTen.forEach((user, pos) => {
-        desc += `#**${pos + 1}** ${user.name} - $**${currency(user.highestBet.amount)}** - **${user.highestBet.chance}**%\n`
+        desc += `#**${pos + 1}** ${user.name} - $**${currency(user.highestBet.amount)}** - **${Math.round(user.highestBet.chance * 100) / 100}**%\n`
     })
 
     lbEmbed.setDescription(desc)

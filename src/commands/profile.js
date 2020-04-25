@@ -65,7 +65,7 @@ module.exports = async (msg, client, args) => {
             .addField('Balance', `$**${currency(balance)}**`)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)
             .addField('Highest Bet', `$**${currency(highestBet.amount)}**`, true)
-            .addField('Chance', `**${highestBet.chance}**%`, true)
+            .addField('Chance', `**${Math.round(highestBet.chance * 100) / 100}**%`, true)
 
     } else profileEmbed
         .setColor(colors.red)

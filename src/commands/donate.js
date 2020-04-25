@@ -1,7 +1,7 @@
 const User = require('../models/user.model')
 const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
-const { donateLink, donors } = require('../../config/embeds').donate
+const { donateLink } = require('../../config/embeds').donate
 const { currency } = require('../utils/format')
 
 const getDonors = async () => {

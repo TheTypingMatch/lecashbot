@@ -3,7 +3,7 @@ const log = require('../utils/log')
 
 const reward = async (userId, client) => {
 
-    const randReward = Math.floor(Math.random() * 50 + 50)
+    const randReward = Math.floor(Math.random() * 50 + 25)
     const user = await User.findOne({ discordId: userId })
 
     if (!user) return log('error', `User not found: ${user}`)

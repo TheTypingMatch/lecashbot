@@ -31,7 +31,7 @@ const sendBetEmbed = (msg, bet, didWin) => {
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(`You ${(didWin[0]) ? 'won' : 'lost'} $**${currency(bet)}**.`)
-        .addField('Chances', `**${didWin[1]}**%`)
+        .addField('Chances', `**${Math.round(didWin[1] * 100) / 100}**%`)
 
     msg.channel.send(betEmbed)
 
