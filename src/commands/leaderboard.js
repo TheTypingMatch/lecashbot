@@ -20,10 +20,22 @@ const handleBetLb = (msg, users) => {
         return (aBet > bBet) ? 1 : ((bBet > aBet) ? -1 : 0)
     })
     const topTen = getTopTen(sortedUsers)
-    
+
+    let userPosition = 'You are not ranked!'
+    let userBet = 'N/A'
+    let userBetChance = 'N/A'
+    sortedUsers.reverse().forEach((user, index) => {
+        if (user.discordId === msg.author.id) {
+            userPosition = index + 1
+            userBet = user.highestBet.amount
+            userBetChance = Math.round(user.highestBet.chance * 100) / 100
+        }
+    })
+
     topTen.forEach((user, pos) => {
         desc += `#**${pos + 1}** ${user.name} - $**${currency(user.highestBet.amount)}** - **${Math.round(user.highestBet.chance * 100) / 100}**%\n`
     })
+    desc += `#**${userPosition}** - YOU - $**${currency(userBet)}** - **${userBetChance}**%`
 
     lbEmbed.setDescription(desc)
     desc = ''
@@ -36,8 +48,18 @@ const handleCashLb = (msg, users) => {
 
     const sortedUsers = users.sort((a, b) => (a.balance > b.balance) ? 1 : ((b.balance > a.balance) ? -1 : 0))
     const topTen = getTopTen(sortedUsers)
+
+    let userPosition = 'N/A'
+    let userBalance = 'N/A'
+    sortedUsers.forEach(({ discordId, balance }, index) => {
+        if (discordId === msg.author.id) {
+            userPosition = index + 1
+            userBalance = balance
+        }
+    })
     
     topTen.forEach((user, pos) => desc += `#**${pos + 1}** ${user.name} - $**${currency(user.balance)}**\n`)
+    desc += `#**${userPosition}** - YOU - $**${currency(userBalance)}**`
     lbEmbed.setDescription(desc)
     desc = ''
 
