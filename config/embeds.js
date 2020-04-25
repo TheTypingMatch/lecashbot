@@ -76,16 +76,28 @@ module.exports = {
     }, 
     faqInfo: [
         {
+            q: 'How do I earn NitroType cash?', 
+            a: 'Make sure you have signed up for the bot and you will be earning money straight away just by chatting in any Discord server you share LeCashBot with! You can also earn cash with other bot games & commands. (See `$help`)'
+        },
+        {
             q: 'Can I add this bot to my server?', 
             a: 'Previously, LeCashBot was exclusive to the NitroType server but you may now invite it with `$info`.'
         }, 
         {
-            q: 'How do I sign up for the bot?', 
+            q: 'How do I sign up for the bot/How do I start earning money?', 
             a: 'Use the `$register` command with your NitroType profile link. \nFor example: `$register https://www.nitrotype.com/racer/mrh110`'
         }, 
         {
             q: 'How can I contribute to the bot?', 
-            a: 'If you would like to help out with the bot, it is recommended you join the Discord through `$info` or check our [GitHub](https://github.com/TheTypingMatch/le-cash-bot).'
+            a: 'If you would like to help out with the bot, it is recommended you join the Discord through `$info` or check our [**GitHub**](https://github.com/TheTypingMatch/le-cash-bot).'
+        }, 
+        {
+            q: 'How much money does LeCashBot have and where does it come from?',
+            a: 'LeCashBot\'s total can be viewed [**here**](https://www.nitrotype.com/racer/lecashbot) and [**here**](https://www.nitrotype.com/racer/mrh110). It\'s money comes from many donators that can be viewed with `$donate`.'
+        }, 
+        {
+            q: 'How can I get a contribution badge?', 
+            a: 'The achievable contribution badges include developer, tester, and donor. To earn the developer badge, you must contribute to LeCashBot\'s repository [**here**](https://github.com/TheTypingMatch/le-cash-bot). The tester badge is achievable by helping out with testing new features in the [**LeCashBot Discord**](https://discord.gg/UspVEng).'
         }
     ]
 }
