@@ -63,6 +63,11 @@ const articleSchema = new mongoose.Schema({
             withdraw: 0
         }
     },
+    donations: {
+        type: Number, 
+        required: false, 
+        default: 0
+    },
     dev: {
         type: Boolean, 
         required: false, 

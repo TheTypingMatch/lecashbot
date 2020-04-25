@@ -68,7 +68,7 @@ const resetDailyStreak = async () => {
 
 let msgCooldowns = []
 
-client.on('ready', () => {
+client.on('ready', async () => {
     setInterval(() => msgCooldowns = [], msgCooldown)
     setInterval(resetDailyStreak, dailyReset)
     refreshActivity()
