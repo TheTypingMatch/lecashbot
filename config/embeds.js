@@ -31,11 +31,6 @@ module.exports = {
             creationDate: '**Creation Date** - June 7 2019', 
             prefix: '**Prefix** - $' 
         },
-        contributors: {
-            lesirh: '**LeSirH** - Owner', 
-            damienVesper: '**Damien Vesper** - Developer',
-            techDude: '**tech_dude1 - Developer'
-        }, 
         contribute: {
             msg: 'Want to contribute to LeCashBot?',
             link: 'View the repo on **[GitHub](https://github.com/TheTypingMatch/le-cash-bot)**.',
