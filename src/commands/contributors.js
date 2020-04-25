@@ -8,13 +8,11 @@ const addField = userData => {
 }
 
 const getContributors = async type => {
-
     const contributors = await User.find({ [type]: true })
     return contributors.map(contributor => ({
         id: contributor.discordId, 
         [type]: true
     }))
-
 }
 
 module.exports = async (msg, client, args) => {
@@ -28,9 +26,9 @@ module.exports = async (msg, client, args) => {
         .setAuthor('Contributors', msg.author.avatarURL)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
-        .addField('Admins', addField(admins) || 'N/A')
-        .addField('Developers', addField(devs) || 'N/A')
-        .addField('Testers', addField(testers) || 'N/A')
+        .addField('Admins', addField(admins))
+        .addField('Developers', addField(devs))
+        .addField('Testers', addField(testers))
         .addField('Donors', 'See `$donate` to view cash donors.')
 
     return msg.channel.send(helpEmbed)

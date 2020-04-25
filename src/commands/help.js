@@ -1,6 +1,6 @@
 const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
-const { desc, guides, economy, games, misc } = require('../../config/embeds').helpInfo
+const { register, desc, guides, economy, games, misc } = require('../../config/embeds').helpInfo
 const { addCommandField } = require('../utils/field')
 
 module.exports = (msg, client, args) => {
@@ -11,6 +11,7 @@ module.exports = (msg, client, args) => {
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(desc)
+        .addField('Register', addCommandField(register))
         .addField('Guides', addCommandField(guides))
         .addField('Economy', addCommandField(economy))
         .addField('Games', addCommandField(games))

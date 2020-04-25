@@ -1,26 +1,28 @@
 module.exports = {
     helpInfo: {
         desc: 'A Discord.js bot based on the NitroType currency.',
+        register: {
+            register: ' - Make a profile using your NT account.'
+        },
         guides: {
+            info: ' - Important bot information.', 
             faq: ' - Display frequently asked questions.', 
-            donate: ' - Display donators.'
+            donate: ' - Display donators.', 
+            contributors: ' - Display contributors'
         }, 
         economy: {
-            daily: ' - Collect daily cash.',
+            bal: ' `<user>` - View yours or another user\'s balance.',
             give: '`<user>` `<amount>` - Gift someone your balance.', 
-            withdraw: '`<amount>` - Withdraw at least $100K to your NitroType account.', 
-            leaderboard: ' - View the wealthiest of all LeCashBot users.', 
+            daily: ' - Collect daily cash.',
             total: ' - View the amount of cash there exists in the economy.', 
             profile: ' `<user>` - View yours or another user\'s profile.', 
-            bal: ' `<user>` - View yours or another user\'s balance.'
+            withdraw: '`<amount>` - Withdraw at least $100K to your NitroType account.', 
+            leaderboard: ' - View the wealthiest of all LeCashBot users.', 
         }, 
         games: {
             bet: '`<amount>` - Play roulette.'
         }, 
         misc: {
-            info: ' - Important bot information.', 
-            register: ' - Make a profile using your NT account.', 
-            delete: ' - Delete your profile using your NT account.',
             report: ' `<reason>` - Report a bug in the bot.',
             suggest: ' `<idea>` - Suggest an idea for LeCashBot.'
         }
