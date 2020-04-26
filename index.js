@@ -13,7 +13,6 @@ client.loader = require('./src/modules/Loader')
 
 const mongoDB = require('mongodb')
 const mongoose = require('mongoose')
-const db = undefined
 
 const initDatabase = () => {
     if (db === undefined)
