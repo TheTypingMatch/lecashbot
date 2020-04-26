@@ -1,8 +1,10 @@
+const User = require('../models/user.model')
+
 module.exports = async (client, message) => {
     const userId = message.author.id
     
     // Handle command arguments
-    const args = message.content.slice(prefix.length).trim().split(/ +/g)
+    const args = message.content.slice(client.prefix.length).trim().split(/ +/g)
     const cmd = args.shift().toLowerCase()
     const generalCmds = ['help', 'register', 'total', 'leaderboard', 'ping', 'faq']
     
@@ -20,11 +22,11 @@ module.exports = async (client, message) => {
     }
     
     // Add user to message reward cooldown
-    if (user && !user.banned && !messageCooldowns.includes(userId)) reward(userId, client)
-    messageCooldowns.push(userId)
+    if (user && !user.banned && !client.messageCooldowns.includes(userId)) reward(userId, client)
+    client.messageCooldowns.push(userId)
 
     // Check if the message starts with a prefix
-    if (!message.content.startsWith(prefix)) return
+    if (!message.content.startsWith(client.prefix)) return
     
     if (!user && !generalCmds.includes(cmd)) 
         return message.reply('You must `$register` an account before using any other commands!')

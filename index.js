@@ -9,7 +9,9 @@ const client = new Discord.Client({
 require('dotenv').config()
 require('./src/modules/functions.js')(client)
 
+client.config = require('./config/config.js')
 client.loader = require('./src/modules/Loader')
+client.messageCooldowns = []
 
 const mongoDB = require('mongodb')
 const mongoose = require('mongoose')
