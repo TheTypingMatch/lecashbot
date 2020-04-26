@@ -27,7 +27,7 @@ module.exports = async (client, message) => {
     client.messageCooldowns.push(userId)
 
     // Check if the message starts with a prefix
-    if (!message.content.startsWith(client.prefix)) return
+    if (!message.content.startsWith(client.config.prefix)) return
     
     if (!user && !generalCmds.includes(cmd)) 
         return message.reply('You must `$register` an account before using any other commands!')
@@ -35,5 +35,5 @@ module.exports = async (client, message) => {
     if (user && user.banned) return message.reply('You have been banned from the bot.')
 
     // Command handler
-    require('./src/commands').run(cmd, message, client, args)
+    require('../commands.js').run(cmd, message, client, args)
 }

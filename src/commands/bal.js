@@ -4,7 +4,7 @@ const { colors, version } = require('../../config/config')
 const { currency } = require('../utils/format')
 
 module.exports = async ({ author, channel }, client, args) => {
-
+    
     const err = 'This user does not have an account!'
     const userId = args[0] ? args[0].replace(/<|@|!|>/g, '') : author.id
     
