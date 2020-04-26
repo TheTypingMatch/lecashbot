@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const log = require('./src/utils/log')
 
 const client = new Discord.Client({
     disableEveryone: true, 
@@ -15,14 +16,19 @@ client.messageCooldowns = []
 
 const mongoDB = require('mongodb')
 const mongoose = require('mongoose')
+const uri = process.env.URI
+const uriParams = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+} 
 
 const initDatabase = () => {
-    mongoDB.connect(db.uri, db.uriParams, err => {
+    mongoDB.connect(uri, uriParams, err => {
         if (err) log('error', err, client)
         else client.logger.log('Successfully connected to database.')
     })
     
-    mongoose.connect(db.uri, db.uriParams, err => {
+    mongoose.connect(uri, uriParams, err => {
         if (err) log('error', err, client)
     })
 }

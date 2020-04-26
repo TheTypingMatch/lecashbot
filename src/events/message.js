@@ -1,10 +1,11 @@
 const User = require('../models/user.model')
+const reward = require('../utils/reward')
 
 module.exports = async (client, message) => {
     const userId = message.author.id
     
     // Handle command arguments
-    const args = message.content.slice(client.prefix.length).trim().split(/ +/g)
+    const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g)
     const cmd = args.shift().toLowerCase()
     const generalCmds = ['help', 'register', 'total', 'leaderboard', 'ping', 'faq']
     
