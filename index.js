@@ -12,7 +12,7 @@ require('./src/modules/functions.js')(client)
 
 client.config = require('./config/config.js')
 client.loader = require('./src/modules/Loader')
-client.messageCooldowns = []
+client.msgCooldowns = []
 
 const mongoDB = require('mongodb')
 const mongoose = require('mongoose')
