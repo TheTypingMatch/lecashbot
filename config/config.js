@@ -1,11 +1,4 @@
 module.exports = {
-    db: {
-        uri: process.env.URI, 
-        uriParams: {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        } 
-    },
     logs: {
         error: '692123000602099712',
         cash: '691405983636783194'
@@ -23,7 +16,6 @@ module.exports = {
         error: ['692123000602099712']
     },
     version: '1.2.4',
-    token: process.env.TOKEN,
     prefix: '$',
     devMode: false, 
     logEnabled: true
