@@ -15,9 +15,6 @@ const mongoDB = require('mongodb')
 const mongoose = require('mongoose')
 
 const initDatabase = () => {
-    if (db === undefined)
-        return client.logger.warn('There was a problem connecting to the database. Ignoring..')
-
     mongoDB.connect(db.uri, db.uriParams, err => {
         if (err) log('error', err, client)
         else client.logger.log('Successfully connected to database.')
