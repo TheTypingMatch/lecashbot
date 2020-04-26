@@ -45,7 +45,7 @@ Testing the application using a database on your own machine will require a loca
 TOKEN="<token>"
 URI="<uri>"
 ```
-Replace `<uri>` and `<token>` with your database connection URI and bot token.
+Replace `<uri>` and `<token>` with your MongoDB database connection URI and bot token.
 
 **Built With**
 - [Discord.js](https://discord.js.org/#/)
