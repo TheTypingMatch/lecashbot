@@ -1,8 +1,8 @@
 const User = require('../models/user.model')
 const checkErr = require('../utils/checkErr')
 const { RichEmbed } = require('discord.js')
-const { daily } = require('../../config/cooldowns')
-const { colors, version } = require('../../config/config')
+const { daily } = require('../config/cooldowns')
+const { colors, version } = require('../config/config')
 const { toHours, toMinutes } = require('../utils/date')
 const { currency } = require('../utils/format')
 

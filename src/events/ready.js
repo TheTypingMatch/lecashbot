@@ -1,4 +1,4 @@
-const { msgCooldown } = require('../../config/cooldowns')
+const { msgCooldown } = require('../config/cooldowns')
 
 module.exports = async client => {
   setInterval(() => client.msgCooldowns.splice(0, client.msgCooldowns.length), msgCooldown)

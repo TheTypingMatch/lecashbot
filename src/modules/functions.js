@@ -1,7 +1,7 @@
 const { toHours } = require('../utils/date')
 const User = require('../models/user.model')
-const { dailyReset } = require('../../config/cooldowns')
-const { devMode } = require('../../config/config')
+const { dailyReset } = require('../config/cooldowns')
+const { devMode } = require('../config/config')
 
 module.exports = (client) => {
   setTimeout(client.refreshActivity = () => {

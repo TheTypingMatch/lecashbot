@@ -1,7 +1,7 @@
 const User = require('../../models/user.model')
 const checkErr = require('../../utils/checkErr')
 const { RichEmbed } = require('discord.js')
-const { colors, version } = require('../../../config/config')
+const { colors, version } = require('../../config/config')
 
 module.exports = async ({ author, channel }, client, args) => {
   const err = 'This user does not have an account!'

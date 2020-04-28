@@ -1,5 +1,5 @@
 const { RichEmbed } = require('discord.js')
-const { colors, version } = require('../../config/config')
+const { colors, version } = require('../config/config')
 
 module.exports = async (msg, client, args) => {
   const reportEmbed = new RichEmbed()

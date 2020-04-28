@@ -1,6 +1,6 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { logEnabled, channels, colors, version } = require('../../config/config')
+const { logEnabled, channels, colors, version } = require('../config/config')
 
 const sendErrorEmbed = (msg, client) => {
   const errEmbed = new Discord.RichEmbed()

@@ -1,9 +1,9 @@
 const User = require('../models/user.model')
 const checkErr = require('../utils/checkErr')
 const { RichEmbed } = require('discord.js')
-const { colors, version } = require('../../config/config')
+const { colors, version } = require('../config/config')
 const { currency, int } = require('../utils/format')
-const { betTime } = require('../../config/cooldowns')
+const { betTime } = require('../config/cooldowns')
 
 const cooldownEmbed = new RichEmbed()
   .setColor(colors.yellow)

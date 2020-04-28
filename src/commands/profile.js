@@ -1,6 +1,6 @@
 const User = require('../models/user.model')
 const { RichEmbed } = require('discord.js')
-const { colors, version } = require('../../config/config')
+const { colors, version } = require('../config/config')
 const { currency } = require('../utils/format')
 
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)

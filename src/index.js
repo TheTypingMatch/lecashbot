@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const log = require('./src/utils/log')
+const log = require('./utils/log')
 
 const client = new Discord.Client({
   disableEveryone: true,
@@ -8,10 +8,10 @@ const client = new Discord.Client({
 })
 
 require('dotenv').config()
-require('./src/modules/functions.js')(client)
+require('./modules/functions.js')(client)
 
 client.config = require('./config/config.js')
-client.loader = require('./src/modules/Loader')
+client.loader = require('./modules/Loader')
 client.msgCooldowns = []
 
 const mongoDB = require('mongodb')
@@ -39,8 +39,8 @@ const init = async () => {
   await loader.registerModules(client)
   await loader.registerEvents(client)
   await loader.checkDiscordStatus(client)
-  await initDatabase()
   await client.login(process.env.TOKEN)
+  initDatabase()
 }
 
 init()

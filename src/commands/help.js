@@ -1,6 +1,6 @@
 const { RichEmbed } = require('discord.js')
-const { colors, version } = require('../../config/config')
-const { register, desc, guides, economy, games, misc } = require('../../config/embeds').helpInfo
+const { colors, version } = require('../config/config')
+const { register, desc, guides, economy, games, misc } = require('../config/embeds').helpInfo
 const { addCommandField } = require('../utils/field')
 
 module.exports = (msg, client, args) => {

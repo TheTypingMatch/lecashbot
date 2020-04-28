@@ -1,7 +1,7 @@
 const User = require('../models/user.model')
 const checkErr = require('../utils/checkErr')
 const { RichEmbed } = require('discord.js')
-const { colors, version } = require('../../config/config')
+const { colors, version } = require('../config/config')
 const { currency, int } = require('../utils/format')
 
 let statusColor = colors.yellow
