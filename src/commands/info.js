@@ -4,18 +4,16 @@ const { general, contribute, donors, invite } = require('../../config/embeds').i
 const { addDescriptionField } = require('../utils/field')
 
 module.exports = (msg, client, args) => {
+  const helpEmbed = new RichEmbed()
+    .setColor(colors.green)
+    .setAuthor('Info', msg.author.avatarURL)
+    .setTimestamp(new Date())
+    .setFooter(`LeCashBot v${version}`)
+    .addField('General', addDescriptionField(general))
+    .addField('Contributors', 'See `$contributors` to view all contributors.')
+    .addField('Contribute', addDescriptionField(contribute))
+    .addField('Donors', addDescriptionField(donors))
+    .addField('Invite', addDescriptionField(invite))
 
-    let helpEmbed = new RichEmbed()
-        .setColor(colors.green)
-        .setAuthor('Info', msg.author.avatarURL)
-        .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${version}`)
-        .addField('General', addDescriptionField(general))
-        .addField('Contributors', 'See `$contributors` to view all contributors.')
-        .addField('Contribute', addDescriptionField(contribute))
-        .addField('Donors', addDescriptionField(donors))
-        .addField('Invite', addDescriptionField(invite))
-
-    return msg.channel.send(helpEmbed)
-
+  return msg.channel.send(helpEmbed)
 }

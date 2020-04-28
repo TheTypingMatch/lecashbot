@@ -4,19 +4,17 @@ const { register, desc, guides, economy, games, misc } = require('../../config/e
 const { addCommandField } = require('../utils/field')
 
 module.exports = (msg, client, args) => {
+  const helpEmbed = new RichEmbed()
+    .setColor(colors.green)
+    .setAuthor('Help', msg.author.avatarURL)
+    .setTimestamp(new Date())
+    .setFooter(`LeCashBot v${version}`)
+    .setDescription(desc)
+    .addField('Register', addCommandField(register))
+    .addField('Guides', addCommandField(guides))
+    .addField('Economy', addCommandField(economy))
+    .addField('Games', addCommandField(games))
+    .addField('Miscellaneous', addCommandField(misc))
 
-    let helpEmbed = new RichEmbed()
-        .setColor(colors.green)
-        .setAuthor('Help', msg.author.avatarURL)
-        .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${version}`)
-        .setDescription(desc)
-        .addField('Register', addCommandField(register))
-        .addField('Guides', addCommandField(guides))
-        .addField('Economy', addCommandField(economy))
-        .addField('Games', addCommandField(games))
-        .addField('Miscellaneous', addCommandField(misc))
-
-    return msg.channel.send(helpEmbed)
-
+  return msg.channel.send(helpEmbed)
 }
