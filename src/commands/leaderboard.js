@@ -67,5 +67,5 @@ module.exports = async (msg, client, args) => {
   const users = await User.find({ banned: false })
   if (!users) log('error', `ERROR: DB could not find users:\n**${users}**`, client)
 
-  return (args[0] == 'bet') ? handleBetLb(msg, users) : handleCashLb(msg, users)
+  return (args[0] === 'bet') ? handleBetLb(msg, users) : handleCashLb(msg, users)
 }

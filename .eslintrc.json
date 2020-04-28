@@ -16,5 +16,16 @@
         "ecmaVersion": 2018
     },
     "rules": {
+        "no-return-assign": 0,
+        "no-undef": 0,
+        "no-unused-vars": 1,
+        "array-callback-return": 1, 
+        "eqeqeq": 1, 
+        "no-eval": 2, 
+        "array-bracket-newline": 1, 
+        "brace-style": 1, 
+        "camelcase": 1, 
+        "comma-spacing": 1, 
+        "no-var": 1
     }
 }

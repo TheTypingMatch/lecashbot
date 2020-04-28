@@ -73,7 +73,7 @@ const makeBet = async (msg, { highestBet, balance }, bet, client) => {
 
 module.exports = async (msg, client, args) => {
   if (!args[0] || !int(args[0])) return msg.reply('Undefined bet amount: Use `$bet <amount>`.')
-  if (args[0] == 'high') return getHighestBet(msg)
+  if (args[0] === 'high') return getHighestBet(msg)
 
   const bet = int(args[0])
 
