@@ -1,7 +1,7 @@
 const User = require('../../models/user.model')
 const checkErr = require('../../utils/checkErr')
 const { RichEmbed } = require('discord.js')
-const { colors, version } = require('../../config/config')
+const { colors, version } = require('../../../config/config')
 
 module.exports = async ({ author, channel }, client, args) => {
   let result = 'This user does not have an account!'
@@ -13,7 +13,13 @@ module.exports = async ({ author, channel }, client, args) => {
   if (contribution) {
     const contributionData = { [contribution]: true }
 
-    if (contribution === 'donor' && args[2]) { Object.assign(contributionData, { donations: parseInt(args[2]) }) } else if (contribution === 'donor' && !args[2]) { return channel.send('Missing args: `$addcon <user> <contribution> <donation-amount>`') }
+    if (contribution === 'donor' && args[2]) {
+      Object.assign(contributionData, {
+        donations: parseInt(args[2])
+      })
+    } else if (contribution === 'donor' && !args[2]) {
+      return channel.send('Missing args: `$addcon <user> <contribution> <donation-amount>`')
+    }
 
     User.updateOne(id, contributionData, e => checkErr(e, client))
     result = `**${user.name}** has been added as a(n) **${contribution}**!`
