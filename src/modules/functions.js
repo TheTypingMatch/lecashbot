@@ -1,5 +1,6 @@
-const { toHours } = require('../utils/date')
 const User = require('../models/user.model')
+const log = require('../utils/log')
+const { toHours } = require('../utils/date')
 const { dailyReset } = require('../config/cooldowns')
 const { devMode } = require('../config/config')
 
@@ -14,7 +15,6 @@ module.exports = (client) => {
             status: devMode ? 'dnd' : 'online'
         })
     }, 60 * 60 * 1000)
-
     setTimeout(client.resetDailyStreak = async () => {
         const activeUsers = await User.find({ banned: false })
         if (!activeUsers) return
