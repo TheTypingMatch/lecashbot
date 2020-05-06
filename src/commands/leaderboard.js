@@ -63,9 +63,36 @@ const handleCashLb = (msg, users) => {
     return msg.channel.send(lbEmbed)
 }
 
+const handleStreakLb = (msg, users) => {
+    sortedUsers = users.sort((a, b) => {
+        return (a.dailyStreak > b.dailyStreak) ? 1 : ((b.dailyStreak > a.dailyStreak) ? -1 : 0)
+    })
+    topTen = getTopTen(sortedUsers)
+
+    let userPosition = 'N/A'
+    let userStreak = 'N/A'
+    sortedUsers.reverse().forEach(({ discordId, dailyStreak }, index) => {
+        if (discordId === msg.author.id) {
+            userPosition = index + 1
+            userStreak = dailyStreak
+        }
+    })
+
+    topTen.forEach((user, pos) => desc += `#**${pos + 1}** ${user.name} - **${currency(user.dailyStreak)}**\n`)
+    desc += `#**${userPosition}** - YOU - **${currency(userStreak)}**`
+    lbEmbed.setDescription(desc)
+    desc = ''
+
+    return msg.channel.send(lbEmbed)
+}
+
 module.exports = async (msg, client, args) => {
     const users = await User.find({ banned: false })
     if (!users) log('error', `ERROR: DB could not find users:\n**${users}**`, client)
 
-    return (args[0] === 'bet') ? handleBetLb(msg, users) : handleCashLb(msg, users)
+    switch (args[0]) {
+        case '': return handleCashLb(msg, users)
+        case 'bet': return handleBetLb(msg, users)
+        case 'streak': return handleStreakLb(msg, users)
+    }
 }
