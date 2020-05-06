@@ -12,6 +12,15 @@ const lbEmbed = new RichEmbed()
 
 const getTopTen = arr => arr.slice(-10).reverse()
 
+// The sort type is the property of users that the function sorts by
+const sortUsers = (users, sortType) => {
+    return users.sort((a, b) => {
+        return (a[sortType] > b[sortType]) ? 1 : (
+            (b[sortType] > a[sortType]) ? -1 : 0
+        )
+    })
+}
+
 const handleBetLb = (msg, users) => {
     const sortedUsers = users.sort((a, b) => {
         const aBet = a.highestBet.amount
@@ -31,8 +40,8 @@ const handleBetLb = (msg, users) => {
         }
     })
 
-    topTen.forEach((user, pos) => {
-        desc += `#**${pos + 1}** ${user.name} - $**${currency(user.highestBet.amount)}** - **${Math.round(user.highestBet.chance * 100) / 100}**%\n`
+    topTen.forEach(({ highestBet, name }, pos) => {
+        desc += `#**${pos + 1}** ${name} - $**${currency(highestBet.amount)}** - ${Math.round(highestBet.chance * 100) / 100}%\n`
     })
     desc += `#**${userPosition}** - YOU - $**${currency(userBet)}** - **${userBetChance}**%`
 
@@ -43,12 +52,15 @@ const handleBetLb = (msg, users) => {
 }
 
 const handleCashLb = (msg, users) => {
-    const sortedUsers = users.sort((a, b) => (a.balance > b.balance) ? 1 : ((b.balance > a.balance) ? -1 : 0))
+    const sortedUsers = sortUsers(users, 'balance')
     const topTen = getTopTen(sortedUsers)
 
     let userPosition = 'N/A'
     let userBalance = 'N/A'
-    sortedUsers.reverse().forEach(({ discordId, balance }, index) => {
+    sortedUsers.reverse().forEach(({
+        discordId,
+        balance
+    }, index) => {
         if (discordId === msg.author.id) {
             userPosition = index + 1
             userBalance = balance
@@ -64,21 +76,24 @@ const handleCashLb = (msg, users) => {
 }
 
 const handleStreakLb = (msg, users) => {
-    sortedUsers = users.sort((a, b) => {
-        return (a.dailyStreak > b.dailyStreak) ? 1 : ((b.dailyStreak > a.dailyStreak) ? -1 : 0)
-    })
+    sortedUsers = sortUsers(users, 'dailyStreak')
     topTen = getTopTen(sortedUsers)
 
     let userPosition = 'N/A'
     let userStreak = 'N/A'
-    sortedUsers.reverse().forEach(({ discordId, dailyStreak }, index) => {
+    sortedUsers.reverse().forEach(({
+        discordId,
+        dailyStreak
+    }, index) => {
         if (discordId === msg.author.id) {
             userPosition = index + 1
             userStreak = dailyStreak
         }
     })
 
-    topTen.forEach((user, pos) => desc += `#**${pos + 1}** ${user.name} - **${currency(user.dailyStreak)}**\n`)
+    topTen.forEach((user, pos) => {
+        desc += `#**${pos + 1}** ${user.name} - **${currency(user.dailyStreak)}**\n`
+    })
     desc += `#**${userPosition}** - YOU - **${currency(userStreak)}**`
     lbEmbed.setDescription(desc)
     desc = ''
@@ -91,8 +106,8 @@ module.exports = async (msg, client, args) => {
     if (!users) log('error', `ERROR: DB could not find users:\n**${users}**`, client)
 
     switch (args[0]) {
-        case '': return handleCashLb(msg, users)
         case 'bet': return handleBetLb(msg, users)
         case 'streak': return handleStreakLb(msg, users)
+        default: return handleCashLb(msg, users)
     }
 }
