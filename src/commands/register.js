@@ -28,7 +28,7 @@ const register = (msg, ntLink) => {
 
 module.exports = async (msg, client, args) => {
     if (!args[0]) {
-        return msg.reply('Undefined NitroType profile: Use `$register https://www.nitrotype.com/racer/YOUR_USERNAME`')
+        return msg.reply('Use your NitroType username (NOT display name): Use `$register USERNAME`')
     }
 
     // Check if someone is already registered with this NitroType link
