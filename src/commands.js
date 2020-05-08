@@ -2,17 +2,18 @@ const fs = require('fs')
 const path = require('path')
 const User = require('./models/user.model')
 
+const createAbsolutePath = relativePath => path.join(__dirname, relativePath)
+
 module.exports = {
     run: async (cmd, msg, client, args) => {
-        const cmdPath = path.join(__dirname, `./commands/${cmd}.js`)
-        const devPath = path.join(__dirname, `./commands/dev/${cmd}.js`)
-        const adminPath = path.join(__dirname, `./commands/admin/${cmd}.js`)
+        const cmdPath = createAbsolutePath(`./commands/${cmd}.js`)
+        const devPath = createAbsolutePath(`./commands/dev/${cmd}.js`)
+        const adminPath = createAbsolutePath(`./commands/admin/${cmd}.js`)
 
-        const isDev = await User.findOne({ discordId: msg.author.id })
-        const isAdmin = await User.findOne({ discordId: msg.author.id })
+        const user = await User.findOne({ discordId: msg.author.id })
 
-        const hasAdminPerms = (fs.existsSync(adminPath) && isAdmin.admin)
-        const hasDevPerms = (fs.existsSync(devPath) && isDev.dev)
+        const hasAdminPerms = (fs.existsSync(adminPath) && user.admin)
+        const hasDevPerms = (fs.existsSync(devPath) && user.dev)
 
         if (hasDevPerms) require(devPath)(msg, client, args)
         else if (hasAdminPerms) require(adminPath)(msg, client, args)
