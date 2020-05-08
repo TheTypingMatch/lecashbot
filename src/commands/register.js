@@ -31,18 +31,18 @@ module.exports = async (msg, client, args) => {
         return msg.reply('Use your NitroType username (NOT display name): Use `$register USERNAME`')
     }
 
-    // Check if someone is already registered with this NitroType link
-    const linkExists = await User.findOne({ nitroTypeLink: args[0] })
-    if (linkExists) {
-        return msg.reply('Someone is already registered with this account!')
-    }
-
     // Check if the user already has an account
     const userExists = await User.findOne({
         discordId: msg.author.id
     })
 
     if (userExists) return msg.reply('You already have an account!')
+
+    // Check if someone is already registered with this NitroType link
+    const linkExists = await User.findOne({ nitroTypeLink: args[0] })
+    if (linkExists) {
+        return msg.reply('Someone is already registered with this account!')
+    }
 
     const link = (args[0].includes('nitrotype.com/racer/'))
         ? args[0]
