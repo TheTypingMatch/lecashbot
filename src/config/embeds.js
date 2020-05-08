@@ -80,6 +80,10 @@ module.exports = {
             a: 'Make sure you have signed up for the bot and you will be earning money straight away just by chatting in any Discord server you share LeCashBot with! You can also earn cash with other bot games & commands. (See `$help`)'
         },
         {
+            q: 'I found a bug! Where do I report it?',
+            a: 'LeCashBot bugs may be reported [here](https://github.com/TheTypingMatch/le-cash-bot/issues/new/choose).'
+        },
+        {
             q: 'Can I add this bot to my server?',
             a: 'Previously, LeCashBot was exclusive to the NitroType server but you may now invite it with `$info`.'
         },
