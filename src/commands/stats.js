@@ -2,7 +2,7 @@ const { RichEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 
 module.exports = async (msg, client, args) => {
-    const reportEmbed = new RichEmbed()
+    const statsEmbed = new RichEmbed()
         .setColor(colors.green)
         .setAuthor('Stats', msg.author.avatarURL)
         .setTimestamp(new Date())
@@ -13,5 +13,5 @@ module.exports = async (msg, client, args) => {
             Latency - **${client.ping}**ms
         `)
 
-    return msg.channel.send(reportEmbed)
+    return msg.channel.send(statsEmbed)
 }
