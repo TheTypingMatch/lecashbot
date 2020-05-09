@@ -18,6 +18,9 @@
     "rules": {
         "no-return-assign": 0,
         "no-undef": 0,
+        "func-call-spacing": 0,
+        "no-unexpected-multiline": 0,
+        "no-use-before-define": 0,
         "no-unused-vars": 1,
         "array-callback-return": 1, 
         "eqeqeq": 1, 
