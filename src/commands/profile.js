@@ -51,7 +51,7 @@ module.exports = async (msg, client, args) => {
             donor: donor
         }
 
-        const userAvatar = client.users.get((isNotId) ? user.discordId : userId)
+        const userAvatar = client.users.cache.get((isNotId) ? user.discordId : userId)
         const userBadges = addBadges(badges)
         if (userBadges) profileEmbed.addField('Contributions', `${userBadges}`)
 

@@ -9,7 +9,7 @@ module.exports = (client) => {
         const { users, guilds } = client
         client.user.setPresence({
             game: {
-                name: devMode ? 'In Development' : `${users.size} users, ${guilds.size} servers`,
+                name: devMode ? 'In Development' : `${users.cache.size} users, ${guilds.cache.size} servers`,
                 type: devMode ? 'PLAYING' : 'WATCHING'
             },
             status: devMode ? 'dnd' : 'online'

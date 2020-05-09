@@ -8,8 +8,8 @@ module.exports = async (msg, client, args) => {
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(`
-            Servers - **${client.guilds.size}**
-            Users   - **${client.users.size}**
+            Servers - **${client.guilds.cache.size}**
+            Users   - **${client.users.cache.size}**
             Latency - **${Math.round(client.ping)}**ms
         `)
 

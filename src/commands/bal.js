@@ -12,7 +12,7 @@ module.exports = async ({ author, channel }, client, args) => {
     const user = await User.findOne(userData)
     const result = user ? `**${user.name}**'s balance is **$${currency(user.balance)}**.` : err
 
-    const userAvatar = client.users.get((isNotId) ? user.discordId : userId)
+    const userAvatar = client.users.cache.get((isNotId) ? user.discordId : userId)
 
     const balanceEmbed = new RichEmbed()
         .setColor(colors.green)

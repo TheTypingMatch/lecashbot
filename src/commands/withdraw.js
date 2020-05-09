@@ -14,7 +14,7 @@ const withdraw = (client, msg, user, amount, notifEmbed) => {
         statusColor = colors.red
         message = 'An error occurred.'
     }))
-    client.users.get('296862365503193098').send(notifEmbed)
+    client.users.cache.get('296862365503193098').send(notifEmbed)
 }
 
 module.exports = async (msg, client, args) => {
