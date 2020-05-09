@@ -2,11 +2,14 @@ module.exports = {
     helpInfo: {
         desc: 'A Discord.js bot based on the NitroType currency.',
         register: {
-            register: ' - Make a profile using your NT account.'
+            register: ' - Make a profile using your NT account.',
+            delete: '`<discord-id>` - Delete your LeCashBot account.'
         },
         guides: {
             info: ' - Important bot information.',
+            stats: ' - Show bot bot stats.',
             faq: ' - Display frequently asked questions.',
+            ping: ' - Show bot latency',
             donate: ' - Display donators.',
             contributors: ' - Display contributors'
         },
