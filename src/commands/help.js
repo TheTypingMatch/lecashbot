@@ -1,10 +1,10 @@
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { register, desc, guides, economy, games, misc } = require('../config/embeds').helpInfo
 const { addCommandField } = require('../utils/field')
 
 module.exports = (msg, client, args) => {
-    const helpEmbed = new RichEmbed()
+    const helpEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Help', msg.author.avatarURL)
         .setTimestamp(new Date())

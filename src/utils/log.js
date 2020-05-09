@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const { logEnabled, channels, colors, version } = require('../config/config')
 
 const sendErrorEmbed = (msg, client) => {
-    const errEmbed = new Discord.RichEmbed()
+    const errEmbed = new Discord.MessageEmbed()
         .setColor(colors.red)
         .setAuthor('ERROR')
         .setTimestamp(new Date())
@@ -12,19 +12,19 @@ const sendErrorEmbed = (msg, client) => {
 
     const errChannels = channels.error
     return errChannels.forEach(channel => {
-        const errChannel = client.channels.get(channel)
+        const errChannel = client.channels.cache.get(channel)
         if (errChannel) errChannel.send(errEmbed)
     })
 }
 
 const logEarnings = (msg, client) => {
-    const logEmbed = new Discord.RichEmbed()
+    const logEmbed = new Discord.MessageEmbed()
         .setColor(colors.green)
         .setDescription(msg)
 
     const logChannels = channels.log
     return logChannels.forEach(channel => {
-        const logChannel = client.channels.get(channel)
+        const logChannel = client.channels.cache.get(channel)
         if (logChannel) logChannel.send(logEmbed)
     })
 }

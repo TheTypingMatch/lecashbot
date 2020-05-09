@@ -1,9 +1,9 @@
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const faqInfo = require('../config/embeds').faqInfo
 
 module.exports = (msg, client, args) => {
-    const faqEmbed = new RichEmbed()
+    const faqEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('FAQ', msg.author.avatarURL)
         .setTimestamp(new Date())

@@ -1,5 +1,5 @@
 const User = require('../models/user.model')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { currency } = require('../utils/format')
 
@@ -32,7 +32,7 @@ module.exports = async (msg, client, args) => {
     const userData = (isNotId) ? { name: args.join(' ').trim() } : { discordId: userId }
     const user = await User.findOne(userData)
 
-    const profileEmbed = new RichEmbed()
+    const profileEmbed = new MessageEmbed()
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
 
@@ -51,7 +51,7 @@ module.exports = async (msg, client, args) => {
             donor: donor
         }
 
-        const userAvatar = client.users.get((isNotId) ? user.discordId : userId)
+        const userAvatar = client.users.cache.get((isNotId) ? user.discordId : userId)
         const userBadges = addBadges(badges)
         if (userBadges) profileEmbed.addField('Contributions', `${userBadges}`)
 

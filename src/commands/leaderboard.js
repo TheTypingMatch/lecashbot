@@ -1,10 +1,10 @@
 const User = require('../models/user.model')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { currency } = require('../utils/format')
 
 let desc = ''
-const lbEmbed = new RichEmbed()
+const lbEmbed = new MessageEmbed()
     .setColor(colors.green)
     .setAuthor('Leaderboard')
     .setTimestamp(new Date())

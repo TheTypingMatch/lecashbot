@@ -1,8 +1,8 @@
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 
 module.exports = async (msg, client, args) => {
-    const reportEmbed = new RichEmbed()
+    const reportEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Report', msg.author.avatarURL)
         .setTimestamp(new Date())

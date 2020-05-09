@@ -1,5 +1,5 @@
 const User = require('../models/user.model')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { currency } = require('../utils/format')
 
@@ -12,9 +12,9 @@ module.exports = async ({ author, channel }, client, args) => {
     const user = await User.findOne(userData)
     const result = user ? `**${user.name}**'s balance is **$${currency(user.balance)}**.` : err
 
-    const userAvatar = client.users.get((isNotId) ? user.discordId : userId)
+    const userAvatar = client.users.cache.get((isNotId) ? user.discordId : userId)
 
-    const balanceEmbed = new RichEmbed()
+    const balanceEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Balance', userAvatar ? userAvatar.avatarURL : author.avatarURL)
         .setTimestamp(new Date())

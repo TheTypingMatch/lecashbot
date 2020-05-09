@@ -1,17 +1,17 @@
 const User = require('../models/user.model')
 const checkErr = require('../utils/checkErr')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { currency, int } = require('../utils/format')
 const { betTime } = require('../config/cooldowns')
 
-const cooldownEmbed = new RichEmbed()
+const cooldownEmbed = new MessageEmbed()
     .setColor(colors.yellow)
     .setFooter(`LeCashBot v${version}`)
     .setDescription('You must wait **3 seconds** before you can use this command again.')
 
 const sendRecordEmbed = (msg, previousBet) => {
-    const recordBetEmbed = new RichEmbed()
+    const recordBetEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('New Highest Bet!', msg.author.avatarURL)
         .setTimestamp(new Date())
@@ -22,7 +22,7 @@ const sendRecordEmbed = (msg, previousBet) => {
 }
 
 const sendBetEmbed = (msg, bet, didWin) => {
-    const betEmbed = new RichEmbed()
+    const betEmbed = new MessageEmbed()
         .setColor(didWin[0] ? colors.green : colors.red)
         .setAuthor('Bet', msg.author.avatarURL)
         .setTimestamp(new Date())

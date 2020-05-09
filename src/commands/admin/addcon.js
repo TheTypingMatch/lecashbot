@@ -1,6 +1,6 @@
 const User = require('../../models/user.model')
 const checkErr = require('../../utils/checkErr')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
 
 module.exports = async ({ author, channel }, client, args) => {
@@ -25,7 +25,7 @@ module.exports = async ({ author, channel }, client, args) => {
         result = `**${user.name}** has been added as a(n) **${contribution}**!`
     } else result = 'An error occurred: No contribution given.'
 
-    const contributorEmbed = new RichEmbed()
+    const contributorEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Add Contributor', author.avatarURL)
         .setTimestamp(new Date())

@@ -1,6 +1,6 @@
 const User = require('../models/user.model')
 const checkErr = require('../utils/checkErr')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { currency, int } = require('../utils/format')
 
@@ -14,7 +14,7 @@ const withdraw = (client, msg, user, amount, notifEmbed) => {
         statusColor = colors.red
         message = 'An error occurred.'
     }))
-    client.users.get('296862365503193098').send(notifEmbed)
+    client.users.cache.get('296862365503193098').send(notifEmbed)
 }
 
 module.exports = async (msg, client, args) => {
@@ -27,7 +27,7 @@ module.exports = async (msg, client, args) => {
 
     message = `You have withdrawn $**${currency(amount)}**. It will be sent to your NitroType account soon.`
 
-    const notifEmbed = new RichEmbed()
+    const notifEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Withdraw', msg.author.avatarURL)
         .setTimestamp(new Date())
@@ -42,7 +42,7 @@ module.exports = async (msg, client, args) => {
         statusColor = colors.green
     }
 
-    const withdrawEmbed = new RichEmbed()
+    const withdrawEmbed = new MessageEmbed()
         .setColor(statusColor)
         .setAuthor('Withdraw', msg.author.avatarURL)
         .setTimestamp(new Date())

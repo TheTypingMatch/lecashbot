@@ -1,9 +1,9 @@
 const User = require('../models/user.model')
 const checkErr = require('../utils/checkErr')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 
-const deleteEmbed = new RichEmbed()
+const deleteEmbed = new MessageEmbed()
     .setColor(colors.green)
     .setAuthor('Delete', msg.author.avatarURL)
     .setTimestamp(new Date())

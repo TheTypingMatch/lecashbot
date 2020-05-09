@@ -1,11 +1,11 @@
 const User = require('../models/user.model')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { currency, int } = require('../utils/format')
 const log = require('../utils/log')
 
 const sendSuccessEmbed = (msg, err) => {
-    const successEmbed = new RichEmbed()
+    const successEmbed = new MessageEmbed()
         .setColor(err ? colors.red : colors.green)
         .setAuthor(`${err ? 'Error' : 'Success!'}`, msg.author.avatarURL)
         .setTimestamp(new Date())
@@ -43,5 +43,5 @@ module.exports = async (msg, client, args) => {
         if (err) sendSuccessEmbed(msg, err)
     })
     User.updateOne(userId, { balance: userBal - gift }, err => sendSuccessEmbed(msg, err))
-    client.users.get(receiverId.discordId).send(`**${user.name}** just sent you $**${gift}**!`)
+    client.users.cache.get(receiverId.discordId).send(`**${user.name}** just sent you $**${gift}**!`)
 }

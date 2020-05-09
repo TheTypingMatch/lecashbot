@@ -16,7 +16,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "chalk": "^4.0.0",
-    "discord.js": "^11.5.1",
+    "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "jest": "^25.2.4",
