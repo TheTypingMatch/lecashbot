@@ -10,7 +10,7 @@ module.exports = async (msg, client, args) => {
         .setDescription(`
             Servers - **${client.guilds.size}**
             Users   - **${client.users.size}**
-            Latency - **${client.ping}**ms
+            Latency - **${Math.round(client.ping)}**ms
         `)
 
     return msg.channel.send(statsEmbed)
