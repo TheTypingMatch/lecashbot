@@ -31,7 +31,7 @@ module.exports = async (msg, client, args) => {
 
     if (!args[1] || isNaN(parseInt(args[1]))) return msg.reply('No amount given.')
     if (!user || !receiver) return msg.reply('User not found!')
-    if (isNaN(parseInt(args[1])) < 100) return msg.reply('Minimum gift amount is $**100**.')
+    if (parseInt(args[1]) < 100) return msg.reply('Minimum gift amount is $**100**.')
 
     const receiverBal = receiver.balance
     const userBal = user.balance
