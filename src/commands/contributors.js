@@ -1,5 +1,5 @@
 const User = require('../models/user.model')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 
 const addField = userData => {
@@ -20,7 +20,7 @@ module.exports = async (msg, client, args) => {
     const devs = await getContributors('dev')
     const testers = await getContributors('tester')
 
-    const helpEmbed = new RichEmbed()
+    const helpEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Contributors', msg.author.avatarURL)
         .setTimestamp(new Date())

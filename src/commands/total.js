@@ -1,5 +1,5 @@
 const User = require('../models/user.model')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { currency } = require('../utils/format')
 
@@ -8,7 +8,7 @@ module.exports = async (msg, client, args) => {
     const userBalances = activeUsers.map(user => user.balance)
     const total = userBalances.reduce((t, bal) => t + bal)
 
-    const totalEmbed = new RichEmbed()
+    const totalEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Total', msg.author.avatarURL)
         .setTimestamp(new Date())

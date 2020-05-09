@@ -1,5 +1,5 @@
 const User = require('../models/user.model')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { currency } = require('../utils/format')
 
@@ -14,7 +14,7 @@ module.exports = async ({ author, channel }, client, args) => {
 
     const userAvatar = client.users.cache.get((isNotId) ? user.discordId : userId)
 
-    const balanceEmbed = new RichEmbed()
+    const balanceEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Balance', userAvatar ? userAvatar.avatarURL : author.avatarURL)
         .setTimestamp(new Date())

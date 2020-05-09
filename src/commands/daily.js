@@ -1,6 +1,6 @@
 const User = require('../models/user.model')
 const checkErr = require('../utils/checkErr')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { daily } = require('../config/cooldowns')
 const { colors, version } = require('../config/config')
 const { toHours, toMinutes } = require('../utils/date')
@@ -13,7 +13,7 @@ const sendReward = (msg, user, client) => {
     const reward = (dailyStreak * 25) + 100
     cooldowns.daily = new Date()
 
-    const dailyEmbed = new RichEmbed()
+    const dailyEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Daily', msg.author.avatarURL)
         .setTimestamp(new Date())
@@ -39,7 +39,7 @@ const sendTimeLeft = (msg, dailyCooldown) => {
         timeLeft = toHours(timeLeft)
     } else timeLeft = timeLeft / 1000
 
-    const cooldownEmbed = new RichEmbed()
+    const cooldownEmbed = new MessageEmbed()
         .setColor(colors.yellow)
         .setAuthor('Daily', msg.author.avatarURL)
         .setTimestamp(new Date())

@@ -1,6 +1,6 @@
 const User = require('../../models/user.model')
 const checkErr = require('../../utils/checkErr')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../../config/config')
 
 module.exports = async ({ author, channel }, client, args) => {
@@ -12,7 +12,7 @@ module.exports = async ({ author, channel }, client, args) => {
 
     if (!user.dev) { User.update(id, { banned: false }, e => checkErr(e, client)) } else result = 'You can\'t unban a developer/admin!'
 
-    const unbanEmbed = new RichEmbed()
+    const unbanEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Unban', author.avatarURL)
         .setTimestamp(new Date())
