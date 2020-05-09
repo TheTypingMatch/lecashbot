@@ -12,7 +12,7 @@ const sendErrorEmbed = (msg, client) => {
 
     const errChannels = channels.error
     return errChannels.forEach(channel => {
-        const errChannel = client.channels.get(channel)
+        const errChannel = client.channels.cache.get(channel)
         if (errChannel) errChannel.send(errEmbed)
     })
 }
@@ -24,7 +24,7 @@ const logEarnings = (msg, client) => {
 
     const logChannels = channels.log
     return logChannels.forEach(channel => {
-        const logChannel = client.channels.get(channel)
+        const logChannel = client.channels.cache.get(channel)
         if (logChannel) logChannel.send(logEmbed)
     })
 }
