@@ -1,6 +1,6 @@
 module.exports = {
     helpInfo: {
-        desc: 'A Discord.js bot based on the NitroType currency.',
+        desc: 'A Discord.js bot based on the NitroType currency. Invite [here](https://discordapp.com/oauth2/authorize?client_id=586645522614583306&permissions=134073664&scope=bot).',
         register: {
             register: ' - Make a profile using your NT account.',
             delete: '`<discord-id>` - Delete your LeCashBot account.'
