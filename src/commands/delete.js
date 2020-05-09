@@ -5,7 +5,6 @@ const { colors, version } = require('../config/config')
 
 const deleteEmbed = new MessageEmbed()
     .setColor(colors.green)
-    .setAuthor('Delete', msg.author.avatarURL)
     .setTimestamp(new Date())
     .setFooter(`LeCashBot v${version}`)
     .setDescription('Your data has been deleted.')
@@ -20,6 +19,8 @@ module.exports = async (msg, client, args) => {
 
     const userId = args[0]
     const user = await User.findOne({ discordId: msg.author.id }, err => checkErr(err))
+
+    deleteEmbed.setAuthor('Delete', msg.author.avatarURL)
 
     return (userId && userId === user.discordId)
         ? deleteData(msg.author.id)
