@@ -7,7 +7,7 @@ module.exports = {
         },
         guides: {
             info: ' - Important bot information.',
-            stats: ' - Show bot bot stats.',
+            stats: ' - Show the bot stats.',
             faq: ' - Display frequently asked questions.',
             ping: ' - Show bot latency',
             donate: ' - Display donators.',
