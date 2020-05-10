@@ -20,19 +20,32 @@
   <a href="#contributors">Contributors</a>
 </p>
 
-## Features
-- Earn NitroType cash by chatting
-- Be able to gift less than $100K
-- Daily bonus
-- Lotteries
-- Games
+## Commands
+- `$register` - Make a profile using your NitroType account.
+- `$delete` - Delete your LeCashBot account.
+- `$info` - Important bot information.
+- `$stats` - Show the bot servers, users, and latency. 
+- `$faq` - Display frequently asked questions.
+- `$ping` - Show bot latency.
+- `$donate` - Display donators.
+- `$contributors` - Display bot contributors.
+- `$bal` - View yours or another user's balance.
+- `$give` - Gift someone cash from your balance.
+- `$daily` - Collect a daily bonus of cash based on your daily streak.
+- `$total` - View the total amount of cash that exists in the economy.
+- `$profile` - View yours or another user's profile.
+- `$withdraw` - Withdraw at least $100,000 from your LeCashBot account to your NitroType account.
+- `$leaderboard` - View the wealthiest of all LeCashBot users.
+- `$bet` - Play roulette for a chance to win cash.
+- `$report` - Get a link for bug report.
+- `$suggest` - Get a link for feature suggestions.
 
 ## Contribute
 1. Fork the repository
 2. Clone the repository & install required dependencies:
 ```
 $ git clone git@github.com:YOUR_GITHUB_USERNAME/le-cash-bot.git
-$ npm install
+$ yarn install
 ```
 
 **Local Bot Development Setup**
@@ -50,6 +63,7 @@ Replace `<uri>` and `<token>` with your MongoDB database connection URI and bot 
 **Built With**
 - [Discord.js](https://discord.js.org/#/)
 - [NodeJS](https://nodejs.org/en/)
+- [MongoDB](https://www.mongodb.com/)
 
 ## Contributors
 <table>
@@ -59,12 +73,14 @@ Replace `<uri>` and `<token>` with your MongoDB database connection URI and bot 
     <th><a href="https://github.com/DamienVesper">DamienVesper</a></th>
     <th><a href="https://github.com/techdude1-dev">techdude1-dev</a></th>
     <th><a href="https://github.com/valkyrienyanko">valkyrienyanko</a></th>
+    <th><a href="https://github.com/iwa">iwa</a></th>
   </tr>
   <tr>
-    <td><img width="160" src="https://avatars3.githubusercontent.com/u/46948579?s=460&v=4"></td>
-    <td><img width="160" src="https://avatars2.githubusercontent.com/u/55287042?s=460&v=4"></td>
-    <td><img width="160" src="https://avatars3.githubusercontent.com/u/34838468?s=400&v=4"></td>
-    <td><img width="160" src="https://avatars2.githubusercontent.com/u/52178694?s=460&u=f059bd53f361aac4a57f0f88344ab401ca025f9d&v=4"></td>
-    <td><img width="160" src="https://avatars2.githubusercontent.com/u/6277739?s=400&u=26cf9cce6417172cde64b0e02ecc594c5f4eecc2&v=4"></td>
+    <td><img width="133" src="https://avatars3.githubusercontent.com/u/46948579?s=460&v=4"></td>
+    <td><img width="133" src="https://avatars2.githubusercontent.com/u/55287042?s=460&v=4"></td>
+    <td><img width="133" src="https://avatars3.githubusercontent.com/u/34838468?s=400&v=4"></td>
+    <td><img width="133" src="https://avatars2.githubusercontent.com/u/52178694?s=460&u=f059bd53f361aac4a57f0f88344ab401ca025f9d&v=4"></td>
+    <td><img width="133" src="https://avatars2.githubusercontent.com/u/6277739?s=400&u=26cf9cce6417172cde64b0e02ecc594c5f4eecc2&v=4"></td>
+    <td><img width="133" src="https://avatars1.githubusercontent.com/u/19956672?s=400&u=6e5c9c141312928197d0accaa946a2568ce30ad6&v=4"></td>
   </tr>
 </table>
