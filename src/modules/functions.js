@@ -8,7 +8,7 @@ module.exports = (client) => {
     setTimeout(client.refreshActivity = () => {
         const { users, guilds } = client
         client.user.setPresence({
-            game: {
+            activity: {
                 name: devMode ? 'In Development' : `${users.cache.size} users, ${guilds.cache.size} servers`,
                 type: devMode ? 'PLAYING' : 'WATCHING'
             },
