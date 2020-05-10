@@ -32,7 +32,7 @@
 - `$bal` - View yours or another user's balance.
 - `$give` - Gift someone cash from your balance.
 - `$daily` - Collect a daily bonus of cash based on your daily streak.
-- `$total` - Viwe the total amount of cash that exists in the economy.
+- `$total` - View the total amount of cash that exists in the economy.
 - `$profile` - View yours or another user's profile.
 - `$withdraw` - Withdraw at least $100,000 from your LeCashBot account to your NitroType account.
 - `$leaderboard` - View the wealthiest of all LeCashBot users.
