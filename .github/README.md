@@ -72,15 +72,43 @@ Replace `<uri>` and `<token>` with your MongoDB database connection URI and bot 
     <th><a href="https://github.com/RHarr6306">RHarr6306</a></th>
     <th><a href="https://github.com/DamienVesper">DamienVesper</a></th>
     <th><a href="https://github.com/techdude1-dev">techdude1-dev</a></th>
-    <th><a href="https://github.com/valkyrienyanko">valkyrienyanko</a></th>
-    <th><a href="https://github.com/iwa">iwa</a></th>
+    <th><a href="https://github.com/Dapp3rDuck">Dapp3rDuck</a></th>
   </tr>
   <tr>
-    <td><img width="133" src="https://avatars3.githubusercontent.com/u/46948579?s=460&v=4"></td>
-    <td><img width="133" src="https://avatars2.githubusercontent.com/u/55287042?s=460&v=4"></td>
-    <td><img width="133" src="https://avatars3.githubusercontent.com/u/34838468?s=400&v=4"></td>
-    <td><img width="133" src="https://avatars2.githubusercontent.com/u/52178694?s=460&u=f059bd53f361aac4a57f0f88344ab401ca025f9d&v=4"></td>
-    <td><img width="133" src="https://avatars2.githubusercontent.com/u/6277739?s=400&u=26cf9cce6417172cde64b0e02ecc594c5f4eecc2&v=4"></td>
-    <td><img width="133" src="https://avatars1.githubusercontent.com/u/19956672?s=400&u=6e5c9c141312928197d0accaa946a2568ce30ad6&v=4"></td>
+    <td><img width="160" src="https://avatars3.githubusercontent.com/u/46948579?s=460&v=4"></td>
+    <td><img width="160" src="https://avatars2.githubusercontent.com/u/55287042?s=460&v=4"></td>
+    <td><img width="160" src="https://avatars3.githubusercontent.com/u/34838468?s=400&v=4"></td>
+    <td><img width="160" src="https://avatars2.githubusercontent.com/u/52178694?s=460&u=f059bd53f361aac4a57f0f88344ab401ca025f9d&v=4"></td>
+    <td><img width="160" src="https://avatars2.githubusercontent.com/u/55905788?s=400&u=19f494db31898092c42090499306f60bbeaaaf0a&v=4"></td>
+  </tr>
+  <tr>
+    <td align="center">Owner</td>
+    <td align="center">Dev</td>
+    <td align="center">Dev</td>
+    <td align="center">Dev</td>
+    <td align="center">Dev</td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th><a href="https://github.com/iwa">iwa</a></th>
+    <th><a href="https://github.com/valkyrienyanko">valkyrienyanko</a></th>
+    <th><a href="https://github.com/TheProdigyHenry">TheProdigyHenry</a></th>
+    <th><a href="https://github.com/zaidothePotato">zaidothePotato</a></th>
+    <th><a href="https://github.com/mcglasses02">mcglasses02</a></th>
+  </tr>
+  <tr>
+    <td><img width="160" src="https://avatars1.githubusercontent.com/u/19956672?s=400&u=6e5c9c141312928197d0accaa946a2568ce30ad6&v=4"></td>
+    <td><img width="160" src="https://avatars2.githubusercontent.com/u/6277739?s=400&u=26cf9cce6417172cde64b0e02ecc594c5f4eecc2&v=4"></td>
+    <td><img width="160" src="https://avatars0.githubusercontent.com/u/55813024?s=400&u=0a548d57a94850fa52e363bd7c55008718659f83&v=4"></td>
+    <td><img width="160" src="https://avatars2.githubusercontent.com/u/63223305?s=400&v=4"></td>
+    <td><img width="160" src="https://avatars2.githubusercontent.com/u/64054183?s=400&v=4"></td>
+  </tr>
+  <tr>
+    <td align="center">Contributor</td>
+    <td align="center">Contributor</td>
+    <td align="center">Tester</td>
+    <td align="center">Tester</td>
+    <td align="center">Tester</td>
   </tr>
 </table>
