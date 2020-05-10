@@ -13,7 +13,7 @@ const cooldownEmbed = new MessageEmbed()
 const sendRecordEmbed = (msg, previousBet) => {
     const recordBetEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('New Highest Bet!', msg.author.avatarURL)
+        .setAuthor('New Highest Bet!', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(`Previous best: $**${currency(previousBet)}**`)
@@ -24,7 +24,7 @@ const sendRecordEmbed = (msg, previousBet) => {
 const sendBetEmbed = (msg, bet, didWin) => {
     const betEmbed = new MessageEmbed()
         .setColor(didWin[0] ? colors.green : colors.red)
-        .setAuthor('Bet', msg.author.avatarURL)
+        .setAuthor('Bet', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(`You ${(didWin[0]) ? 'won' : 'lost'} $**${currency(bet)}**.`)
@@ -91,7 +91,7 @@ module.exports = async (msg, client, args) => {
 
     if (!isWithinTimeout) {
         cooldownEmbed
-            .setAuthor('Bet', msg.author.avatarURL)
+            .setAuthor('Bet', msg.author.avatarURL())
             .setTimestamp(new Date())
 
         return msg.channel.send(cooldownEmbed)

@@ -27,7 +27,7 @@ module.exports = async ({ author, channel }, client, args) => {
 
     const contributorEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('Add Contributor', author.avatarURL)
+        .setAuthor('Add Contributor', author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(result)

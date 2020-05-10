@@ -14,7 +14,7 @@ module.exports = async ({ author, channel }, client, args) => {
 
     const banEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('Ban', author.avatarURL)
+        .setAuthor('Ban', author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(result)

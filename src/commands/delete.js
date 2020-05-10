@@ -20,7 +20,7 @@ module.exports = async (msg, client, args) => {
     const userId = args[0]
     const user = await User.findOne({ discordId: msg.author.id }, err => checkErr(err))
 
-    deleteEmbed.setAuthor('Delete', msg.author.avatarURL)
+    deleteEmbed.setAuthor('Delete', msg.author.avatarURL())
 
     return (userId && userId === user.discordId)
         ? deleteData(msg.author.id)

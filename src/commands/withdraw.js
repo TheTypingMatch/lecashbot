@@ -29,7 +29,7 @@ module.exports = async (msg, client, args) => {
 
     const notifEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('Withdraw', msg.author.avatarURL)
+        .setAuthor('Withdraw', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(`$**${currency(amount)}** withdrawn to [${user.name}](${user.nitroTypeLink}).`)
@@ -44,7 +44,7 @@ module.exports = async (msg, client, args) => {
 
     const withdrawEmbed = new MessageEmbed()
         .setColor(statusColor)
-        .setAuthor('Withdraw', msg.author.avatarURL)
+        .setAuthor('Withdraw', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(message)

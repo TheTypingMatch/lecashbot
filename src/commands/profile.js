@@ -57,7 +57,7 @@ module.exports = async (msg, client, args) => {
 
         profileEmbed
             .setColor(colors.green)
-            .setAuthor(`${name}'s Profile`, userAvatar ? userAvatar.avatarURL : msg.author.avatarURL)
+            .setAuthor(`${name}'s Profile`, userAvatar ? userAvatar.avatarURL() : msg.author.avatarURL())
             .setDescription(`View ${name}'s profile [here](${nitroTypeLink})`)
             .addField('Balance', `$**${currency(balance)}**`)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)
@@ -66,7 +66,7 @@ module.exports = async (msg, client, args) => {
     } else {
         profileEmbed
             .setColor(colors.red)
-            .setAuthor('Unknown Profile', msg.author.avatarURL)
+            .setAuthor('Unknown Profile', msg.author.avatarURL())
             .setDescription('This user does not have an account!')
     }
 

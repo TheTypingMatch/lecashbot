@@ -15,7 +15,7 @@ const sendReward = (msg, user, client) => {
 
     const dailyEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('Daily', msg.author.avatarURL)
+        .setAuthor('Daily', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(`**${user.name}** just earned $**${currency(reward)}** with a streak of **${user.dailyStreak + 1}**!`)
@@ -41,7 +41,7 @@ const sendTimeLeft = (msg, dailyCooldown) => {
 
     const cooldownEmbed = new MessageEmbed()
         .setColor(colors.yellow)
-        .setAuthor('Daily', msg.author.avatarURL)
+        .setAuthor('Daily', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(`You can collect your daily reward in **${Math.ceil(timeLeft)}** ${timeLength}`)

@@ -6,7 +6,7 @@ const { addCommandField } = require('../utils/field')
 module.exports = (msg, client, args) => {
     const helpEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('Help', msg.author.avatarURL)
+        .setAuthor('Help', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(desc)

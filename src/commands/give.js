@@ -7,7 +7,7 @@ const log = require('../utils/log')
 const sendSuccessEmbed = (msg, err) => {
     const successEmbed = new MessageEmbed()
         .setColor(err ? colors.red : colors.green)
-        .setAuthor(`${err ? 'Error' : 'Success!'}`, msg.author.avatarURL)
+        .setAuthor(`${err ? 'Error' : 'Success!'}`, msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
 

@@ -5,7 +5,7 @@ const faqInfo = require('../config/embeds').faqInfo
 module.exports = (msg, client, args) => {
     const faqEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('FAQ', msg.author.avatarURL)
+        .setAuthor('FAQ', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
 

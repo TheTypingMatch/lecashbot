@@ -22,7 +22,7 @@ module.exports = async (msg, client, args) => {
 
     const helpEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('Contributors', msg.author.avatarURL)
+        .setAuthor('Contributors', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .addField('Admins', addField(admins))

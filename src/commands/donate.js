@@ -27,7 +27,7 @@ module.exports = async (msg, client, args) => {
 
     const donateEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('Donate', msg.author.avatarURL)
+        .setAuthor('Donate', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(donateLink)
