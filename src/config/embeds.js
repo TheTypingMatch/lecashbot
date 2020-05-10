@@ -2,32 +2,32 @@ module.exports = {
     helpInfo: {
         desc: 'A Discord.js bot based on the NitroType currency. Invite [here](https://discordapp.com/oauth2/authorize?client_id=586645522614583306&permissions=134073664&scope=bot).',
         register: {
-            register: ' - Make a profile using your NT account.',
+            register: '`<nt-username>` - Make a profile using your NitroType account.',
             delete: '`<discord-id>` - Delete your LeCashBot account.'
         },
         guides: {
             info: ' - Important bot information.',
-            stats: ' - Show the bot stats.',
+            stats: ' - Show the bot servers, users, and latency',
             faq: ' - Display frequently asked questions.',
             ping: ' - Show bot latency',
             donate: ' - Display donators.',
             contributors: ' - Display contributors'
         },
         economy: {
-            bal: ' `<user>` - View yours or another user\'s balance.',
-            give: '`<user>` `<amount>` - Gift someone your balance.',
-            daily: ' - Collect daily cash.',
+            bal: '`<user>` - View yours or another user\'s balance.',
+            give: '`<user>` `<amount>` - Gift someone cash from your balance.',
+            daily: ' - Collect a daily bonus of cash based on your daily streak.',
             total: ' - View the amount of cash there exists in the economy.',
             profile: ' `<user>` - View yours or another user\'s profile.',
-            withdraw: '`<amount>` - Withdraw at least $100K to your NitroType account.',
+            withdraw: '`<amount>` - Withdraw at least $100,000 from your LeCashBot account to your NitroType account.',
             leaderboard: ' - View the wealthiest of all LeCashBot users.'
         },
         games: {
-            bet: '`<amount>` - Play roulette.'
+            bet: '`<amount>` - Play roulette for a chance to win cash.'
         },
         misc: {
-            report: ' `<reason>` - Report a bug in the bot.',
-            suggest: ' `<idea>` - Suggest an idea for LeCashBot.'
+            report: ' - Get a link for bug report.',
+            suggest: ' - Get a link for feature suggestions.'
         }
     },
     info: {
