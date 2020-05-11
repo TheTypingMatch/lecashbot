@@ -1,6 +1,6 @@
 module.exports = {
     helpInfo: {
-        desc: 'A Discord.js bot based on the NitroType currency. Invite [here](https://discordapp.com/oauth2/authorize?client_id=586645522614583306&permissions=134073664&scope=bot).',
+        desc: 'A Discord.js bot based on the NitroType currency. Invite [here](https://le-sirh.github.io/lecashbot/).',
         register: {
             register: '`<nt-username>` - Make a profile using your NitroType account.',
             delete: '`<discord-id>` - Delete your LeCashBot account.'
@@ -45,7 +45,7 @@ module.exports = {
             donors: '**Donors** - Use `$donate` to view donations.'
         },
         invite: {
-            invite: 'Invite LeCashBot [**here**](https://discordapp.com/oauth2/authorize?client_id=586645522614583306&permissions=134073664&scope=bot).'
+            invite: 'Invite LeCashBot [**here**](https://le-sirh.github.io/lecashbot/).'
         }
     },
     donate: {
