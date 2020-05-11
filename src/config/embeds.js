@@ -19,7 +19,7 @@ module.exports = {
             daily: ' - Collect a daily bonus of cash based on your daily streak.',
             total: ' - View the amount of cash there exists in the economy.',
             profile: ' `<user>` - View yours or another user\'s profile.',
-            withdraw: '`<amount>` - Withdraw at least $100,000 from your LeCashBot account to your NitroType account.',
+            withdraw: '`<amount>` - Withdraw at least $100K from your LeCashBot account to your NitroType account.',
             leaderboard: ' - View the wealthiest of all LeCashBot users.'
         },
         games: {
