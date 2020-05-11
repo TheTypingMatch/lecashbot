@@ -1,13 +1,14 @@
 module.exports = {
     helpInfo: {
         desc: 'A Discord.js bot based on the NitroType currency. Invite [here](https://le-sirh.github.io/lecashbot/).',
+        descInfo: '`$help Register`\n`$help Guides`\n`$help Economy`\n`$help Games`\n`$help Misc`',
         register: {
             register: '`<nt-username>` - Make a profile using your NitroType account.',
             delete: '`<discord-id>` - Delete your LeCashBot account.'
         },
         guides: {
             info: ' - Important bot information.',
-            stats: ' - Show the bot servers, users, and latency',
+            stats: ' - Show the bot servers/users and latency.',
             faq: ' - Display frequently asked questions.',
             ping: ' - Show bot latency',
             donate: ' - Display donators.',

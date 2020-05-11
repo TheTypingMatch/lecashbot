@@ -1,6 +1,6 @@
+const { helpInfo } = require('../config/embeds')
 const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
-const { register, desc, guides, economy, games, misc } = require('../config/embeds').helpInfo
 const { addCommandField } = require('../utils/field')
 
 module.exports = (msg, client, args) => {
@@ -9,12 +9,19 @@ module.exports = (msg, client, args) => {
         .setAuthor('Help', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
-        .setDescription(desc)
-        .addField('Register', addCommandField(register))
-        .addField('Guides', addCommandField(guides))
-        .addField('Economy', addCommandField(economy))
-        .addField('Games', addCommandField(games))
-        .addField('Miscellaneous', addCommandField(misc))
+        .addField('Categories', helpInfo.descInfo)
 
+    if (args[0]) {
+        const category = args[0].toLowerCase()
+        if (helpInfo[category] && category !== 'desc' && category !== 'descInfo') {
+            const categoryInfo = helpInfo[category]
+            helpEmbed.addField(
+                category,
+                addCommandField(categoryInfo)
+            )
+        }
+    }
+
+    helpEmbed.setDescription(helpInfo.desc)
     return msg.channel.send(helpEmbed)
 }

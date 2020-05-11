@@ -7,7 +7,8 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
-    "dev:server": "nodemon -q .",
+    "dev:watch": "nodemon -q .",
+    "dev:server": "node src/index.js",
     "dev:lint": "eslint . --fix"
   },
   "keywords": [],
