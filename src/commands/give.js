@@ -22,13 +22,14 @@ const sendSuccessEmbed = (msg, err) => {
 module.exports = async (msg, client, args) => {
     if (!args[0]) return msg.reply('No user given.')
 
-    const receiverId = { discordId: args[0].replace(/<|@|!|>/g, '') }
+    const id = args[0].replace(/<|@|!|>/g, '')
+    const isNotId = (isNaN(parseInt(id)))
+    const receiverId = (isNotId) ? { name: args[0] } : { discordId: id }
     const userId = { discordId: msg.author.id }
     const receiver = await User.findOne(receiverId)
     const user = await User.findOne(userId)
 
     if (userId.discordId === receiverId.discordId) return msg.reply('You can\'t gift yourself!')
-
     if (!args[1] || isNaN(parseInt(args[1]))) return msg.reply('No amount given.')
     if (!user || !receiver) return msg.reply('User not found!')
     if (parseInt(args[1]) < 100) return msg.reply('Minimum gift amount is $**100**.')
@@ -37,7 +38,9 @@ module.exports = async (msg, client, args) => {
     const userBal = user.balance
     const gift = int(args[1])
 
-    if (userBal < gift) { return msg.reply(`You do not have enough in your balance: $**${currency(user.balance)}**`) }
+    if (userBal < gift) {
+        return msg.reply(`You do not have enough in your balance: $**${currency(user.balance)}**`)
+    }
 
     User.updateOne(receiverId, { balance: receiverBal + gift }, err => {
         if (err) sendSuccessEmbed(msg, err)
