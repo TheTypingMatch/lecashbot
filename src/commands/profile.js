@@ -20,7 +20,9 @@ const addBadges = badges => {
     Object.entries(badges).forEach(badge => {
         const badgeType = badge[0]
         const hasRole = badge[1]
-        if (hasRole) badgeMsg += `\n:${addBadgeEmote(badgeType)}: ${capitalize(badgeType)}`
+        if (hasRole) {
+            badgeMsg += `\n:${addBadgeEmote(badgeType)}: ${capitalize(badgeType)}`
+        }
     })
     return badgeMsg
 }
@@ -40,7 +42,8 @@ module.exports = async (msg, client, args) => {
         const {
             name, nitroTypeLink, balance,
             dailyStreak, highestBet, owner,
-            admin, dev, tester, donor
+            admin, dev, tester, donor, 
+            donations
         } = user
 
         const badges = {
@@ -59,14 +62,15 @@ module.exports = async (msg, client, args) => {
             .setColor(colors.green)
             .setAuthor(`${name}'s Profile`, userAvatar ? userAvatar.avatarURL() : msg.author.avatarURL())
             .setDescription(`View ${name}'s profile [here](${nitroTypeLink})`)
-            .addField('Balance', `$**${currency(balance)}**`)
+            .addField('Balance', `$**${currency(balance)}**`, true)
+            .addField('Donations', `$**${currency(donations || 0)}**`, true)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)
             .addField('Highest Bet', `$**${currency(highestBet.amount)}**`, true)
             .addField('Chance', `**${Math.round(highestBet.chance * 100) / 100}**%`, true)
     } else {
         profileEmbed
             .setColor(colors.red)
-            .setAuthor('Unknown Profile', msg.author.avatarURL())
+            .setAuthor('Unknown Profile', msg.author.avatarURL)
             .setDescription('This user does not have an account!')
     }
 
