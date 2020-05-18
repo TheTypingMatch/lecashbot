@@ -15,7 +15,7 @@ module.exports = {
         ],
         error: ['692123000602099712']
     },
-    version: '1.3.1',
+    version: '1.3.2',
     prefix: '$',
     devMode: false,
     logEnabled: true
