@@ -3,6 +3,8 @@ const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { addCommandField } = require('../utils/field')
 
+const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)
+
 module.exports = (msg, client, args) => {
     const helpEmbed = new MessageEmbed()
         .setColor(colors.green)
@@ -16,7 +18,7 @@ module.exports = (msg, client, args) => {
         if (helpInfo[category] && category !== 'desc' && category !== 'descInfo') {
             const categoryInfo = helpInfo[category]
             helpEmbed.addField(
-                category,
+                capitalize(category),
                 addCommandField(categoryInfo)
             )
         }
