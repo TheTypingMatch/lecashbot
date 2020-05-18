@@ -42,7 +42,7 @@ module.exports = async (msg, client, args) => {
         const {
             name, nitroTypeLink, balance,
             dailyStreak, highestBet, owner,
-            admin, dev, tester, donor, 
+            admin, dev, tester, donor,
             donations
         } = user
 
@@ -61,7 +61,7 @@ module.exports = async (msg, client, args) => {
         profileEmbed
             .setColor(colors.green)
             .setAuthor(`${name}'s Profile`, userAvatar ? userAvatar.avatarURL() : msg.author.avatarURL())
-            .setDescription(`View ${name}'s profile [here](${nitroTypeLink})`)
+            .setDescription(`[**${name}'s NitroType**](${nitroTypeLink})`)
             .addField('Balance', `$**${currency(balance)}**`, true)
             .addField('Donations', `$**${currency(donations || 0)}**`, true)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)
