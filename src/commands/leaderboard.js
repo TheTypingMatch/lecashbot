@@ -67,7 +67,9 @@ const handleCashLb = (msg, users) => {
         }
     })
 
-    topTen.forEach((user, pos) => desc += `#**${pos + 1}** ${user.name} - $**${currency(user.balance)}**\n`)
+    topTen.forEach((user, pos) => {
+        desc += `#**${pos + 1}** ${user.name} - $**${currency(user.balance)}**\n`
+    })
     desc += `#**${userPosition}** - YOU - $**${currency(userBalance)}**`
     lbEmbed.setDescription(desc)
     desc = ''
@@ -106,6 +108,7 @@ module.exports = async (msg, client, args) => {
     if (!users) log('error', `ERROR: DB could not find users:\n**${users}**`, client)
 
     switch (args[0]) {
+        case 'cash': return handleCashLb(msg, users)
         case 'bet': return handleBetLb(msg, users)
         case 'streak': return handleStreakLb(msg, users)
         default: return handleCashLb(msg, users)
