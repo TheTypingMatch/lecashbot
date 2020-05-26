@@ -34,7 +34,6 @@ module.exports = async (msg, client, args) => {
     if (!user || !receiver) return msg.reply('User not found!')
     if (parseInt(args[1]) < 100) return msg.reply('Minimum gift amount is $**100**.')
 
-    const receiverBal = receiver.balance
     const userBal = user.balance
     const gift = int(args[1])
 
@@ -42,9 +41,12 @@ module.exports = async (msg, client, args) => {
         return msg.reply(`You do not have enough in your balance: $**${currency(user.balance)}**`)
     }
 
-    User.updateOne(receiverId, { balance: receiverBal + gift }, err => {
+    User.updateOne(receiverId, { balance: receiver.balance + gift }, err => {
         if (err) sendSuccessEmbed(msg, err)
     })
     User.updateOne(userId, { balance: userBal - gift }, err => sendSuccessEmbed(msg, err))
-    client.users.cache.get(receiverId.discordId).send(`**${user.name}** just sent you $**${gift}**!`)
+
+    return client.users.cache
+        .get(receiverId.discordId)
+        .send(`**${user.name}** just sent you $**${gift}**!`)
 }

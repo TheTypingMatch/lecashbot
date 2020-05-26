@@ -41,7 +41,9 @@ const handleBetLb = (msg, users) => {
     })
 
     topTen.forEach(({ highestBet, name }, pos) => {
-        desc += `#**${pos + 1}** ${name} - $**${currency(highestBet.amount)}** - ${Math.round(highestBet.chance * 100) / 100}%\n`
+        const betAmount = currency(highestBet.amount)
+        const betChance = Math.round(highestBet.chance * 100) / 100
+        desc += `#**${pos + 1}** ${name} - $**${betAmount}** - ${betChance}%\n`
     })
     desc += `#**${userPosition}** - YOU - $**${currency(userBet)}** - **${userBetChance}**%`
 

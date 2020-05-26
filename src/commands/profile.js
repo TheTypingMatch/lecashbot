@@ -64,7 +64,7 @@ module.exports = async (msg, client, args) => {
             .setDescription(`[**${name}'s NitroType**](${nitroTypeLink})`)
             .addField('Balance', `$**${currency(balance)}**`, true)
             .addField('Donations', `$**${currency(donations || 0)}**`, true)
-            .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak > 1 ? 's' : ''}`)
+            .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak === 1 ? 's' : ''}`)
             .addField('Highest Bet', `$**${currency(highestBet.amount)}**`, true)
             .addField('Chance', `**${Math.round(highestBet.chance * 100) / 100}**%`, true)
     } else {

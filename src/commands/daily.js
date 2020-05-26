@@ -6,28 +6,25 @@ const { colors, version } = require('../config/config')
 const { toHours, toMinutes } = require('../utils/date')
 const { currency } = require('../utils/format')
 
-const sendReward = (msg, user, client) => {
-    const { balance, dailyStreak, cooldowns } = user
+const sendReward = (msg, user, client, embed) => {
+    const { name, balance, dailyStreak, cooldowns } = user
     const userId = { discordId: msg.author.id }
 
     const reward = (dailyStreak * 25) + 100
     cooldowns.daily = new Date()
 
-    const dailyEmbed = new MessageEmbed()
+    embed
         .setColor(colors.green)
-        .setAuthor('Daily', msg.author.avatarURL())
-        .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${version}`)
-        .setDescription(`**${user.name}** just earned $**${currency(reward)}** with a streak of **${user.dailyStreak + 1}**!`)
+        .setDescription(`**${name}** just earned $**${currency(reward)}** with a streak of **${dailyStreak + 1}**!`)
 
     return User.updateOne(userId, {
         balance: balance + reward,
         dailyStreak: dailyStreak + 1,
         cooldowns: cooldowns
-    }, err => checkErr(err, client, () => msg.channel.send(dailyEmbed)))
+    }, err => checkErr(err, client, () => msg.channel.send(embed)))
 }
 
-const sendTimeLeft = (msg, dailyCooldown) => {
+const sendTimeLeft = (msg, dailyCooldown, embed) => {
     let timeLength = 'seconds'
     let timeLeft = daily - dailyCooldown
 
@@ -39,14 +36,11 @@ const sendTimeLeft = (msg, dailyCooldown) => {
         timeLeft = toHours(timeLeft)
     } else timeLeft = timeLeft / 1000
 
-    const cooldownEmbed = new MessageEmbed()
+    embed
         .setColor(colors.yellow)
-        .setAuthor('Daily', msg.author.avatarURL())
-        .setTimestamp(new Date())
-        .setFooter(`LeCashBot v${version}`)
         .setDescription(`You can collect your daily reward in **${Math.ceil(timeLeft)}** ${timeLength}`)
 
-    return msg.channel.send(cooldownEmbed)
+    return msg.channel.send(embed)
 }
 
 module.exports = async (msg, client, args) => {
@@ -56,5 +50,12 @@ module.exports = async (msg, client, args) => {
     const dailyCooldown = new Date() - lastDaily
     const isWithinTimeout = (user && dailyCooldown >= daily)
 
-    return (isWithinTimeout) ? sendReward(msg, user, client) : sendTimeLeft(msg, dailyCooldown)
+    const dailyEmbed = new MessageEmbed()
+        .setAuthor('Daily', msg.author.avatarURL())
+        .setTimestamp(new Date())
+        .setFooter(`LeCashBot v${version}`)
+
+    return (isWithinTimeout)
+        ? sendReward(msg, user, client, dailyEmbed)
+        : sendTimeLeft(msg, dailyCooldown, dailyEmbed)
 }

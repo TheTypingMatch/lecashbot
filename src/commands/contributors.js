@@ -4,7 +4,9 @@ const { colors, version } = require('../config/config')
 
 const addField = userData => {
     const field = `${userData.map(user => `<@${user.id}>`)}`
-    return (userData.length > 5) ? field.replace(/,/g, ' ') : field.replace(/,/g, '\n')
+    return (userData.length > 5)
+        ? field.replace(/,/g, ' ')
+        : field.replace(/,/g, '\n')
 }
 
 const getContributors = async type => {

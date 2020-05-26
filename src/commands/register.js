@@ -28,7 +28,7 @@ const register = (msg, ntLink) => {
 
 module.exports = async (msg, client, args) => {
     if (!args[0]) {
-        return msg.reply('Use your NitroType username (NOT display name): Use `$register USERNAME`')
+        return msg.reply('Use your NitroType **username** (NOT display name): Use `$register USERNAME`')
     }
 
     // Check if the user already has an account
