@@ -9,6 +9,7 @@ module.exports = {
         guides: {
             info: ' - Important bot information.',
             stats: ' - Show the bot servers/users and latency.',
+            uptime: ' - Show the bot uptime',
             faq: ' - Display frequently asked questions.',
             ping: ' - Show bot latency',
             donate: ' - Display donators.',
