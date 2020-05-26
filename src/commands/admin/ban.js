@@ -10,7 +10,9 @@ module.exports = async ({ author, channel }, client, args) => {
     const user = await User.findOne(id)
     let result = (user && !user.dev) ? `${user.name} has been banned.` : err
 
-    if (!user.dev && !user.admin) { User.update(id, { banned: true }, e => checkErr(e, client)) } else result = 'You can\'t ban a developer/admin!'
+    if (!user.dev && !user.admin) {
+        User.update(id, { banned: true }, e => checkErr(e, client))
+    } else result = 'You can\'t ban a developer/admin!'
 
     const banEmbed = new MessageEmbed()
         .setColor(colors.green)
