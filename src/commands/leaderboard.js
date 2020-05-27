@@ -45,7 +45,7 @@ const handleBetLb = (msg, users) => {
         const betChance = Math.round(highestBet.chance * 100) / 100
         desc += `#**${pos + 1}** ${name} - $**${betAmount}** - ${betChance}%\n`
     })
-    desc += `#**${userPosition}** - YOU - $**${currency(userBet)}** - **${userBetChance}**%`
+    desc += `#**${userPosition}** - YOU - $**${currency(userBet)}** - ${userBetChance}%`
 
     lbEmbed.setDescription(desc)
     desc = ''
