@@ -7,6 +7,7 @@ module.exports = {
             delete: '`<discord-id>` - Delete your LeCashBot account.'
         },
         guides: {
+            invite: ' - Invite the bot.',
             info: ' - Important bot information.',
             stats: ' - Show the bot servers/users and latency.',
             uptime: ' - Show the bot uptime',
