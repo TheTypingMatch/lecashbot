@@ -2,6 +2,13 @@ const User = require('../models/user.model')
 const { MessageEmbed } = require('discord.js')
 const { colors, version } = require('../config/config')
 const { currency } = require('../utils/format')
+const { addCommandField } = require('../utils/field')
+
+const helpInfo = {
+    'leaderboard bet': '- Display the highest bets won.',
+    'leaderboard streak': '- Display the highest daily streaks.',
+    'leaderboard cash': '- Display the wealthiest users.'
+}
 
 let desc = ''
 const lbEmbed = new MessageEmbed()
@@ -105,6 +112,17 @@ const handleStreakLb = (msg, users) => {
     return msg.channel.send(lbEmbed)
 }
 
+const handleHelpLb = msg => {
+    const lbHelpEmbed = new MessageEmbed()
+        .setColor(colors.green)
+        .setAuthor('Leaderboard')
+        .setTimestamp(new Date())
+        .setFooter(`LeCashBot v${version}`)
+        .setDescription(addCommandField(helpInfo))
+
+    return msg.channel.send(lbHelpEmbed)
+}
+
 module.exports = async (msg, client, args) => {
     const users = await User.find({ banned: false })
     if (!users) log('error', `ERROR: DB could not find users:\n**${users}**`, client)
@@ -113,6 +131,7 @@ module.exports = async (msg, client, args) => {
         case 'cash': return handleCashLb(msg, users)
         case 'bet': return handleBetLb(msg, users)
         case 'streak': return handleStreakLb(msg, users)
+        case 'help': return handleHelpLb(msg)
         default: return handleCashLb(msg, users)
     }
 }
