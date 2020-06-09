@@ -2,13 +2,11 @@ const fs = require('fs')
 const path = require('path')
 const User = require('./models/user.model')
 
-const createAbsolutePath = relativePath => path.join(__dirname, relativePath)
-
 module.exports = {
     run: async (cmd, msg, client, args) => {
-        const cmdPath = createAbsolutePath(`./commands/${cmd}.js`)
-        const devPath = createAbsolutePath(`./commands/dev/${cmd}.js`)
-        const adminPath = createAbsolutePath(`./commands/admin/${cmd}.js`)
+        const cmdPath = path.join(__dirname, `./commands/${cmd}.js`)
+        const devPath = path.join(__dirname, `./commands/dev/${cmd}.js`)
+        const adminPath = path.join(__dirname, `./commands/admin/${cmd}.js`)
 
         const user = await User.findOne({ discordId: msg.author.id })
 

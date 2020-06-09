@@ -34,11 +34,16 @@ const initDatabase = () => {
 }
 
 const init = async () => {
+    const {
+        registerModules,
+        registerEvents,
+        checkDiscordStatus
+    } = client.loader
+
     console.clear()
-    const loader = client.loader
-    await loader.registerModules(client)
-    await loader.registerEvents(client)
-    await loader.checkDiscordStatus(client)
+    await registerModules(client)
+    await registerEvents(client)
+    await checkDiscordStatus(client)
     await client.login(process.env.TOKEN)
     initDatabase()
 }

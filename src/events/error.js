@@ -1,5 +1,1 @@
-const checkErr = require('../utils/checkErr')
-
-module.exports = async (client, err) => {
-    checkErr(err, client)
-}
+module.exports = async (client, err) => require('../utils/checkErr')(err, client)

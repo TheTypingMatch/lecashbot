@@ -22,8 +22,7 @@ const logEarnings = (msg, client) => {
         .setColor(colors.green)
         .setDescription(msg)
 
-    const logChannels = channels.log
-    return logChannels.forEach(channel => {
+    return channels.log.forEach(channel => {
         const logChannel = client.channels.cache.get(channel)
         if (logChannel) logChannel.send(logEmbed)
     })
