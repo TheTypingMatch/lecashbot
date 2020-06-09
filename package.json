@@ -9,7 +9,8 @@
   "scripts": {
     "dev:watch": "nodemon -q .",
     "dev:server": "node src/index.js",
-    "dev:lint": "eslint . --fix"
+    "dev:lint": "eslint . --fix",
+    "dev:test": "jest"
   },
   "keywords": [],
   "author": "",
