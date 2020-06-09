@@ -37,6 +37,7 @@
 - `$withdraw` - Withdraw at least $100,000 from your LeCashBot account to your NitroType account.
 - `$leaderboard` - View the wealthiest of all LeCashBot users.
 - `$bet` - Play roulette for a chance to win cash.
+- `$invite` - Invite the bot.
 - `$report` - Get a link for bug report.
 - `$suggest` - Get a link for feature suggestions.
 
