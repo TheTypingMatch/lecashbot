@@ -1,7 +1,6 @@
 const User = require('../models/user.model')
 const log = require('../utils/log')
 const { toHours } = require('../utils/date')
-const { dailyReset } = require('../config/cooldowns')
 const { devMode } = require('../config/config')
 
 module.exports = (client) => {
@@ -27,9 +26,9 @@ module.exports = (client) => {
             if (notCollected && dailyStreak) {
                 User.updateOne(userId, { dailyStreak: 0 }, err => {
                     if (err) log('error', err, client)
-                    else console.log(`Daily Streak reset for user ${name}`)
+                    else client.logger.log(`Daily Streak reset for user ${name}`, 'ready')
                 })
             }
         })
-    }, dailyReset)
+    }, 60 * 60 * 1000)
 }
