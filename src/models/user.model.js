@@ -92,6 +92,11 @@ const articleSchema = new mongoose.Schema({
         type: Boolean,
         required: false,
         default: false
+    },
+    coinflipStreak: {
+        type: Number,
+        required: false,
+        default: 0
     }
 })
 
