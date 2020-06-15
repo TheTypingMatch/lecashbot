@@ -2,37 +2,44 @@ const User = require('../models/user.model')
 const reward = require('../utils/reward')
 const checkErr = require('../utils/checkErr')
 
-module.exports = async (client, msg) => {
-    const userId = msg.author.id
+module.exports = async (client, { content, author, reply }) => {
+    const { logger, msgCooldowns, config } = client
+    const userId = author.id
 
     // Handle command arguments
-    const args = msg.content.slice(client.config.prefix.length).trim().split(/ +/g)
+    const args = content.slice(config.prefix.length).trim().split(/ +/g)
     const cmd = args.shift().toLowerCase()
     const generalCmds = ['help', 'register', 'total', 'leaderboard', 'ping', 'faq']
 
-    if (msg.author.bot) return
+    if (author.bot) return
 
     // Check if the user has an account.
     const user = await User.findOne({ discordId: userId })
+    if (user) {
+        if (user.name !== author.username) {
+            const updatedName = { name: author.username }
+            User.updateOne({ discordId: userId }, updatedName, err => {
+                checkErr(err, client, () => {
+                    logger.log(`Updated username ${user.name} to ${author.username}`, 'ready')
+                })
+            })
+        }
 
-    // Updates user name/discriminator in DB
-    if (user && user.name !== msg.author.username) {
-        const updatedName = { name: msg.author.username }
-        User.updateOne({ discordId: userId }, updatedName, err => checkErr(err, client, () => {
-            client.logger.log(`Updated username ${user.name} to ${msg.author.username}`, 'ready')
-        }))
+        // Add user to msg reward cooldown
+        if (!user.banned && !msgCooldowns.includes(userId)) {
+            reward(userId, client)
+        }
+
+        if (user.banned) {
+            return reply('You have been banned from the bot.')
+        }
     }
+    msgCooldowns.push(userId)
 
-    // Add user to msg reward cooldown
-    if (user && !user.banned && !client.msgCooldowns.includes(userId)) reward(userId, client)
-    client.msgCooldowns.push(userId)
-
-    // Check if the msg starts with a prefix
-    if (!msg.content.startsWith(client.config.prefix)) return
-
-    if (!user && !generalCmds.includes(cmd)) { return msg.reply('You must `$register` an account before using any other commands!') }
-
-    if (user && user.banned) return msg.reply('You have been banned from the bot.')
+    if (!content.startsWith(config.prefix)) return
+    if (!user && !generalCmds.includes(cmd)) {
+        return reply('You must `$register` an account before using any other commands!')
+    }
 
     // Command handler
     require('../commands.js').run(cmd, msg, client, args)
