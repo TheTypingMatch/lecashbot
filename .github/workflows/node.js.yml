@@ -3,7 +3,7 @@ on: [push]
 jobs:
   build:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - uses: borales/actions-yarn@v2.0.0
