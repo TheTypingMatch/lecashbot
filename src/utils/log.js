@@ -22,6 +22,7 @@ const logEarnings = (msg, client) => {
         .setColor(colors.green)
         .setDescription(msg)
 
+    client.logger.log(msg.replace(/\*/g, ''))
     return channels.log.forEach(channel => {
         const logChannel = client.channels.cache.get(channel)
         if (logChannel) logChannel.send(logEmbed)
@@ -30,7 +31,11 @@ const logEarnings = (msg, client) => {
 
 module.exports = (type, msg, client) => {
     if (logEnabled) {
-        fs.appendFile(`./logs/${type}.log`, `${msg} - ${new Date()}\n`, err => console.log(err || msg))
+        fs.appendFile(`./logs/${type}.log`, `${msg} - ${new Date()}\n`, err => {
+            if (err) {
+                console.log(err)
+            }
+        })
         switch (type) {
             case 'error': return sendErrorEmbed(msg, client)
             case 'cash': return logEarnings(msg, client)
