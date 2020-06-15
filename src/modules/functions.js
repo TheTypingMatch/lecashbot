@@ -29,7 +29,7 @@ module.exports = (client) => {
             if (notCollected && dailyStreak) {
                 User.updateOne(userId, { dailyStreak: 0 }, err => {
                     if (err) log('error', err, client)
-                    else console.log(`Daily Streak reset for user ${name}`)
+                    else client.logger.log(`Daily Streak reset for user ${name}`, 'ready')
                 })
             }
         })

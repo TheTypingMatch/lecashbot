@@ -2,7 +2,8 @@ const User = require('../models/user.model')
 const reward = require('../utils/reward')
 const checkErr = require('../utils/checkErr')
 
-module.exports = async (client, { content, author, reply }) => {
+module.exports = async (client, msg) => {
+    const { content, author, reply } = msg
     const { logger, msgCooldowns, config } = client
     const userId = author.id
 
