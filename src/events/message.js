@@ -19,7 +19,7 @@ module.exports = async (client, msg) => {
     if (user && user.name !== msg.author.username) {
         const updatedName = { name: msg.author.username }
         User.updateOne({ discordId: userId }, updatedName, err => checkErr(err, client, () => {
-            client.logger.log(`Updated username ${user.name} to ${msg.author.username}`)
+            client.logger.log(`Updated username ${user.name} to ${msg.author.username}`, 'ready')
         }))
     }
 
