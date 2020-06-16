@@ -4,7 +4,7 @@ const { toHours } = require('../utils/date')
 const { devMode } = require('../config/config')
 
 module.exports = (client) => {
-    setTimeout(client.refreshActivity = () => {
+    setInterval(client.refreshActivity = () => {
         client.logger.log('Updating presence...', 'log')
         const { users, guilds } = client
         client.user.setPresence({
@@ -16,7 +16,7 @@ module.exports = (client) => {
         })
         client.logger.log('Done updating presence.', 'ready')
     }, 60 * 1000)
-    setTimeout(client.resetDailyStreak = async () => {
+    setInterval(client.resetDailyStreak = async () => {
         client.logger.log('Checking dailies...', 'log')
         const activeUsers = await User.find({ banned: false })
         if (!activeUsers) return
