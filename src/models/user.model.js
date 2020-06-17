@@ -97,6 +97,11 @@ const articleSchema = new mongoose.Schema({
         type: Number,
         required: false,
         default: 0
+    },
+    cmdCooldown: {
+        type: Date,
+        required: false,
+        default: 0
     }
 })
 
