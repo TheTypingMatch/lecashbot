@@ -50,7 +50,7 @@ module.exports = async (msg, client, args) => {
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
 
-    return (flip >= 0.5)
+    return (flip > 0.5)
         ? sendReward(msg, user, client, flipEmbed)
         : sendLoss(msg, user, client, flipEmbed)
 }
