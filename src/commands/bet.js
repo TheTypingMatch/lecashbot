@@ -5,11 +5,6 @@ const { colors, version } = require('../config/config')
 const { currency, int } = require('../utils/format')
 const { betTime } = require('../config/cooldowns')
 
-const cooldownEmbed = new MessageEmbed()
-    .setColor(colors.yellow)
-    .setFooter(`LeCashBot v${version}`)
-    .setDescription('You must wait **3 seconds** before you can use this command again.')
-
 const sendRecordEmbed = (msg, previousBet) => {
     const recordBetEmbed = new MessageEmbed()
         .setColor(colors.green)
@@ -75,29 +70,19 @@ module.exports = async (msg, client, args) => {
     if (!args[0] || !int(args[0])) return msg.reply('Undefined bet amount: Use `$bet <amount>`.')
     if (args[0] === 'high') return getHighestBet(msg)
 
-    const bet = int(args[0])
-
-    // Make sure the bet is at least $250
-    if (bet < 250) return msg.reply('Bets must be at least $250!')
-
     const user = await User.findOne({ discordId: msg.author.id })
+    if (!user) {
+        client.logger.log('User not found while betting.', 'error')
+        return msg.channel.send('An error occurred.')
+    }
 
-    const lastBet = user.cooldowns.bet
-    const betCooldown = new Date() - lastBet
-    const isWithinTimeout = (user && betCooldown >= betTime)
-
-    const cooldowns = user.cooldowns
-    cooldowns.bet = new Date()
-
-    if (!isWithinTimeout) {
-        cooldownEmbed
-            .setAuthor('Bet', msg.author.avatarURL())
-            .setTimestamp(new Date())
-
-        return msg.channel.send(cooldownEmbed)
-    } else User.updateOne({ discordId: user.discordId }, { cooldowns: cooldowns }, err => checkErr(err, client))
-    if (!user) return msg.channel.send('An error occurred.')
+    const bet = int(args[0])
+    if (bet < 250) {
+        return msg.reply('Bets must be at least $250!')
+    }
 
     // Check if the user has enough in their balance to bet.
-    return (user.balance >= bet) ? makeBet(msg, user, bet, client) : msg.reply(`Insufficient bal: $${user.balance}`)
+    return (user.balance >= bet)
+        ? makeBet(msg, user, bet, client)
+        : msg.reply(`Insufficient bal: $${user.balance}`)
 }
