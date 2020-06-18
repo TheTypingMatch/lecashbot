@@ -1,7 +1,5 @@
-import * as fetch from 'node-fetch'
+const fetch = require('node-fetch')
 import { User } from '../models/user.model'
-import { log } from '../utils/log'
-import { checkErr } from '../utils/checkErr'
 
 const urlExists = async url => {
     return await fetch(url)

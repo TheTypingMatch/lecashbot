@@ -10,7 +10,7 @@ const deleteEmbed = new MessageEmbed()
     .setDescription('Your data has been deleted.')
 
 const deleteData = async (id, msg) => {
-    await User.deleteOne({ discordId: id }, err => checkErr(err, client))
+    await User.deleteOne({ discordId: id })
     return msg.channel.send(deleteEmbed)
 }
 
@@ -18,7 +18,7 @@ const deleteUser = async (msg, client, args) => {
     const error = 'You must type your Discord name: `$delete DISCORD_ID`'
 
     const userId = args[0]
-    const user = await User.findOne({ discordId: msg.author.id }, err => checkErr(err, client))
+    const user = await User.findOne({ discordId: msg.author.id })
 
     deleteEmbed.setAuthor('Delete', msg.author.avatarURL())
 

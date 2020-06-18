@@ -1,6 +1,6 @@
 import { msgCooldown } from '../config/cooldowns'
 
-const ready = async client => {
+module.exports = async client => {
     const {
         resetDailyStreak, users,
         refreshActivity, logger,
@@ -13,5 +13,3 @@ const ready = async client => {
     setInterval(() => msgCooldowns.splice(0, msgCooldowns.length), msgCooldown)
     logger.ready(readyMsg)
 }
-
-export { ready }

@@ -1,20 +1,22 @@
-import * as fs from 'fs'
-import * as path from 'path'
+declare function require(name: string)
+
+import fs = require('fs')
+import path = require('path')
 import { User } from './models/user.model'
 
 const run = async (cmd, msg, client, args) => {
-    const cmdPath = path.join(__dirname, `./commands/${cmd}.js`)
-    const devPath = path.join(__dirname, `./commands/dev/${cmd}.js`)
-    const adminPath = path.join(__dirname, `./commands/admin/${cmd}.js`)
-
     const user = await User.findOne({ discordId: msg.author.id })
-
+    const generalPath = path.resolve(`./build/commands/${cmd}.js`)
+    const adminPath = path.resolve(`./build/commands/admin/${cmd}.js`)
     const hasAdminPerms = (fs.existsSync(adminPath) && user.admin)
-    const hasDevPerms = (fs.existsSync(devPath) && user.dev)
 
-    if (hasDevPerms) require(devPath)(msg, client, args)
-    else if (hasAdminPerms) require(adminPath)(msg, client, args)
-    else if (fs.existsSync(cmdPath)) require(cmdPath)(msg, client, args)
+    if (hasAdminPerms) {
+        const adminCMD = await import(`./commands/admin/${cmd}`)
+        return adminCMD.default(msg, client, args)
+    } else if (fs.existsSync(generalPath)){
+        const generalCMD = await import(`./commands/${cmd}`)
+        return generalCMD.default(msg, client, args)
+    }
 }
 
 export { run }

@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
+const mongoDB = require('mongodb')
+const mongoose = require('mongoose')
 import * as dotenv from 'dotenv'
-import * as mongoDB from 'mongodb'
-import * as mongoose from 'mongoose'
 import { log } from './utils/log'
 import { functions } from './modules/functions'
 

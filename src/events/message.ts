@@ -3,7 +3,7 @@ import { reward } from '../utils/reward'
 import { checkErr } from '../utils/checkErr'
 import { run } from '../commands'
 
-const message = async (client, msg) => {
+module.exports = async (client, msg) => {
     const { content, author, reply } = msg
     const { logger, msgCooldowns, config } = client
     const userId = author.id
@@ -46,5 +46,3 @@ const message = async (client, msg) => {
     // Command handler
     run(cmd, msg, client, args)
 }
-
-export { message }
