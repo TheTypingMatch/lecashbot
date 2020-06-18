@@ -1,5 +1,3 @@
-declare function require(name: string)
-
 import fs = require('fs')
 import path = require('path')
 import { User } from './models/user.model'
