@@ -19,4 +19,4 @@ const sendInfo = (msg, client, args) => {
     return msg.channel.send(helpEmbed)
 }
 
-export default Info
+export default sendInfo
