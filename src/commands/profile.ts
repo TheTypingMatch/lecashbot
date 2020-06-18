@@ -16,10 +16,10 @@ const addBadgeEmote = badgeType => {
 }
 
 const addBadges = badges => {
-    let badgeMsg = ''
+    let badgeMsg: string = ''
     Object.entries(badges).forEach(badge => {
-        const badgeType = badge[0]
-        const hasRole = badge[1]
+        const badgeType: string = badge[0]
+        const hasRole: any = badge[1]
         if (hasRole) {
             badgeMsg += `\n:${addBadgeEmote(badgeType)}: ${capitalize(badgeType)}`
         }
@@ -27,12 +27,12 @@ const addBadges = badges => {
     return badgeMsg
 }
 
-const profile = async (msg, client, args) => {
+export default async (msg, client, args) => {
     const userId = args[0] ? args[0].replace(/<|@|!|>/g, '') : msg.author.id
 
-    const isNotId = (isNaN(parseInt(userId)))
-    const userData = (isNotId) ? { name: args.join(' ').trim() } : { discordId: userId }
-    const user = await User.findOne(userData)
+    const isNotId: boolean = (isNaN(parseInt(userId)))
+    const userData: any = (isNotId) ? { name: args.join(' ').trim() } : { discordId: userId }
+    const user: any = await User.findOne(userData)
 
     const profileEmbed = new MessageEmbed()
         .setTimestamp(new Date())
@@ -54,9 +54,11 @@ const profile = async (msg, client, args) => {
             donor: donor
         }
 
-        const userAvatar = client.users.cache.get((isNotId) ? user.discordId : userId)
-        const userBadges = addBadges(badges)
-        if (userBadges) profileEmbed.addField('Contributions', `${userBadges}`)
+        const userAvatar: any = client.users.cache.get((isNotId) ? user.discordId : userId)
+        const userBadges: any = addBadges(badges)
+        if (userBadges) {
+            profileEmbed.addField('Contributions', `${userBadges}`)
+        }
 
         profileEmbed
             .setColor(colors.green)
@@ -76,5 +78,3 @@ const profile = async (msg, client, args) => {
 
     return msg.channel.send(profileEmbed)
 }
-
-export default profile

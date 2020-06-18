@@ -3,7 +3,7 @@ import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 import { currency } from '../utils/format'
 
-const stats = async (msg, client, args) => {
+export default async (msg, client, args) => {
     const { guilds, users, ws } = client
     const statsEmbed = new MessageEmbed()
         .setColor(colors.green)
@@ -19,5 +19,3 @@ const stats = async (msg, client, args) => {
 
     return msg.channel.send(statsEmbed)
 }
-
-export default stats

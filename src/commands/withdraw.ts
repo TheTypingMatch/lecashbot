@@ -4,26 +4,26 @@ import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 import { currency, int } from '../utils/format'
 
-let statusColor = colors.yellow
-let message = ''
+let statusColor: any = colors.yellow
+let message: string = ''
 
 const withdrawAmount = (client, msg, user, amount, notifEmbed) => {
     User.updateOne({ discordId: msg.author.id }, {
         balance: user.balance - amount
-    }, err => checkErr(err, client, () => {
+    }, (err: any) => checkErr(err, client, () => {
         statusColor = colors.red
         message = 'An error occurred.'
     }))
     client.users.cache.get('296862365503193098').send(notifEmbed)
 }
 
-const withdraw = async (msg, client, args) => {
+export default async (msg, client, args) => {
     if (!args[0] || !int(args[0])) return msg.reply('No amount given. Use `$withdraw <amount>`.')
 
-    const amount = int(args[0])
-    const userId = { discordId: msg.author.id }
-    const user = await User.findOne(userId)
-    const userBal = user.balance
+    const amount: number = int(args[0])
+    const userId: { discordId: string } = { discordId: msg.author.id }
+    const user: any = await User.findOne(userId)
+    const userBal: number = user.balance
 
     message = `You have withdrawn $**${currency(amount)}**. It will be sent to your NitroType account soon.`
 
@@ -54,5 +54,3 @@ const withdraw = async (msg, client, args) => {
 
     return msg.channel.send(withdrawEmbed)
 }
-
-export default withdraw

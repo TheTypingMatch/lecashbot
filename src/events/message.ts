@@ -3,15 +3,15 @@ import { reward } from '../utils/reward'
 import { checkErr } from '../utils/checkErr'
 import { run } from '../commands'
 
-module.exports = async (client, msg) => {
+module.exports = async (client: any, msg: any) => {
     const { content, author, reply } = msg
     const { logger, msgCooldowns, config } = client
-    const userId = author.id
+    const userId: string = author.id
 
     // Handle command arguments
-    const args = content.slice(config.prefix.length).trim().split(/ +/g)
-    const cmd = args.shift().toLowerCase()
-    const generalCmds = ['help', 'register', 'total', 'leaderboard', 'ping', 'faq']
+    const args: string[] = content.slice(config.prefix.length).trim().split(/ +/g)
+    const cmd: string = args.shift().toLowerCase()
+    const generalCmds: string[] = ['help', 'register', 'total', 'leaderboard', 'ping', 'stats', 'faq']
 
     if (author.bot) return
 
@@ -19,7 +19,7 @@ module.exports = async (client, msg) => {
     const user = await User.findOne({ discordId: userId })
     if (user) {
         if (user.name !== author.username) {
-            const updatedName = { name: author.username }
+            const updatedName: { name: string } = { name: author.username }
             User.updateOne({ discordId: userId }, updatedName, err => {
                 checkErr(err, client, () => {
                     logger.log(`Updated username ${user.name} to ${author.username}`, 'ready')

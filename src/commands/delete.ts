@@ -14,11 +14,11 @@ const deleteData = async (id, msg) => {
     return msg.channel.send(deleteEmbed)
 }
 
-const deleteUser = async (msg, client, args) => {
-    const error = 'You must type your Discord name: `$delete DISCORD_ID`'
+export default async (msg, client, args) => {
+    const error: string = 'You must type your Discord name: `$delete DISCORD_ID`'
 
-    const userId = args[0]
-    const user = await User.findOne({ discordId: msg.author.id })
+    const userId: string = args[0]
+    const user: any = await User.findOne({ discordId: msg.author.id })
 
     deleteEmbed.setAuthor('Delete', msg.author.avatarURL())
 
@@ -26,5 +26,3 @@ const deleteUser = async (msg, client, args) => {
         ? deleteData(msg.author.id, msg)
         : msg.reply(error)
 }
-
-export default deleteUser 

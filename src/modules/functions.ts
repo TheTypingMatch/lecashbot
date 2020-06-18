@@ -3,7 +3,7 @@ import { log } from '../utils/log'
 import { toHours } from '../utils/date'
 import { devMode } from '../config/config'
 
-const functions = (client) => {
+const functions = (client: any) => {
     setTimeout(client.refreshActivity = () => {
         client.logger.log('Updating presence...', 'log')
         const { users, guilds } = client
@@ -18,13 +18,13 @@ const functions = (client) => {
     }, 60 * 1000)
     setTimeout(client.resetDailyStreak = async () => {
         client.logger.log('Checking dailies...', 'log')
-        const activeUsers = await User.find({ banned: false })
+        const activeUsers: [] = await User.find({ banned: false })
         if (!activeUsers) return
 
-        activeUsers.forEach(user => {
+        activeUsers.forEach((user: any) => {
             const { cooldowns, discordId, dailyStreak, name } = user
-            const notCollected = (toHours(new Date() - cooldowns.daily) > 36)
-            const userId = { discordId: discordId }
+            const notCollected: boolean = (toHours(new Date().getTime() - cooldowns.daily) > 36)
+            const userId: { discordId: string } = { discordId: discordId }
 
             if (notCollected && dailyStreak) {
                 User.updateOne(userId, { dailyStreak: 0 }, err => {

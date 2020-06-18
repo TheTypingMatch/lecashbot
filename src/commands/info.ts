@@ -3,7 +3,7 @@ import { colors, version } from '../config/config'
 import { info } from '../config/embeds'
 import { addDescriptionField } from '../utils/field'
 
-const sendInfo = (msg, client, args) => {
+export default (msg, client, args) => {
     const { general, contribute, donors, invite } = info
     const helpEmbed = new MessageEmbed()
         .setColor(colors.green)
@@ -18,5 +18,3 @@ const sendInfo = (msg, client, args) => {
 
     return msg.channel.send(helpEmbed)
 }
-
-export default sendInfo

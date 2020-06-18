@@ -1,16 +1,16 @@
 
-const logs = {
+const logs: any = {
     error: '692123000602099712',
     cash: '691405983636783194'
 }
 
-const colors = {
+const colors: any = {
     red: 0xE84444,
     yellow: 0xF09F19,
     green: 0x40AC7B
 }
 
-const channels = {
+const channels: any = {
     log: [
         '691405983636783194',
         '587716900721786880'
@@ -18,10 +18,10 @@ const channels = {
     error: ['692123000602099712']
 }
 
-const version = '1.3.4'
-const prefix = '$'
-const devMode = false
-const logEnabled = true
+const version: string = '1.3.4'
+const prefix: string = '$'
+const devMode: boolean = false
+const logEnabled: boolean = true
 
 export {
     logs, colors, channels, 

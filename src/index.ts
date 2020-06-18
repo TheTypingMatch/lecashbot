@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv'
 import { log } from './utils/log'
 import { functions } from './modules/functions'
 
-const client = new Discord.Client({
+const client: any = new Discord.Client({
     disableEveryone: true,
     fetchAllMembers: true,
     sync: true
@@ -18,14 +18,14 @@ client.config = require('./config/config.js')
 client.loader = require('./modules/Loader')
 client.msgCooldowns = []
 
-const URI = process.env.URI
-const URIParams = {
+const URI: string = process.env.URI
+const URIParams: {} = {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }
 
 const initDatabase = () => {
-    mongoDB.connect(URI, URIParams, err => {
+    mongoDB.connect(URI, URIParams, (err: any) => {
         if (err) log('error', err, client)
         else client.logger.log('Successfully connected to database.')
     })

@@ -2,7 +2,7 @@ import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 import { faqInfo } from '../config/embeds'
 
-const faq = (msg, client, args) => {
+export default (msg, client, args) => {
     const faqEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('FAQ', msg.author.avatarURL())
@@ -12,5 +12,3 @@ const faq = (msg, client, args) => {
     faqInfo.forEach(question => faqEmbed.addField(`${question.q}`, question.a))
     return msg.channel.send(faqEmbed)
 }
-
-export default faq

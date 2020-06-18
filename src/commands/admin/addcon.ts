@@ -3,15 +3,15 @@ import { checkErr } from '../../utils/checkErr'
 import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../../config/config' 
 
-const addcon = async ({ author, channel }, client, args) => {
-    let result = 'This user does not have an account!'
-    const userId = args[0] ? args[0].replace(/<|@|!|>/g, '') : author.id
-    const id = { discordId: userId }
-    const user = await User.findOne(id)
-    const contribution = args[1]
+export default async ({ author, channel }, client, args) => {
+    let result: string = 'This user does not have an account!'
+    const userId: string = args[0] ? args[0].replace(/<|@|!|>/g, '') : author.id
+    const id: { discordId: string } = { discordId: userId }
+    const user: any = await User.findOne(id)
+    const contribution: string = args[1]
 
     if (contribution) {
-        const contributionData = { [contribution]: true }
+        const contributionData: {} = { [contribution]: true }
 
         if (contribution === 'donor' && args[2]) {
             Object.assign(contributionData, {
@@ -21,7 +21,7 @@ const addcon = async ({ author, channel }, client, args) => {
             return channel.send('Missing args: `$addcon <user> <contribution> <donation-amount>`')
         }
 
-        User.updateOne(id, contributionData, e => checkErr(e, client))
+        User.updateOne(id, contributionData)
         result = `**${user.name}** has been added as a(n) **${contribution}**!`
     } else result = 'An error occurred: No contribution given.'
 
@@ -34,5 +34,3 @@ const addcon = async ({ author, channel }, client, args) => {
 
     return channel.send(contributorEmbed)
 }
-
-export default addcon

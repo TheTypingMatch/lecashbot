@@ -3,9 +3,9 @@ import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 import { addCommandField } from '../utils/field'
 
-const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
-const help = (msg, client, args) => {
+export default (msg, client, args) => {
     const helpEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Help', msg.author.avatarURL())
@@ -14,9 +14,9 @@ const help = (msg, client, args) => {
         .addField('Categories', helpInfo.descInfo)
 
     if (args[0]) {
-        const category = args[0].toLowerCase()
+        const category: string = args[0].toLowerCase()
         if (helpInfo[category] && category !== 'desc' && category !== 'descInfo') {
-            const categoryInfo = helpInfo[category]
+            const categoryInfo: string = helpInfo[category]
             helpEmbed.addField(
                 capitalize(category),
                 addCommandField(categoryInfo)
@@ -27,5 +27,3 @@ const help = (msg, client, args) => {
     helpEmbed.setDescription(helpInfo.desc)
     return msg.channel.send(helpEmbed)
 }
-
-export default help

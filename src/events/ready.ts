@@ -6,7 +6,7 @@ module.exports = async client => {
         refreshActivity, logger,
         msgCooldowns, guilds, user
     } = client
-    const readyMsg = `${user.username} is ready: ${users.cache.size} users, ${guilds.cache.size} servers.`
+    const readyMsg: string = `${user.username} is ready: ${users.cache.size} users, ${guilds.cache.size} servers.`
 
     resetDailyStreak()
     refreshActivity()

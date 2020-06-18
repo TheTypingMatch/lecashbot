@@ -1,7 +1,7 @@
 import { MessageEmbed } from 'discord.js' 
 import { colors, version } from '../config/config'
 
-const suggest = async (msg, client, args) => {
+export default async (msg, client, args) => {
     const suggestEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Suggest', msg.author.avatarURL())
@@ -11,5 +11,3 @@ const suggest = async (msg, client, args) => {
 
     return msg.channel.send(suggestEmbed)
 }
-
-export default suggest

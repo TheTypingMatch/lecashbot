@@ -5,23 +5,23 @@ import { currency } from '../utils/format'
 import { addCommandField } from '../utils/field'
 import { log } from '../utils/log'
 
-const helpInfo = {
+const helpInfo: any = {
     'leaderboard bet': '- Display the highest bets won.',
     'leaderboard streak': '- Display the highest daily streaks.',
     'leaderboard cash': '- Display the wealthiest users.'
 }
 
-let desc = ''
+let desc: string = ''
 const lbEmbed = new MessageEmbed()
     .setColor(colors.green)
     .setAuthor('Leaderboard')
     .setTimestamp(new Date())
     .setFooter(`LeCashBot v${version}`)
 
-const getTopTen = arr => arr.slice(-10).reverse()
+const getTopTen = (arr: any[]) => arr.slice(-10).reverse()
 
 // The sort type is the property of users that the function sorts by
-const sortUsers = (users, sortType) => {
+const sortUsers = (users: any[], sortType: string) => {
     return users.sort((a, b) => {
         return (a[sortType] > b[sortType]) ? 1 : (
             (b[sortType] > a[sortType]) ? -1 : 0
@@ -29,16 +29,16 @@ const sortUsers = (users, sortType) => {
     })
 }
 
-const handleBetLb = (msg, users) => {
+const handleBetLb = (msg, users: any[]) => {
     const sortedUsers = users.sort((a, b) => {
-        const aBet = a.highestBet.amount
-        const bBet = b.highestBet.amount
+        const aBet: number = a.highestBet.amount
+        const bBet: number = b.highestBet.amount
         return (aBet > bBet) ? 1 : ((bBet > aBet) ? -1 : 0)
     })
-    const topTen = getTopTen(sortedUsers)
+    const topTen: any = getTopTen(sortedUsers)
 
-    let userPosition = 'You are not ranked!'
-    let userBet = 'N/A'
+    let userPosition: any = 'You are not ranked!'
+    let userBet: any = 'N/A'
     let userBetChance: any = 'N/A'
     sortedUsers.reverse().forEach((user, index) => {
         if (user.discordId === msg.author.id) {
@@ -49,8 +49,8 @@ const handleBetLb = (msg, users) => {
     })
 
     topTen.forEach(({ highestBet, name }, pos) => {
-        const betAmount = currency(highestBet.amount)
-        const betChance = Math.round(highestBet.chance * 100) / 100
+        const betAmount: string = currency(highestBet.amount)
+        const betChance: number = Math.round(highestBet.chance * 100) / 100
         desc += `#**${pos + 1}** ${name} - $**${betAmount}** - ${betChance}%\n`
     })
     desc += `#**${userPosition}** - YOU - $**${currency(userBet)}** - ${userBetChance}%`
@@ -62,22 +62,22 @@ const handleBetLb = (msg, users) => {
 }
 
 const handleCashLb = (msg, users) => {
-    const sortedUsers = sortUsers(users, 'balance')
-    const topTen = getTopTen(sortedUsers)
+    const sortedUsers: any = sortUsers(users, 'balance')
+    const topTen: any = getTopTen(sortedUsers)
 
-    let userPosition = 'N/A'
-    let userBalance = 'N/A'
+    let userPosition: any = 'N/A'
+    let userBalance: any = 'N/A'
     sortedUsers.reverse().forEach(({
         discordId,
         balance
-    }, index) => {
+    }, index: number) => {
         if (discordId === msg.author.id) {
             userPosition = index + 1
             userBalance = balance
         }
     })
 
-    topTen.forEach((user, pos) => {
+    topTen.forEach((user, pos: number) => {
         desc += `#**${pos + 1}** ${user.name} - $**${currency(user.balance)}**\n`
     })
     desc += `#**${userPosition}** - YOU - $**${currency(userBalance)}**`
@@ -91,8 +91,8 @@ const handleStreakLb = (msg, users) => {
     const sortedUsers = sortUsers(users, 'dailyStreak')
     const topTen = getTopTen(sortedUsers)
 
-    let userPosition = 'N/A'
-    let userStreak = 'N/A'
+    let userPosition: any = 'N/A'
+    let userStreak: any = 'N/A'
     sortedUsers.reverse().forEach(({
         discordId,
         dailyStreak
@@ -124,8 +124,8 @@ const handleHelpLb = msg => {
     return msg.channel.send(lbHelpEmbed)
 }
 
-const leaderboard = async (msg, client, args) => {
-    const users = await User.find({ banned: false })
+export default async (msg, client, args) => {
+    const users: any = await User.find({ banned: false })
     if (!users) log('error', `ERROR: DB could not find users:\n**${users}**`, client)
 
     switch (args[0]) {
@@ -136,5 +136,3 @@ const leaderboard = async (msg, client, args) => {
         default: return handleCashLb(msg, users)
     }
 }
-
-export default leaderboard

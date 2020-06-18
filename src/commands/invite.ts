@@ -1,7 +1,7 @@
 import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 
-const invite = async (msg, client, args) => {
+export default async (msg, client, args) => {
     const inviteEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Invite', msg.author.avatarURL())
@@ -11,5 +11,3 @@ const invite = async (msg, client, args) => {
 
     return msg.channel.send(inviteEmbed)
 }
-
-export default invite

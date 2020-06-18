@@ -2,7 +2,6 @@ import { User } from '../models/user.model'
 import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 import { currency, int } from '../utils/format'
-import { log } from '../utils/log'
 
 const sendSuccessEmbed = (msg, err) => {
     const successEmbed = new MessageEmbed()
@@ -18,23 +17,23 @@ const sendSuccessEmbed = (msg, err) => {
     msg.channel.send(successEmbed)
 }
 
-const give = async (msg, client, args) => {
+export default async (msg, client, args) => {
     if (!args[0]) return msg.reply('No user given.')
 
-    const id = args[0].replace(/<|@|!|>/g, '')
-    const isNotId = (isNaN(parseInt(id)))
-    const receiverId = (isNotId) ? { name: args[0] } : { discordId: id }
-    const userId = { discordId: msg.author.id }
-    const receiver = await User.findOne(receiverId)
-    const user = await User.findOne(userId)
+    const id: string = args[0].replace(/<|@|!|>/g, '')
+    const isNotId: boolean = (isNaN(parseInt(id)))
+    const receiverId: any = (isNotId) ? { name: args[0] } : { discordId: id }
+    const userId: { discordId: string } = { discordId: msg.author.id }
+    const receiver: any = await User.findOne(receiverId)
+    const user: any = await User.findOne(userId)
 
     if (userId.discordId === receiverId.discordId) return msg.reply('You can\'t gift yourself!')
     if (!args[1] || isNaN(parseInt(args[1]))) return msg.reply('No amount given.')
     if (!user || !receiver) return msg.reply('User not found!')
     if (parseInt(args[1]) < 100) return msg.reply('Minimum gift amount is $**100**.')
 
-    const userBal = user.balance
-    const gift = int(args[1])
+    const userBal: number = user.balance
+    const gift: number = int(args[1])
 
     if (userBal < gift) {
         return msg.reply(`You do not have enough in your balance: $**${currency(user.balance)}**`)
@@ -49,5 +48,3 @@ const give = async (msg, client, args) => {
         .get(receiverId.discordId)
         .send(`**${user.name}** just sent you $**${gift}**!`)
 }
-
-export default give

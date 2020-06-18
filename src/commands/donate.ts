@@ -8,24 +8,24 @@ const { donateLink } = donate
 
 const getDonors = async () => {
     const donors = await User.find({ donor: true })
-    return donors.map(donor => ({
+    return donors.map((donor: { name: any; donations: any }) => ({
         name: donor.name,
         amount: donor.donations
     }))
 }
 
-const addField = userData => {
+const addField = (userData: any[]) => {
     userData.sort((a, b) => {
-        const aAmount = a.amount
-        const bAmount = b.amount
+        const aAmount: number = a.amount
+        const bAmount: number = b.amount
         return (aAmount > bAmount) ? 1 : ((bAmount > aAmount) ? -1 : 0)
     }).reverse()
 
     return `${userData.map(user => `**${user.name}** - \`$${currency(user.amount || 0)}\`\n`)}`.replace(/\n,/g, '\n')
 }
 
-const sendDonate = async (msg, client, args) => {
-    const donors = await getDonors()
+export default async (msg, client, args) => {
+    const donors: any = await getDonors()
 
     const donateEmbed = new MessageEmbed()
         .setColor(colors.green)
@@ -37,5 +37,3 @@ const sendDonate = async (msg, client, args) => {
 
     return msg.channel.send(donateEmbed)
 }
-
-export default sendDonate

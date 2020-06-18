@@ -11,16 +11,16 @@ const addField = userData => {
 
 const getContributors = async type => {
     const contributors = await User.find({ [type]: true })
-    return contributors.map(contributor => ({
+    return contributors.map((contributor: { discordId: any }) => ({
         id: contributor.discordId,
         [type]: true
     }))
 }
 
-const contributors = async (msg, client, args) => {
-    const admins = await getContributors('admin')
-    const devs = await getContributors('dev')
-    const testers = await getContributors('tester')
+export default async (msg, client, args) => {
+    const admins: any = await getContributors('admin')
+    const devs: any = await getContributors('dev')
+    const testers: any = await getContributors('tester')
 
     const helpEmbed = new MessageEmbed()
         .setColor(colors.green)
@@ -34,5 +34,3 @@ const contributors = async (msg, client, args) => {
 
     return msg.channel.send(helpEmbed)
 }
-
-export default contributors 

@@ -3,10 +3,10 @@ import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 import { currency } from '../utils/format'
 
-const total = async (msg, client, args) => {
+export default async (msg, client, args) => {
     const activeUsers = await User.find({ banned: false })
-    const userBalances = activeUsers.map(user => user.balance)
-    const total = userBalances.reduce((t, bal) => t + bal)
+    const userBalances = activeUsers.map((user: any) => user.balance)
+    const total: number = userBalances.reduce((t: number, bal: number) => t + bal)
 
     const totalEmbed = new MessageEmbed()
         .setColor(colors.green)
@@ -17,5 +17,3 @@ const total = async (msg, client, args) => {
 
     return msg.channel.send(totalEmbed)
 }
-
-export default total

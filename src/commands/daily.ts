@@ -8,9 +8,9 @@ import { currency } from '../utils/format'
 
 const sendReward = (msg, user, client, embed) => {
     const { name, balance, dailyStreak, cooldowns } = user
-    const userId = { discordId: msg.author.id }
+    const userId: { discordId: string } = { discordId: msg.author.id }
 
-    const reward = (dailyStreak * 25) + 100
+    const reward: number = (dailyStreak * 25) + 100
     cooldowns.daily = new Date()
 
     embed
@@ -21,12 +21,12 @@ const sendReward = (msg, user, client, embed) => {
         balance: balance + reward,
         dailyStreak: dailyStreak + 1,
         cooldowns: cooldowns
-    }, err => checkErr(err, client, () => msg.channel.send(embed)))
+    }, (err: any) => checkErr(err, client, () => msg.channel.send(embed)))
 }
 
 const sendTimeLeft = (msg, dailyCooldown, embed) => {
-    let timeLength = 'seconds'
-    let timeLeft = cooldowns.daily - dailyCooldown
+    let timeLength: string = 'seconds'
+    let timeLeft: number = cooldowns.daily - dailyCooldown
 
     if ((timeLeft / 1000) > 60 && toHours(timeLeft) < 1) {
         timeLength = 'minutes'
@@ -43,12 +43,12 @@ const sendTimeLeft = (msg, dailyCooldown, embed) => {
     return msg.channel.send(embed)
 }
 
-const daily = async (msg, client, args) => {
-    const user = await User.findOne({ discordId: msg.author.id })
+export default async (msg, client, args) => {
+    const user: any = await User.findOne({ discordId: msg.author.id })
 
-    const lastDaily = user.cooldowns.daily
-    const dailyCooldown = new Date() - lastDaily
-    const isWithinTimeout = (user && dailyCooldown >= cooldowns.daily)
+    const lastDaily: any = user.cooldowns.daily
+    const dailyCooldown: number = new Date().getTime() - lastDaily
+    const isWithinTimeout: boolean = (user && dailyCooldown >= cooldowns.daily)
 
     const dailyEmbed = new MessageEmbed()
         .setAuthor('Daily', msg.author.avatarURL())
@@ -59,5 +59,3 @@ const daily = async (msg, client, args) => {
         ? sendReward(msg, user, client, dailyEmbed)
         : sendTimeLeft(msg, dailyCooldown, dailyEmbed)
 }
-
-export default daily 

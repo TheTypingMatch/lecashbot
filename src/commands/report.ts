@@ -1,7 +1,7 @@
 import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 
-const report = async (msg, client, args) => {
+export default async (msg, client, args) => {
     const reportEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Report', msg.author.avatarURL())
@@ -11,5 +11,3 @@ const report = async (msg, client, args) => {
 
     return msg.channel.send(reportEmbed)
 }
-
-export default report 

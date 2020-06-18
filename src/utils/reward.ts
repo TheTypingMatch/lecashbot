@@ -2,15 +2,17 @@ import { User } from '../models/user.model'
 import { log } from './log'
 
 const reward = async (userId, client) => {
-    let randReward = Math.floor(Math.random() * 50 + 25)
-    const user = await User.findOne({ discordId: userId })
+    let randReward: number = Math.floor(Math.random() * 50 + 25)
+    const user: any = await User.findOne({ discordId: userId })
 
     if (!user) return log('error', `User not found: ${user}`, client)
-    if (user.donations > 10 ** 8) randReward *= 2
+    if (user.donations > 10 ** 8) {
+        randReward *= 2
+    }
 
     User.updateOne({ discordId: userId }, {
         balance: user.balance + randReward
-    }, err => {
+    }, (err: any) => {
         if (err) log('error', err, client)
     })
 
