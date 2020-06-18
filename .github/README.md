@@ -62,6 +62,32 @@ URI="<uri>"
 ```
 Replace `<uri>` and `<token>` with your MongoDB database connection URI and bot token.
 
+**Running The Bot**
+```
+yarn build
+yarn dev:server
+```
+...or alternatively:
+```
+cd scripts
+sh start.sh
+```
+...or on Windows:
+```
+cd scripts
+./start
+```
+
+**Making Changes**
+```
+yarn dev:lint
+yarn dev:test
+git status
+git add .
+git commit -m "COMMIT MESSAGE HERE"
+git push
+```
+
 **Built With**
 - [Discord.js](https://discord.js.org/#/)
 - [NodeJS](https://nodejs.org/en/)
