@@ -1,0 +1,54 @@
+const Discord = require('discord.js')
+import * as dotenv from 'dotenv'
+import * as mongoDB from 'mongodb'
+import * as mongoose from 'mongoose'
+import { log } from './utils/log'
+import { functions } from './modules/functions'
+
+const client = new Discord.Client({
+    disableEveryone: true,
+    fetchAllMembers: true,
+    sync: true
+})
+
+dotenv.config()
+functions(client)
+
+client.config = require('./config/config.js')
+client.loader = require('./modules/Loader')
+client.msgCooldowns = []
+
+const URI = process.env.URI
+const URIParams = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
+
+const initDatabase = () => {
+    mongoDB.connect(URI, URIParams, err => {
+        if (err) log('error', err, client)
+        else client.logger.log('Successfully connected to database.')
+    })
+
+    mongoose.connect(URI, URIParams, err => {
+        if (err) log('error', err, client)
+    })
+}
+
+const init = async () => {
+    const {
+        registerModules,
+        registerEvents,
+        checkDiscordStatus
+    } = client.loader
+
+    console.clear()
+    await registerModules(client)
+    await registerEvents(client)
+    await checkDiscordStatus(client)
+    await client.login(process.env.TOKEN)
+    
+    return initDatabase()
+}
+
+init()
