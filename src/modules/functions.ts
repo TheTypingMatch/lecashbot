@@ -6,17 +6,16 @@ import { devMode } from '../config/config'
 const functions = (client: any) => {
     setTimeout(client.refreshActivity = () => {
         client.logger.log('Updating presence...', 'log')
-        const { users, guilds } = client
-        client.user.setPresence({
-            game: {
-                name: devMode ? 'In Development' : `${users.size} users, ${guilds.size} servers`,
-                type: devMode ? 'PLAYING' : 'WATCHING'
-            },
-            status: devMode ? 'dnd' : 'online'
+        client.user.setPresence({ 
+            activity: {
+                type: 'WATCHING', 
+                name: `${client.users.cache.size} users, ${client.guilds.cache.size} servers`
+            }, 
+            status: 'online'
         })
         client.logger.log('Done updating presence.', 'ready')
     }, 60 * 1000)
-    setInterval(client.resetDailyStreak = async () => {
+    setTimeout(client.resetDailyStreak = async () => {
         client.logger.log('Checking dailies...', 'log')
         const activeUsers: [] = await User.find({ banned: false })
         if (!activeUsers) return
