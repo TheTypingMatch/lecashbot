@@ -18,7 +18,7 @@ const run = async (cmd: string, msg, client, args: string[]) => {
     const adminPath: string = path.resolve(`./build/commands/admin/${cmd}.js`)
     const hasAdminPerms: boolean = (fs.existsSync(adminPath) && user?.admin)
 
-    if (user) {
+    if (user && fs.existsSync(generalPath)) {
         if (user.cmdCooldown && new Date().getTime() - user.cmdCooldown < 3000) {
             return msg.channel.send(cooldownEmbed)
         } else {
