@@ -53,7 +53,7 @@ const info = {
 }
 
 const donate = {
-    donateLink: 'Donate to LeCashBot **[here](https://www.nitrotype.com/racer/lecashbot)**',
+    donateLink: 'Donate to LeCashBot **[here](https://www.nitrotype.com/racer/mrh110)**',
     donors: {
         Jisoo: '157M',
         Hysteria: '145.000001M',
