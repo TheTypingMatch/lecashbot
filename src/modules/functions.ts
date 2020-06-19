@@ -4,7 +4,7 @@ import { toHours } from '../utils/date'
 import { devMode } from '../config/config'
 
 const functions = (client: any) => {
-    setTimeout(client.refreshActivity = () => {
+    setInterval(client.refreshActivity = () => {
         client.logger.log('Updating presence...', 'log')
         client.user.setPresence({ 
             activity: {
@@ -15,7 +15,7 @@ const functions = (client: any) => {
         })
         client.logger.log('Done updating presence.', 'ready')
     }, 60 * 1000)
-    setTimeout(client.resetDailyStreak = async () => {
+    setInterval(client.resetDailyStreak = async () => {
         client.logger.log('Checking dailies...', 'log')
         const activeUsers: [] = await User.find({ banned: false })
         if (!activeUsers) return
