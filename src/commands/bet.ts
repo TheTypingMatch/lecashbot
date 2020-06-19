@@ -3,7 +3,6 @@ import { checkErr } from '../utils/checkErr'
 import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 import { currency, int } from '../utils/format'
-import { betTime } from '../config/cooldowns'
 
 const sendRecordEmbed = (msg, previousBet) => {
     const recordBetEmbed = new MessageEmbed()
