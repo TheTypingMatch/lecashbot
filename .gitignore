@@ -9,6 +9,7 @@ yarn.lock
 
 # logs
 logs
+yarn-error.log
 
 # Build 
 build
