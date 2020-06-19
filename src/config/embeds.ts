@@ -25,7 +25,8 @@ const helpInfo = {
         leaderboard: ' - View the wealthiest of all LeCashBot users.'
     },
     games: {
-        bet: '`<amount>` - Play roulette for a chance to win cash.'
+        bet: '`<amount>` - Play roulette for a chance to win cash.',
+        coinflip: ` - Earn cash based on a coin flip streak.`
     },
     misc: {
         report: ' - Get a link for bug report.',
