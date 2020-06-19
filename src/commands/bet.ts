@@ -43,14 +43,14 @@ const win = bet => {
     return [(randomNum < chances), chances]
 }
 
-const makeBet = async (msg, { highestBet, balance }, bet, client) => {
+const makeBet = async (msg, user, bet, client) => {
     const didWin: (number | boolean)[] = win(bet)
     sendBetEmbed(msg, bet, didWin)
 
-    const previousBet: number = highestBet.amount
-    const previousBal: number = balance
+    const previousBet: number = user.highestBet.amount
+    const previousBal: number = user.balance
     const userId: { discordId: number } = { discordId: msg.author.id }
-    const newBal: { balance: number } = {
+    const newBal: any = {
         balance: (didWin[0]) ? (previousBal + bet) : (previousBal - bet)
     }
 
