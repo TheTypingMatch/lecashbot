@@ -19,20 +19,21 @@ module.exports = {
 
         const userId = { discordId: msg.author.id }
         const user = await User.findOne({ discordId: msg.author.id })
-        const { cmdCooldown, admin, dev } = user
 
-        if (cmdCooldown && new Date() - cmdCooldown < 3000) {
-            return msg.channel.send(cooldownEmbed)
-        } else {
-            User.updateOne(userId, { cmdCooldown: new Date() }, err => {
-                if (err) {
-                    client.logger.log('Error updating user cooldown.', 'error')
-                }
-            })
+        if (user) {
+            if (user.cmdCooldown && new Date() - user.cmdCooldown < 3000) {
+                return msg.channel.send(cooldownEmbed)
+            } else {
+                User.updateOne(userId, { cmdCooldown: new Date() }, err => {
+                    if (err) {
+                        client.logger.log('Error updating user cooldown.', 'error')
+                    }
+                })
+            }
         }
 
-        const hasAdminPerms = (fs.existsSync(adminPath) && admin)
-        const hasDevPerms = (fs.existsSync(devPath) && dev)
+        const hasAdminPerms = (fs.existsSync(adminPath) && user.admin)
+        const hasDevPerms = (fs.existsSync(devPath) && user.dev)
 
         if (hasDevPerms) require(devPath)(msg, client, args)
         else if (hasAdminPerms) require(adminPath)(msg, client, args)
