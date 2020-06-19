@@ -22,7 +22,7 @@ const registerUser = (msg, ntLink: string) => {
     })
 }
 
-async (msg, client, args) => {
+export default async (msg, client, args) => {
     if (!args[0]) {
         return msg.reply('Use your NitroType **username** (NOT display name): Use `$register USERNAME`')
     }
