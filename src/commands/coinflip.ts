@@ -2,10 +2,16 @@ import { User } from '../models/user.model'
 import { checkErr } from '../utils/checkErr'
 import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
-import { currency } from '../utils/format' 
+import { currency } from '../utils/format'
+
+const recordEmbed = new MessageEmbed()
+    .setAuthor('New Highest Streak!')
+    .setTimestamp(new Date())
+    .setFooter(`LeCashBot v${version}`)
+    .setColor(colors.green)
 
 const sendReward = (msg, user, client, embed) => {
-    const { name, balance, coinflipStreak } = user
+    const { name, balance, coinflipStreak, coinflipBestStreak } = user
     const userId: { discordId: string } = { discordId: msg.author.id }
     const reward: number = Math.round(100 * (3 ** (coinflipStreak - 1)) + (coinflipStreak * 150))
     const cost: number = Math.round(100 * (2 ** coinflipStreak))
@@ -14,26 +20,32 @@ const sendReward = (msg, user, client, embed) => {
     if (balance < cost) {
         return embed.setDescription('You do not have enough to coinflip!')
     }
-
+    
     const nextCost: number = 100 * (2 ** coinflipStreak + 1)
-    const nextReward: number = 100 * (3 ** (coinflipStreak)) + ((coinflipStreak + 1) * 150)
+    const nextReward: number = 100 * (3 ** (coinflipStreak + 1)) + ((coinflipStreak + 1) * 150)
     const description: any = {
         reward: `**${name}** just earned $**${currency(profit)}**`,
         streak: `with a streak of **${coinflipStreak + 1}**!`,
         nextCostMsg: `Your next coin flip will cost $**${nextCost}**.`,
         nextRewardMsg: `If you win your next flip, you will win $**${nextReward}**!`
     }
-
+    
     const { nextCostMsg, nextRewardMsg, streak } = description
     const message = `${description.reward} ${streak}\n${nextCostMsg}\n${nextRewardMsg}`
 
+    if (coinflipStreak + 1 > coinflipBestStreak) {
+        const newStreakDesc = `New highest coin flip streak of **${coinflipStreak + 1}**!`
+        msg.channel.send(recordEmbed.setDescription(newStreakDesc))
+    }
+    
     embed
         .setColor(colors.green)
         .setDescription(message)
 
     return User.updateOne(userId, {
         balance: balance + profit,
-        coinflipStreak: coinflipStreak + 1
+        coinflipStreak: coinflipStreak + 1,
+        coinflipBestStreak: coinflipStreak + 1,
     }, (err: any) => checkErr(err, client, () => msg.channel.send(embed)))
 }
 
