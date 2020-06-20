@@ -40,7 +40,7 @@ const sendReward = (msg, user, client, embed) => {
         msg.channel.send(recordEmbed.setDescription(newStreakDesc))
         User.updateOne(userId, {
             coinflipBestStreak: coinflipStreak + 1
-        }, err => {
+        }, (err: any) => {
             if (err) { 
                 client.logger.log('Unable to update coinflip streak record.', 'error')
             }

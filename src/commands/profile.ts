@@ -61,11 +61,15 @@ export default async (msg, client, args) => {
         }
 
         const coinflipChance: number = Math.round((100 / (2 ** coinflipBestStreak)) * 100) / 100
-        const coinflipEarnings: number = Math.round(
-            100 * (3 ** (coinflipBestStreak - 1)) + 
+        let coinflipEarnings: number = Math.round(
+            (100 * (3 ** (coinflipBestStreak - 1))) + 
             (coinflipBestStreak * 150) - 
-            100 * (2 ** coinflipBestStreak)
+            (100 * (2 ** coinflipBestStreak))
         )
+
+        if (!coinflipBestStreak) {
+            coinflipEarnings = 0
+        }
 
         profileEmbed
             .setColor(colors.green)
