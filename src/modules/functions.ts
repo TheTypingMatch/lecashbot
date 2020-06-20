@@ -5,11 +5,14 @@ import { devMode } from '../config/config'
 
 const functions = (client: any) => {
     setInterval(client.refreshActivity = () => {
+            
+        const userCount = Math.floor(client.users.cache.size / 100) / 10
+        const guildCount = Math.floor(client.guilds.cache.size / 10) * 10
         client.logger.log('Updating presence...', 'log')
         client.user.setPresence({ 
             activity: {
                 type: 'WATCHING', 
-                name: `${client.users.cache.size} users, ${client.guilds.cache.size} servers`
+                name: `${userCount}K+ users, ${guildCount}+ servers.`
             }, 
             status: 'online'
         })

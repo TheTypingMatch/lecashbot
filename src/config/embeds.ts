@@ -37,6 +37,7 @@ const helpInfo = {
 const info = {
     general: {
         author: '**Author** - LeSirH',
+        logoCreator: '**Logo Creator** - Try2Win4Glory',
         creationDate: '**Creation Date** - June 7 2019',
         prefix: '**Prefix** - $'
     },
