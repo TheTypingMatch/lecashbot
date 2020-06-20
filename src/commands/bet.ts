@@ -35,7 +35,7 @@ const getHighestBet = async msg => {
     return msg.channel.send(message)
 }
 
-const win = bet => {
+const win = (bet: number) => {
     const chances: number = Math.round((750 / (bet - 200)) + (750 / Math.sqrt(bet)) * 100) / 100 + 5
     const randomNum: number = Math.random() * 100
 
@@ -43,15 +43,12 @@ const win = bet => {
 }
 
 const makeBet = async (msg, user, bet, client) => {
-    const didWin: (number | boolean)[] = win(bet)
+    const didWin = win(bet)
     sendBetEmbed(msg, bet, didWin)
 
     const previousBet: number = user.highestBet.amount
     const previousBal: number = user.balance
     const userId: { discordId: number } = { discordId: msg.author.id }
-    const newBal: any = {
-        balance: (didWin[0]) ? (previousBal + bet) : (previousBal - bet)
-    }
 
     if (previousBet < bet && didWin[0]) {
         User.updateOne(userId, {
@@ -62,7 +59,13 @@ const makeBet = async (msg, user, bet, client) => {
         }, (err: any) => checkErr(err, client, () => sendRecordEmbed(msg, previousBet)))
     }
 
-    User.updateOne(userId, newBal)
+    User.updateOne(userId, {
+        balance: (didWin[0]) ? (previousBal + bet) : (previousBal - bet)
+    }, (err: any) => {
+        if (err) {
+            client.logger.log('Error updating user balance after betting.', 'error')
+        }
+    })
 }
 
 export default async (msg, client, args) => {
@@ -83,5 +86,5 @@ export default async (msg, client, args) => {
     // Check if the user has enough in their balance to bet.
     return (user.balance >= bet)
         ? makeBet(msg, user, bet, client)
-        : msg.reply(`Insufficient bal: $${user.balance}`)
+        : msg.reply(`Insufficient bal: $**${user.balance}**`)
 }
