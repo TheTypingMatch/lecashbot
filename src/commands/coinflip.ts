@@ -25,7 +25,7 @@ const sendReward = (msg, user, client, embed) => {
     const nextCost: number = 100 * (2 ** coinflipStreak + 1)
     const nextReward: number = 100 * (3 ** (coinflipStreak + 1)) + ((coinflipStreak + 1) * 150)
     const description: any = {
-        reward: `**${name}** just earned $**${currency(profit)}**`,
+        reward: `**${name}** just earned $**${currency(reward)}**`,
         streak: `with a streak of **${coinflipStreak + 1}**!`,
         chance: `The chances of winning this is **${streakChance}**%!`,
         nextCostMsg: `Your next coin flip will cost $**${currency(nextCost)}**.`,
