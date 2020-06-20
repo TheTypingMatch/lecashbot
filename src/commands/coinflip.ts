@@ -7,7 +7,7 @@ import { currency } from '../utils/format'
 const sendReward = (msg, user, client, embed) => {
     const { name, balance, coinflipStreak } = user
     const userId: { discordId: string } = { discordId: msg.author.id }
-    const reward: number = 100 * (4 ** (coinflipStreak - 1))
+    const reward: number = 100 * (3 ** (coinflipStreak - 1)) + (coinflipStreak * 150)
 
     if (balance < reward) {
         return embed.setDescription('You do not have enough to coinflip!')
@@ -25,10 +25,10 @@ const sendReward = (msg, user, client, embed) => {
 
 const sendLoss = (msg, user, client, embed) => {
     const { balance, coinflipStreak } = user
-    const reward: number = 100 * (2 ** (coinflipStreak - 1))
+    const cost: number = 100 * (2 ** coinflipStreak)
     const userId: { discordId: string } = { discordId: msg.author.id }
 
-    if (balance < reward) {
+    if (balance < cost) {
         return embed.setDescription('You do not have enough to coinflip!')
     }
 
@@ -37,7 +37,7 @@ const sendLoss = (msg, user, client, embed) => {
         .setDescription('You lost your streak!')
 
     return User.updateOne(userId, {
-        balance: balance - reward,
+        balance: balance - cost,
         coinflipStreak: 0
     }, (err: any) => checkErr(err, client, () => msg.channel.send(embed)))
 }
