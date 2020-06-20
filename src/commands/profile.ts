@@ -17,7 +17,7 @@ const addBadgeEmote = badgeType => {
 
 const addBadges = badges => {
     let badgeMsg: string = ''
-    Object.entries(badges).forEach(badge => {
+    Object.entries(badges).forEach(badge => { 
         const badgeType: string = badge[0]
         const hasRole: any = badge[1]
         if (hasRole) {
@@ -43,7 +43,7 @@ export default async (msg, client, args) => {
             name, nitroTypeLink, balance,
             dailyStreak, highestBet, owner,
             admin, dev, tester, donor,
-            donations
+            donations, coinflipBestStreak
         } = user
 
         const badges = {
@@ -60,6 +60,13 @@ export default async (msg, client, args) => {
             profileEmbed.addField('Contributions', `${userBadges}`)
         }
 
+        const coinflipChance: number = Math.round((100 / (2 ** coinflipBestStreak)) * 100) / 100
+        const coinflipEarnings: number = Math.round(
+            100 * (3 ** (coinflipBestStreak - 1)) + 
+            (coinflipBestStreak * 150) - 
+            100 * (2 ** coinflipBestStreak)
+        )
+
         profileEmbed
             .setColor(colors.green)
             .setAuthor(`${name}'s Profile`, userAvatar ? userAvatar.avatarURL() : msg.author.avatarURL())
@@ -67,6 +74,8 @@ export default async (msg, client, args) => {
             .addField('Balance', `$**${currency(balance)}**`, true)
             .addField('Donations', `$**${currency(donations || 0)}**`, true)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak === 1 ? 's' : ''}`)
+            .addField('Coinflip Record', `**${coinflipBestStreak}** streak, $**${currency(coinflipEarnings)}**`, true)
+            .addField('Chance', `**${coinflipChance}**%`)
             .addField('Highest Bet', `$**${currency(highestBet.amount)}**`, true)
             .addField('Chance', `**${Math.round(highestBet.chance * 100) / 100}**%`, true)
     } else {

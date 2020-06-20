@@ -14,6 +14,7 @@ const sendReward = (msg, user, client, embed) => {
     const { name, balance, coinflipStreak, coinflipBestStreak } = user
     const userId: { discordId: string } = { discordId: msg.author.id }
     const reward: number = Math.round(100 * (3 ** (coinflipStreak - 1)) + (coinflipStreak * 150))
+    const streakChance: number = Math.round((100 / (2 ** (coinflipStreak + 1))) * 100) / 100
     const cost: number = Math.round(100 * (2 ** coinflipStreak))
     const profit: number = reward - cost
 
@@ -26,12 +27,13 @@ const sendReward = (msg, user, client, embed) => {
     const description: any = {
         reward: `**${name}** just earned $**${currency(profit)}**`,
         streak: `with a streak of **${coinflipStreak + 1}**!`,
-        nextCostMsg: `Your next coin flip will cost $**${nextCost}**.`,
-        nextRewardMsg: `If you win your next flip, you will win $**${nextReward}**!`
+        chance: `The chances of winning this is **${streakChance}**%!`,
+        nextCostMsg: `Your next coin flip will cost $**${currency(nextCost)}**.`,
+        nextRewardMsg: `If you win your next flip, you will win $**${currency(nextReward)}**!`
     }
     
-    const { nextCostMsg, nextRewardMsg, streak } = description
-    const message = `${description.reward} ${streak}\n${nextCostMsg}\n${nextRewardMsg}`
+    const { nextCostMsg, nextRewardMsg, streak, chance } = description
+    const message = `${description.reward} ${streak}\n${chance}\n${nextCostMsg}\n${nextRewardMsg}`
 
     if (coinflipStreak + 1 > coinflipBestStreak) {
         const newStreakDesc = `New highest coin flip streak of **${coinflipStreak + 1}**!`
@@ -62,8 +64,8 @@ const sendLoss = (msg, user, client, embed) => {
         .setColor(colors.yellow)
         .setDescription(
             (coinflipStreak)
-            ? `You lost $**${cost}**!`
-            : 'You lost your streak!'
+                ? `You lost $**${currency(cost)}**!`
+                : 'You lost your streak!'
         )
 
     return User.updateOne(userId, {
