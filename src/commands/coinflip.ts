@@ -22,8 +22,8 @@ const sendReward = (msg, user, client, embed) => {
         return embed.setDescription('You do not have enough to coinflip!')
     }
     
-    const nextCost: number = 100 * (2 ** coinflipStreak + 1)
-    const nextReward: number = 100 * (3 ** (coinflipStreak + 1)) + ((coinflipStreak + 1) * 150)
+    const nextCost: number = 100 * (2 ** (coinflipStreak + 1))
+    const nextReward: number = 100 * (3 ** (coinflipStreak)) + ((coinflipStreak + 1) * 150)
     const description: any = {
         reward: `**${name}** just earned $**${currency(reward)}**`,
         streak: `with a streak of **${coinflipStreak + 1}**!`,
