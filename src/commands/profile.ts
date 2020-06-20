@@ -61,7 +61,7 @@ export default async (msg, client, args) => {
         }
 
         const coinflipChance: number = Math.round((100 / (2 ** coinflipBestStreak)) * 100) / 100
-        let coinflipEarnings: number = Math.round((100 * (3 ** (coinflipBestStreak - 1))) + (coinflipBestStreak * 150))
+        let coinflipEarnings: number = Math.round((100 * (3 ** (coinflipBestStreak - 2))) + ((coinflipBestStreak - 1) * 150))
 
         if (!coinflipBestStreak) {
             coinflipEarnings = 0
