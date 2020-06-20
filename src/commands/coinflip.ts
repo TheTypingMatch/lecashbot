@@ -38,6 +38,9 @@ const sendReward = (msg, user, client, embed) => {
     if (coinflipStreak + 1 > coinflipBestStreak) {
         const newStreakDesc = `New highest coin flip streak of **${coinflipStreak + 1}**!`
         msg.channel.send(recordEmbed.setDescription(newStreakDesc))
+        User.updateOne(userId, {
+            coinflipBestStreak: coinflipStreak + 1
+        })
     }
     
     embed
@@ -46,8 +49,7 @@ const sendReward = (msg, user, client, embed) => {
 
     return User.updateOne(userId, {
         balance: balance + profit,
-        coinflipStreak: coinflipStreak + 1,
-        coinflipBestStreak: coinflipStreak + 1,
+        coinflipStreak: coinflipStreak + 1
     }, (err: any) => checkErr(err, client, () => msg.channel.send(embed)))
 }
 
@@ -61,7 +63,7 @@ const sendLoss = (msg, user, client, embed) => {
     }
 
     embed
-        .setColor(colors.yellow)
+        .setColor(colors.red)
         .setDescription(
             (coinflipStreak)
                 ? `You lost $**${currency(cost)}**!`
