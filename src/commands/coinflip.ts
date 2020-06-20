@@ -8,17 +8,31 @@ const sendReward = (msg, user, client, embed) => {
     const { name, balance, coinflipStreak } = user
     const userId: { discordId: string } = { discordId: msg.author.id }
     const reward: number = 100 * (3 ** (coinflipStreak - 1)) + (coinflipStreak * 150)
+    const cost: number = 100 * (2 ** coinflipStreak)
+    const profit: number = reward - cost
 
-    if (balance < reward) {
+    if (balance < cost) {
         return embed.setDescription('You do not have enough to coinflip!')
     }
 
+    const nextCost: number = 100 * (2 ** coinflipStreak + 1)
+    const nextReward: number = 100 * (3 ** (coinflipStreak)) + ((coinflipStreak + 1) * 150)
+    const description: any = {
+        reward: `**${name}** just eanred $**${currency(profit)}**`,
+        streak: `with a streak of **${coinflipStreak + 1}**!`,
+        nextCostMsg: `Your next coin flip will cost $**${nextCost}**.`,
+        nextRewardMsg: `If you win your next flip, you will win $**${nextReward}**!`
+    }
+
+    const { nextCostMsg, nextRewardMsg, streak } = description
+    const message = `${description.reward} ${streak}\n${nextCostMsg}\n${nextRewardMsg}`
+
     embed
         .setColor(colors.green)
-        .setDescription(`**${name}** just earned $**${currency(reward)}** with a streak of **${coinflipStreak + 1}**!`)
+        .setDescription(message)
 
     return User.updateOne(userId, {
-        balance: balance + reward,
+        balance: balance + profit,
         coinflipStreak: coinflipStreak + 1
     }, (err: any) => checkErr(err, client, () => msg.channel.send(embed)))
 }
