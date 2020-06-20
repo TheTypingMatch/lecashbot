@@ -9,11 +9,11 @@ const helpInfo = {
         invite: ' - Invite the bot.',
         info: ' - Important bot information.',
         stats: ' - Show the bot servers/users and latency.',
-        uptime: ' - Show the bot uptime',
+        uptime: ' - Show the bot uptime.',
         faq: ' - Display frequently asked questions.',
-        ping: ' - Show bot latency',
+        ping: ' - Show bot latency.',
         donate: ' - Display donators.',
-        contributors: ' - Display contributors'
+        contributors: ' - Display contributors.'
     },
     economy: {
         bal: '`<user>` - View yours or another user\'s balance.',
@@ -42,7 +42,7 @@ const info = {
     },
     contribute: {
         msg: 'Want to contribute to LeCashBot?',
-        link: 'View the repo on **[GitHub](https://github.com/TheTypingMatch/le-cash-bot)**.',
+        link: 'Star me on **[GitHub](https://github.com/TheTypingMatch/le-cash-bot)**!',
         server: '\nJoin the **[LeCashBot Discord](https://discord.gg/UspVEng)**!'
     },
     donors: {
@@ -98,7 +98,7 @@ const faqInfo = [
     },
     {
         q: 'How do I sign up for the bot/How do I start earning money?',
-        a: 'Use the `$register` command with your NitroType profile link. \nFor example: `$register https://www.nitrotype.com/racer/mrh110`'
+        a: 'Use the `$register` command with your NitroType profile link. \nFor example: `$register https://www.nitrotype.com/racer/mrh110`.'
     },
     {
         q: 'How can I contribute to the bot?',
