@@ -7,8 +7,8 @@ import { currency } from '../utils/format'
 const sendReward = (msg, user, client, embed) => {
     const { name, balance, coinflipStreak } = user
     const userId: { discordId: string } = { discordId: msg.author.id }
-    const reward: number = 100 * (3 ** (coinflipStreak - 1)) + (coinflipStreak * 150)
-    const cost: number = 100 * (2 ** coinflipStreak)
+    const reward: number = Math.round(100 * (3 ** (coinflipStreak - 1)) + (coinflipStreak * 150))
+    const cost: number = Math.round(100 * (2 ** coinflipStreak))
     const profit: number = reward - cost
 
     if (balance < cost) {
@@ -39,7 +39,7 @@ const sendReward = (msg, user, client, embed) => {
 
 const sendLoss = (msg, user, client, embed) => {
     const { balance, coinflipStreak } = user
-    const cost: number = 100 * (2 ** coinflipStreak)
+    const cost: number = Math.round(100 * (2 ** coinflipStreak))
     const userId: { discordId: string } = { discordId: msg.author.id }
 
     if (balance < cost) {
