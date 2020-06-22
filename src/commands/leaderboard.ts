@@ -8,7 +8,8 @@ import { log } from '../utils/log'
 const helpInfo: any = {
     'leaderboard bet': '- Display the highest bets won.',
     'leaderboard streak': '- Display the highest daily streaks.',
-    'leaderboard cash': '- Display the wealthiest users.'
+    'leaderboard cash': '- Display the wealthiest users.',
+    'leaderboard coinflip': 'Display the luckiest users.'
 }
 
 let desc: string = ''
