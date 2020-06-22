@@ -29,6 +29,42 @@ const sortUsers = (users: any[], sortType: string) => {
     })
 }
 
+const handleFlipLb = (msg, users: any[]) => {
+    const sortedUsers = users.sort((a, b) => {
+        const aStreak: number = a.coinflipBestStreak
+        const bStreak: number = b.coinflipBestStreak
+        return (aStreak > bStreak) ? 1 : ((bStreak > aStreak) ? -1 : 0)
+    })
+    const topTen: any = getTopTen(sortedUsers)
+
+    let userPosition: any = 'You are not ranked!'
+    let userStreak: any = 'N/A'
+    let userEarnings: any = 'N/A'
+    let userStreakChance: any = 'N/A'
+    sortedUsers.reverse().forEach((user, index) => {
+        if (user.discordId === msg.author.id) {
+            userPosition = index + 1
+            userStreak = user.coinflipBestStreak
+            userStreakChance = Math.round((100 / (2 ** user.coinflipBestStreak)) * 100) / 100
+            return userEarnings = (user.coinflipBestStreak) 
+                ? Math.round((100 * (3 ** (user.coinflipBestStreak - 2))) + ((user.coinflipBestStreak - 1) * 150)) 
+                : 0
+        }
+    })
+
+    topTen.forEach(({ coinflipBestStreak, name }, pos) => {
+        const coinflipAmount: number = (coinflipBestStreak) ? Math.round((100 * (3 ** (coinflipBestStreak - 2))) + ((coinflipBestStreak - 1) * 150)) : 0
+        const coinflipChance: number = (coinflipBestStreak) ? Math.round((100 / (2 ** coinflipBestStreak)) * 100) / 100 : 0
+        desc += `#**${pos + 1}** ${name} - **${coinflipBestStreak}** - $**${currency(coinflipAmount)}** - ${coinflipChance}%\n`
+    })
+    desc += `#**${userPosition}** - YOU - **${currency(userStreak)}** - $**${currency(userEarnings)}** - ${userStreakChance}%`
+
+    lbEmbed.setDescription(desc)
+    desc = ''
+
+    return msg.channel.send(lbEmbed)
+}
+
 const handleBetLb = (msg, users: any[]) => {
     const sortedUsers = users.sort((a, b) => {
         const aBet: number = a.highestBet.amount
@@ -132,6 +168,7 @@ export default async (msg, client, args) => {
         case 'cash': return handleCashLb(msg, users)
         case 'bet': return handleBetLb(msg, users)
         case 'streak': return handleStreakLb(msg, users)
+        case 'coinflip': return handleFlipLb(msg, users)
         case 'help': return handleHelpLb(msg)
         default: return handleCashLb(msg, users)
     }
