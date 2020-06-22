@@ -72,15 +72,15 @@ export default async (msg, client, args) => {
             .setAuthor(`${name}'s Profile`, userAvatar ? userAvatar.avatarURL() : msg.author.avatarURL())
             .setDescription(`[**${name}'s NitroType**](${nitroTypeLink})`)
             .addField('Balance', `$**${currency(balance)}**`, true)
-            .addField('Donations', `$**${currency(donations || 0)}**`, true)
             .addField('\u200b', '\u200b', true)
+            .addField('Donations', `$**${currency(donations || 0)}**`, true)
             .addField('Daily Streak', `**${dailyStreak}** day${dailyStreak === 1 ? 's' : ''}`)
             .addField('Coinflip Record', `**${coinflipBestStreak}** streak, $**${currency(coinflipEarnings)}**`, true)
+            .addField('\u200b', '\u200b', true)
             .addField('Chance', `**${coinflipChance}**%`, true)
-            .addField('\u200b', '\u200b', true)
             .addField('Highest Bet', `$**${currency(highestBet.amount)}**`, true)
-            .addField('Chance', `**${Math.round(highestBet.chance * 100) / 100}**%`, true)
             .addField('\u200b', '\u200b', true)
+            .addField('Chance', `**${Math.round(highestBet.chance * 100) / 100}**%`, true)
     } else {
         profileEmbed
             .setColor(colors.red)
