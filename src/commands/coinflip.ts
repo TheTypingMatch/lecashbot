@@ -59,7 +59,7 @@ const sendReward = (msg, user, client, embed) => {
 
 const sendLoss = (msg, user, client, embed) => {
     const { balance, coinflipStreak } = user
-    const cost: number = Math.round(100 * (2 ** coinflipStreak))
+    const cost: number = (coinflipStreak) ? Math.round(100 * (2 ** coinflipStreak)) : 0
     const userId: { discordId: string } = { discordId: msg.author.id }
 
     if (balance < cost) {
