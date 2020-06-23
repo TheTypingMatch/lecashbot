@@ -18,8 +18,9 @@ const sendReward = (msg, user, client, embed) => {
     const cost: number = (coinflipStreak) ? Math.round(100 * (2 ** coinflipStreak)) : 0
     const profit: number = reward - cost
 
-    if (balance < cost) {
-        return embed.setDescription('You do not have enough to coinflip!')
+    if (balance && balance < cost) {
+        embed.setDescription('You do not have enough to coinflip!')
+        return msg.channel.send(embed)
     }
     
     const nextCost: number = 100 * (2 ** (coinflipStreak + 1))
@@ -62,8 +63,9 @@ const sendLoss = (msg, user, client, embed) => {
     const cost: number = (coinflipStreak) ? Math.round(100 * (2 ** coinflipStreak)) : 0
     const userId: { discordId: string } = { discordId: msg.author.id }
 
-    if (balance < cost) {
-        return embed.setDescription('You do not have enough to coinflip!')
+    if (balance && balance < cost) {
+        embed.setDescription('You do not have enough to coinflip!')
+        return msg.channel.send(embed)
     }
 
     embed
