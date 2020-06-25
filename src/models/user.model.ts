@@ -88,6 +88,11 @@ const articleSchema = new mongoose.Schema({
         required: false,
         default: false
     },
+    logoCreator: {
+        type: Boolean, 
+        required: false,
+        default: false
+    },
     owner: {
         type: Boolean,
         required: false,

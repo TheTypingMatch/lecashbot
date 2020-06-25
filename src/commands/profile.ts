@@ -10,12 +10,13 @@ const addBadgeEmote = badgeType => {
         case 'owner': return 'white_check_mark'
         case 'admin': return 'hammer'
         case 'developer': return 'man_technologist'
+        case 'logo Creator': return 'art'
         case 'tester': return 'test_tube'
         case 'donor': return 'moneybag'
     }
 }
 
-const addBadges = badges => {
+const addBadges = (badges: any) => {
     let badgeMsg: string = ''
     Object.entries(badges).forEach(badge => { 
         const badgeType: string = badge[0]
@@ -43,7 +44,8 @@ export default async (msg, client, args) => {
             name, nitroTypeLink, balance,
             dailyStreak, highestBet, owner,
             admin, dev, tester, donor,
-            donations, coinflipBestStreak
+            logoCreator, donations, 
+            coinflipBestStreak
         } = user
 
         const badges = {
@@ -51,7 +53,8 @@ export default async (msg, client, args) => {
             admin: admin,
             developer: dev,
             tester: tester,
-            donor: donor
+            donor: donor,
+            'logo Creator': logoCreator
         }
 
         const userAvatar: any = client.users.cache.get((isNotId) ? user.discordId : userId)
