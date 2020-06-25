@@ -95,7 +95,7 @@ const faqInfo = [
     },
     {
         q: 'Can I add this bot to my server?',
-        a: 'Previously, LeCashBot was exclusive to the NitroType server but you may now invite it with `$info`.'
+        a: 'You may invite LeCashBot using the `$invite` command.'
     },
     {
         q: 'How do I sign up for the bot/How do I start earning money?',
