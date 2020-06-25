@@ -72,8 +72,8 @@ const sendLoss = (msg, user, client, embed) => {
         .setColor(colors.red)
         .setDescription(
             (coinflipStreak)
-                ? `You lost $**${currency(cost)}**!`
-                : 'You lost your streak!'   
+                ? `You lost your streak and $**${currency(cost)}**!`
+                : 'Your streak remains at 0.'   
         )
 
     return User.updateOne(userId, {
