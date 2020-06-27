@@ -4,13 +4,7 @@ import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
 import { currency } from '../utils/format'
 
-const recordEmbed = new MessageEmbed()
-    .setAuthor('New Highest Streak!')
-    .setTimestamp(new Date())
-    .setFooter(`LeCashBot v${version}`)
-    .setColor(colors.green)
-
-const sendReward = (msg, user, client, embed) => {
+const sendReward = (msg, user, client, embed, recordEmbed) => {
     const { name, balance, coinflipStreak, coinflipBestStreak } = user
     const userId: { discordId: string } = { discordId: msg.author.id }
     const reward: number = Math.round(100 * (3 ** (coinflipStreak - 1)) + (coinflipStreak * 150))
@@ -82,15 +76,46 @@ const sendLoss = (msg, user, client, embed) => {
     }, (err: any) => checkErr(err, client, () => msg.channel.send(embed)))
 }
 
+const takeReward = (msg, client, user, embed) => {
+    const { balance, coinflipStreak } = user
+    const userId: { discordId: string } = { discordId: msg.author.id }
+    const reward: number = Math.round(100 * (3 ** (coinflipStreak - 1)) + (coinflipStreak * 150))
+
+    embed
+        .setColor(colors.green)
+        .setDescription(`You won!`)
+
+    return User.updateOne(userId, {
+        balance: balance + reward,
+        coinflipStreak: 0
+    }, (err: any) => checkErr(err, client, () => msg.channel.send(embed)))
+}
+
 export default async (msg, client, args) => {
+
     const user: any = await User.findOne({ discordId: msg.author.id })
     const flip: number = Math.random()
+    const recordEmbed = new MessageEmbed()
+        .setAuthor('New Highest Streak!')
+        .setTimestamp(new Date())
+        .setFooter(`LeCashBot v${version}`)
+        .setColor(colors.green)
     const flipEmbed = new MessageEmbed()
         .setAuthor('Coin Flip', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
 
+    if (args[0] === 'take') {
+        return (user.coinflipStreak > 2) 
+            ? takeReward(msg, client, user, flipEmbed) 
+            : msg.channel.send(
+                flipEmbed
+                    .setDescription('Your streak is not high enough!')
+                    .setColor(colors.yellow)
+            )
+    }
+
     return (flip > 0.5)
-        ? sendReward(msg, user, client, flipEmbed)
+        ? sendReward(msg, user, client, flipEmbed, recordEmbed)
         : sendLoss(msg, user, client, flipEmbed)
 }
