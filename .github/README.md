@@ -1,7 +1,6 @@
 <h1 align="center">
   <img src="https://cdn.discordapp.com/attachments/689241653516435495/726905204351696946/lecashbot.png" align="center" />
   <br><br>
-  <a href="https://discordapp.com/api/oauth2/authorize?client_id=689231388909633607&permissions=8&scope=bot">LeCashBot</a>
 </h1>
 <h3 align="center">
   A Discord.js bot based on the <a href="https://www.nitrotype.com/">NitroType</a> currency.
