@@ -88,10 +88,11 @@ git commit -m "COMMIT MESSAGE HERE"
 git push
 ```
 
-**Built With**
-- [Discord.js](https://discord.js.org/#/)
-- [NodeJS](https://nodejs.org/en/)
+### Prerequisites
+- [Node.js](https://nodejs.org/en/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [MongoDB](https://www.mongodb.com/)
+- [Discord.js](https://discord.js.org/#/)
 
 ## Contributors
 <table>
