@@ -1,7 +1,6 @@
 import { User } from '../models/user.model'
 import { log } from '../utils/log'
 import { toHours } from '../utils/date'
-import { devMode } from '../config/config'
 
 const functions = (client: any) => {
     setInterval(client.refreshActivity = () => {
@@ -17,7 +16,7 @@ const functions = (client: any) => {
             status: 'online'
         })
         client.logger.log('Done updating presence.', 'ready')
-    }, 60 * 1000)
+    }, 5 * 60 * 1000)
     setInterval(client.resetDailyStreak = async () => {
         client.logger.log('Checking dailies...', 'log')
         const activeUsers: [] = await User.find({ banned: false })
@@ -36,7 +35,7 @@ const functions = (client: any) => {
             }
         })
         client.logger.log('Done checking dailies.', 'ready')
-    }, 60 * 1000)
+    }, 5 * 60 * 1000)
 }
 
 export { functions }
