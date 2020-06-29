@@ -27,7 +27,7 @@ const URIParams: {} = {
 const initDatabase = () => {
     mongoDB.connect(URI, URIParams, (err: any) => {
         if (err) log('error', err, client)
-        else client.logger.log('Successfully connected to database.')
+        else client.logger.log('Successfully connected to database.', 'ready')
     })
 
     mongoose.connect(URI, URIParams, err => {
