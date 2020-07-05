@@ -16,7 +16,6 @@ let desc: string = ''
 const lbEmbed = new MessageEmbed()
     .setColor(colors.green)
     .setAuthor('Leaderboard')
-    .setTimestamp(new Date())
     .setFooter(`LeCashBot v${version}`)
 
 const getTopTen = (arr: any[]) => arr.slice(-10).reverse()
@@ -63,7 +62,7 @@ const handleFlipLb = (msg, users: any[]) => {
     lbEmbed.setDescription(desc)
     desc = ''
 
-    return msg.channel.send(lbEmbed)
+    return msg.channel.send(lbEmbed.setTimestamp(new Date()))
 }
 
 const handleBetLb = (msg, users: any[]) => {
@@ -95,7 +94,7 @@ const handleBetLb = (msg, users: any[]) => {
     lbEmbed.setDescription(desc)
     desc = ''
 
-    return msg.channel.send(lbEmbed)
+    return msg.channel.send(lbEmbed.setTimestamp(new Date()))
 }
 
 const handleCashLb = (msg, users) => {
@@ -121,7 +120,7 @@ const handleCashLb = (msg, users) => {
     lbEmbed.setDescription(desc)
     desc = ''
 
-    return msg.channel.send(lbEmbed)
+    return msg.channel.send(lbEmbed.setTimestamp(new Date()))
 }
 
 const handleStreakLb = (msg, users) => {
@@ -147,7 +146,7 @@ const handleStreakLb = (msg, users) => {
     lbEmbed.setDescription(desc)
     desc = ''
 
-    return msg.channel.send(lbEmbed)
+    return msg.channel.send(lbEmbed.setTimestamp(new Date()))
 }
 
 const handleHelpLb = msg => {
@@ -158,7 +157,7 @@ const handleHelpLb = msg => {
         .setFooter(`LeCashBot v${version}`)
         .setDescription(addCommandField(helpInfo))
 
-    return msg.channel.send(lbHelpEmbed)
+    return msg.channel.send(lbHelpEmbed.setTimestamp(new Date()))
 }
 
 export default async (msg, client, args) => {
