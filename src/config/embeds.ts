@@ -91,7 +91,7 @@ const faqInfo = [
     },
     {
         q: 'I found a bug! Where do I report it?',
-        a: 'LeCashBot bugs may be reported [here](https://github.com/TheTypingMatch/le-cash-bot/issues/new/choose).'
+        a: 'LeCashBot bugs may be reported [**here**](https://github.com/TheTypingMatch/le-cash-bot/issues/new/choose).'
     },
     {
         q: 'Can I add this bot to my server?',
