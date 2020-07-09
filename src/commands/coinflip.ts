@@ -105,7 +105,7 @@ export default async (msg, client, args) => {
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
 
-    if (args[0] === 'take') {
+    if (args[0].toLowercase() === 'take') {
         return (user.coinflipStreak > 2) 
             ? takeReward(msg, client, user, flipEmbed) 
             : msg.channel.send(
