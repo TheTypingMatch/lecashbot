@@ -4,14 +4,14 @@ import { User } from './models/user.model'
 import { colors, version } from './config/config'
 import { MessageEmbed } from 'discord.js'
 
-const cooldownEmbed = new MessageEmbed()
-    .setColor(colors.yellow)
-    .setAuthor('Cooldown')
-    .setTimestamp(new Date())
-    .setFooter(`LeCashBot v${version}`)
-    .setDescription('A little too quick there!')
-
 const run = async (cmd: string, msg, client, args: string[]) => {
+    const cooldownEmbed = new MessageEmbed()
+        .setColor(colors.yellow)
+        .setAuthor('Cooldown')
+        .setTimestamp(new Date())
+        .setFooter(`LeCashBot v${version}`)
+        .setDescription('A little too quick there!')
+
     const userId: { discordId: string } = { discordId: msg.author.id }
     const user: any = await User.findOne({ discordId: msg.author.id })
     const generalPath: string = path.resolve(`./build/commands/${cmd}.js`)

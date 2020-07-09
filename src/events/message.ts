@@ -4,7 +4,7 @@ import { checkErr } from '../utils/checkErr'
 import { run } from '../commands'
 
 module.exports = async (client: any, msg: any) => {
-    const { content, author, reply } = msg
+    const { content, author } = msg
     const { logger, msgCooldowns, config } = client
     const userId: string = author.id
 
@@ -27,20 +27,20 @@ module.exports = async (client: any, msg: any) => {
             })
         }
 
+        if (content.startsWith(config.prefix) && user.banned) {
+            return msg.reply('You have been banned from the bot.')
+        }
+
         // Add user to msg reward cooldown
         if (!user.banned && !msgCooldowns.includes(userId)) {
             reward(userId, client)
-        }
-
-        if (user.banned) {
-            return reply('You have been banned from the bot.')
         }
     }
     msgCooldowns.push(userId)
 
     if (!content.startsWith(config.prefix)) return
     if (!user && !generalCmds.includes(cmd)) {
-        return reply('You must `$register` an account before using any other commands!')
+        return msg.reply('You must `$register` an account before using any other commands!')
     }
 
     // Command handler

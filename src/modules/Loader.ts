@@ -25,7 +25,7 @@ exports.registerCommands = async (client) => {
             })
             registeredCommands.push(commandName)
         })
-        client.logger.log(`Loaded: [${registeredCommands.join(' ')}]`)
+        client.logger.log(`Loaded: [${registeredCommands.join(' ')}]`, 'ready')
     })
 }
 
@@ -40,7 +40,7 @@ exports.registerEvents = async (client) => {
         client.on(eventName, evt.bind(null, client))
         registeredEvents.push(eventName)
     })
-    client.logger.log(`Loaded: [${registeredEvents.join(' ')}]`)
+    client.logger.log(`Loaded: [${registeredEvents.join(' ')}]`, 'ready')
 }
 
 exports.checkDiscordStatus = client => {
