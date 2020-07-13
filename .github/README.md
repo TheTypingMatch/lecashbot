@@ -21,23 +21,35 @@
 </p>
 
 ## Commands
+
+### Register
 - `$register` - Make a profile using your NitroType account.
 - `$delete` - Delete your LeCashBot account.
+
+### Guides
+- `$invite` - Invite the bot.
 - `$info` - Important bot information.
-- `$stats` - Show the bot servers, users, and latency. 
-- `$faq` - Display frequently asked questions.
-- `$ping` - Show bot latency.
-- `$donate` - Display donators.
-- `$contributors` - Display bot contributors.
+- `$stats` - Show the bot servers/users and latency.
+- `$uptime`  - Show the bot uptime.
+- `$faq`  - Display frequently asked questions.
+- `$ping`  - Show bot latency.
+- `$donate`  - Display donators.
+- `$contributors`  - Display contributors.
+
+### Economy
 - `$bal` - View yours or another user's balance.
 - `$give` - Gift someone cash from your balance.
-- `$daily` - Collect a daily bonus of cash based on your daily streak.
-- `$total` - View the total amount of cash that exists in the economy.
+- `$daily`  - Collect a daily bonus of cash based on your daily streak.
+- `$total`  - View the amount of cash there exists in the economy.
 - `$profile` - View yours or another user's profile.
-- `$withdraw` - Withdraw at least $100,000 from your LeCashBot account to your NitroType account.
-- `$leaderboard` - View the wealthiest of all LeCashBot users.
+- `$withdraw` - Withdraw at least $100K from your LeCashBot account to your NitroType account.
+- `$leaderboard`  - View the wealthiest of all LeCashBot users.
+
+### Games
 - `$bet` - Play roulette for a chance to win cash.
-- `$invite` - Invite the bot.
+- `$coinflip`  - Earn cash based on a coin flip streak.
+
+### Miscellaneous
 - `$report` - Get a link for bug report.
 - `$suggest` - Get a link for feature suggestions.
 
