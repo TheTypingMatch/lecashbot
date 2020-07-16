@@ -152,3 +152,14 @@ git push
     <td align="center">Tester</td>
   </tr>
 </table>
+<table>
+  <tr>
+    <th><a href="https://github.com/Ray-Adams">Ray-Adams</a></th>
+  </tr>
+  <tr>
+    <td><img width="160" src="https://avatars1.githubusercontent.com/u/63924749?s=460&u=08bdc33558f70902f6b4be58a28ee81e0e6de16d&v=4"></td>
+  </tr>
+  <tr>
+    <td align="center">Contributor</td>
+  </tr>
+</table>
