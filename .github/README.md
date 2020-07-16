@@ -136,30 +136,21 @@ git push
     <th><a href="https://github.com/TheProdigyHenry">TheProdigyHenry</a></th>
     <th><a href="https://github.com/zaidothePotato">zaidothePotato</a></th>
     <th><a href="https://github.com/mcglasses02">mcglasses02</a></th>
-  </tr>
-  <tr>
-    <td><img width="160" src="https://avatars1.githubusercontent.com/u/19956672?s=400&u=6e5c9c141312928197d0accaa946a2568ce30ad6&v=4"></td>
-    <td><img width="160" src="https://avatars2.githubusercontent.com/u/6277739?s=400&u=26cf9cce6417172cde64b0e02ecc594c5f4eecc2&v=4"></td>
-    <td><img width="160" src="https://avatars0.githubusercontent.com/u/55813024?s=400&u=0a548d57a94850fa52e363bd7c55008718659f83&v=4"></td>
-    <td><img width="160" src="https://avatars2.githubusercontent.com/u/63223305?s=400&v=4"></td>
-    <td><img width="160" src="https://avatars2.githubusercontent.com/u/64054183?s=400&v=4"></td>
-  </tr>
-  <tr>
-    <td align="center">Contributor</td>
-    <td align="center">Contributor</td>
-    <td align="center">Tester</td>
-    <td align="center">Tester</td>
-    <td align="center">Tester</td>
-  </tr>
-</table>
-<table>
-  <tr>
     <th><a href="https://github.com/Ray-Adams">Ray-Adams</a></th>
   </tr>
   <tr>
-    <td><img width="160" src="https://avatars1.githubusercontent.com/u/63924749?s=460&u=08bdc33558f70902f6b4be58a28ee81e0e6de16d&v=4"></td>
+    <td><img width="133" src="https://avatars1.githubusercontent.com/u/19956672?s=400&u=6e5c9c141312928197d0accaa946a2568ce30ad6&v=4"></td>
+    <td><img width="133" src="https://avatars2.githubusercontent.com/u/6277739?s=400&u=26cf9cce6417172cde64b0e02ecc594c5f4eecc2&v=4"></td>
+    <td><img width="133" src="https://avatars0.githubusercontent.com/u/55813024?s=400&u=0a548d57a94850fa52e363bd7c55008718659f83&v=4"></td>
+    <td><img width="133" src="https://avatars2.githubusercontent.com/u/63223305?s=400&v=4"></td>
+    <td><img width="133" src="https://avatars2.githubusercontent.com/u/64054183?s=400&v=4"></td>
+    <td><img width="133" src="https://avatars1.githubusercontent.com/u/63924749?s=460&u=08bdc33558f70902f6b4be58a28ee81e0e6de16d&v=4"></td>
   </tr>
   <tr>
     <td align="center">Contributor</td>
+    <td align="center">Contributor</td>
+    <td align="center">Tester</td>
+    <td align="center">Tester</td>
+    <td align="center">Tester</td>
+    <td align="center">Contributor</td>
   </tr>
-</table>
