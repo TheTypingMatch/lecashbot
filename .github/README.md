@@ -6,11 +6,10 @@
   A Discord.js bot based on the <a href="https://www.nitrotype.com/">NitroType</a> currency.
 </h3>
 <p align="center">
-  <img src="https://img.shields.io/discord/689241652916912138?style=flat-square">
-  <img src="https://img.shields.io/github/workflow/status/TheTypingMatch/le-cash-bot/Node.js CI?style=flat-square">
-  <img src="https://img.shields.io/github/contributors/TheTypingMatch/le-cash-bot?style=flat-square">
-  <img src="https://img.shields.io/github/repo-size/TheTypingMatch/le-cash-bot?style=flat-square">
-  <img src="https://img.shields.io/github/v/release/TheTypingMatch/le-cash-bot?include_prereleases&style=flat-square">
+  <img src="https://img.shields.io/discord/689241652916912138?style=flat">
+  <img src="https://img.shields.io/github/contributors/TheTypingMatch/le-cash-bot?style=flat">
+  <img src="https://github.com/TheTypingMatch/le-cash-bot/workflows/Node.js%20CI/badge.svg">
+  <img src="https://img.shields.io/github/v/release/TheTypingMatch/le-cash-bot?include_prereleases&style=flat">
 </p>
 <p align="center">
   <a href="#commands">Commands</a>
