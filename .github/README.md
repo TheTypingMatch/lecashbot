@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/TheTypingMatch/le-cash-bot?include_prereleases&style=flat-square">
 </p>
 <p align="center">
-  <a href="#features">Features</a>
+  <a href="#commands">Commands</a>
   <span>-</span>
   <a href="#contribute">Contribute</a>
   <span>-</span>
