@@ -36,7 +36,7 @@ const helpInfo = {
 
 const info = {
     general: {
-        author: '**Author** - [LeSirH](https://www.youtube.com/channel/UCpv2tyHoB6x5-Lb03xMYeCg)',
+        author: '**Author** - [**LeSirH**](https://www.youtube.com/channel/UCpv2tyHoB6x5-Lb03xMYeCg)',
         logoCreator: '**Logo Creator** - Try2Win4Glory',
         creationDate: '**Creation Date** - June 7 2019',
         prefix: '**Prefix** - $'
