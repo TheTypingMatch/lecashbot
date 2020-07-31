@@ -6,14 +6,13 @@
   A Discord.js bot based on the <a href="https://www.nitrotype.com/">NitroType</a> currency.
 </h3>
 <p align="center">
-  <img src="https://img.shields.io/discord/689241652916912138?style=flat-square">
-  <img src="https://img.shields.io/github/workflow/status/TheTypingMatch/le-cash-bot/Node.js CI?style=flat-square">
-  <img src="https://img.shields.io/github/contributors/TheTypingMatch/le-cash-bot?style=flat-square">
-  <img src="https://img.shields.io/github/repo-size/TheTypingMatch/le-cash-bot?style=flat-square">
-  <img src="https://img.shields.io/github/v/release/TheTypingMatch/le-cash-bot?include_prereleases&style=flat-square">
+  <img src="https://img.shields.io/discord/689241652916912138?style=flat">
+  <img src="https://img.shields.io/github/contributors/TheTypingMatch/le-cash-bot?style=flat">
+  <img src="https://github.com/TheTypingMatch/le-cash-bot/workflows/Node.js%20CI/badge.svg">
+  <img src="https://img.shields.io/github/v/release/TheTypingMatch/le-cash-bot?include_prereleases&style=flat">
 </p>
 <p align="center">
-  <a href="#features">Features</a>
+  <a href="#commands">Commands</a>
   <span>-</span>
   <a href="#contribute">Contribute</a>
   <span>-</span>
@@ -21,23 +20,35 @@
 </p>
 
 ## Commands
+
+### Register
 - `$register` - Make a profile using your NitroType account.
 - `$delete` - Delete your LeCashBot account.
+
+### Guides
+- `$invite` - Invite the bot.
 - `$info` - Important bot information.
-- `$stats` - Show the bot servers, users, and latency. 
-- `$faq` - Display frequently asked questions.
-- `$ping` - Show bot latency.
-- `$donate` - Display donators.
-- `$contributors` - Display bot contributors.
+- `$stats` - Show the bot servers/users and latency.
+- `$uptime`  - Show the bot uptime.
+- `$faq`  - Display frequently asked questions.
+- `$ping`  - Show bot latency.
+- `$donate`  - Display donators.
+- `$contributors`  - Display contributors.
+
+### Economy
 - `$bal` - View yours or another user's balance.
 - `$give` - Gift someone cash from your balance.
-- `$daily` - Collect a daily bonus of cash based on your daily streak.
-- `$total` - View the total amount of cash that exists in the economy.
+- `$daily`  - Collect a daily bonus of cash based on your daily streak.
+- `$total`  - View the amount of cash there exists in the economy.
 - `$profile` - View yours or another user's profile.
-- `$withdraw` - Withdraw at least $100,000 from your LeCashBot account to your NitroType account.
-- `$leaderboard` - View the wealthiest of all LeCashBot users.
+- `$withdraw` - Withdraw at least $100K from your LeCashBot account to your NitroType account.
+- `$leaderboard`  - View the wealthiest of all LeCashBot users.
+
+### Games
 - `$bet` - Play roulette for a chance to win cash.
-- `$invite` - Invite the bot.
+- `$coinflip`  - Earn cash based on a coin flip streak.
+
+### Miscellaneous
 - `$report` - Get a link for bug report.
 - `$suggest` - Get a link for feature suggestions.
 
@@ -124,13 +135,15 @@ git push
     <th><a href="https://github.com/TheProdigyHenry">TheProdigyHenry</a></th>
     <th><a href="https://github.com/zaidothePotato">zaidothePotato</a></th>
     <th><a href="https://github.com/mcglasses02">mcglasses02</a></th>
+    <th><a href="https://github.com/Ray-Adams">Ray-Adams</a></th>
   </tr>
   <tr>
-    <td><img width="160" src="https://avatars1.githubusercontent.com/u/19956672?s=400&u=6e5c9c141312928197d0accaa946a2568ce30ad6&v=4"></td>
-    <td><img width="160" src="https://avatars2.githubusercontent.com/u/6277739?s=400&u=26cf9cce6417172cde64b0e02ecc594c5f4eecc2&v=4"></td>
-    <td><img width="160" src="https://avatars0.githubusercontent.com/u/55813024?s=400&u=0a548d57a94850fa52e363bd7c55008718659f83&v=4"></td>
-    <td><img width="160" src="https://avatars2.githubusercontent.com/u/63223305?s=400&v=4"></td>
-    <td><img width="160" src="https://avatars2.githubusercontent.com/u/64054183?s=400&v=4"></td>
+    <td><img width="133" src="https://avatars1.githubusercontent.com/u/19956672?s=400&u=6e5c9c141312928197d0accaa946a2568ce30ad6&v=4"></td>
+    <td><img width="133" src="https://avatars2.githubusercontent.com/u/6277739?s=400&u=26cf9cce6417172cde64b0e02ecc594c5f4eecc2&v=4"></td>
+    <td><img width="133" src="https://avatars0.githubusercontent.com/u/55813024?s=400&u=0a548d57a94850fa52e363bd7c55008718659f83&v=4"></td>
+    <td><img width="133" src="https://avatars2.githubusercontent.com/u/63223305?s=400&v=4"></td>
+    <td><img width="133" src="https://avatars2.githubusercontent.com/u/64054183?s=400&v=4"></td>
+    <td><img width="133" src="https://avatars1.githubusercontent.com/u/63924749?s=460&u=08bdc33558f70902f6b4be58a28ee81e0e6de16d&v=4"></td>
   </tr>
   <tr>
     <td align="center">Contributor</td>
@@ -138,5 +151,5 @@ git push
     <td align="center">Tester</td>
     <td align="center">Tester</td>
     <td align="center">Tester</td>
+    <td align="center">Contributor</td>
   </tr>
-</table>
