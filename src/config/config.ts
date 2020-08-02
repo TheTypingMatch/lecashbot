@@ -18,7 +18,7 @@ const channels: any = {
     error: ['692123000602099712']
 }
 
-const version: string = '1.4.3'
+const version: string = '1.4.4'
 const prefix: string = '$'
 const devMode: boolean = false
 const logEnabled: boolean = true
