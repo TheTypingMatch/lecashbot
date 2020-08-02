@@ -110,7 +110,7 @@ git push
     <th><a href="https://github.com/Le-SirH">Le-SirH</a></th>
     <th><a href="https://github.com/RHarr6306">RHarr6306</a></th>
     <th><a href="https://github.com/DamienVesper">DamienVesper</a></th>
-    <th><a href="https://github.com/techdude1-dev">techdude1-dev</a></th>
+    <th><a href="https://github.com/Techy">Techy</a></th>
     <th><a href="https://github.com/Dapp3rDuck">Dapp3rDuck</a></th>
   </tr>
   <tr>
