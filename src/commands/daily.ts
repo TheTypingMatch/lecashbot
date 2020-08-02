@@ -15,7 +15,7 @@ const sendReward = (msg, user, client, embed) => {
 
     embed
         .setColor(colors.green)
-        .setDescription(`**${name}** just earned $**${currency(reward)}** with a streak of **${dailyStreak + 1}**!`)
+        .setDescription(`**${name}** just earned $**${currency(reward)}** with a streak of **${dailyStreak + 1}**!\nDon't forget to vote [**here**](https://top.gg/bot/586645522614583306/vote)!`)
 
     return User.updateOne(userId, {
         balance: balance + reward,
