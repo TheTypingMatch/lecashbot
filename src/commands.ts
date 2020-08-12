@@ -5,6 +5,8 @@ import { colors, version } from './config/config'
 import { MessageEmbed } from 'discord.js'
 
 const run = async (cmd: string, msg, client, args: string[]) => {
+    msg.channel.startTyping()
+
     const cooldownEmbed = new MessageEmbed()
         .setColor(colors.yellow)
         .setAuthor('Cooldown')
@@ -20,6 +22,7 @@ const run = async (cmd: string, msg, client, args: string[]) => {
 
     if (user && fs.existsSync(generalPath)) {
         if (user.cmdCooldown && new Date().getTime() - user.cmdCooldown < 3000) {
+            msg.channel.stopTyping()
             return msg.channel.send(cooldownEmbed)
         } else {
             User.updateOne(userId, { cmdCooldown: new Date() }, err => {
@@ -32,11 +35,13 @@ const run = async (cmd: string, msg, client, args: string[]) => {
 
     if (hasAdminPerms) {
         const adminCMD = await import(`./commands/admin/${cmd}`)
-        return adminCMD.default(msg, client, args)
+        adminCMD.default(msg, client, args)
     } else if (fs.existsSync(generalPath)) {
         const generalCMD = await import(`./commands/${cmd}`)
-        return generalCMD.default(msg, client, args)
+        generalCMD.default(msg, client, args)
     }
+
+    return msg.channel.stopTyping()
 }
 
 export { run }
