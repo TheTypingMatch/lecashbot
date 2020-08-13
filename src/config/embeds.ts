@@ -1,5 +1,5 @@
 const helpInfo = {
-    desc: 'A Discord.js bot based on the NitroType currency. Invite [here](https://le-sirh.github.io/lecashbot/).',
+    desc: 'A Discord.js bot based on the NitroType currency.\nPlease consider supporting the bot by donating [**here**](https://www.patreon.com/LeSirH)!\n[**Invite**](https://le-sirh.github.io/lecashbot/) the bot.',
     descInfo: '`$help Register`\n`$help Guides`\n`$help Economy`\n`$help Games`\n`$help Misc`',
     register: {
         register: '`<nt-username>` - Make a profile using your NitroType account.',
@@ -43,6 +43,7 @@ const info = {
     },
     contribute: {
         msg: 'Want to contribute to LeCashBot?',
+        patreon: '[**Support the bot!**](https://www.patreon.com/LeSirH)',
         link: 'Star me on **[GitHub](https://github.com/TheTypingMatch/le-cash-bot)**!',
         server: '\nJoin the **[LeCashBot Discord](https://discord.gg/UspVEng)**!'
     },
