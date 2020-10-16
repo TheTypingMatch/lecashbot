@@ -7,7 +7,7 @@ export default async (msg, client, args) => {
         .setAuthor('Invite', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
-        .setDescription('Invite LeCashBot [**here**](https://le-sirh.github.io/lecashbot/).')
+        .setDescription('Invite LeCashBot [**here**](https://lesirh.github.io/lecashbot/).')
 
     return msg.channel.send(inviteEmbed)
 }
