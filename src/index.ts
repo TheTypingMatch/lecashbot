@@ -8,7 +8,10 @@ import { functions } from './modules/functions'
 const client: any = new Discord.Client({
     disableEveryone: true,
     fetchAllMembers: true,
-    sync: true
+    sync: true,
+    ws: { 
+        intents: Discord.Intents.PRIVILEDGED 
+    }
 })
 
 dotenv.config()
