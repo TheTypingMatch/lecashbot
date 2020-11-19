@@ -11,7 +11,8 @@ const client: any = new Discord.Client({
     sync: true,
     ws: { 
         intents: Discord.Intents.PRIVILEDGED 
-    }
+    },
+    partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 })
 
 dotenv.config()
