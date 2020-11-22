@@ -7,12 +7,10 @@ import { functions } from './modules/functions'
 
 const client: any = new Discord.Client({
     disableEveryone: true,
-    fetchAllMembers: true,
-    sync: true,
     ws: { 
-        intents: Discord.Intents.PRIVILEDGED 
+        intents: ['GUILDS', 'GUILD_MESSAGES']
     },
-    partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+    partials: ['MESSAGE', 'REACTION']
 })
 
 dotenv.config()
