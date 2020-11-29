@@ -14,7 +14,7 @@ const functions = (client: any) => {
         })*/
         client.logger.log('Done updating presence.', 'ready')
     }, 5 * 60 * 1000)
-    /*setInterval(client.resetDailyStreak = async () => {
+    setInterval(client.resetDailyStreak = async () => {
         client.logger.log('Checking dailies...', 'log')
         const activeUsers: [] = await User.find({ banned: false })
         if (!activeUsers) return
@@ -32,7 +32,7 @@ const functions = (client: any) => {
             }
         })
         client.logger.log('Done checking dailies.', 'ready')
-    }, 5 * 60 * 1000)*/
+    }, 5 * 60 * 1000)
 }
 
 export { functions }
