@@ -36,7 +36,7 @@ const getHighestBet = async msg => {
 }
 
 const win = (bet: number) => {
-    const chances: number = Math.round((750 / (bet - 200)) + (750 / Math.sqrt(bet)) * 100) / 100 + 5
+    const chances: number = Math.round((695 / bet) + (695 / Math.sqrt(bet)) * 100) / 100 + 3
     const randomNum: number = Math.random() * 100
 
     return [(randomNum < chances), chances]
