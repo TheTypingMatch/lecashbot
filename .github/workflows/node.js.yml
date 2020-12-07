@@ -5,16 +5,16 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, dev ]
 
 jobs:
   build:
     runs-on: windows-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [10.x, 12.x, 14.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -22,4 +22,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn install
+    - run: yarn build
     - run: yarn dev:test
