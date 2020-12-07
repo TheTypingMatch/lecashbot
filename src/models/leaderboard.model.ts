@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose'
 
-const leaderboardtSchema = new mongoose.Schema({
-    version {
+const leaderboardSchema = new mongoose.Schema({
+    version: {
         type: Number,
         required: true,
         default: 1
@@ -28,6 +28,6 @@ const leaderboardtSchema = new mongoose.Schema({
     }
 })
 
-const Leaderboard = mongoose.model('Tournament', leaderboardSchema)
+const Leaderboard = mongoose.model('Leaderboard', leaderboardSchema)
 
 export { Leaderboard }

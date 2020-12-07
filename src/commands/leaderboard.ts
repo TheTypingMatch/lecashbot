@@ -31,7 +31,7 @@ const handleHelpLb = msg => {
 }
 
 const formatFlipLb = (msg, topTen) => {
-    topTen.forEach(({ coinflipBestStreak, name }, pos) => {
+    topTen.reverse().forEach(({ coinflipBestStreak, name }, pos) => {
         const coinflipAmount: number = (coinflipBestStreak) ? Math.round((100 * (3 ** (coinflipBestStreak - 2))) + ((coinflipBestStreak - 1) * 150)) : 0
         const coinflipChance: number = (coinflipBestStreak) ? Math.round((100 / (2 ** coinflipBestStreak)) * 100) / 100 : 0
         desc += `#**${pos + 1}** ${name} - **${coinflipBestStreak}** - $**${currency(coinflipAmount)}** - ${coinflipChance}%\n`
@@ -39,7 +39,7 @@ const formatFlipLb = (msg, topTen) => {
 }
 
 const formatBetLb = (msg, topTen) => {
-    topTen.forEach(({ highestBet, name }, pos) => {
+    topTen.reverse().forEach(({ highestBet, name }, pos) => {
         const betAmount: string = currency(highestBet.amount)
         const betChance: number = Math.round(highestBet.chance * 100) / 100
         desc += `#**${pos + 1}** ${name} - $**${betAmount}** - ${betChance}%\n`
@@ -47,31 +47,38 @@ const formatBetLb = (msg, topTen) => {
 }
 
 const formatCashLb = (msg, topTen) => {
-    topTen.forEach((user, pos: number) => {
+    topTen.reverse().forEach((user, pos: number) => {
         desc += `#**${pos + 1}** ${user.name} - $**${currency(user.balance)}**\n`
     })
 }
 
 const formatStreakLb = (msg, topTen) => {
-    topTen.forEach((user, pos) => {
+    topTen.reverse().forEach((user, pos) => {
         desc += `#**${pos + 1}** ${user.name} - **${currency(user.dailyStreak)}**\n`
     })
 }
 
-const handleLeaderboard = (msg, type) => {
-    let desc: string = ''
+const handleLeaderboard = async (msg, type='balance') => {
     const lbEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setAuthor('Leaderboard')
         .setFooter(`LeCashBot v${version}`)
     
-    const leaderboardInfo = Leaderboard.findOne({ version: 1 });
+    const leaderboardInfo = await Leaderboard.findOne({ version: 1 });
     
-    switch (leaderboardInfo[type]) {
-        case 'streak': formatStreakLb(msg, leaderboardInfo[type])
-        case 'balance': formatCashLb(msg, leaderboardInfo[type])
-        case 'coinflip': formatFlipLb(msg, leaderboardInfo[type])
-        case 'bet': formatBetLb(msg, leaderboardInfo[type])
+    switch (type) {
+        case 'streak': 
+            formatStreakLb(msg, leaderboardInfo[type])
+            break;
+        case 'balance': 
+            formatCashLb(msg, leaderboardInfo[type])
+            break;
+        case 'coinflip': 
+            formatFlipLb(msg, leaderboardInfo[type])
+            break;
+        case 'bet': 
+            formatBetLb(msg, leaderboardInfo[type])
+            break;
     }
 
     lbEmbed.setDescription(desc)
@@ -85,5 +92,5 @@ export default async (msg, client, args) => {
         return handleHelpLb(msg);
     }
 
-    return handleLeaderboard(msg, args[0]);
+    return await handleLeaderboard(msg, args[0]);
 }
