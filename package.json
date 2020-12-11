@@ -8,6 +8,7 @@
     "dev:server": "node build/index.js",
     "dev:lint": "eslint . --fix",
     "dev:test": "jest ./tests",
+    "start": "node --max-old-space-size=8192 build/index.js",
     "build": "tsc"
   },
   "keywords": [],
