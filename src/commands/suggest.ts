@@ -1,5 +1,5 @@
-import { MessageEmbed } from 'discord.js' 
-import { colors, version } from '../config/config'
+import { MessageEmbed } from 'discord.js';
+import { colors, version } from '../config/config';
 
 export default async (msg, client, args) => {
     const suggestEmbed = new MessageEmbed()
@@ -7,7 +7,7 @@ export default async (msg, client, args) => {
         .setAuthor('Suggest', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
-        .setDescription('Make a suggestion [here](https://github.com/TheTypingMatch/le-cash-bot/issues).')
+        .setDescription('Make a suggestion [here](https://github.com/TheTypingMatch/le-cash-bot/issues).');
 
-    return msg.channel.send(suggestEmbed)
-}
+    return msg.channel.send(suggestEmbed);
+};

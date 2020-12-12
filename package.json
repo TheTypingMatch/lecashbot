@@ -6,7 +6,7 @@
   "scripts": {
     "dev:watch": "nodemon -q .",
     "dev:server": "node build/index.js",
-    "dev:lint": "eslint . --fix",
+    "dev:lint": "eslint . --fix --ext .ts",
     "dev:test": "jest ./tests",
     "start": "node --max-old-space-size=8192 build/index.js",
     "build": "tsc"
@@ -31,6 +31,8 @@
   "devDependencies": {
     "@types/jest": "^26.0.0",
     "@types/node": "^14.0.13",
+    "@typescript-eslint/eslint-plugin": "^4.9.1",
+    "@typescript-eslint/parser": "^4.9.1",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
