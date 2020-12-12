@@ -19,6 +19,7 @@ functions(client);
 client.config = require('./config/config.js');
 client.loader = require('./modules/Loader');
 client.msgCooldowns = [];
+client.total = 0;
 
 const URI: string = process.env.URI;
 const URIParams: {} = {

@@ -37,6 +37,16 @@ const functions = (client: any) => {
         client.logger.log('Done checking dailies.', 'ready')
     }, 5 * 60 * 1000)
 
+    setInterval(client.updateTotal = async () => {
+        client.logger.log('Updating total...');
+
+        const activeUsers = await User.find({ banned: false });
+        const userBalances = activeUsers.map((user: any) => user.balance);
+        const total: number = userBalances.reduce((t: number, bal: number) => t + bal);
+
+        client.total = total;
+    })
+
     setInterval(client.updateLeaderboards = async () => {
         client.logger.log('Updating leaderboards...')
         
