@@ -44,7 +44,7 @@ const functions = (client: any) => {
         const total: number = userBalances.reduce((t: number, bal: number) => t + bal);
 
         client.total = total;
-    });
+    }, 5 * 60 * 1000);
 
     setInterval(client.updateLeaderboards = async () => {
         client.logger.log('Updating leaderboards...');
