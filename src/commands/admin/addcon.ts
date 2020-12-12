@@ -1,5 +1,4 @@
 import { User } from '../../models/user.model';
-import { checkErr } from '../../utils/checkErr';
 import { MessageEmbed } from 'discord.js';
 import { colors, version } from '../../config/config';
 

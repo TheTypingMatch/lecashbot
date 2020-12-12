@@ -6,13 +6,13 @@ module.exports = async client => {
         refreshActivity, logger,
         msgCooldowns, guilds, user,
         updateLeaderboards, updateTotal
-    } = client
-    const readyMsg: string = `${user.username} is ready: ${users.cache.size} users, ${guilds.cache.size} servers.`
+    } = client;
+    const readyMsg: string = `${user.username} is ready: ${users.cache.size} users, ${guilds.cache.size} servers.`;
 
-    updateTotal()
-    resetDailyStreak()
-    updateLeaderboards()
-    refreshActivity()
-    setInterval(() => msgCooldowns.splice(0, msgCooldowns.length), msgCooldown)
-    logger.ready(readyMsg)
-}
+    updateTotal();
+    resetDailyStreak();
+    updateLeaderboards();
+    refreshActivity();
+    setInterval(() => msgCooldowns.splice(0, msgCooldowns.length), msgCooldown);
+    logger.ready(readyMsg);
+};

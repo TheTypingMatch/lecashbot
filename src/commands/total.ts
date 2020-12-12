@@ -1,4 +1,3 @@
-import { User } from '../models/user.model';
 import { MessageEmbed } from 'discord.js';
 import { colors, version } from '../config/config';
 import { currency } from '../utils/format';
