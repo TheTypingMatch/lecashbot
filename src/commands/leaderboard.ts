@@ -73,7 +73,7 @@ const handleLeaderboard = async (msg, type = 'balance') => {
             formatBetLb(msg, leaderboardInfo[type]);
             break;
         default: 
-            formatCashLb(msg, leaderboardInfo[type]);
+            formatCashLb(msg, leaderboardInfo['balance']);
             break;
     }
 
