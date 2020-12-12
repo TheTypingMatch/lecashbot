@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose'
+import * as mongoose from 'mongoose';
 
 const articleSchema = new mongoose.Schema({
     date: {
@@ -89,7 +89,7 @@ const articleSchema = new mongoose.Schema({
         default: false
     },
     logoCreator: {
-        type: Boolean, 
+        type: Boolean,
         required: false,
         default: false
     },
@@ -104,8 +104,8 @@ const articleSchema = new mongoose.Schema({
         default: 0
     },
     coinflipBestStreak: {
-        type: Number, 
-        required: false, 
+        type: Number,
+        required: false,
         default: 0
     },
     cmdCooldown: {
@@ -113,8 +113,8 @@ const articleSchema = new mongoose.Schema({
         required: false,
         default: 0
     }
-})
+});
 
-const User = mongoose.model('Article', articleSchema)
+const User = mongoose.model('Article', articleSchema);
 
-export { User }
+export { User };

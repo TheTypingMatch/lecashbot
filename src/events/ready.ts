@@ -1,4 +1,4 @@
-import { msgCooldown } from '../config/cooldowns'
+import { msgCooldown } from '../config/cooldowns';
 
 module.exports = async client => {
     const {

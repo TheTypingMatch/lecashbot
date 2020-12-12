@@ -26,13 +26,13 @@ const helpInfo = {
     },
     games: {
         bet: '`<amount>` - Play roulette for a chance to win cash.',
-        coinflip: ` - Earn cash based on a coin flip streak.`
+        coinflip: ' - Earn cash based on a coin flip streak.'
     },
     misc: {
         report: ' - Get a link for bug report.',
         suggest: ' - Get a link for feature suggestions.'
     }
-}
+};
 
 const info = {
     general: {
@@ -53,7 +53,7 @@ const info = {
     invite: {
         invite: 'Invite LeCashBot [**here**](https://le-sirh.github.io/lecashbot/).'
     }
-}
+};
 
 const donate = {
     donateLink: 'Donate to LeCashBot **[here](https://www.nitrotype.com/racer/mrh110)**',
@@ -83,7 +83,7 @@ const donate = {
         HighVoltage: '100K',
         Metro: '100K'
     }
-}
+};
 
 const faqInfo = [
     {
@@ -114,6 +114,6 @@ const faqInfo = [
         q: 'How can I get a contribution badge?',
         a: 'The achievable contribution badges include developer, tester, and donor. To earn the developer badge, you must contribute to LeCashBot\'s repository [**here**](https://github.com/TheTypingMatch/le-cash-bot). The tester badge is achievable by helping out with testing new features in the [**LeCashBot Discord**](https://discord.gg/UspVEng).'
     }
-]
+];
 
-export { faqInfo, donate, info, helpInfo}
+export { faqInfo, donate, info, helpInfo };

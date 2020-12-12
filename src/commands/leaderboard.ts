@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { User } from '../models/user.model'
 import { MessageEmbed } from 'discord.js'
 import { colors, version } from '../config/config'
@@ -5,19 +6,34 @@ import { currency } from '../utils/format'
 import { addCommandField } from '../utils/field'
 import { log } from '../utils/log'
 import { Leaderboard } from '../models/leaderboard.model'
+=======
+import { User } from '../models/user.model';
+import { MessageEmbed } from 'discord.js';
+import { colors, version } from '../config/config';
+import { currency } from '../utils/format';
+import { addCommandField } from '../utils/field';
+import { log } from '../utils/log';
+>>>>>>> dev
 
 let desc = ''
 const helpInfo: any = {
     'leaderboard bet': '- Display the highest bets won.',
     'leaderboard streak': '- Display the highest daily streaks.',
     'leaderboard cash': '- Display the wealthiest users.',
+<<<<<<< HEAD
     'leaderboard coinflip': '- Display the luckiest users.'
 }
 
+=======
+    'leaderboard coinflip': 'Display the luckiest users.'
+};
+
+let desc = '';
+>>>>>>> dev
 const lbEmbed = new MessageEmbed()
     .setColor(colors.green)
     .setAuthor('Leaderboard')
-    .setFooter(`LeCashBot v${version}`)
+    .setFooter(`LeCashBot v${version}`);
 
 const handleHelpLb = msg => {
     const lbHelpEmbed = new MessageEmbed()

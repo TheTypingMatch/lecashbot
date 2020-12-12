@@ -12,9 +12,13 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2018
     },
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "rules": {
         "no-return-assign": 0,
         "no-undef": 0,
@@ -30,6 +34,7 @@
         "camelcase": 1, 
         "comma-spacing": 1, 
         "no-var": 1, 
-        "indent": ["error", 4, { "SwitchCase": 1 }]
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "semi": [2, "always"]
     }
 }
