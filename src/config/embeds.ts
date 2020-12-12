@@ -1,5 +1,5 @@
 const helpInfo = {
-    desc: 'A Discord.js bot based on the NitroType currency.\nPlease consider supporting the bot by donating [**here**](https://www.patreon.com/LeSirH)!\n[**Invite**](https://lecashbot.cf/) the bot.',
+    desc: 'A Discord.js bot based on the NitroType currency.\nPlease consider supporting the bot by [**donating here**](https://patreon.lecashbot.cf)!\n[**Invite**](https://invite.lecashbot.cf/) the bot.',
     descInfo: '`$help Register`\n`$help Guides`\n`$help Economy`\n`$help Games`\n`$help Misc`',
     register: {
         register: '`<nt-username>` - Make a profile using your NitroType account.',
@@ -20,7 +20,7 @@ const helpInfo = {
         give: '`<user>` `<amount>` - Gift someone cash from your balance.',
         daily: ' - Collect a daily bonus of cash based on your daily streak.',
         total: ' - View the amount of cash there exists in the economy.',
-        profile: ' `<user>` - View yours or another user\'s profile.',
+        profile: '`<user>` - View yours or another user\'s profile.',
         withdraw: '`<amount>` - Withdraw at least $100K from your LeCashBot account to your NitroType account.',
         leaderboard: ' - View the wealthiest of all LeCashBot users.'
     },
@@ -36,53 +36,25 @@ const helpInfo = {
 
 const info = {
     general: {
-        author: '**Author** - [**LeSirH**](https://www.patreon.com/LeSirH)',
+        author: '**Author** - [**LeSirH**](https://patreon.lecashbot.cf/)',
         logoCreator: '**Logo Creator** - Try2Win4Glory',
-        creationDate: '**Creation Date** - June 7 2019',
-        prefix: '**Prefix** - $'
+        creationDate: '**Creation Date** - June 7, 2019',
+        prefix: '**Prefix** - $ (non-configurable)'
     },
     contribute: {
         msg: 'Want to contribute to LeCashBot?',
-        patreon: '[**Support the bot!**](https://www.patreon.com/LeSirH)',
-        link: 'Star me on **[GitHub](https://github.com/TheTypingMatch/le-cash-bot)**!',
-        server: '\nJoin the **[LeCashBot Discord](https://discord.gg/UspVEng)**!'
-    },
-    donors: {
-        donors: '**Donors** - Use `$donate` to view donations.'
+        patreon: 'Support the [**Patreon**](https://patreon.lecashbot.cf).',
+        questions: 'Need help? Ask your questions [**here**](https://github.com/TheTypingMatch/lecashbot/discussions/new).',
+        link: 'Star me on **[GitHub](https://github.com/TheTypingMatch/lecashbot)**!',
+        server: '\nJoin the **[LeCashBot Support Discord](https://discord.gg/UspVEng)**.'
     },
     invite: {
-        invite: 'Invite LeCashBot [**here**](https://lecashbot.cf/).'
+        invite: 'Invite LeCashBot [**here**](https://invite.lecashbot.cf/).'
     }
 };
 
 const donate = {
-    donateLink: 'Donate to LeCashBot **[here](https://www.nitrotype.com/racer/mrh110)**',
-    donors: {
-        Jisoo: '157M',
-        Hysteria: '145.000001M',
-        Volatile: '100M',
-        Tendons: '80M',
-        'T---': '25.000001M',
-        '〠【DV◎RAK】〠': '25M',
-        TypeOnederful: '20M',
-        PJCrowley: '20M',
-        Shanon: '15M',
-        Nike: '10M',
-        Tracy: '8.6M',
-        ℭopy: '6.9M',
-        '✨DαɱιҽɳVҽʂρҽɾ✨': '5.46942M',
-        TheProdigyHenry: '3.141592M',
-        '[RRR1] Cliffarina': '1.234567M',
-        '!': '500K',
-        Dapp3rDuck: '500K',
-        miles: '300K',
-        'Arc!': '300K',
-        'シ𝓳𝓾𝓲𝓬𝓎𝓏シ': '300K',
-        ElijahRapper: '200K',
-        '[STR] Teen_GohanTM': '150K',
-        HighVoltage: '100K',
-        Metro: '100K'
-    }
+    donateLink: 'Donate to LeCashBot **[here](https://donate.lecashbot.cf)**'
 };
 
 const faqInfo = [
@@ -108,11 +80,15 @@ const faqInfo = [
     },
     {
         q: 'How much money does LeCashBot have and where does it come from?',
-        a: 'LeCashBot\'s total can be viewed [**here**](https://www.nitrotype.com/racer/lecashbot) and [**here**](https://www.nitrotype.com/racer/mrh110). It\'s money comes from many donators that can be viewed with `$donate`.'
+        a: 'Its money comes from many donators that can be viewed with `$donate`.'
     },
     {
         q: 'How can I get a contribution badge?',
-        a: 'The achievable contribution badges include developer, tester, and donor. To earn the developer badge, you must contribute to LeCashBot\'s repository [**here**](https://github.com/TheTypingMatch/le-cash-bot). The tester badge is achievable by helping out with testing new features in the [**LeCashBot Discord**](https://discord.gg/UspVEng).'
+        a: 'The available contribution badges include developer, tester, and donor. To earn the developer badge, you must contribute to LeCashBot\'s repository [**here**](https://github.com/TheTypingMatch/le-cash-bot). The tester badge is achievable by helping out with testing new features in the [**LeCashBot Discord**](https://discord.gg/UspVEng).'
+    },
+    {
+        q: 'I have a question that isn\'t listed here. Who can I ask?',
+        a: 'We have a [**discussions page**](https://github.com/TheTypingMatch/lecashbot/discussions/new) where you can ask your questions.'
     }
 ];
 
