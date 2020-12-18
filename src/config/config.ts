@@ -20,7 +20,7 @@ const channels: any = {
     error: ['692123000602099712']
 };
 
-const version = '1.4.5';
+const version = '1.4.6';
 const prefix = '$';
 const devMode = false;
 const logEnabled = true;
