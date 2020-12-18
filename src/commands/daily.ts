@@ -13,6 +13,8 @@ const sendReward = (msg, user, client, embed) => {
     const reward: number = (dailyStreak * 25) + 100;
     cooldowns.daily = new Date();
 
+    client.logger.ready(`${user.name} (${user.discordId}) collected their daily streak of ${dailyStreak}.`);
+
     embed
         .setColor(colors.green)
         .setDescription(`**${name}** just earned $**${currency(reward)}** with a streak of **${dailyStreak + 1}**!\nDon't forget to vote [**here**](https://top.gg/bot/586645522614583306/vote)!`);

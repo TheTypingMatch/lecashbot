@@ -44,6 +44,8 @@ export default async (msg, client, args) => {
     });
     User.updateOne(userId, { balance: userBal - gift }, err => sendSuccessEmbed(msg, err));
 
+    client.logger.ready(`${user.name} (${user.discordId}) gave ${receiver.name} (${receiver.discordId}) $${gift}.`);
+
     return client.users.cache
         .get(receiverId.discordId)
         .send(`**${user.name}** just sent you $**${gift}**!`);

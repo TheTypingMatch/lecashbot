@@ -8,8 +8,10 @@ const deleteEmbed = new MessageEmbed()
     .setFooter(`LeCashBot v${version}`)
     .setDescription('Your data has been deleted.');
 
-const deleteData = async (id, msg) => {
+const deleteData = async (client, id, msg) => {
     await User.deleteOne({ discordId: id });
+    client.logger.ready(`${id} deleted their data.`);
+
     return msg.channel.send(deleteEmbed);
 };
 
@@ -22,6 +24,6 @@ export default async (msg, client, args) => {
     deleteEmbed.setAuthor('Delete', msg.author.avatarURL());
 
     return (userId && userId === user.discordId)
-        ? deleteData(msg.author.id, msg)
+        ? deleteData(client, msg.author.id, msg)
         : msg.reply(error);
 };
