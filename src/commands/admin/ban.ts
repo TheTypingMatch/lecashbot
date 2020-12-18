@@ -9,6 +9,8 @@ export default async ({ author, channel }, client, args) => {
     const user: any = await User.findOne(id);
     let result: string = (user && !user.dev) ? `${user.name} has been banned.` : err;
 
+    client.logger.ready(`${user.name} has been banned. (Moderator: ${author.id})`);
+
     if (!user.dev && !user.admin) {
         User.update(id, { banned: true });
     } else result = 'You can\'t ban a developer/admin!';
