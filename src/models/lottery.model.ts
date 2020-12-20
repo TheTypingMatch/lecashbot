@@ -2,19 +2,19 @@ import * as mongoose from 'mongoose';
 
 const lotterySchema = new mongoose.Schema({
     // daily, weekly, monthly
-    name: {
-        type: Number,
+    type: {
+        type: String,
         required: true
     },
     endDate: {
         type: Date,
         required: true
     },
-    // daily: $100, weekly: $1,000, monthly, $10,000
+    // daily: $1,000, weekly: $5,000, monthly, $25,000
     entryFee: {
         type: Number,
         required: true,
-        default: 100
+        default: 1000
     },
     // An array of id's of people who entered
     entries: {
