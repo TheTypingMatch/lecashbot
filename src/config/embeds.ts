@@ -26,7 +26,8 @@ const helpInfo = {
     },
     games: {
         bet: '`<amount>` - Play roulette for a chance to win cash.',
-        coinflip: ' - Earn cash based on a coin flip streak.'
+        coinflip: ' - Earn cash based on a coin flip streak.',
+        lottery: ' - Enter a daily/weekly/monthly lottery for a chance to win the jackpot.'
     },
     misc: {
         report: ' - Get a link for bug report.',
