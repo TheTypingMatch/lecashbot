@@ -47,6 +47,7 @@
 ### Games
 - `$bet` - Play roulette for a chance to win cash.
 - `$coinflip`  - Earn cash based on a coin flip streak.
+- `$lottery` - Enter a daily/weekly/monthly lottery for a chance to win the jackpot.
 
 ### Miscellaneous
 - `$report` - Get a link for bug report.
