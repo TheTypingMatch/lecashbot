@@ -127,8 +127,19 @@ const createLottery = async (type, client) => {
 }
 
 const resetLottery = async type => {
+    const now = new Date();
+    let tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
+    let nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
+    let nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+
+    const endDates = {
+        daily: tomorrow,
+        weekly: nextWeek,
+        monthly: nextMonth
+    }
+
     await Lottery.updateOne({ type }, {
-        endDate: new Date(),
+        endDate: new Date(endDates[type]),
         entries: []
     });
 }
@@ -145,13 +156,11 @@ const endLottery = async (client, type) => {
     }
 
     const winnerId = entries[Math.floor(Math.random() * entries.length)];
+    const winner = await User.findOne({ discordId: winnerId });
     await User.updateOne({ discordId: winnerId }, {
-        $inc: {
-            balance: lottery.entryFee * entries.length
-        }
+        balance: winner.balance + (lottery.entryFee * entries.length)
     });
 
-    const winner = User.findOne({ discordId: winnerId });
     const winnerEmbed = new MessageEmbed()
         .setAuthor(`${capitalize(type)} Lottery Winner!`)
         .setTimestamp(new Date())
@@ -161,7 +170,14 @@ const endLottery = async (client, type) => {
         .addField('Prize', `$**${currency(lottery.entryFee * entries.length)}**`);
     
     for (let userId of entries) {
-        client.users.cache.get(userId).send(winnerEmbed);
+        let user = client.users.cache.get(userId);
+        
+        if (!user) {
+            client.logger.error('Unable to send user lottery winner.');
+            break;
+        }
+
+        user.send(winnerEmbed);
     }
 
     return resetLottery(type);

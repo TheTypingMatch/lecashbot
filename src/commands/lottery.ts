@@ -17,7 +17,13 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 // calculate time between now and end date
 const subtractDate = endDate => {
     const now = new Date();
-    return endDate.getTime() - now.getTime();
+    let timeLeft = endDate.getTime() - now.getTime();
+
+    if (timeLeft < 0) {
+        timeLeft = 0;
+    }
+
+    return timeLeft;
 }
 
 const enterUser = async (client, msg, type, cost) => {
