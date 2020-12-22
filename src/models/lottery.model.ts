@@ -23,7 +23,7 @@ const lotterySchema = new mongoose.Schema({
         default: []
     }
 });
-    
+
 const Lottery = mongoose.model('Lottery', lotterySchema);
 
 export { Lottery };

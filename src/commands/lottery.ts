@@ -5,11 +5,11 @@ import { colors, version } from '../config/config';
 import { currency } from '../utils/format';
 import { msgCooldown } from '../config/cooldowns';
 
-let entryFees = {
+const entryFees = {
     daily: 1000,
     weekly: 5000,
     monthly: 25000
-}
+};
 
 // capitalize first letter
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -24,7 +24,7 @@ const subtractDate = endDate => {
     }
 
     return timeLeft;
-}
+};
 
 const enterUser = async (client, msg, type, cost) => {
     const lottery = await Lottery.findOne({ type });
@@ -37,8 +37,8 @@ const enterUser = async (client, msg, type, cost) => {
     if (user.balance < cost) {
         return msg.reply('You do not have enough to enter this lottery.');
     }
-    
-    client.logger.log(`(${msg.author.id}) entered the ${type} lottery.`)
+
+    client.logger.log(`(${msg.author.id}) entered the ${type} lottery.`);
     User.updateOne({ discordId: msg.author.id }, {
         balance: user.balance - cost
     });
@@ -48,7 +48,7 @@ const enterUser = async (client, msg, type, cost) => {
     });
 
     return msg.reply('You have been entered! 🍀');
-}
+};
 
 // format time to dd:hh:mm:ss
 const formatTime = ms => {
@@ -57,12 +57,12 @@ const formatTime = ms => {
     let hours = parseInt((ms / (1000 * 60 * 60)) % 24);
     const days = parseInt((ms / (1000 * 60 * 60 * 24)) % 365);
 
-    hours = (hours < 10) ? "0" + hours : hours;
-    minutes = (minutes < 10) ? "0" + minutes : minutes;
-    seconds = (seconds < 10) ? "0" + seconds : seconds;
+    hours = (hours < 10) ? '0' + hours : hours;
+    minutes = (minutes < 10) ? '0' + minutes : minutes;
+    seconds = (seconds < 10) ? '0' + seconds : seconds;
 
     return `${days ? `${days}:` : ''}${hours}:${minutes}:${seconds}`;
-}
+};
 
 export default async (msg, client, args) => {
     const lotteryTypes = ['daily', 'weekly', 'monthly'];
@@ -74,13 +74,13 @@ export default async (msg, client, args) => {
         .setFooter(`LeCashBot v${version}`)
         .setAuthor('Lottery!', msg.author.avatarURL())
         .setTimestamp(new Date());
-        
-    let description = '';
-    for (let type of lotteryTypes) {
+
+    const description = '';
+    for (const type of lotteryTypes) {
         const lottery = await Lottery.findOne({ type });
         const timeLeft: string = formatTime(subtractDate(lottery.endDate));
         const prizePool: number = (lottery.entryFee || 0) * (lottery.entries.length || 0);
-        
+
         lotteryEmbed.addField(`
             **${capitalize(type)}**`, `
             Ends in: \`${timeLeft}\`

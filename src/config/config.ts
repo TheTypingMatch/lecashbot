@@ -11,8 +11,8 @@ const logEnabled = true;
 
 export {
     colors,
-    version, 
+    version,
     prefix,
-    devMode, 
+    devMode,
     logEnabled
 };

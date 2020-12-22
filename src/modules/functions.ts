@@ -46,7 +46,7 @@ const functions = (client: any) => {
         // if it has end the lottery by DMing all the users who the winner was and payout to the winner
 
         const lotteryTypes = ['daily', 'weekly', 'monthly'];
-        for (let type of lotteryTypes) {
+        for (const type of lotteryTypes) {
             const lottery = await Lottery.findOne({ type });
 
             if (lottery === undefined || lottery === null) {
@@ -100,21 +100,21 @@ const functions = (client: any) => {
 
 const createLottery = async (type, client) => {
     const now = new Date();
-    let tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
-    let nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
-    let nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+    const tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
+    const nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
+    const nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
 
     const entryFees = {
         daily: 1000,
         weekly: 5000,
         monthly: 25000
-    }
+    };
 
     const endDates = {
         daily: tomorrow,
         weekly: nextWeek,
         monthly: nextMonth
-    }
+    };
 
     const newLottery = new Lottery({
         type,
@@ -124,25 +124,25 @@ const createLottery = async (type, client) => {
 
     newLottery.save();
     client.logger.ready(`Created ${type} lottery.`);
-}
+};
 
 const resetLottery = async type => {
     const now = new Date();
-    let tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
-    let nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
-    let nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+    const tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
+    const nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
+    const nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
 
     const endDates = {
         daily: tomorrow,
         weekly: nextWeek,
         monthly: nextMonth
-    }
+    };
 
     await Lottery.updateOne({ type }, {
         endDate: new Date(endDates[type]),
         entries: []
     });
-}
+};
 
 // capitalize first letter
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -168,10 +168,10 @@ const endLottery = async (client, type) => {
         .setFooter(`LeCashBot v${version}`)
         .addField('Winner', `${winner.name}`)
         .addField('Prize', `$**${currency(lottery.entryFee * entries.length)}**`);
-    
-    for (let userId of entries) {
-        let user = client.users.cache.get(userId);
-        
+
+    for (const userId of entries) {
+        const user = client.users.cache.get(userId);
+
         if (!user) {
             client.logger.error('Unable to send user lottery winner.');
             break;
@@ -181,13 +181,13 @@ const endLottery = async (client, type) => {
     }
 
     return resetLottery(type);
-}
+};
 
 // calculate time between now and end date
 const subtractDate = endDate => {
     const now = new Date();
     return endDate - now.getTime();
-}
+};
 
 const createLeaderboard = async client => {
     const leaderboard = new Leaderboard({ version: 1 });
