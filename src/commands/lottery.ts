@@ -97,35 +97,3 @@ export default async (msg, client, args) => {
 
     return msg.channel.send(lotteryEmbed);
 };
-
-/*
-
-    $lottery
-    - prize pool
-    - entry cost
-    - start/end date
-    - steps to enter:
-
-
-    **Daily**
-    Ends in: 00h 00m
-    Entries: 12
-    Prize Pool: $12,000
-
-    **Weekly**
-    Ends in: 00d 00h 00m
-    Entries: 50
-    Prize Pool: $250,000
-
-    **Monthly**
-    Ends in: 00d 00h 00m
-    Entries: 100
-    Prize Pool: $2,500,000
-
-    **How to Enter**
-    `$lottery <type> enter` (e.g. `$lottery daily enter`)
-
-
-    when the lottery ends, dm each user the winner and the prize
-
-*/
