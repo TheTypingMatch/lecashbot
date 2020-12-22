@@ -39,7 +39,7 @@ const enterUser = async (client, msg, type, cost) => {
     }
 
     client.logger.log(`(${msg.author.id}) entered the ${type} lottery.`);
-    User.updateOne({ discordId: msg.author.id }, {
+    await User.updateOne({ discordId: msg.author.id }, {
         balance: user.balance - cost
     });
 
