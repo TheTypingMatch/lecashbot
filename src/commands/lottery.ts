@@ -66,8 +66,9 @@ const formatTime = ms => {
 
 export default async (msg, client, args) => {
     const lotteryTypes = ['daily', 'weekly', 'monthly'];
-    if (args[1] === 'enter' && lotteryTypes.includes(args[0])) {
-        return await enterUser(client, msg, args[0], entryFees[args[0]]);
+    const lotteryChoice = args[0].toLowerCase();
+    if (args[1] === 'enter' && lotteryTypes.includes(lotteryChoice)) {
+        return await enterUser(client, msg, lotteryChoice, entryFees[lotteryChoice]);
     }
     const lotteryEmbed = new MessageEmbed()
         .setColor(colors.green)
