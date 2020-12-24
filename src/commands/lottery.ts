@@ -2,28 +2,14 @@ import { User } from '../models/user.model';
 import { Lottery } from '../models/lottery.model';
 import { MessageEmbed } from 'discord.js';
 import { colors, version } from '../config/config';
-import { currency } from '../utils/format';
+import { currency, capitalize } from '../utils/format';
 import { msgCooldown } from '../config/cooldowns';
+import { formatTime, subtractDate } from '../utils/date';
 
 const entryFees = {
     daily: 1000,
     weekly: 5000,
     monthly: 25000
-};
-
-// capitalize first letter
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
-
-// calculate time between now and end date
-const subtractDate = endDate => {
-    const now = new Date();
-    let timeLeft = endDate.getTime() - now.getTime();
-
-    if (timeLeft < 0) {
-        timeLeft = 0;
-    }
-
-    return timeLeft;
 };
 
 const enterUser = async (client, msg, type, cost) => {
@@ -48,20 +34,6 @@ const enterUser = async (client, msg, type, cost) => {
     });
 
     return msg.reply('You have been entered! 🍀');
-};
-
-// format time to dd:hh:mm:ss
-const formatTime = ms => {
-    let seconds = parseInt((ms / 1000) % 60);
-    let minutes = parseInt((ms / (1000 * 60)) % 60);
-    let hours = parseInt((ms / (1000 * 60 * 60)) % 24);
-    const days = parseInt((ms / (1000 * 60 * 60 * 24)) % 365);
-
-    hours = (hours < 10) ? '0' + hours : hours;
-    minutes = (minutes < 10) ? '0' + minutes : minutes;
-    seconds = (seconds < 10) ? '0' + seconds : seconds;
-
-    return `${days ? `${days}:` : ''}${hours}:${minutes}:${seconds}`;
 };
 
 export default async (msg, client, args) => {

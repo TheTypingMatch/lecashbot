@@ -1,9 +1,9 @@
 import { User } from '../models/user.model';
 import { log } from '../utils/log';
-import { toHours } from '../utils/date';
+import { toHours, subtractDate } from '../utils/date';
 import { Leaderboard } from '../models/leaderboard.model';
 import { MessageEmbed } from 'discord.js';
-import { currency } from '../utils/format';
+import { currency, capitalize } from '../utils/format';
 import { Lottery } from '../models/lottery.model';
 import { colors, version } from '../config/config';
 
@@ -144,9 +144,6 @@ const resetLottery = async type => {
     });
 };
 
-// capitalize first letter
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
-
 const endLottery = async (client, type) => {
     const lottery = await Lottery.findOne({ type });
     const { entries } = lottery;
@@ -184,12 +181,6 @@ const endLottery = async (client, type) => {
     client.logger.ready(`(${winnerId}) won the ${type} lottery: $${prize}`)
 
     return resetLottery(type);
-};
-
-// calculate time between now and end date
-const subtractDate = endDate => {
-    const now = new Date();
-    return endDate - now.getTime();
 };
 
 const createLeaderboard = async client => {
