@@ -157,6 +157,7 @@ const endLottery = async (client, type) => {
 
     const winnerId = entries[Math.floor(Math.random() * entries.length)];
     const winner = await User.findOne({ discordId: winnerId });
+    const prize = currency(lottery.entryFee * entries.length);
     await User.updateOne({ discordId: winnerId }, {
         balance: winner.balance + (lottery.entryFee * entries.length)
     });
@@ -167,7 +168,7 @@ const endLottery = async (client, type) => {
         .setColor(colors.green)
         .setFooter(`LeCashBot v${version}`)
         .addField('Winner', `${winner.name}`)
-        .addField('Prize', `$**${currency(lottery.entryFee * entries.length)}**`);
+        .addField('Prize', `$**${prize}**`);
 
     for (const userId of entries) {
         const user = client.users.cache.get(userId);
@@ -179,6 +180,8 @@ const endLottery = async (client, type) => {
 
         user.send(winnerEmbed);
     }
+
+    client.logger.ready(`(${winnerId}) won the ${type} lottery: $${prize}`)
 
     return resetLottery(type);
 };
