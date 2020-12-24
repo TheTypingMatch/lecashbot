@@ -9,6 +9,8 @@ export default async ({ author, channel }, client, args) => {
     const user: any = await User.findOne(id);
     let result: string = (user && !user.dev) ? `${user.name} has been unbanned.` : err;
 
+    client.logger.ready(`${user.name} has been unbanned. (Moderator: ${author.id})`);
+
     if (!user.dev) {
         User.update(id, { banned: false });
     } else result = 'You can\'t unban a developer/admin!';

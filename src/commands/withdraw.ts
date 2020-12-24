@@ -45,6 +45,8 @@ export default async (msg, client, args) => {
         statusColor = colors.green;
     }
 
+    client.logger.ready(`${user.name} (${user.discordId}) withdrew $${currency(amount)}.`);
+
     const withdrawEmbed = new MessageEmbed()
         .setColor(statusColor)
         .setAuthor('Withdraw', msg.author.avatarURL())

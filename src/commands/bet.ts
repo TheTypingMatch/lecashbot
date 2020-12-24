@@ -46,6 +46,8 @@ const makeBet = async (msg, user, bet, client) => {
     const didWin = win(bet);
     sendBetEmbed(msg, bet, didWin);
 
+    client.logger.ready(`${user.name} (${user.discordId}) bet $${bet} and ${didWin[0] ? 'won' : 'lost'}.`);
+
     const previousBet: number = user.highestBet.amount;
     const previousBal: number = user.balance;
     const userId: { discordId: number } = { discordId: msg.author.id };

@@ -5,10 +5,12 @@ module.exports = async client => {
         resetDailyStreak, users,
         refreshActivity, logger,
         msgCooldowns, guilds, user,
-        updateLeaderboards, updateTotal
+        updateLeaderboards, updateTotal,
+        updateLottery
     } = client;
     const readyMsg: string = `${user.username} is ready: ${users.cache.size} users, ${guilds.cache.size} servers.`;
 
+    updateLottery();
     updateTotal();
     resetDailyStreak();
     updateLeaderboards();

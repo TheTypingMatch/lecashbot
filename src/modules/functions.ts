@@ -2,6 +2,10 @@ import { User } from '../models/user.model';
 import { log } from '../utils/log';
 import { toHours } from '../utils/date';
 import { Leaderboard } from '../models/leaderboard.model';
+import { MessageEmbed } from 'discord.js';
+import { currency } from '../utils/format';
+import { Lottery } from '../models/lottery.model';
+import { colors, version } from '../config/config';
 
 const functions = (client: any) => {
     setInterval(client.refreshActivity = () => {
@@ -36,6 +40,30 @@ const functions = (client: any) => {
         client.logger.log('Done checking dailies.', 'ready');
     }, 5 * 60 * 1000);
 
+    setInterval(client.updateLottery = async () => {
+        client.logger.log('Updating lottery...', 'log');
+        // check if lottery has ended for daily/weekly/monthly
+        // if it has end the lottery by DMing all the users who the winner was and payout to the winner
+
+        const lotteryTypes = ['daily', 'weekly', 'monthly'];
+        for (const type of lotteryTypes) {
+            const lottery = await Lottery.findOne({ type });
+
+            if (lottery === undefined || lottery === null) {
+                await createLottery(type, client);
+                continue;
+            }
+
+            const timeLeft = subtractDate(lottery.endDate);
+
+            if (timeLeft < 0) {
+                await endLottery(client, type);
+            }
+        }
+
+        client.logger.ready('Done updating lottery.');
+    }, 5 * 60 * 1000);
+
     setInterval(client.updateTotal = async () => {
         client.logger.log('Updating total...');
 
@@ -68,6 +96,100 @@ const functions = (client: any) => {
             });
         });
     }, 5 * 60 * 1000);
+};
+
+const createLottery = async (type, client) => {
+    const now = new Date();
+    const tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
+    const nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
+    const nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+
+    const entryFees = {
+        daily: 1000,
+        weekly: 5000,
+        monthly: 25000
+    };
+
+    const endDates = {
+        daily: tomorrow,
+        weekly: nextWeek,
+        monthly: nextMonth
+    };
+
+    const newLottery = new Lottery({
+        type,
+        endDate: new Date(endDates[type]),
+        entryFee: entryFees[type]
+    });
+
+    newLottery.save();
+    client.logger.ready(`Created ${type} lottery.`);
+};
+
+const resetLottery = async type => {
+    const now = new Date();
+    const tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
+    const nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
+    const nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+
+    const endDates = {
+        daily: tomorrow,
+        weekly: nextWeek,
+        monthly: nextMonth
+    };
+
+    await Lottery.updateOne({ type }, {
+        endDate: new Date(endDates[type]),
+        entries: []
+    });
+};
+
+// capitalize first letter
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+const endLottery = async (client, type) => {
+    const lottery = await Lottery.findOne({ type });
+    const { entries } = lottery;
+
+    if (entries.length === 0) {
+        return await resetLottery(type);
+    }
+
+    const winnerId = entries[Math.floor(Math.random() * entries.length)];
+    const winner = await User.findOne({ discordId: winnerId });
+    const prize = currency(lottery.entryFee * entries.length);
+    await User.updateOne({ discordId: winnerId }, {
+        balance: winner.balance + (lottery.entryFee * entries.length)
+    });
+
+    const winnerEmbed = new MessageEmbed()
+        .setAuthor(`${capitalize(type)} Lottery Winner!`)
+        .setTimestamp(new Date())
+        .setColor(colors.green)
+        .setFooter(`LeCashBot v${version}`)
+        .addField('Winner', `${winner.name}`)
+        .addField('Prize', `$**${prize}**`);
+
+    for (const userId of entries) {
+        const user = client.users.cache.get(userId);
+
+        if (!user) {
+            client.logger.error('Unable to send user lottery winner.');
+            break;
+        }
+
+        user.send(winnerEmbed);
+    }
+
+    client.logger.ready(`(${winnerId}) won the ${type} lottery: $${prize}`)
+
+    return resetLottery(type);
+};
+
+// calculate time between now and end date
+const subtractDate = endDate => {
+    const now = new Date();
+    return endDate - now.getTime();
 };
 
 const createLeaderboard = async client => {

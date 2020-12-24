@@ -17,6 +17,8 @@ const sendReward = (msg, user, client, embed, recordEmbed) => {
         return msg.channel.send(embed);
     }
 
+    client.logger.ready(`${user.name} (${user.discordId}) made a coinflip with a streak of ${coinflipStreak} and won.`);
+
     const nextCost: number = 100 * (2 ** (coinflipStreak + 1));
     const nextReward: number = 100 * (3 ** coinflipStreak) + ((coinflipStreak + 1) * 150);
     const description: any = {
@@ -61,6 +63,8 @@ const sendLoss = (msg, user, client, embed) => {
         embed.setDescription('You do not have enough to coinflip!');
         return msg.channel.send(embed);
     }
+
+    client.logger.ready(`${user.name} (${user.discordId}) made a coinflip with a streak of ${coinflipStreak} and lost.`);
 
     embed
         .setColor(colors.red)

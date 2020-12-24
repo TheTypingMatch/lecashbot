@@ -72,8 +72,8 @@ const handleLeaderboard = async (msg, type = 'balance') => {
         case 'bet':
             formatBetLb(msg, leaderboardInfo[type]);
             break;
-        default: 
-            formatCashLb(msg, leaderboardInfo['balance']);
+        default:
+            formatCashLb(msg, leaderboardInfo.balance);
             break;
     }
 

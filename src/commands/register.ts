@@ -13,7 +13,8 @@ const registerUser = (msg, ntLink: string) => {
         name: msg.author.username,
         nitroTypeLink: ntLink,
         discordId: msg.author.id,
-        discordTag: msg.author.tag
+        discordTag: msg.author.tag,
+        balance: 1000
     });
     user.save((err: any) => {
         if (err) {
