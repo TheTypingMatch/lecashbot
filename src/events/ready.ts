@@ -10,11 +10,11 @@ module.exports = async client => {
         user,
         users,
         logger,
-        guilds, 
-        msgCooldowns, 
-        resetDailyStreak, 
-        updateLeaderboards, 
-        refreshActivity, 
+        guilds,
+        msgCooldowns,
+        resetDailyStreak,
+        updateLeaderboards,
+        refreshActivity,
         updateTotal,
         updateLottery
     } = client;

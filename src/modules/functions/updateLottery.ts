@@ -25,7 +25,7 @@ export default async (client) => {
     }
 
     client.logger.ready('Done updating lottery.');
-}
+};
 
 const createLottery = async (type, client) => {
     const now = new Date();
@@ -107,7 +107,7 @@ const endLottery = async (client, type) => {
         user.send(winnerEmbed);
     }
 
-    client.logger.ready(`(${winnerId}) won the ${type} lottery: $${prize}`)
+    client.logger.ready(`(${winnerId}) won the ${type} lottery: $${prize}`);
 
     return resetLottery(type);
 };

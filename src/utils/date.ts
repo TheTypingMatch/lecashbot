@@ -28,9 +28,9 @@ const subtractDate = endDate => {
     return timeLeft;
 };
 
-export { 
-    toMinutes, 
-    toHours, 
+export {
+    toMinutes,
+    toHours,
     toDays,
     formatTime,
     subtractDate

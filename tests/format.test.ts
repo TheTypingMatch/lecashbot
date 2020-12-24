@@ -1,7 +1,7 @@
-const { 
-    int, 
-    currency, 
-    capitalize 
+const {
+    int,
+    currency,
+    capitalize
 } = require('../src/utils/format');
 
 test('Converts to correct comma syntax', () => {

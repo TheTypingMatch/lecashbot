@@ -4,8 +4,8 @@ const int = (str: string) => parseInt(str.replace(/[$,]/g, ''));
 // capitalize first letter
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
-export { 
-    currency, 
-    int, 
-    capitalize 
+export {
+    currency,
+    int,
+    capitalize
 };

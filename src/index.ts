@@ -30,7 +30,7 @@ const initDatabase = () => {
         if (err) log('error', err, client);
         else client.logger.log('Successfully connected to database.', 'ready');
     });
-    
+
     mongoose.connect(URI, URIParams, err => {
         if (err) log('error', err, client);
     });
