@@ -66,10 +66,12 @@ const formatTime = ms => {
 
 export default async (msg, client, args) => {
     const lotteryTypes = ['daily', 'weekly', 'monthly'];
-    const lotteryChoice = args[0].toLowerCase();
+    const lotteryChoice = (args[0]) ? args[0].toLowerCase() : '';
+
     if (args[1] === 'enter' && lotteryTypes.includes(lotteryChoice)) {
         return await enterUser(client, msg, lotteryChoice, entryFees[lotteryChoice]);
     }
+
     const lotteryEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setFooter(`LeCashBot v${version}`)
