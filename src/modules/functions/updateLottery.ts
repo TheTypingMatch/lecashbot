@@ -19,12 +19,14 @@ export default async (client) => {
 
         const timeLeft = subtractDate(lottery.endDate);
 
-        if (timeLeft < 0) {
+        if (timeLeft <= 0) {
             await endLottery(client, type);
         }
+
+        client.logger.ready(`Done updating ${type} lottery.`)
     }
 
-    client.logger.ready('Done updating lottery.');
+    client.logger.ready('Done updating lotteries.');
 };
 
 const createLottery = async (type, client) => {
