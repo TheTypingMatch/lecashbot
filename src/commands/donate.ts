@@ -1,8 +1,8 @@
-import { User } from "../models/user.model";
-import { MessageEmbed } from "discord.js";
-import { colors, version } from "../config/config";
-import { donate } from "../config/embeds";
-import { currency } from "../utils/format";
+import { User } from '../models/user.model';
+import { MessageEmbed } from 'discord.js';
+import { colors, version } from '../config/config';
+import { donate } from '../config/embeds';
+import { currency } from '../utils/format';
 
 const { donateLink } = donate;
 
@@ -21,7 +21,7 @@ const addField = (userData: any[]) => {
         return (aAmount > bAmount) ? 1 : ((bAmount > aAmount) ? -1 : 0);
     }).reverse();
 
-    return `${userData.map(user => `**${user.name}** - \`$${currency(user.amount || 0)}\`\n`)}`.replace(/\n,/g, "\n");
+    return `${userData.map(user => `**${user.name}** - \`$${currency(user.amount || 0)}\`\n`)}`.replace(/\n,/g, '\n');
 };
 
 export default async (msg, client, args) => {
@@ -29,11 +29,11 @@ export default async (msg, client, args) => {
 
     const donateEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor("Donate", msg.author.avatarURL())
+        .setAuthor('Donate', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(donateLink)
-        .addField("Donors", addField(donors));
+        .addField('Donors', addField(donors));
 
     return msg.channel.send(donateEmbed);
 };

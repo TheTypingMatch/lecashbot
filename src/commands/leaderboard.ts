@@ -1,21 +1,21 @@
-import { MessageEmbed } from "discord.js";
-import { colors, version } from "../config/config";
-import { currency } from "../utils/format";
-import { addCommandField } from "../utils/field";
-import { Leaderboard } from "../models/leaderboard.model";
+import { MessageEmbed } from 'discord.js';
+import { colors, version } from '../config/config';
+import { currency } from '../utils/format';
+import { addCommandField } from '../utils/field';
+import { Leaderboard } from '../models/leaderboard.model';
 
-let desc = "";
+let desc = '';
 const helpInfo: any = {
-    "leaderboard bet": "- Display the highest bets won.",
-    "leaderboard streak": "- Display the highest daily streaks.",
-    "leaderboard cash": "- Display the wealthiest users.",
-    "leaderboard coinflip": "Display the luckiest users."
+    'leaderboard bet': '- Display the highest bets won.',
+    'leaderboard streak': '- Display the highest daily streaks.',
+    'leaderboard cash': '- Display the wealthiest users.',
+    'leaderboard coinflip': 'Display the luckiest users.'
 };
 
 const handleHelpLb = msg => {
     const lbHelpEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor("Leaderboard")
+        .setAuthor('Leaderboard')
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(addCommandField(helpInfo));
@@ -51,25 +51,25 @@ const formatStreakLb = (msg, topTen) => {
     });
 };
 
-const handleLeaderboard = async (msg, type = "balance") => {
+const handleLeaderboard = async (msg, type = 'balance') => {
     const lbEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor("Leaderboard")
+        .setAuthor('Leaderboard')
         .setFooter(`LeCashBot v${version}`);
 
     const leaderboardInfo = await Leaderboard.findOne({ version: 1 });
 
     switch (type) {
-        case "streak":
+        case 'streak':
             formatStreakLb(msg, leaderboardInfo[type]);
             break;
-        case "balance":
+        case 'balance':
             formatCashLb(msg, leaderboardInfo[type]);
             break;
-        case "coinflip":
+        case 'coinflip':
             formatFlipLb(msg, leaderboardInfo[type]);
             break;
-        case "bet":
+        case 'bet':
             formatBetLb(msg, leaderboardInfo[type]);
             break;
         default:
@@ -78,13 +78,13 @@ const handleLeaderboard = async (msg, type = "balance") => {
     }
 
     lbEmbed.setDescription(desc);
-    desc = "";
+    desc = '';
 
     return msg.channel.send(lbEmbed.setTimestamp(new Date()));
 };
 
 export default async (msg, client, args) => {
-    if (args[0] === "help") {
+    if (args[0] === 'help') {
         return handleHelpLb(msg);
     }
 

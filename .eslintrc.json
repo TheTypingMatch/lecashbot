@@ -33,7 +33,7 @@
             "SwitchCase": 1
         }],
         "semi": [1, "always"],
-        "quotes": [2, "double", "avoid-escape"],
+        "quotes": [2, "single", "avoid-escape"],
         "no-undef": 1,
         "no-unused-vars": 1,
         "prefer-const": 1,

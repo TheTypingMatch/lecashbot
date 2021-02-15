@@ -1,14 +1,14 @@
-import { Lottery } from "../../models/lottery.model";
-import { User } from "../../models/user.model";
-import { currency, capitalize } from "../../utils/format";
-import { MessageEmbed } from "discord.js";
-import { subtractDate } from "../../utils/date";
-import { colors, version } from "../../config/config";
+import { Lottery } from '../../models/lottery.model';
+import { User } from '../../models/user.model';
+import { currency, capitalize } from '../../utils/format';
+import { MessageEmbed } from 'discord.js';
+import { subtractDate } from '../../utils/date';
+import { colors, version } from '../../config/config';
 
 export default async (client) => {
-    client.logger.log("Updating lottery...", "log");
+    client.logger.log('Updating lottery...', 'log');
 
-    const lotteryTypes = ["daily", "weekly", "monthly"];
+    const lotteryTypes = ['daily', 'weekly', 'monthly'];
     for (const type of lotteryTypes) {
         const lottery = await Lottery.findOne({ type });
 
@@ -26,7 +26,7 @@ export default async (client) => {
         client.logger.ready(`Done updating ${type} lottery.`);
     }
 
-    client.logger.ready("Done updating lotteries.");
+    client.logger.ready('Done updating lotteries.');
 };
 
 const createLottery = async (type, client) => {
@@ -95,14 +95,14 @@ const endLottery = async (client, type) => {
         .setTimestamp(new Date())
         .setColor(colors.green)
         .setFooter(`LeCashBot v${version}`)
-        .addField("Winner", `${winner.name}`)
-        .addField("Prize", `$**${prize}**`);
+        .addField('Winner', `${winner.name}`)
+        .addField('Prize', `$**${prize}**`);
 
     for (const userId of entries) {
         const user = client.users.cache.get(userId);
 
         if (!user) {
-            client.logger.error("Unable to send user lottery winner.");
+            client.logger.error('Unable to send user lottery winner.');
             break;
         }
 

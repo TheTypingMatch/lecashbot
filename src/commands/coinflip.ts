@@ -1,8 +1,8 @@
-import { User } from "../models/user.model";
-import { checkErr } from "../utils/checkErr";
-import { MessageEmbed } from "discord.js";
-import { colors, version } from "../config/config";
-import { currency } from "../utils/format";
+import { User } from '../models/user.model';
+import { checkErr } from '../utils/checkErr';
+import { MessageEmbed } from 'discord.js';
+import { colors, version } from '../config/config';
+import { currency } from '../utils/format';
 
 const sendReward = (msg, user, client, embed, recordEmbed) => {
     const { name, balance, coinflipStreak, coinflipBestStreak } = user;
@@ -13,7 +13,7 @@ const sendReward = (msg, user, client, embed, recordEmbed) => {
     const profit: number = reward - cost;
 
     if (balance && balance < cost) {
-        embed.setDescription("You do not have enough to coinflip!");
+        embed.setDescription('You do not have enough to coinflip!');
         return msg.channel.send(embed);
     }
 
@@ -39,7 +39,7 @@ const sendReward = (msg, user, client, embed, recordEmbed) => {
             coinflipBestStreak: coinflipStreak + 1
         }, (err: any) => {
             if (err) {
-                client.logger.log("Unable to update coinflip streak record.", "error");
+                client.logger.log('Unable to update coinflip streak record.', 'error');
             }
         });
     }
@@ -60,7 +60,7 @@ const sendLoss = (msg, user, client, embed) => {
     const userId: { discordId: string } = { discordId: msg.author.id };
 
     if (balance && balance < cost) {
-        embed.setDescription("You do not have enough to coinflip!");
+        embed.setDescription('You do not have enough to coinflip!');
         return msg.channel.send(embed);
     }
 
@@ -71,7 +71,7 @@ const sendLoss = (msg, user, client, embed) => {
         .setDescription(
             (coinflipStreak)
                 ? `You lost your streak and $**${currency(cost)}**!`
-                : "Your streak remains at 0."
+                : 'Your streak remains at 0.'
         );
 
     return User.updateOne(userId, {
@@ -87,7 +87,7 @@ const takeReward = (msg, client, user, embed) => {
 
     embed
         .setColor(colors.green)
-        .setDescription("You won!");
+        .setDescription('You won!');
 
     return User.updateOne(userId, {
         balance: balance + reward,
@@ -99,21 +99,21 @@ export default async (msg, client, args) => {
     const user: any = await User.findOne({ discordId: msg.author.id });
     const flip: number = Math.random();
     const recordEmbed = new MessageEmbed()
-        .setAuthor("New Highest Streak!")
+        .setAuthor('New Highest Streak!')
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setColor(colors.green);
     const flipEmbed = new MessageEmbed()
-        .setAuthor("Coin Flip", msg.author.avatarURL())
+        .setAuthor('Coin Flip', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`);
 
-    if (args[0] && args[0].toLowerCase() === "take") {
+    if (args[0] && args[0].toLowerCase() === 'take') {
         return (user.coinflipStreak > 2)
             ? takeReward(msg, client, user, flipEmbed)
             : msg.channel.send(
                 flipEmbed
-                    .setDescription("Your streak is not high enough!")
+                    .setDescription('Your streak is not high enough!')
                     .setColor(colors.yellow)
             );
     }

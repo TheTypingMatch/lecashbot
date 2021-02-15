@@ -1,4 +1,4 @@
-import * as mongoose from "mongoose";
+import * as mongoose from 'mongoose';
 
 const articleSchema = new mongoose.Schema({
     date: {
@@ -115,6 +115,6 @@ const articleSchema = new mongoose.Schema({
     }
 });
 
-const User = mongoose.model("Article", articleSchema);
+const User = mongoose.model('Article', articleSchema);
 
 export { User };
