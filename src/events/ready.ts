@@ -1,8 +1,8 @@
-import { msgCooldown } from '../config/cooldowns';
-import { functions } from '../modules/functions';
+import { msgCooldown } from "../config/cooldowns";
+import { functions } from "../modules/functions";
 
 module.exports = async client => {
-    client.logger.ready('Client is ready.');
+    client.logger.ready("Client is ready.");
 
     await functions(client);
 

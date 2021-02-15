@@ -1,9 +1,9 @@
 // Functions
-import refreshActivity from './functions/refreshActivity';
-import resetDailyStreak from './functions/resetDailyStreak';
-import updateLottery from './functions/updateLottery';
-import updateTotal from './functions/updateTotal';
-import updateLeaderboards from './functions/updateLeaderboards';
+import refreshActivity from "./functions/refreshActivity";
+import resetDailyStreak from "./functions/resetDailyStreak";
+import updateLottery from "./functions/updateLottery";
+import updateTotal from "./functions/updateTotal";
+import updateLeaderboards from "./functions/updateLeaderboards";
 
 const oneMinute = 60 * 1000;
 

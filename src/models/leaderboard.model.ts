@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import * as mongoose from "mongoose";
 
 const leaderboardSchema = new mongoose.Schema({
     version: {
@@ -28,6 +28,6 @@ const leaderboardSchema = new mongoose.Schema({
     }
 });
 
-const Leaderboard = mongoose.model('Leaderboard', leaderboardSchema);
+const Leaderboard = mongoose.model("Leaderboard", leaderboardSchema);
 
 export { Leaderboard };

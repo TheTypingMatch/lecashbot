@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import * as mongoose from "mongoose";
 
 const lotterySchema = new mongoose.Schema({
     // daily, weekly, monthly
@@ -24,6 +24,6 @@ const lotterySchema = new mongoose.Schema({
     }
 });
 
-const Lottery = mongoose.model('Lottery', lotterySchema);
+const Lottery = mongoose.model("Lottery", lotterySchema);
 
 export { Lottery };
