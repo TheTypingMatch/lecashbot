@@ -109,7 +109,7 @@ git push
 ## The Team
 <table>
   <tr>
-    <th><a href="https://github.com/Le-SirH">Le-SirH</a></th>
+    <th><a href="https://github.com/LeSirH">LeSirH</a></th>
     <th><a href="https://github.com/DamienVesper">DamienVesper</a></th>
     <th><a href="https://github.com/Techy">Techy</a></th>
     <th><a href="https://github.com/Dapp3rDuck">Dapp3rDuck</a></th>
