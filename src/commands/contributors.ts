@@ -5,8 +5,8 @@ import { colors, version } from '../config/config';
 const addField = userData => {
     const field = `${userData.map(user => `<@${user.id}>`)}`;
     return (userData.length > 5)
-        ? field.replace(/,/g, ' ')
-        : field.replace(/,/g, '\n');
+        ? field.replace(/,/g, ` `)
+        : field.replace(/,/g, `\n`);
 };
 
 const getContributors = async type => {
@@ -18,19 +18,19 @@ const getContributors = async type => {
 };
 
 export default async (msg, client, args) => {
-    const admins: any = await getContributors('admin');
-    const devs: any = await getContributors('dev');
-    const testers: any = await getContributors('tester');
+    const admins: any = await getContributors(`admin`);
+    const devs: any = await getContributors(`dev`);
+    const testers: any = await getContributors(`tester`);
 
     const helpEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor('Contributors', msg.author.avatarURL())
+        .setAuthor(`Contributors`, msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
-        .addField('Admins', addField(admins))
-        .addField('Developers', addField(devs))
-        .addField('Testers', addField(testers))
-        .addField('Donors', 'See `$donate` to view cash donors.');
+        .addField(`Admins`, addField(admins))
+        .addField(`Developers`, addField(devs))
+        .addField(`Testers`, addField(testers))
+        .addField(`Donors`, `See \`$donate\` to view cash donors.`);
 
     return msg.channel.send(helpEmbed);
 };

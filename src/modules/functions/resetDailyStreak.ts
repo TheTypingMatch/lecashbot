@@ -3,7 +3,7 @@ import { log } from '../../utils/log';
 import { toHours } from '../../utils/date';
 
 export default async (client) => {
-    client.logger.log('Checking dailies...', 'log');
+    client.logger.log(`Checking dailies...`, `log`);
     const activeUsers: [] = await User.find({ banned: false });
     if (!activeUsers) return;
 
@@ -14,10 +14,10 @@ export default async (client) => {
 
         if (notCollected && dailyStreak) {
             User.updateOne(userId, { dailyStreak: 0 }, err => {
-                if (err) log('error', err, client);
-                else client.logger.log(`Daily Streak reset for user ${name}`, 'ready');
+                if (err) log(`error`, err, client);
+                else client.logger.log(`Daily Streak reset for user ${name}`, `ready`);
             });
         }
     });
-    client.logger.log('Done checking dailies.', 'ready');
+    client.logger.log(`Done checking dailies.`, `ready`);
 };

@@ -1,1 +1,1 @@
-module.exports = async (client: any, err: any) => require('../utils/checkErr')(err, client);
+module.exports = async (client: any, err: any) => require(`../utils/checkErr`)(err, client);

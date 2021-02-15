@@ -2,10 +2,10 @@ import { User } from '../../models/user.model';
 import { Leaderboard } from '../../models/leaderboard.model';
 
 export default async (client) => {
-    client.logger.log('Updating leaderboards...');
+    client.logger.log(`Updating leaderboards...`);
 
     const users: any = await User.find({ banned: false });
-    const lbTypes = ['streak', 'balance', 'coinflip', 'bet'];
+    const lbTypes = [`streak`, `balance`, `coinflip`, `bet`];
     const leaderboardExists = await Leaderboard.findOne({ version: 1 });
 
     if (!leaderboardExists) {
@@ -28,7 +28,7 @@ const getTopTen = (arr: any[]) => arr.slice(-10).reverse();
 
 const createLeaderboard = async client => {
     const leaderboard = new Leaderboard({ version: 1 });
-    client.logger.ready('Created leaderboard.');
+    client.logger.ready(`Created leaderboard.`);
 
     return await leaderboard.save();
 };
@@ -42,9 +42,9 @@ const sortLeaderboard = (users, type) => {
 
 // The sort type is the property of users that the function sorts by
 const sortUsers = (users: any[], sortType: string) => {
-    if (sortType === 'streak') sortType = 'dailyStreak';
+    if (sortType === `streak`) sortType = `dailyStreak`;
 
-    if (sortType === 'bet') {
+    if (sortType === `bet`) {
         return users.sort((a, b) => {
             const aBet: number = a.highestBet.amount;
             const bBet: number = b.highestBet.amount;
@@ -52,7 +52,7 @@ const sortUsers = (users: any[], sortType: string) => {
         });
     }
 
-    if (sortType === 'coinflip') {
+    if (sortType === `coinflip`) {
         return users.sort((a, b) => {
             const aStreak: number = a.coinflipBestStreak;
             const bStreak: number = b.coinflipBestStreak;
@@ -60,9 +60,7 @@ const sortUsers = (users: any[], sortType: string) => {
         });
     }
 
-    return users.sort((a, b) => {
-        return (a[sortType] > b[sortType]) ? 1 : (
-            (b[sortType] > a[sortType]) ? -1 : 0
-        );
-    });
+    return users.sort((a, b) => (a[sortType] > b[sortType]) ? 1 : (
+        (b[sortType] > a[sortType]) ? -1 : 0
+    ));
 };

@@ -1,11 +1,11 @@
 export default (client) => {
-    client.logger.log('Updating presence...', 'log');
+    client.logger.log(`Updating presence...`, `log`);
     client.user.setPresence({
         activity: {
-            type: 'WATCHING',
+            type: `WATCHING`,
             name: `${client.guilds.cache.size} servers.`
         },
-        status: 'online'
+        status: `online`
     });
-    client.logger.log('Done updating presence.', 'ready');
+    client.logger.log(`Done updating presence.`, `ready`);
 };

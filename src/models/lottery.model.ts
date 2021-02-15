@@ -24,6 +24,6 @@ const lotterySchema = new mongoose.Schema({
     }
 });
 
-const Lottery = mongoose.model('Lottery', lotterySchema);
+const Lottery = mongoose.model(`Lottery`, lotterySchema);
 
 export { Lottery };
