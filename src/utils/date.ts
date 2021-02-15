@@ -9,11 +9,11 @@ const formatTime = ms => {
     let hours: string | number = Math.floor((ms / (1000 * 60 * 60)) % 24);
     const days: string | number = Math.floor((ms / (1000 * 60 * 60 * 24)) % 365);
 
-    hours = (hours < 10) ? `0${hours}` : hours;
-    minutes = (minutes < 10) ? `0${minutes}` : minutes;
-    seconds = (seconds < 10) ? `0${seconds}` : seconds;
+    hours = (hours < 10) ? '0' + hours : hours;
+    minutes = (minutes < 10) ? '0' + minutes : minutes;
+    seconds = (seconds < 10) ? '0' + seconds : seconds;
 
-    return `${days ? `**${days}**d ` : ``}**${hours}**h **${minutes}**m **${seconds}**s`;
+    return `${days ? `**${days}**d ` : ''}**${hours}**h **${minutes}**m **${seconds}**s`;
 };
 
 // calculate time between now and end date

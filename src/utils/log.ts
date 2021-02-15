@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { colors, logEnabled, version } from '../config/config';
 
-const Discord = require(`discord.js`);
+const Discord = require('discord.js');
 
 const log = (type: string, msg: string, client) => {
     if (logEnabled) {
@@ -11,8 +11,8 @@ const log = (type: string, msg: string, client) => {
             }
         });
 
-        if (type === `cash`) {
-            client.logger.log(msg.replace(/\*/g, ``));
+        if (type === 'cash') {
+            client.logger.log(msg.replace(/\*/g, ''));
         }
     }
 };

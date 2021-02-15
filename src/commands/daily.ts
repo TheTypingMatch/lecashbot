@@ -27,14 +27,14 @@ const sendReward = (msg, user, client, embed) => {
 };
 
 const sendTimeLeft = (msg, dailyCooldown, embed) => {
-    let timeLength = `seconds`;
+    let timeLength = 'seconds';
     let timeLeft: number = cooldowns.daily - dailyCooldown;
 
     if ((timeLeft / 1000) > 60 && toHours(timeLeft) < 1) {
-        timeLength = `minutes`;
+        timeLength = 'minutes';
         timeLeft = toMinutes(timeLeft);
     } else if (toHours(timeLeft) > 1) {
-        timeLength = `hours`;
+        timeLength = 'hours';
         timeLeft = toHours(timeLeft);
     } else timeLeft = timeLeft / 1000;
 
@@ -53,7 +53,7 @@ export default async (msg, client, args) => {
     const isWithinTimeout: boolean = (user && dailyCooldown >= cooldowns.daily);
 
     const dailyEmbed = new MessageEmbed()
-        .setAuthor(`Daily`, msg.author.avatarURL())
+        .setAuthor('Daily', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`);
 

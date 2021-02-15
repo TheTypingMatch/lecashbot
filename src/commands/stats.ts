@@ -7,7 +7,7 @@ export default async (msg, client, args) => {
     const { guilds, users, ws } = client;
     const statsEmbed = new MessageEmbed()
         .setColor(colors.green)
-        .setAuthor(`Stats`, msg.author.avatarURL())
+        .setAuthor('Stats', msg.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
         .setDescription(`

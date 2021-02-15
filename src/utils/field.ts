@@ -1,4 +1,4 @@
-const replaceCommas = (str: string[]) => `${str}`.replace(/,/g, `\n`);
+const replaceCommas = (str: string[]) => `${str}`.replace(/,/g, '\n');
 
 const addTitleField = (info: {}) => {
     const infoDescription = Object.entries(info).map(desc => `**${desc[0]}** - ${desc[1]}`);

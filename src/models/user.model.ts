@@ -115,6 +115,6 @@ const articleSchema = new mongoose.Schema({
     }
 });
 
-const User = mongoose.model(`Article`, articleSchema);
+const User = mongoose.model('Article', articleSchema);
 
 export { User };

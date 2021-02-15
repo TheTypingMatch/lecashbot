@@ -4,8 +4,8 @@ const colors: any = {
     green: 0x40AC7B
 };
 
-const version = `1.5.0`;
-const prefix = `$`;
+const version = '1.5.0';
+const prefix = '$';
 const devMode = false;
 const logEnabled = true;
 
