@@ -4,7 +4,7 @@ Welcome to LeCashBot! We are excited to help you get started with your first con
 
 ## How can I contribute?
 
-To learn all about contributing to the project, see the [Contributor Guide](/docs/contributors/readme.md). The handbook includes all the details you need to get setup and start shaping the future of web publishing.
+To learn all about contributing to the project, see the [Contributor Guide](/docs/contributors/readme.md).
 
 For documentation changes, see the [documentation repository](https://github.com/TheTypingMatch/lecashbot-docs). If you would like to write code for this bot, follow the steps provided in the [**`README.md`**](https://github.com/TheTypingMatch/lecashbot/blob/master/.github/README.md).
 
