@@ -72,8 +72,3 @@ Replace `<uri>` and `<token>` with your MongoDB database connection URI and bot 
 ```bash
 yarn start
 ```
-
-### Prerequisites
-- [Node.js](https://nodejs.org/en/)
-- [MongoDB](https://www.mongodb.com/)
-- [Discord.js](https://discord.js.org/#/)
