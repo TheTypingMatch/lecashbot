@@ -9,7 +9,8 @@
     "lint:dev": "eslint . --fix",
     "build": "npm run clean && npm run build-babel",
     "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel ./src --out-dir ./build"
+    "build-babel": "babel ./src --out-dir ./build",
+    "test": "jest ./src --passWithNoTests"
   },
   "keywords": [],
   "author": "ryan-harrington",
