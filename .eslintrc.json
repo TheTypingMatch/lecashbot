@@ -13,13 +13,9 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
-    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2018
     },
-    "plugins": [
-        "@typescript-eslint"
-    ],
     "rules": {
         "func-call-spacing": 1,
         "no-unexpected-multiline": 1,
@@ -29,11 +25,22 @@
         "brace-style": 1,
         "comma-spacing": 1,
         "no-var": 1,
-        "indent": ["warn", 4, {
-            "SwitchCase": 1
-        }],
-        "semi": [1, "always"],
-        "quotes": [2, "single", "avoid-escape"],
+        "indent": [
+            "warn",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "semi": [
+            1,
+            "always"
+        ],
+        "quotes": [
+            2,
+            "single",
+            "avoid-escape"
+        ],
         "no-undef": 1,
         "no-unused-vars": 1,
         "prefer-const": 1,
@@ -49,12 +56,18 @@
         "node/no-callback-literal": 1,
         "no-return-assign": 1,
         "eol-last": 1,
-        "arrow-body-style": ["warn", "as-needed"],
+        "arrow-body-style": [
+            "warn",
+            "as-needed"
+        ],
         "func-style": 1,
-        "prefer-arrow/prefer-arrow-functions": ["warn", {
-            "disallowPrototype": true,
-            "singleReturnOnly": true,
-            "classPropertiesAllowed": false
-        }]
+        "prefer-arrow/prefer-arrow-functions": [
+            "warn",
+            {
+                "disallowPrototype": true,
+                "singleReturnOnly": true,
+                "classPropertiesAllowed": false
+            }
+        ]
     }
 }
