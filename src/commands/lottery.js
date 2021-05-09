@@ -58,7 +58,7 @@ export default async (msg, client, args) => {
 
         lotteryEmbed.addField(`
             **${capitalize(type)}**`, `
-            Ends in: \`${timeLeft}\`
+            Ends in: ${timeLeft}
             Entries: **${lottery.entries.length}**
             Entry Fee: **$${currency(lottery.entryFee)}**
             Prize Pool: $**${currency(prizePool) || 'Error'}**
