@@ -71,7 +71,8 @@ const resetLottery = async type => {
 
     await Lottery.updateOne({ type }, {
         endDate: new Date(endDates[type]),
-        entries: []
+        entries: [],
+        previousWinner: winnerId
     });
 };
 

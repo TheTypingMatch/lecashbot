@@ -55,13 +55,15 @@ export default async (msg, client, args) => {
         const lottery = await Lottery.findOne({ type });
         const timeLeft = formatTime(subtractDate(lottery.endDate));
         const prizePool = (lottery.entryFee || 0) * (lottery.entries.length || 0);
+        const previousWinner = lottery.previousWinner ? `++${client.cache.users.get(lottery.previousWinner).username}**` : '*No entries in previous lottery.*'
 
         lotteryEmbed.addField(`
             **${capitalize(type)}**`, `
-            Ends in: \`${timeLeft}\`
+            Ends in: ${timeLeft}
             Entries: **${lottery.entries.length}**
             Entry Fee: **$${currency(lottery.entryFee)}**
             Prize Pool: $**${currency(prizePool) || 'Error'}**
+            Previous Winner: ${previousWinner}
         `);
     }
 

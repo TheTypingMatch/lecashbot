@@ -3,7 +3,7 @@ import { log } from './utils/log';
 const Discord = require('discord.js');
 const mongoDB = require('mongodb');
 const mongoose = require('mongoose');
-process.exit()
+
 const client = new Discord.Client({
     disableEveryone: true,
     ws: {
