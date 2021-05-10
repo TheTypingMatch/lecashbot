@@ -62,7 +62,7 @@ const resetLottery = async type => {
     const tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
     const nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
     const nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
-
+    
     const endDates = {
         daily: tomorrow,
         weekly: nextWeek,
@@ -71,8 +71,7 @@ const resetLottery = async type => {
 
     await Lottery.updateOne({ type }, {
         endDate: new Date(endDates[type]),
-        entries: [],
-        previousWinner: winnerId
+        entries: []
     });
 };
 
@@ -89,6 +88,9 @@ const endLottery = async (client, type) => {
     const prize = currency(lottery.entryFee * entries.length);
     await User.updateOne({ discordId: winnerId }, {
         balance: winner.balance + (lottery.entryFee * entries.length)
+    });
+    await Lottery.updateOne({ type }, {
+      previousWinner: client.users.cache.get(winnerId).username
     });
 
     const winnerEmbed = new MessageEmbed()
