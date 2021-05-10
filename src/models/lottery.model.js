@@ -21,6 +21,11 @@ const lotterySchema = new mongoose.Schema({
         type: Array,
         required: false,
         default: []
+    },
+    // A string that is updated to contain the last winner of the lottery
+    previousWinner: {
+      type: String,
+      required: false
     }
 });
 
