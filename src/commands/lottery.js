@@ -61,6 +61,7 @@ export default async (msg, client, args) => {
             **${capitalize(type)}**`, `
             Ends in: ${timeLeft}
             Entries: **${lottery.entries.length}**
+            Entered: **${lottery.entries.includes(msg.author.id) ? 'yes' : 'no'}**
             Entry Fee: **$${currency(lottery.entryFee)}**
             Prize Pool: $**${currency(prizePool) || 'Error'}**
             Previous Winner: ${previousWinner}
