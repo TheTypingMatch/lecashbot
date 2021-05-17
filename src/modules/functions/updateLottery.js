@@ -62,7 +62,7 @@ const resetLottery = async type => {
     const tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
     const nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
     const nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
-    
+  
     const endDates = {
         daily: tomorrow,
         weekly: nextWeek,
