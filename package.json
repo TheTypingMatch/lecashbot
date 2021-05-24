@@ -16,7 +16,7 @@
   "author": "ryan-harrington",
   "license": "ISC",
   "dependencies": {
-    "@babel/cli": "^7.13.16",
+    "@babel/cli": "^7.14.3",
     "@babel/core": "^7.13.16",
     "axios": "^0.21.1",
     "chalk": "^4.0.0",
