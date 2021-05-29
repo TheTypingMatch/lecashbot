@@ -48,7 +48,7 @@
 | --- | --- | --- |
 | Node.js | [nodejs.org/en/download](https://nodejs.org/en/download/) | [nodejs.org/en/docs](https://nodejs.org/en/docs/) |
 | MongoDB | [docs.mongodb.com/manual/installation](https://docs.mongodb.com/manual/installation/) | [docs.mongodb.com](https://docs.mongodb.com/) |
-| Discord.js | *N/A* | [discord.js.org/#/docs](https://discord.js.org/#/docs/main/master/general/Welcome) |
+| Discord.js | `yarn add discord.js` | [discord.js.org/#/docs](https://discord.js.org/#/docs/main/master/general/Welcome) |
 
 ## Contributing
 1. Fork the repository
