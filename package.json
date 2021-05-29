@@ -1,6 +1,6 @@
 {
   "name": "lecashbot",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A Discord.js economy bot based on the NitroType currency made with TypeScript.",
   "main": "src/index.ts",
   "scripts": {
