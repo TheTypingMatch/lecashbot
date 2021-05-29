@@ -1,4 +1,5 @@
 import { Client } from '../types/discord';
+
 import log from '../utils/log';
 import refreshActivity from '../utils/refreshActivity';
 
