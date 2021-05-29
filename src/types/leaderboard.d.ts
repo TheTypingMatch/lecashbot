@@ -15,7 +15,7 @@ interface Coinflip extends Leaderboard {
     coinflip: number;
 }
 
-interface Streak extends Leaderboard {
+interface Daily extends Leaderboard {
     streak: number;
 }
 
@@ -23,5 +23,5 @@ export {
     Balance,
     Bet,
     Coinflip,
-    Streak
+    Daily
 };
