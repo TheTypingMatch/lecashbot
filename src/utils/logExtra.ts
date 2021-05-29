@@ -1,6 +1,6 @@
 import { author, version } from '../../package.json';
 
-const logSplash = () => {
+const logSplash = (callback?: any) => {
     console.log(`\x1b[34m`, `
 
     ██╗     ███████╗ ██████╗ █████╗ ███████╗██╗  ██╗██████╗  ██████╗ ████████╗
@@ -14,7 +14,7 @@ const logSplash = () => {
     `);
 };
 
-const logHeader = () => {
+const logHeader = (callback?: any) => {
     console.log(`\x1b[34m`, `--------------------------------------------------`);
 };
 

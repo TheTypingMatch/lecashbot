@@ -4,7 +4,7 @@ import * as path from 'path';
 import { Client, Command, Event } from '../types/discord';
 import log from './log';
 
-const loadCommands = (client: Client) => {
+const loadCommands = (client: Client, callback?: any) => {
     fs.readdir(path.resolve(__dirname, `events`), async (err, files) => {
         for (const file of files) {
             if (err) log(`red`, err);
@@ -16,7 +16,7 @@ const loadCommands = (client: Client) => {
     });
 };
 
-const loadEvents = (client: Client) => {
+const loadEvents = (client: Client, callback?: any) => {
     fs.readdir(path.resolve(__dirname, `events`), async (err, files) => {
         for (const file of files) {
             if (err) log(`red`, err);
