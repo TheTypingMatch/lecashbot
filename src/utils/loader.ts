@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { Client, Command, Event } from '../types/discord';
+import { Client } from '../types/discord';
 import log from './log';
 
 const loadCommands = (client: Client, callback?: any) => {
@@ -13,7 +13,7 @@ const loadCommands = (client: Client, callback?: any) => {
             if (err) log(`red`, err);
             log(`yellow`, `Loaded command ${file}.`);
 
-            const command: Command = await import(`../commands/${file}`);
+            const command = await import(`../commands/${file}`);
             client.commands.push({
                 name: file.split(`.`)[0],
                 config: {
@@ -30,13 +30,21 @@ const loadCommands = (client: Client, callback?: any) => {
 };
 
 const loadEvents = (client: Client, callback?: any) => {
+    // Initialize client events.
+    client.events = [];
+
     fs.readdir(path.resolve(__dirname, `../events`), async (err, files) => {
         for (const file of files) {
             if (err) log(`red`, err);
             log(`yellow`, `Loaded event ${file}.`);
 
-            const event: Event = await import(`../events/${file}`);
-            client.on(file.split(`.`)[0], event.callback.bind(null, client));
+            const event = await import(`../events/${file}`);
+            client.on(file.split(`.`)[0], event.default.bind(null, client));
+
+            client.events.push({
+                name: file.split(`.`)[0],
+                callback: event
+            });
         }
 
         return callback();
