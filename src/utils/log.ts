@@ -36,7 +36,7 @@ const log = (color: string, ...content: any[]) => {
         case `cyan`:
             logColor = `\x1b[36m`;
             break;
-        case `white`:
+        default:
             logColor = `\x1b[37m`;
             break;
     }
