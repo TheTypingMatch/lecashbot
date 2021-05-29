@@ -1,7 +1,6 @@
 import * as dotenv from 'dotenv';
 import { log } from './utils/log';
 const Discord = require('discord.js');
-const mongoDB = require('mongodb');
 const mongoose = require('mongoose');
 
 const client = new Discord.Client({
@@ -26,13 +25,9 @@ const URIParams = {
 };
 
 const initDatabase = () => {
-    mongoDB.connect(URI, URIParams, err => {
-        if (err) log('error', err, client);
-        else client.logger.log('Successfully connected to database.', 'ready');
-    });
-
     mongoose.connect(URI, URIParams, err => {
         if (err) log('error', err, client);
+        else client.logger.log('Successfully connected to database.', 'ready');
     });
 };
 
