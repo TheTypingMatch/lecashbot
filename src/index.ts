@@ -19,8 +19,8 @@ const client: Client = new Discord.Client({
 process.on(`uncaughtException`, e => log(`red`, e.stack));
 
 // Bot startup.
-const startBot = () => {
-    logExtra.logSplash(() => {
+const startBot = async () => {
+    logExtra.logSplash(async () => {
         loader.loadCommands(client, async () => {
             loader.loadEvents(client, async () => {
                 logExtra.logHeader(async () => {
