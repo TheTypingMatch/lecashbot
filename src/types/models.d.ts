@@ -42,9 +42,10 @@ interface UserDoc extends Mongoose.Document {
         coinflip: number;
     }
 
-    bestStreak?: {
-        daily: number;
+    highscores?: {
+        bet: number;
         coinflip: number;
+        daily: number;
     }
 }
 

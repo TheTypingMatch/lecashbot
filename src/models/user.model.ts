@@ -38,6 +38,12 @@ const userSchema = new Mongoose.Schema({
     streaks: {
         daily: { type: Number, required: false, default: 0 },
         coinflip: { type: Number, required: false, default: 0 }
+    },
+
+    highscores: {
+        bet: { type: Number, required: false, default: 0 },
+        coinflip: { type: Number, required: false, default: 0 },
+        daily: { type: Number, required: false, default: 0 }
     }
 });
 
