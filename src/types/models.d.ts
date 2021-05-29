@@ -67,6 +67,8 @@ interface LeaderboardDoc extends Mongoose.Document {
     bet: Leaderboard.Bet[];
     coinflip: Leaderboard.Coinflip[];
     streak: Leaderboard.Streak[];
+
+    totalBalance: number;
 }
 
 export {
