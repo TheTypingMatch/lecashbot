@@ -24,9 +24,9 @@ const loadCommands = (client: Client, callback?: any) => {
                 run: command.run
             });
         }
-    });
 
-    return callback();
+        return callback();
+    });
 };
 
 const loadEvents = (client: Client, callback?: any) => {
@@ -38,9 +38,9 @@ const loadEvents = (client: Client, callback?: any) => {
             const event: Event = await import(`../events/${file}`);
             client.on(file.split(`.`)[0], event.callback.bind(null, client));
         }
-    });
 
-    return callback();
+        return callback();
+    });
 };
 
 export {
