@@ -49,7 +49,7 @@ interface UserDoc extends Mongoose.Document {
 }
 
 interface LotteryDoc extends Mongoose.Document {
-    type: string;
+    name: string;
 
     creationDate: any;
     endDate: any;
