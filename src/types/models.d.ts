@@ -1,5 +1,7 @@
 import * as Mongoose from 'mongoose';
 
+import * as Leaderboard from './leaderboard';
+
 interface UserDoc extends Mongoose.Document {
     username: string;
     discordID: string;
@@ -48,7 +50,12 @@ interface UserDoc extends Mongoose.Document {
 
 interface LotteryDoc extends Mongoose.Document {}
 
-interface LeaderboardDoc extends Mongoose.Document {}
+interface LeaderboardDoc extends Mongoose.Document {
+    balance: Leaderboard.Balance[];
+    bet: Leaderboard.Bet[];
+    coinflip: Leaderboard.Coinflip[];
+    streak: Leaderboard.Streak[];
+}
 
 export {
     UserDoc,
