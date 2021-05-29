@@ -5,24 +5,15 @@ import { Client, Command, Event } from '../types/discord';
 import log from './log';
 
 const loadCommands = (client: Client, callback?: any) => {
-    fs.readdir(path.resolve(__dirname, `events`), async (err, files) => {
-        for (const file of files) {
-            if (err) log(`red`, err);
-            log(`yellow`, `Loaded event ${file}.`);
+    // Initialize the commands array.
+    client.commands = [];
 
-            const event: Event = await import(`./events/${file}`);
-            client.on(file.split(`.`)[0], event.callback.bind(null, client));
-        }
-    });
-};
-
-const loadEvents = (client: Client, callback?: any) => {
-    fs.readdir(path.resolve(__dirname, `events`), async (err, files) => {
+    fs.readdir(path.resolve(__dirname, `../commands`), async (err, files) => {
         for (const file of files) {
             if (err) log(`red`, err);
             log(`yellow`, `Loaded command ${file}.`);
 
-            const command: Command = await import(`./commands/${file}`);
+            const command: Command = await import(`../commands/${file}`);
             client.commands.push({
                 name: file.split(`.`)[0],
                 config: {
@@ -34,6 +25,22 @@ const loadEvents = (client: Client, callback?: any) => {
             });
         }
     });
+
+    return callback();
+};
+
+const loadEvents = (client: Client, callback?: any) => {
+    fs.readdir(path.resolve(__dirname, `../events`), async (err, files) => {
+        for (const file of files) {
+            if (err) log(`red`, err);
+            log(`yellow`, `Loaded event ${file}.`);
+
+            const event: Event = await import(`../events/${file}`);
+            client.on(file.split(`.`)[0], event.callback.bind(null, client));
+        }
+    });
+
+    return callback();
 };
 
 export {

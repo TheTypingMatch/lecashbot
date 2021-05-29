@@ -12,10 +12,14 @@ const logSplash = (callback?: any) => {
                                                                                                                                                                                 
                    Created by ${author} | v${version}
     `);
+
+    if (callback) return callback();
 };
 
 const logHeader = (callback?: any) => {
     console.log(`\x1b[34m`, `--------------------------------------------------`);
+
+    if (callback) return callback();
 };
 
 export {
