@@ -22,11 +22,7 @@ process.on(`uncaughtException`, e => log(`red`, e.stack));
 const startBot = () => {
     logExtra.logSplash(() => {
         loader.loadCommands(client, () => {
-            log(`green`, `All commands loaded!`);
-
             loader.loadEvents(client, () => {
-                log(`green`, `All events loaded!`);
-
                 logExtra.logHeader(async () => {
                     await mongoose.connect(process.env.MONGODB_URI, {
                         useNewUrlParser: true,
