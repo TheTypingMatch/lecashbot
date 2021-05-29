@@ -23,11 +23,15 @@ const startBot = () => {
     logSplash(() => {
         loader.loadCommands(client, () => {
             log(`green`, `All commands loaded!`);
+
             loader.loadEvents(client, async () => {
+                log(`green`, `All events loaded!`);
+
                 await mongoose.connect(process.env.MONGODB_URI, {
                     useNewUrlParser: true,
                     useUnifiedTopology: true
                 });
+
                 log(`green`, `Connected to database.`);
 
                 await client.login(process.env.DISCORD_TOKEN).catch(() => log(`red`, `Failed to authenticate client with application.`));
