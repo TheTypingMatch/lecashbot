@@ -37,7 +37,7 @@ interface UserDoc extends Mongoose.Document {
 
     donations?: number;
 
-    streak?: {
+    streaks?: {
         daily: number;
         coinflip: number;
     }

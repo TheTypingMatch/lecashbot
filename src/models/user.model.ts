@@ -33,6 +33,11 @@ const userSchema = new Mongoose.Schema({
         withdraw: { type: Date, required: false, default: new Date(2000, 0, 1) },
 
         command: { type: Date, required: false, default: new Date(2000, 0, 1) }
+    },
+
+    streaks: {
+        daily: { type: Number, required: false, default: 0 },
+        coinflip: { type: Number, required: false, default: 0 }
     }
 });
 
