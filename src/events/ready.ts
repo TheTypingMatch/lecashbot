@@ -9,7 +9,7 @@ export default async (client: Client) => {
 
     logHeader(async () => {
         // Update guild count every 10 minutes.
-        setInterval(() => refreshActivity(client), 36e6);
+        setInterval(() => refreshActivity(client), 6e5);
 
         // Then, set client activity for the first time.
         refreshActivity(client);
