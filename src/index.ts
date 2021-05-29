@@ -28,7 +28,7 @@ for (const file of events) {
     const event = import(`./events/${file}`);
 
     log(`yellow`, `Loaded event ${file}.`);
-    client.on(file.split(`.`)[0], event.bind(null, client));
+    client.on(file.split(`.`)[0], event.callback.bind(null, client));
 }
 
 // Load commands.
