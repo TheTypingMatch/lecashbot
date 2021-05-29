@@ -1,10 +1,10 @@
 import * as Mongoose from 'mongoose';
 
-interface User extends Mongoose.Document {
+interface UserDoc extends Mongoose.Document {
     username: string;
     discordID: string;
 
-    nitroTypeLink: string;
+    nitrotypeLink: string;
     balance?: number;
 
     creationDate: any;
@@ -45,11 +45,13 @@ interface User extends Mongoose.Document {
         coinflip: number;
     }
 }
-interface Lottery extends Mongoose.Document {}
-interface Leaderboard extends Mongoose.Document {}
+
+interface LotteryDoc extends Mongoose.Document {}
+
+interface LeaderboardDoc extends Mongoose.Document {}
 
 export {
-    User,
-    Lottery,
-    Leaderboard
+    UserDoc,
+    LotteryDoc,
+    LeaderboardDoc
 };
