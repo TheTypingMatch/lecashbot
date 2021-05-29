@@ -2,9 +2,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { Client } from '../types/discord';
+
 import log from './log';
+import { logHeader } from './logExtra';
 
 const loadCommands = (client: Client, callback?: any) => {
+    logHeader();
+
     // Initialize the commands array.
     client.commands = [];
 
@@ -30,6 +34,8 @@ const loadCommands = (client: Client, callback?: any) => {
 };
 
 const loadEvents = (client: Client, callback?: any) => {
+    logHeader();
+
     // Initialize client events.
     client.events = [];
 

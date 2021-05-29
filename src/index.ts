@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import { Client } from './types/discord';
 import log from './utils/log';
 
-import { logSplash } from './utils/logExtra';
+import * as logExtra from './utils/logExtra';
 import * as loader from './utils/loader';
 
 import * as dotenv from 'dotenv';
@@ -20,21 +20,25 @@ process.on(`uncaughtException`, e => log(`red`, e.stack));
 
 // Bot startup.
 const startBot = () => {
-    logSplash(() => {
+    logExtra.logSplash(() => {
         loader.loadCommands(client, () => {
             log(`green`, `All commands loaded!`);
 
-            loader.loadEvents(client, async () => {
+            loader.loadEvents(client, () => {
                 log(`green`, `All events loaded!`);
 
-                await mongoose.connect(process.env.MONGODB_URI, {
-                    useNewUrlParser: true,
-                    useUnifiedTopology: true
+                logExtra.logHeader(async () => {
+                    await mongoose.connect(process.env.MONGODB_URI, {
+                        useNewUrlParser: true,
+                        useUnifiedTopology: true
+                    });
+
+                    log(`green`, `Connected to database.`);
+
+                    logExtra.logHeader(async () => {
+                        await client.login(process.env.DISCORD_TOKEN).catch(() => log(`red`, `Failed to authenticate client with application.`));
+                    });
                 });
-
-                log(`green`, `Connected to database.`);
-
-                await client.login(process.env.DISCORD_TOKEN).catch(() => log(`red`, `Failed to authenticate client with application.`));
             });
         });
     });
