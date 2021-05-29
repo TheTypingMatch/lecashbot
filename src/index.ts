@@ -1,4 +1,5 @@
 import * as Discord from 'discord.js';
+import { Client, Command, Event } from './types/discord';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -45,5 +46,4 @@ for (const file of commandFiles) {
     });
 }
 
-logHeader();
 client.login(process.env.DISCORD_TOKEN).catch(() => log(`red`, `Failed to authenticate client with application.`));
