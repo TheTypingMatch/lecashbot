@@ -11,7 +11,7 @@ const refreshActivity = async (client: Client) => {
         },
 
         status: `online`
-    });
+    }).then(() => log(`green`, `Status updated.`));
 };
 
 export default refreshActivity;
