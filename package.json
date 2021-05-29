@@ -1,20 +1,25 @@
 {
   "name": "lecashbot",
   "version": "1.5.0",
-  "description": "A Discord.js economy bot based on the NitroType currency made with TypeScript. ",
-  "main": "./src/index.js",
+  "description": "A Discord.js economy bot based on the NitroType currency made with TypeScript.",
+  "main": "src/index.ts",
+  "devDependencies": {},
   "scripts": {
-    "start": "npm run build && node --max-old-space-size=8192 ./build/index.js",
-    "start:dev": "nodemon --exec babel-node ./src/index.js",
-    "lint:dev": "eslint . --fix",
-    "build": "npm run clean && npm run build-babel",
-    "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel ./src --out-dir ./build",
-    "test": "jest ./src --passWithNoTests"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "ryan-harrington",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {}
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheTypingMatch/lecashbot.git"
+  },
+  "keywords": [
+    "discord.js",
+    "nitrotype",
+    "thetypingmatch"
+  ],
+  "author": "TheTypingMatch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheTypingMatch/lecashbot/issues"
+  },
+  "homepage": "https://github.com/TheTypingMatch/lecashbot#readme"
 }
