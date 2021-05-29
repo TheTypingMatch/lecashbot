@@ -24,11 +24,11 @@ const lotterySchema = new mongoose.Schema({
     },
     // A string that is updated to contain the last winner of the lottery
     previousWinner: {
-      type: String,
-      required: false
+        type: String,
+        required: false
     }
 });
 
-const Lottery = mongoose.model('Lottery', lotterySchema);
+const Lottery = mongoose.model(`Lottery`, lotterySchema);
 
 export { Lottery };

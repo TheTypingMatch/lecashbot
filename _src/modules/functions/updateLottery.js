@@ -6,9 +6,9 @@ import { subtractDate } from '../../utils/date';
 import { colors, version } from '../../config/config';
 
 export default async (client) => {
-    client.logger.log('Updating lottery...', 'log');
+    client.logger.log(`Updating lottery...`, `log`);
 
-    const lotteryTypes = ['daily', 'weekly', 'monthly'];
+    const lotteryTypes = [`daily`, `weekly`, `monthly`];
     for (const type of lotteryTypes) {
         const lottery = await Lottery.findOne({ type });
 
@@ -26,7 +26,7 @@ export default async (client) => {
         client.logger.ready(`Done updating ${type} lottery.`);
     }
 
-    client.logger.ready('Done updating lotteries.');
+    client.logger.ready(`Done updating lotteries.`);
 };
 
 const createLottery = async (type, client) => {
@@ -62,7 +62,7 @@ const resetLottery = async type => {
     const tomorrow = new Date().getTime() + 24 * 60 * 60 * 1000;
     const nextWeek = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
     const nextMonth = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
-  
+
     const endDates = {
         daily: tomorrow,
         weekly: nextWeek,
@@ -90,7 +90,7 @@ const endLottery = async (client, type) => {
         balance: winner.balance + (lottery.entryFee * entries.length)
     });
     await Lottery.updateOne({ type }, {
-      previousWinner: client.users.cache.get(winnerId).username
+        previousWinner: client.users.cache.get(winnerId).username
     });
 
     const winnerEmbed = new MessageEmbed()
@@ -98,14 +98,14 @@ const endLottery = async (client, type) => {
         .setTimestamp(new Date())
         .setColor(colors.green)
         .setFooter(`LeCashBot v${version}`)
-        .addField('Winner', `${winner.name}`)
-        .addField('Prize', `$**${prize}**`);
+        .addField(`Winner`, `${winner.name}`)
+        .addField(`Prize`, `$**${prize}**`);
 
     for (const userId of entries) {
         const user = client.users.cache.get(userId);
 
         if (!user) {
-            client.logger.error('Unable to send user lottery winner.');
+            client.logger.error(`Unable to send user lottery winner.`);
             break;
         }
 

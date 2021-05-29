@@ -7,10 +7,10 @@ import path from 'path';
 const run = async (cmd, msg, client, args) => {
     const cooldownEmbed = new MessageEmbed()
         .setColor(colors.yellow)
-        .setAuthor('Cooldown')
+        .setAuthor(`Cooldown`)
         .setTimestamp(new Date())
         .setFooter(`LeCashBot v${version}`)
-        .setDescription('A little too quick there!');
+        .setDescription(`A little too quick there!`);
 
     const userId = { discordId: msg.author.id };
     const user = await User.findOne({ discordId: msg.author.id });
@@ -24,7 +24,7 @@ const run = async (cmd, msg, client, args) => {
         } else {
             User.updateOne(userId, { cmdCooldown: new Date() }, err => {
                 if (err) {
-                    client.logger.log('Error updating user cooldown.', 'error');
+                    client.logger.log(`Error updating user cooldown.`, `error`);
                 }
             });
         }

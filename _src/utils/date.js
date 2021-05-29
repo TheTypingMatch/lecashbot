@@ -13,7 +13,7 @@ const formatTime = ms => {
     minutes = (minutes < 10) ? `0${minutes}` : minutes;
     seconds = (seconds < 10) ? `0${seconds}` : seconds;
 
-    return `${days ? `**${days}**d ` : ''}**${hours}**h **${minutes}**m **${seconds}**s`;
+    return `${days ? `**${days}**d ` : ``}**${hours}**h **${minutes}**m **${seconds}**s`;
 };
 
 // calculate time between now and end date

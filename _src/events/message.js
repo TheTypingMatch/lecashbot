@@ -11,7 +11,7 @@ module.exports = async (client, msg) => {
     // Handle command arguments
     const args = content.slice(config.prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
-    const generalCmds = ['help', 'register', 'total', 'leaderboard', 'ping', 'stats', 'faq'];
+    const generalCmds = [`help`, `register`, `total`, `leaderboard`, `ping`, `stats`, `faq`];
 
     if (author.bot) return;
 
@@ -22,13 +22,13 @@ module.exports = async (client, msg) => {
             const updatedName = { name: author.username };
             User.updateOne({ discordId: userId }, updatedName, err => {
                 checkErr(err, client, () => {
-                    logger.log(`Updated username ${user.name} to ${author.username}`, 'ready');
+                    logger.log(`Updated username ${user.name} to ${author.username}`, `ready`);
                 });
             });
         }
 
         if (content.startsWith(config.prefix) && user.banned) {
-            return msg.reply('You have been banned from the bot.');
+            return msg.reply(`You have been banned from the bot.`);
         }
 
         // Add user to msg reward cooldown
@@ -40,7 +40,7 @@ module.exports = async (client, msg) => {
 
     if (!content.startsWith(config.prefix)) return;
     if (!user && !generalCmds.includes(cmd)) {
-        return msg.reply('You must `$register` an account before using any other commands!');
+        return msg.reply(`You must \`$register\` an account before using any other commands!`);
     }
 
     // Command handler

@@ -6,7 +6,7 @@ const deleteEmbed = new MessageEmbed()
     .setColor(colors.green)
     .setTimestamp(new Date())
     .setFooter(`LeCashBot v${version}`)
-    .setDescription('Your data has been deleted.');
+    .setDescription(`Your data has been deleted.`);
 
 const deleteData = async (client, id, msg) => {
     await User.deleteOne({ discordId: id });
@@ -16,12 +16,12 @@ const deleteData = async (client, id, msg) => {
 };
 
 export default async (msg, client, args) => {
-    const error = 'You must type your Discord name: `$delete DISCORD_ID`';
+    const error = `You must type your Discord name: \`$delete DISCORD_ID\``;
 
     const userId = args[0];
     const user = await User.findOne({ discordId: msg.author.id });
 
-    deleteEmbed.setAuthor('Delete', msg.author.avatarURL());
+    deleteEmbed.setAuthor(`Delete`, msg.author.avatarURL());
 
     return (userId && userId === user.discordId)
         ? deleteData(client, msg.author.id, msg)
