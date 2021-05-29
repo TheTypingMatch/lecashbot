@@ -4,7 +4,10 @@
   "description": "A Discord.js economy bot based on the NitroType currency made with TypeScript.",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "node ./build/src/index.ts",
+    "dist": "yarn build && yarn dev",
+    "dev:lint": "eslint . --fix --ext .ts"
   },
   "repository": {
     "type": "git",
