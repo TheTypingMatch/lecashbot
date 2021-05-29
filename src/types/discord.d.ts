@@ -9,7 +9,8 @@ interface Command {
 }
 
 interface Event {
-    
+    name: string;
+    callback: any;
 }
 
 interface Client extends Discord.Client {
@@ -18,5 +19,7 @@ interface Client extends Discord.Client {
 }
 
 export {
-    Client
+    Client,
+    Command,
+    Event
 };
