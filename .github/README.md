@@ -3,7 +3,7 @@
 <p>
   <img src="https://img.shields.io/discord/689241652916912138?style=flat">
   <img src="https://github.com/TheTypingMatch/lecashbot/workflows/Build/badge.svg">
-  <img src="https://github.com/TheTypingMatch/lecashbot/workflows/Test/badge.svg">
+  <img src="https://github.com/TheTypingMatch/lecashbot/workflows/Lint/badge.svg">
 </p>
 <p>
   A Discord.js bot based on the <a href="https://www.nitrotype.com/">NitroType</a> currency.
