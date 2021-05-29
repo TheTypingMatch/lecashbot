@@ -3,7 +3,7 @@ import * as Mongoose from 'mongoose';
 import { LeaderboardDoc } from '../types/models';
 
 const leaderboardSchema = new Mongoose.Schema({
-    creationDate: { type: Date, required: false, default: new Date() },
+    creationDate: { type: String, required: false, default: new Date().toString() },
 
     balance: { type: Array, required: true },
     bet: { type: Array, required: true },

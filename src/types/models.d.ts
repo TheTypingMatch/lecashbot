@@ -9,7 +9,7 @@ interface UserDoc extends Mongoose.Document {
     nitrotypeLink: string;
     balance?: number;
 
-    creationDate: any;
+    creationDate: string;
     banned?: boolean;
 
     badges?: {
@@ -23,16 +23,16 @@ interface UserDoc extends Mongoose.Document {
     }
 
     cooldowns?: {
-        bet: any;
-        daily: any;
-        delete: any;
-        coinflip: any;
-        give: any;
-        report: any;
-        suggest: any;
-        withdraw: any;
+        bet: string;
+        daily: string;
+        delete: string;
+        coinflip: string;
+        give: string;
+        report: string;
+        suggest: string;
+        withdraw: string;
 
-        command: any;
+        command: string;
     }
 
     donations?: number;
@@ -51,8 +51,8 @@ interface UserDoc extends Mongoose.Document {
 interface LotteryDoc extends Mongoose.Document {
     name: string;
 
-    creationDate: any;
-    endDate: any;
+    creationDate: string;
+    endDate: string;
 
     entryFee: number;
     entries: string[];
@@ -61,7 +61,7 @@ interface LotteryDoc extends Mongoose.Document {
 }
 
 interface LeaderboardDoc extends Mongoose.Document {
-    creationDate?: any;
+    creationDate: string;
 
     balance: Leaderboard.Balance[];
     bet: Leaderboard.Bet[];

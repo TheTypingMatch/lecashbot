@@ -23,16 +23,16 @@ const userSchema = new Mongoose.Schema({
     },
 
     cooldowns: {
-        bet: { type: Date, required: false, default: new Date(2000, 0, 1) },
-        daily: { type: Date, required: false, default: new Date(2000, 0, 1) },
-        delete: { type: Date, required: false, default: new Date() },
-        coinflip: { type: Date, required: false, default: new Date(2000, 0, 1) },
-        give: { type: Date, required: false, default: new Date(2000, 0, 1) },
-        report: { type: Date, required: false, default: new Date(2000, 0, 1) },
-        suggest: { type: Date, required: false, default: new Date(2000, 0, 1) },
-        withdraw: { type: Date, required: false, default: new Date(2000, 0, 1) },
+        bet: { type: String, required: false, default: new Date(2000, 0, 1).toString() },
+        daily: { type: String, required: false, default: new Date(2000, 0, 1).toString() },
+        delete: { type: String, required: false, default: new Date().toString() },
+        coinflip: { type: String, required: false, default: new Date(2000, 0, 1).toString() },
+        give: { type: String, required: false, default: new Date(2000, 0, 1).toString() },
+        report: { type: String, required: false, default: new Date(2000, 0, 1).toString() },
+        suggest: { type: String, required: false, default: new Date(2000, 0, 1).toString() },
+        withdraw: { type: String, required: false, default: new Date(2000, 0, 1).toString() },
 
-        command: { type: Date, required: false, default: new Date(2000, 0, 1) }
+        command: { type: String, required: false, default: new Date(2000, 0, 1).toString() }
     },
 
     streaks: {
