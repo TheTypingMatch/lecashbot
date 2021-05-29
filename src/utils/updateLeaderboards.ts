@@ -73,7 +73,10 @@ const updateLeaderboards = async (client: Client, callback?: any) => {
         daily: await sortLeaderboard(`daily`, leaderboard)
     });
 
-    return await lb.save();
+    await lb.save();
+    log(`green`, `Leaderboards updated.`);
+
+    if (callback !== undefined) return callback();
 };
 
 export default updateLeaderboards;

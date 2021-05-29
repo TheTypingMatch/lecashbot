@@ -17,6 +17,7 @@ const resetDailyStreak = async (callback?: any) => {
         }
     }
 
+    log(`green`, `Daily streaks updated.`);
     if (callback !== undefined) return callback();
 };
 

@@ -13,6 +13,7 @@ const refreshActivity = async (client: Client, callback?: any) => {
         status: `online`
     });
 
+    log(`green`, `Status updated.`);
     if (callback !== undefined) callback();
 };
 
