@@ -2,7 +2,7 @@ import User from '../models/user.model';
 
 import log from './log';
 
-const resetDailyStreak = async (callback?: void) => {
+const resetDailyStreak = async (callback?: any) => {
     log(`cyan`, `Updating daily streaks...`);
 
     const users = await User.find({ banned: false });
@@ -16,6 +16,8 @@ const resetDailyStreak = async (callback?: void) => {
             user.save();
         }
     }
+
+    if (callback !== undefined) return callback();
 };
 
 export default resetDailyStreak;

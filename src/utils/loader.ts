@@ -29,7 +29,7 @@ const loadCommands = (client: Client, callback?: any) => {
             });
         }
 
-        return callback();
+        if (callback !== undefined) return callback();
     });
 };
 
@@ -53,7 +53,7 @@ const loadEvents = (client: Client, callback?: any) => {
             });
         }
 
-        return callback();
+        if (callback !== undefined) return callback();
     });
 };
 
