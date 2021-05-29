@@ -67,7 +67,10 @@ const updateLeaderboards = async (client: Client) => {
     if (leaderboard.length === 0) return log(`yellow`, `No active users found. Skipping...`);
 
     const lb = new Leaderboard({
-        balance: await sortLeaderboard(`balance`, leaderboard)
+        balance: await sortLeaderboard(`balance`, leaderboard),
+        bet: await sortLeaderboard(`bet`, leaderboard),
+        coinflip: await sortLeaderboard(`coinflip`, leaderboard),
+        daily: await sortLeaderboard(`daily`, leaderboard)
     });
 
     return await lb.save();
