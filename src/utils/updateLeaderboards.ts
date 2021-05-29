@@ -60,11 +60,11 @@ const sortLeaderboard = async (type: string, lb: LeaderboardUser[]) => {
     }
 };
 
-const updateLeaderboards = async (client: Client) => {
+const updateLeaderboards = async (client: Client, callback?: any) => {
     log(`cyan`, `Updating leaderboards...`);
 
     const leaderboard = await createLeaderboard(client);
-    if (leaderboard.length === 0) return log(`yellow`, `No active users found. Skipping...`);
+    if (!leaderboard) return log(`yellow`, `No active users found. Skipping...`);
 
     const lb = new Leaderboard({
         balance: await sortLeaderboard(`balance`, leaderboard),
