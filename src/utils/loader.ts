@@ -25,9 +25,11 @@ const loadEvents = (client: Client, callback?: any) => {
             const command: Command = await import(`./commands/${file}`);
             client.commands.push({
                 name: file.split(`.`)[0],
-                desc: command.desc,
-                usage: command.usage,
-                aliases: command.aliases,
+                config: {
+                    desc: command.config.desc,
+                    usage: command.config.usage || ``,
+                    aliases: command.config.aliases || []
+                },
                 run: command.run
             });
         }

@@ -1,10 +1,13 @@
 import * as Discord from 'discord.js';
 
-interface Command {
-    name: string;
+interface CommandConfig {
     desc: string;
     usage?: string;
     aliases?: string[];
+}
+interface Command {
+    name: string;
+    config: CommandConfig;
     run: any;
 }
 
@@ -21,5 +24,6 @@ interface Client extends Discord.Client {
 export {
     Client,
     Command,
+    CommandConfig,
     Event
 };
