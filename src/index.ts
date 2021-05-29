@@ -1,5 +1,5 @@
 import * as Discord from 'discord.js';
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 import { Client } from './types/discord';
 import log from './utils/log';
