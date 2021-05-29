@@ -2,7 +2,7 @@ import { Client } from '../types/discord';
 import log from '../utils/log';
 
 const refreshActivity = async (client: Client) => {
-    log(`cyan`, `Updating presence...`);
+    log(`cyan`, `Updating status...`);
 
     client.user.setPresence({
         activity: {
