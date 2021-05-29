@@ -1,5 +1,5 @@
 import * as Discord from 'discord.js';
-import { Client, Command, Event } from './types/discord';
+import { Client } from './types/discord';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -23,27 +23,31 @@ const client: Client = new Discord.Client({
 process.on(`uncaughtException`, e => log(`red`, e.stack));
 
 // Load events.
-const events = fs.readdirSync(path.resolve(__dirname, `events`));
-for (const file of events) {
-    const event = import(`./events/${file}`);
+fs.readdir(path.resolve(__dirname, `events`), async (err, files) => {
+    for (const file of files) {
+        if (err) log(`red`, err);
+        log(`yellow`, `Loaded event ${file}.`);
 
-    log(`yellow`, `Loaded event ${file}.`);
-    client.on(file.split(`.`)[0], event.callback.bind(null, client));
-}
+        const event = await import(`./events/${file}`);
+        client.on(file.split(`.`)[0], event.callback.bind(null, client));
+    }
+});
 
 // Load commands.
-const commandFiles = fs.readdirSync(path.resolve(__dirname, `commands`));
-for (const file of commandFiles) {
-    const command = import(`./commands/${file}`);
+fs.readdir(path.resolve(__dirname, `events`), async (err, files) => {
+    for (const file of files) {
+        if (err) log(`red`, err);
+        log(`yellow`, `Loaded command ${file}.`);
 
-    log(`yellow`, `Loaded command ${file}.`);
-    client.commands.push({
-        name: file.split(`.`)[0],
-        desc: command.desc,
-        usage: command.usage,
-        aliases: command.aliases,
-        run: command.run
-    });
-}
+        const command = await import(`./commands/${file}`);
+        client.commands.push({
+            name: file.split(`.`)[0],
+            desc: command.desc,
+            usage: command.usage,
+            aliases: command.aliases,
+            run: command.run
+        });
+    }
+});
 
 client.login(process.env.DISCORD_TOKEN).catch(() => log(`red`, `Failed to authenticate client with application.`));
