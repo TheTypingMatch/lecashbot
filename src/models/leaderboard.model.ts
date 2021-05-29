@@ -10,7 +10,7 @@ const leaderboardSchema = new Mongoose.Schema({
     coinflip: { type: Array, required: true },
     streak: { type: Array, required: true },
 
-    totalBalance: { type: String, required: true }
+    totalBalance: { type: Number, required: true }
 });
 
 const Leaderboard = Mongoose.model<LeaderboardDoc>(`Leaderboard`, leaderboardSchema);
