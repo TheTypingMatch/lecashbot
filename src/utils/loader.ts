@@ -21,9 +21,9 @@ const loadCommands = (client: Client, callback?: any) => {
             client.commands.push({
                 name: file.split(`.`)[0],
                 config: {
-                    desc: command.config.desc,
-                    usage: command.config.usage || ``,
-                    aliases: command.config.aliases || []
+                    desc: command.cmd.desc,
+                    usage: command.cmd.usage || ``,
+                    aliases: command.cmd.aliases || []
                 },
                 run: command.run
             });
