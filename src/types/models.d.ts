@@ -48,7 +48,17 @@ interface UserDoc extends Mongoose.Document {
     }
 }
 
-interface LotteryDoc extends Mongoose.Document {}
+interface LotteryDoc extends Mongoose.Document {
+    type: string;
+
+    creationDate: any;
+    endDate: any;
+
+    entryFee: number;
+    entries: string[];
+
+    previousWinner?: string;
+}
 
 interface LeaderboardDoc extends Mongoose.Document {
     creationDate?: any;
