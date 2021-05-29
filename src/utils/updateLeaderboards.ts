@@ -64,7 +64,12 @@ const updateLeaderboards = async (client: Client, callback?: any) => {
     log(`cyan`, `Updating leaderboards...`);
 
     const leaderboard = await createLeaderboard(client);
-    if (!leaderboard) return log(`yellow`, `No active users found. Skipping...`);
+    if (!leaderboard || leaderboard.length === 0) {
+        log(`yellow`, `No active users found. Skipping...`);
+
+        if (callback !== undefined) callback();
+        return;
+    }
 
     const lb = new Leaderboard({
         balance: await sortLeaderboard(`balance`, leaderboard),
