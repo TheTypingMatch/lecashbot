@@ -1,4 +1,4 @@
-import axios, { Method } from 'axios';
+import axios, { Method, AxiosResponse } from 'axios';
 
 import cookie from 'cookie';
 import qs from 'qs';
@@ -20,32 +20,38 @@ class NTClient {
             username,
             password
         };
+
+        this.cookies = {};
     }
 
-    sendRequest = (method: Method, path: string, options: any) => {
+    sendRequest = async (method: Method, path: string, options?: any) => {
         const uhash = this.cookies.ntuserrem;
 
-        return axios({
+        return await axios({
             method,
             baseURL,
             url: path,
 
-            headers: { Cookie: serializeCookies(this.cookies) },
-            params: { uhash, ...options },
+            headers: {
+                Cookie: serializeCookies(this.cookies) // ,
+                // 'User-Agent': `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36`,
+                // origin: baseURL*/
+            },
 
+            params: { uhash, ...options },
             data: method === `POST` && qs.stringify({
                 uhash,
-                ...(options.data || null)
+                ...(options ? options.data || null : null)
             })
         });
     }
 
-    login = () => {
-        axios.post(`${baseURL}/login`, {
+    login = async () => {
+        return await this.sendRequest(`POST`, `/login`, {
             username: this.credentials.username,
             password: this.credentials.password
-        }).then(({ headers }) => {
-            for (const str of headers[`set-cookie`]) {
+        }).then((res: AxiosResponse) => {
+            for (const str of res.headers[`set-cookie`]) {
                 const cookieObj = cookie.parse(str);
                 const key = Object.keys(cookieObj)[0];
 
@@ -54,7 +60,12 @@ class NTClient {
         });
     }
 
-    get = (path: string, options: any) => {
+    get = async (path: string, options?: any) => {
+        return await this.sendRequest(`GET`, path, options || null);
+    }
+
+    post = async (path: string, options?: any) => {
+        return await this.sendRequest(`POST`, path, options || null);
     }
 }
 
