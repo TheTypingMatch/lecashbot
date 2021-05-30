@@ -1,5 +1,4 @@
 import axios, { Method, AxiosResponse } from 'axios';
-import log from './utils/log';
 
 import cookie from 'cookie';
 import qs from 'qs';
@@ -47,6 +46,20 @@ class NTClient {
         });
     }
 
+    login = async () => {
+        return await this.sendRequest(`POST`, `/login`, {
+            username: this.credentials.username,
+            password: this.credentials.password
+        }).then((res: AxiosResponse) => {
+            for (const str of res.headers[`set-cookie`]) {
+                const cookieObj = cookie.parse(str);
+                const key = Object.keys(cookieObj)[0];
+
+                this.cookies[key] = cookieObj[key];
+            }
+        });
+    }
+
     get = async (path: string, options?: any) => {
         return await this.sendRequest(`GET`, path, options || null);
     }
@@ -54,20 +67,6 @@ class NTClient {
     post = async (path: string, options?: any) => {
         return await this.sendRequest(`POST`, path, options || null);
     }
-
-    login = async () => await this.post(`/login`, {
-        username: this.credentials.username,
-        password: this.credentials.password
-    }).then((res: AxiosResponse) => {
-        for (const str of res.headers[`set-cookie`]) {
-            const cookieObj = cookie.parse(str);
-            const key = Object.keys(cookieObj)[0];
-
-            this.cookies[key] = cookieObj[key];
-        }
-    });
-
-    logout = async () => await this.post(`/logout`).then(() => log(`cyan`, `Logged out of client.`));
 }
 
 export default NTClient;
