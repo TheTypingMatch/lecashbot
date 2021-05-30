@@ -2,9 +2,10 @@ import * as Discord from 'discord.js';
 import { Client, CommandConfig } from '../types/discord';
 
 import config from '../../config/config';
-
 import User from '../models/user.model';
+
 import randomString from '../utils/randomString';
+import log from '../utils/log';
 
 const cmd: CommandConfig = {
     desc: `Change your linked NT account`,
@@ -31,9 +32,9 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         user.delete(err => {
             if (err) {
                 log(`red`, err);
-                return message.channel.send(`${m} There was an error changing your linked NT account.\nPlease notify your local LeCashBot developer.`)
+                return message.channel.send(`${m} There was an error changing your linked NT account.\nPlease notify your local LeCashBot developer.`);
             }
-        })
+        });
 
         const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
             .setColor(config.colors.warning)
