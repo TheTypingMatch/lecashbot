@@ -30,7 +30,7 @@ const userSchema = new Mongoose.Schema({
         report: { type: String, required: false, default: new Date(1970, 0, 1).toString() },
         suggest: { type: String, required: false, default: new Date(1970, 0, 1).toString() },
         withdraw: { type: String, required: false, default: new Date(1970, 0, 1).toString() },
-        rename: { type: String, required: false, default: new Date().toString() },
+        rename: { type: String, required: false, default: new Date().toString() }
     },
 
     streaks: {
