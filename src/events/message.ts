@@ -2,9 +2,10 @@ import * as Discord from 'discord.js';
 import { Client } from '../types/discord';
 
 import config from '../../config/config';
-import log from '../utils/log';
-
 import User from '../models/user.model';
+
+import log from '../utils/log';
+import formatTime from '../utils/formatTime';
 
 export default async (client: Client, message: Discord.Message) => {
     const m = `${message.author} »`;
@@ -23,14 +24,16 @@ export default async (client: Client, message: Discord.Message) => {
 
     if ((cmd.config.usage) && args.length < (cmd.config.usage.split(`<`).length) - 1) return message.channel.send(`${m} Proper usage is \`${config.prefix + cmd.name} ${cmd.config.usage}\`.`);
     else {
-        const userIsBanned = await User.findOne({
-            discordID: message.author.id,
-            banned: true
-        });
+        const user = await User.findOne({ discordID: message.author.id });
 
-        if (userIsBanned) {
-            log(`cyan`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is blacklisted.`);
-            return message.channel.send(`${m} You are currently banned from the bot!`);
+        if (user) {
+            if (user.banned) {
+                log(`cyan`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is blacklisted.`);
+                return message.channel.send(`${m} You are currently banned from the bot!`);
+            } else if (user.cooldowns[command]) {
+                const timeRemaining = new Date().valueOf() - new Date(user.cooldowns[command]).valueOf();
+                if (timeRemaining < config.cooldowns[command]) return message.channel.send(`${m} You must wait another ${formatTime(config.cooldowns[command] - timeRemaining)} before using that command!`);
+            }
         }
 
         log(`magenta`, `${message.author.tag} ran command ${command} in ${message.guild.name}.`);
