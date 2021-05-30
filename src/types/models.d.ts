@@ -30,6 +30,7 @@ interface UserDoc extends Mongoose.Document {
         report: string;
         suggest: string;
         withdraw: string;
+        rename: string;
 
         command: string;
     }
