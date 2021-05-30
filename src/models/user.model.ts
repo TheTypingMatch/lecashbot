@@ -6,8 +6,7 @@ const userSchema = new Mongoose.Schema({
     username: { type: String, required: true },
     discordID: { type: String, required: true },
 
-    nitrotypeLink: { type: String, required: true },
-    balance: { type: Number, required: false, default: 0 },
+    balance: { type: Number, required: false, default: 1000 },
 
     creationDate: { type: Date, required: false, default: new Date() },
     banned: { type: Boolean, required: false, default: false },

@@ -6,7 +6,6 @@ interface UserDoc extends Mongoose.Document {
     username: string;
     discordID: string;
 
-    nitrotypeLink: string;
     balance?: number;
 
     creationDate: string;
