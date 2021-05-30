@@ -19,7 +19,6 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     if (!user) return message.channel.send(`${m} You do not have an account!`);
 
     const verificationCode = randomString(4);
-
     message.channel.send(`${m} Are you sure you want to change your linked NT account?\nType \`${verificationCode}\` to confirm doing so.`);
 
     message.channel.awaitMessages(m => m.author.id === message.author.id, {
