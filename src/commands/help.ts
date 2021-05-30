@@ -42,7 +42,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         .setDescription(`${command.config.desc}\n\n${data.join(`\n`)}`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
-    return message.channel.send(sEmbed);
+    message.channel.send(sEmbed);
 };
 
 export {

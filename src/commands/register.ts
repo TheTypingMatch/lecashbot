@@ -43,7 +43,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
             .setDescription(`Success! Do \`${config.prefix}help\` to view commands!`)
             .setTimestamp(new Date())
             .setFooter(config.footer);
-        return message.channel.send(sEmbed);
+        message.channel.send(sEmbed);
     });
 };
 

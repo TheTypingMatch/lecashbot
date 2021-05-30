@@ -28,7 +28,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         .setDescription(`${user.balance}`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
-    return message.channel.send(sEmbed);
+    message.channel.send(sEmbed);
 };
 
 export {
