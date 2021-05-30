@@ -9,6 +9,8 @@ class NTClient {
         password: string
     }
 
+    cookies: string[]
+
     constructor (username: string, password: string) {
         this.credentials = {
             username,
@@ -23,6 +25,9 @@ class NTClient {
         }).then(({ headers }) => {
             for (const str of headers[`set-cookie`]) {
                 const cookieObj = cookie.parse(str);
+                const key = Object.keys(cookieObj)[0];
+
+                this.cookies[key] = cookieObj[key];
             }
         });
     }
