@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "cookie": "^0.4.1",
     "discord.js": "^12.5.3",
     "mongoose": "^5.12.12"
   }
