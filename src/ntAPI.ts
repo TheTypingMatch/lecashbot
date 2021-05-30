@@ -1,7 +1,11 @@
-import axios from 'axios';
+import axios, { Method } from 'axios';
+
 import cookie from 'cookie';
+import qs from 'qs';
 
 const baseURL = `https://www.nitrotype.com/api`;
+
+const serializeCookies = (obj: any) => Object.entries(obj).reduce((str, [key, value]) => `${str} ${cookie.serialize(key, value)};`, ``);
 
 class NTClient {
     credentials: {
@@ -9,13 +13,31 @@ class NTClient {
         password: string
     }
 
-    cookies: string[]
+    cookies: any
 
     constructor (username: string, password: string) {
         this.credentials = {
             username,
             password
         };
+    }
+
+    sendRequest = (method: Method, path: string, options: any) => {
+        const uhash = this.cookies.ntuserrem;
+
+        return axios({
+            method,
+            baseURL,
+            url: path,
+
+            headers: { Cookie: serializeCookies(this.cookies) },
+            params: { uhash, ...options },
+
+            data: method === `POST` && qs.stringify({
+                uhash,
+                ...(options.data || null)
+            })
+        });
     }
 
     login = () => {
@@ -30,6 +52,9 @@ class NTClient {
                 this.cookies[key] = cookieObj[key];
             }
         });
+    }
+
+    get = (path: string, options: any) => {
     }
 }
 
