@@ -31,8 +31,6 @@ interface UserDoc extends Mongoose.Document {
         suggest: string;
         withdraw: string;
         rename: string;
-
-        command: string;
     }
 
     donations?: number;
