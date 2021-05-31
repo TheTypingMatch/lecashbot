@@ -15,7 +15,7 @@ const resetDailyStreak = async (callback?: any) => {
 
     for (const user of users) {
         if (new Date().valueOf() - new Date(user.cooldowns.daily).valueOf()) {
-            log(`blue`, `Daily streak reset for user ${user.username} [${user.discordID}]`);
+            log(`blue`, `Daily streak reset for user ${user.username} [${user.discordID}].`);
 
             user.streaks.daily = 0;
             user.save();

@@ -20,12 +20,12 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const user = await User.findOne(query);
     if (!user) return message.channel.send(`${m} That user does not have an account!`);
 
-    const userAvatar = await client.users.cache.get(user.discordID);
+    const discordUser = await client.users.cache.get(user.discordID);
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.success)
-        .setAuthor(`${user.username} | Balance`, userAvatar?.avatarURL() || client.user.avatarURL())
-        .setDescription(`${user.balance}`)
+        .setAuthor(`${discordUser?.username || user.username} | Balance`, discordUser?.avatarURL() || client.user.avatarURL())
+        .setDescription(`$${user.balance}`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
     message.channel.send(sEmbed);
