@@ -27,13 +27,10 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
 
     if (!commands || commands.length === 0) return message.channel.send(helpSplash);
 
-    if (command.config.usage) data.push(`**Usage:** \`${config.prefix}${command.name} ${command.config.usage}\``);
-    if (command.config.aliases) data.push(`**Aliases:** ${command.config.aliases.join(`, `)}`);
-
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.yellow)
         .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
-        .setDescription(`${command.config.desc}\n\n${data.join(`\n`)}`)
+        .setDescription(`**${capitalize(category)}**\n${addCommandField(commands.map(command => `${command.name}${command.config.usage ? ` ${command.config.usage}` : ``} - ${command.config.desc}`))}}`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
     message.channel.send(sEmbed);
