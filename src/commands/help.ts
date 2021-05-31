@@ -37,7 +37,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         .setColor(config.colors.yellow)
         .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
         .setDescription(desc)
-        .addField(capitalize(category), `\n${addCommandField(categoryObj)}}`)
+        .addField(capitalize(category), `\n${addCommandField(categoryObj)}`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
     message.channel.send(sEmbed);
