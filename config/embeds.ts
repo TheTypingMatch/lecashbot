@@ -17,10 +17,6 @@ const info = {
     }
 };
 
-const donate = {
-    donateLink: `Donate to LeCashBot **[here](https://donate.lecashbot.cf)**`
-};
-
 const faqInfo = [
     {
         q: `How do I earn NitroType cash?`,
@@ -57,7 +53,6 @@ const faqInfo = [
 ];
 
 export {
-    donate,
     faqInfo,
     info
 };
