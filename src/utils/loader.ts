@@ -15,11 +15,13 @@ const loadCommands = (client: Client, callback?: any) => {
     fs.readdir(path.resolve(__dirname, `../commands`), async (err, files) => {
         for (const file of files) {
             if (err) log(`red`, err);
-            log(`yellow`, `Loaded command ${file}.`);
+
+            const fileName = file.split(`.`)[0];
+            log(`yellow`, `Loaded command ${fileName}.`);
 
             const command = await import(`../commands/${file}`);
             client.commands.push({
-                name: file.split(`.`)[0],
+                name: fileName,
                 config: {
                     desc: command.cmd.desc,
                     usage: command.cmd.usage || ``,
@@ -42,13 +44,15 @@ const loadEvents = (client: Client, callback?: any) => {
     fs.readdir(path.resolve(__dirname, `../events`), async (err, files) => {
         for (const file of files) {
             if (err) log(`red`, err);
-            log(`yellow`, `Loaded event ${file}.`);
+
+            const fileName = file.split(`.`)[0];
+            log(`yellow`, `Loaded event ${fileName}.`);
 
             const event = await import(`../events/${file}`);
-            client.on(file.split(`.`)[0], event.default.bind(null, client));
+            client.on(fileName, event.default.bind(null, client));
 
             client.events.push({
-                name: file.split(`.`)[0],
+                name: fileName,
                 callback: event
             });
         }
