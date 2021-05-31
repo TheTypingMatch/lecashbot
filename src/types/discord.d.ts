@@ -2,6 +2,7 @@ import * as Discord from 'discord.js';
 
 interface CommandConfig {
     desc: string;
+    category: string;
     usage?: string;
     aliases?: string[];
 }
