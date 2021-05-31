@@ -28,7 +28,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         if (msgs.first().content !== verificationCode) return message.channel.send(`${m} Invalid verification code. Aborting account deletion.`);
 
         const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-            .setColor(config.colors.danger)
+            .setColor(config.colors.red)
             .setAuthor(`Account Deleted`, message.author.avatarURL())
             .setDescription(`Your account has succesfully been deleted.\nWe are sorry to see you go.`)
             .setTimestamp(new Date())

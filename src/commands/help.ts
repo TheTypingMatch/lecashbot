@@ -20,7 +20,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         });
 
         const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-            .setColor(config.colors.info)
+            .setColor(config.colors.yellow)
             .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
             .setDescription(helpTxt)
             .setTimestamp(new Date())
@@ -37,7 +37,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     if (command.config.aliases) data.push(`**Aliases:** ${command.config.aliases.join(`, `)}`);
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-        .setColor(config.colors.info)
+        .setColor(config.colors.yellow)
         .setAuthor(`Help Menu | ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}`)
         .setDescription(`${command.config.desc}\n\n${data.join(`\n`)}`)
         .setTimestamp(new Date())

@@ -24,7 +24,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const discordUser = await client.users.cache.get(user.discordID);
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-        .setColor(config.colors.success)
+        .setColor(config.colors.green)
         .setAuthor(`Balance`, discordUser?.avatarURL() || client.user.avatarURL())
         .setDescription(`**${discordUser?.username || user.username}**'s balance is **$${formatMoney(user.balance)}**.`)
         .setTimestamp(new Date())
