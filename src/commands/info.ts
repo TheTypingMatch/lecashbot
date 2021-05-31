@@ -2,7 +2,7 @@ import * as Discord from 'discord.js';
 import { Client, CommandConfig } from '../types/discord';
 
 import config from '../../config/config';
-import { addDescriptionField } from '../utils/formatField';
+import { addDescriptionField } from '../utils/field';
 
 const cmd: CommandConfig = {
     desc: `View info about the bot.`,

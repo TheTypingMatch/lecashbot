@@ -2,8 +2,8 @@ import * as Discord from 'discord.js';
 import { Client, CommandConfig } from '../types/discord';
 
 import config from '../../config/config';
-import { addCommandField } from '../utils/formatField';
-import { capitalize } from '../utils/formatText';
+import { addCommandField } from '../utils/field';
+import { capitalize } from '../utils/text';
 
 const cmd: CommandConfig = {
     desc: `View all commands.`,

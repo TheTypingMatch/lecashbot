@@ -5,7 +5,7 @@ import config from '../../config/config';
 import User from '../models/user.model';
 
 import log from '../utils/log';
-import { formatTime } from '../utils/formatText';
+import { formatTime } from '../utils/text';
 
 export default async (client: Client, message: Discord.Message) => {
     const m = `${message.author} »`;

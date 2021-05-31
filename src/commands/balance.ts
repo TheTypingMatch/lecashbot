@@ -5,7 +5,7 @@ import config from '../../config/config';
 import User from '../models/user.model';
 
 import getQuery from '../utils/getQuery';
-import { formatMoney } from '../utils/formatText';
+import { formatMoney } from '../utils/text';
 
 const cmd: CommandConfig = {
     desc: `View yours or another user's balance.`,
