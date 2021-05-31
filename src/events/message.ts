@@ -28,7 +28,7 @@ export default async (client: Client, message: Discord.Message) => {
 
         if (user) {
             if (user.banned) {
-                log(`cyan`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is blacklisted.`);
+                log(`yellow`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is blacklisted.`);
                 return message.channel.send(`${m} You are currently banned from the bot!`);
             } else if (user.cooldowns[command]) {
                 const timeRemaining = new Date().valueOf() - new Date(user.cooldowns[command]).valueOf();
@@ -36,7 +36,7 @@ export default async (client: Client, message: Discord.Message) => {
             }
         }
 
-        log(`magenta`, `${message.author.tag} ran command ${command} in ${message.guild.name}.`);
+        log(`magenta`, `${message.author.tag} [${message.author.id}] ran command ${command} in ${message.guild.name}.`);
         cmd.run(client, message, args);
     }
 };
