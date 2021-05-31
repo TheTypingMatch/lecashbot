@@ -42,7 +42,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
 
         const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
             .setColor(config.colors.success)
-            .setAuthor(`Account created!`)
+            .setAuthor(`Account Created`, message.author.avatarURL())
             .setDescription(`Success! Do \`${config.prefix}help\` to view commands!`)
             .setTimestamp(new Date())
             .setFooter(config.footer);

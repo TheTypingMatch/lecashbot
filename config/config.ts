@@ -1,4 +1,4 @@
-import { author, version } from '../package.json';
+import { version } from '../package.json';
 
 import colors from './colors';
 import cooldowns from './cooldowns';
@@ -10,7 +10,7 @@ const config = {
     prefix: `$`,
 
     version,
-    footer: `© Created by ${author} | v${version}`
+    footer: `© LeCashBot | v${version}`
 };
 
 export default config;

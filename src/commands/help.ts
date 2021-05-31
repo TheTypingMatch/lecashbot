@@ -21,7 +21,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
 
         const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
             .setColor(config.colors.info)
-            .setAuthor(`Help Menu`)
+            .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
             .setDescription(helpTxt)
             .setTimestamp(new Date())
             .setFooter(config.footer);

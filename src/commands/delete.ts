@@ -29,7 +29,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
 
         const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
             .setColor(config.colors.danger)
-            .setAuthor(`Deleted account`)
+            .setAuthor(`Account Deleted`, message.author.avatarURL())
             .setDescription(`Your account has succesfully been deleted.\nWe are sorry to see you go.`)
             .setTimestamp(new Date())
             .setFooter(config.footer);
