@@ -7,6 +7,7 @@ interface UserDoc extends Mongoose.Document {
     discordID: string;
 
     balance?: number;
+    donated?: number;
 
     creationDate: string;
     banned?: boolean;
@@ -23,17 +24,15 @@ interface UserDoc extends Mongoose.Document {
 
     cooldowns?: {
         bet: string;
+        coinflip: string;
         daily: string;
         delete: string;
-        coinflip: string;
         give: string;
+        rename: string;
         report: string;
         suggest: string;
         withdraw: string;
-        rename: string;
     }
-
-    donations?: number;
 
     streaks?: {
         daily: number;
