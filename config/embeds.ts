@@ -1,40 +1,3 @@
-const helpInfo = {
-    desc: `A Discord.js bot based on the NitroType currency.\nPlease consider supporting the bot by [**donating here**](https://patreon.lecashbot.cf)!\n[**Invite**](https://invite.lecashbot.cf/) the bot.`,
-    descInfo: `\`$help Register\`\n\`$help Guides\`\n\`$help Economy\`\n\`$help Games\`\n\`$help Misc\``,
-    register: {
-        register: `\`<nt-username>\` - Make a profile using your NitroType account.`,
-        delete: `\`<discord-id>\` - Delete your LeCashBot account.`
-    },
-    guides: {
-        invite: ` - Invite the bot.`,
-        info: ` - Important bot information.`,
-        stats: ` - Show the bot servers/users and latency.`,
-        uptime: ` - Show the bot uptime.`,
-        faq: ` - Display frequently asked questions.`,
-        ping: ` - Show bot latency.`,
-        donate: ` - Display donators.`,
-        contributors: ` - Display contributors.`
-    },
-    economy: {
-        bal: "`<user>` - View yours or another user's balance.",
-        give: `\`<user>\` \`<amount>\` - Gift someone cash from your balance.`,
-        daily: ` - Collect a daily bonus of cash based on your daily streak.`,
-        total: ` - View the amount of cash there exists in the economy.`,
-        profile: `\`<user>\` - View yours or another user's profile.`,
-        withdraw: `\`<amount>\` - Withdraw at least $100K from your LeCashBot account to your NitroType account.`,
-        leaderboard: ` - View the wealthiest of all LeCashBot users.`
-    },
-    games: {
-        bet: `\`<amount>\` - Play roulette for a chance to win cash.`,
-        coinflip: ` - Earn cash based on a coin flip streak.`,
-        lottery: ` - Enter a daily/weekly/monthly lottery for a chance to win the jackpot.`
-    },
-    misc: {
-        report: ` - Get a link for bug report.`,
-        suggest: ` - Get a link for feature suggestions.`
-    }
-};
-
 const info = {
     general: {
         author: `**Author** - [**LeSirH**](https://patreon.lecashbot.cf/)`,
@@ -96,6 +59,5 @@ const faqInfo = [
 export {
     donate,
     faqInfo,
-    helpInfo,
     info
 };
