@@ -76,7 +76,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         await sendRecordEmbed(message, previousBet);
     }
 
-    await User.updateOne({ discordID: message.author.id }, { balance: (previousBal + bet * (didWin ? 1 : -1)) });
+    await User.updateOne({ discordID: message.author.id }, { balance: (previousBal + bet * (didWin ? 1 : -1)), [`cooldowns/bet`]: new Date().toString() });
     sendBetEmbed(message, bet, didWin);
 };
 
