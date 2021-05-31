@@ -7,7 +7,7 @@ const userSchema = new Mongoose.Schema({
     discordID: { type: String, required: true },
 
     balance: { type: Number, required: false, default: 1000 },
-    donated: { type: Number, required: false, default: 0 },
+    donations: { type: Number, required: false, default: 0 },
 
     creationDate: { type: Date, required: false, default: new Date() },
     banned: { type: Boolean, required: false, default: false },

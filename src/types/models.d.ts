@@ -7,7 +7,7 @@ interface UserDoc extends Mongoose.Document {
     discordID: string;
 
     balance?: number;
-    donated?: number;
+    donations?: number;
 
     creationDate: string;
     banned?: boolean;
