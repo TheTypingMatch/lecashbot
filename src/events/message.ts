@@ -18,7 +18,7 @@ export default async (client: Client, message: Discord.Message) => {
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    // Grab the command from the handler and run it.
+    // Grab the command from the handler.
     const cmd = client.commands.find(cmd => cmd.name === command || (cmd.config.aliases && cmd.config.aliases.includes(command)));
     if (!cmd) return;
 
@@ -30,12 +30,13 @@ export default async (client: Client, message: Discord.Message) => {
             if (user.banned) {
                 log(`yellow`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is blacklisted.`);
                 return message.channel.send(`${m} You are currently banned from the bot!`);
-            } else if (user.cooldowns[command]) {
-                const timeRemaining = new Date().valueOf() - new Date(user.cooldowns[command]).valueOf();
-                if (timeRemaining < config.cooldowns[command]) return message.channel.send(`${m} You must wait another ${formatTime(config.cooldowns[command] - timeRemaining)} before using that command!`);
+            } else if (user.cooldowns[cmd.name]) {
+                const timeRemaining = new Date().valueOf() - new Date(user.cooldowns[cmd.name]).valueOf();
+                if (timeRemaining < config.cooldowns.commands[cmd.name]) return message.channel.send(`${m} You must wait another ${formatTime(config.cooldowns.commands[cmd.name] - timeRemaining)} before using that command!`);
             }
         }
 
+        // Execute the command.
         log(`magenta`, `${message.author.tag} [${message.author.id}] ran command ${command} in ${message.guild.name}.`);
         cmd.run(client, message, args);
     }
