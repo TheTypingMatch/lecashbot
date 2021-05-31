@@ -9,6 +9,7 @@ import log from '../utils/log';
 
 const cmd: CommandConfig = {
     desc: `Register an account.`,
+    category: `register`,
     usage: `<username>`,
     aliases: [`signup`, `createaccount`]
 };

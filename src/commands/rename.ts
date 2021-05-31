@@ -9,6 +9,7 @@ import log from '../utils/log';
 
 const cmd: CommandConfig = {
     desc: `Change your linked NT account.`,
+    category: `register`,
     usage: `<username>`
 };
 

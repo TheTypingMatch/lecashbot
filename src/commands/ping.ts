@@ -4,7 +4,8 @@ import { Client, CommandConfig } from '../types/discord';
 import config from '../../config/config';
 
 const cmd: CommandConfig = {
-    desc: `View network latency between the bot and Discord.`
+    desc: `Show bot latency.`,
+    category: `guides`
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {

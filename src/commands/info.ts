@@ -5,7 +5,8 @@ import config from '../../config/config';
 import { addDescriptionField } from '../utils/formatField';
 
 const cmd: CommandConfig = {
-    desc: `View info about the bot.`
+    desc: `View info about the bot.`,
+    category: `guides`
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {

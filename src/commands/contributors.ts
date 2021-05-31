@@ -6,6 +6,7 @@ import User from '../models/user.model';
 
 const cmd: CommandConfig = {
     desc: `View all contributors.`,
+    category: `guides`,
     aliases: [`contribs`]
 };
 

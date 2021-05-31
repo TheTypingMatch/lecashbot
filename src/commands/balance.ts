@@ -9,6 +9,7 @@ import formatMoney from '../utils/formatMoney';
 
 const cmd: CommandConfig = {
     desc: `View yours or another user's balance.`,
+    category: `economy`,
     usage: `[user]`,
     aliases: [`bal`, `worth`]
 };
