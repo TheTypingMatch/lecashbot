@@ -12,11 +12,13 @@ const cmd: CommandConfig = {
     aliases: [`?`]
 };
 
+const desc = `A Discord.js bot based on the NitroType currency.\nPlease consider supporting the bot by [**donating here**](https://patreon.lecashbot.cf)!\n\nClick [**here**](https://invite.lecashbot.cf/) to invite the bot.`;
+
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const helpSplash: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.yellow)
         .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
-        .setDescription(`A Discord.js bot based on the NitroType currency.\nPlease consider supporting the bot by [**donating here**](https://patreon.lecashbot.cf)!\n[**Invite**](https://invite.lecashbot.cf/) the bot.`)
+        .setDescription(desc)
         .addField(`Categories`, `\n\`$help Register\`\n\`$help Guides\`\n\`$help Economy\`\n\`$help Games\`\n\`$help Misc\``)
         .setTimestamp(new Date())
         .setFooter(config.footer);
@@ -31,7 +33,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.yellow)
         .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
-        .setDescription(`A Discord.js bot based on the NitroType currency.\nPlease consider supporting the bot by [**donating here**](https://patreon.lecashbot.cf)!\n[**Invite**](https://invite.lecashbot.cf/) the bot.`)
+        .setDescription(desc)
         .addField(capitalize(category), `\n${addCommandField(commands.map(command => `${command.name}${command.config.usage ? ` ${command.config.usage}` : ``} - ${command.config.desc}`))}}`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
