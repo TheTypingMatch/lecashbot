@@ -17,7 +17,7 @@ const cmd: CommandConfig = {
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const m = `${message.author} »`;
-    const username = args.shift();
+    const username = args.shift().toLowerCase();
 
     const userExists = await User.findOne({ discordID: message.author.id });
     if (userExists) return message.channel.send(`${m} You already have an account!`);
