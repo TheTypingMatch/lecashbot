@@ -36,7 +36,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const donors = await getDonors();
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-        .setColor(config.colors.green)
+        .setColor(config.colors.orange)
         .setAuthor(`Donate`, message.author.avatarURL())
         .setDescription(`Donate to LeCashBot **[here](https://donate.lecashbot.cf)**.`)
         .addField(`Donors`, await addField(donors, client))
