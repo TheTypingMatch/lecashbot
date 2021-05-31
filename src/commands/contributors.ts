@@ -10,6 +10,8 @@ const cmd: CommandConfig = {
 };
 
 const addField = (userData: any[]) => {
+    if (!userData || userData.length === 0) return `No users found.`;
+
     const field = `${userData.map(user => `<@${user.id}>`)}`;
     return (userData.length > 5)
         ? field.replace(/,/g, ` `)
