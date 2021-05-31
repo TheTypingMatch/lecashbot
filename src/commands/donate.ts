@@ -21,6 +21,7 @@ const getDonors = async () => {
 };
 
 const addField = async (userData: any[], client: Client) => {
+    if (!userData || userData.length === 0) return `No users found.`;
     userData.sort((a, b) => (a.amount > b.amount ? 1 : (b.amount > a.amount) ? -1 : 0));
 
     let field = ``;
