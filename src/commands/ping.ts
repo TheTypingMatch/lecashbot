@@ -12,7 +12,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const msg = await message.channel.send(`Pong?`);
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-        .setColor(config.colors.orange)
+        .setColor(config.colors.green)
         .setAuthor(`Ping`, message.author.avatarURL())
         .setDescription(`API: \`:${Math.abs(Math.round(client.ws.ping))}ms\`\nGateway: \`${Math.abs(Math.round(new Date().valueOf() - msg.createdTimestamp.valueOf()))}ms\``)
         .setTimestamp(new Date())

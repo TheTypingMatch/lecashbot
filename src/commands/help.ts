@@ -34,7 +34,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     for (const command of commands) categoryObj[`${command.name}${command.config.usage !== `` ? ` ${command.config.usage}` : ``}`] = ` - ${command.config.desc}`;
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-        .setColor(config.colors.yellow)
+        .setColor(config.colors.green)
         .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
         .setDescription(desc)
         .addField(capitalize(category), `\n${addCommandField(categoryObj)}`)
