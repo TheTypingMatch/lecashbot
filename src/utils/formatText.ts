@@ -1,3 +1,20 @@
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+const formatMoney = (num: number) => {
+    // First, round the balance.
+    num = Math.round(num);
+
+    let a = 0;
+    let formattedNum = ``;
+
+    for (const n of num.toString().split(``).reverse()) {
+        a++;
+        formattedNum += ((a - 1) % 3) === 0 ? `,${n}` : n;
+    }
+
+    return formattedNum.slice(1).split(``).reverse().join(``);
+};
+
 const formatTime = (num: number) => {
     let str = `\``;
 
@@ -10,4 +27,8 @@ const formatTime = (num: number) => {
     return str;
 };
 
-export default formatTime;
+export {
+    capitalize,
+    formatMoney,
+    formatTime
+};

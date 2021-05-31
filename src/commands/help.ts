@@ -2,44 +2,37 @@ import * as Discord from 'discord.js';
 import { Client, CommandConfig } from '../types/discord';
 
 import config from '../../config/config';
+import { addCommandField } from '../utils/formatField';
+import { capitalize } from '../utils/formatText';
 
 const cmd: CommandConfig = {
     desc: `View all commands.`,
-    category: `guides`
+    category: `guides`,
+    usage: `[category]`,
+    aliases: [`?`]
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
-    const m = `${message.author} »`;
+    const helpSplash: Discord.MessageEmbed = new Discord.MessageEmbed()
+        .setColor(config.colors.yellow)
+        .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
+        .setDescription(`**Categories**\n\`$help Register\`\n\`$help Guides\`\n\`$help Economy\`\n\`$help Games\`\n\`$help Misc\``)
+        .setTimestamp(new Date())
+        .setFooter(config.footer);
 
-    const commands = client.commands;
-    const data = [];
+    if (!args[0]) return message.channel.send(helpSplash);
 
-    if (!args[0]) {
-        let helpTxt = ``;
-        commands.forEach(command => {
-            helpTxt += `\`${config.prefix + command.name + (command.config.usage ? ` ${command.config.usage}` : ``)}\` - ${command.config.desc}\n`;
-        });
+    const category = args.shift().toLowerCase();
+    const commands = client.commands.filter(command => command.config.category === category);
 
-        const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-            .setColor(config.colors.yellow)
-            .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
-            .setDescription(helpTxt)
-            .setTimestamp(new Date())
-            .setFooter(config.footer);
-        return message.channel.send(sEmbed);
-    }
-
-    const commandName = args[0].toLowerCase();
-    const command = commands.find(command => command.name === commandName) || commands.find(c => c.config.aliases && c.config.aliases.includes(commandName));
-
-    if (!command) return message.channel.send(`${m} That is not a valid command!`);
+    if (!commands || commands.length === 0) return message.channel.send(helpSplash);
 
     if (command.config.usage) data.push(`**Usage:** \`${config.prefix}${command.name} ${command.config.usage}\``);
     if (command.config.aliases) data.push(`**Aliases:** ${command.config.aliases.join(`, `)}`);
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.yellow)
-        .setAuthor(`Help Menu | ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}`)
+        .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
         .setDescription(`${command.config.desc}\n\n${data.join(`\n`)}`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
