@@ -8,7 +8,7 @@ import randomString from '../utils/randomString';
 import log from '../utils/log';
 
 const cmd: CommandConfig = {
-    desc: `Change your linked NT account`,
+    desc: `Change your linked NT account.`,
     usage: `<username>`
 };
 

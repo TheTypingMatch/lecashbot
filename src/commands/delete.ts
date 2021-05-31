@@ -7,7 +7,7 @@ import User from '../models/user.model';
 import randomString from '../utils/randomString';
 
 const cmd: CommandConfig = {
-    desc: `Delete your account`
+    desc: `Delete your account.`
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {

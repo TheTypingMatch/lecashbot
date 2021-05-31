@@ -8,7 +8,7 @@ import User from '../models/user.model';
 import log from '../utils/log';
 
 const cmd: CommandConfig = {
-    desc: `Register an account!`,
+    desc: `Register an account.`,
     usage: `<username>`,
     aliases: [`signup`, `createaccount`]
 };

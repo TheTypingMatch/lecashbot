@@ -7,7 +7,7 @@ import User from '../models/user.model';
 import getQuery from '../utils/getQuery';
 
 const cmd: CommandConfig = {
-    desc: `View yours or another user's balance!`,
+    desc: `View yours or another user's balance.`,
     usage: `[user]`,
     aliases: [`bal`, `worth`]
 };
