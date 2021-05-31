@@ -30,6 +30,7 @@ const createLeaderboard = async (client: Client) => {
     for (const user of users) {
         const discordUser: Discord.User = await client.users.fetch(user.discordID);
 
+        // Add users to the generic leaderboard.
         lb.push({
             username: user.username,
             discordTag: discordUser.tag,
@@ -42,6 +43,9 @@ const createLeaderboard = async (client: Client) => {
             coinflipStreak: user.streaks.coinflip
         });
     }
+
+    // Return the completed leaderboard.
+    return lb;
 };
 
 const sortLeaderboard = async (type: string, lb: LeaderboardUser[]) => {
@@ -71,11 +75,18 @@ const updateLeaderboards = async (client: Client, callback?: any) => {
         return;
     }
 
+    const users = await User.find({ banned: false });
+
+    let totalBalance = 0;
+    for (const user of users) totalBalance += user.balance;
+
     const lb = new Leaderboard({
         balance: await sortLeaderboard(`balance`, leaderboard),
         bet: await sortLeaderboard(`bet`, leaderboard),
         coinflip: await sortLeaderboard(`coinflip`, leaderboard),
-        daily: await sortLeaderboard(`daily`, leaderboard)
+        daily: await sortLeaderboard(`daily`, leaderboard),
+
+        totalBalance
     });
 
     await lb.save();
