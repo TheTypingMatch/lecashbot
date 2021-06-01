@@ -57,6 +57,17 @@ const sendReward = (message: Discord.Message, user: any, embed: Discord.MessageE
     message.channel.send(embed);
 };
 
+const sendLoss = (message: Discord.Message, user: any, client: Client, embed: Discord.MessageEmbed) => {
+    const cost = user.streaks.coinflip ? Math.round(100 * (2 ^ user.streaks.coinflip)) : 0;
+
+    if (user.balance < cost) {
+        embed.setColor(config.colors.orange).setDescription(`You do not have enough money to coinflip!`);
+        return message.channel.send(embed);
+    }
+
+    embed.setColor(config.colors.red);
+};
+
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const m = `${message.author} »`;
 };
