@@ -88,6 +88,21 @@ const takeReward = (message: Discord.Message, client: Client, user: any, embed: 
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const m = `${message.author} »`;
+
+    const user = await User.findOne({ discordID: message.author.id });
+    if (!user) return message.channel.send(`${m} You don't have an account!`);
+
+    const recordEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
+        .setAuthor(`New Highest Streak!`, message.author.avatarURL())
+        .setTimestamp(new Date())
+        .setFooter(config.footer);
+
+    const flipEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
+        .setAuthor(`Coinflip`, message.author.avatarURL())
+        .setTimestamp(new Date())
+        .setFooter(config.footer);
+    
+    if (args[0])
 };
 
 export {
