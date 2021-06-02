@@ -51,7 +51,7 @@ const sendReward = (message: Discord.Message, user: any, embed: Discord.MessageE
         message.channel.send(recordEmbed);
     }
 
-    User.updateOne({ discordID: message.author.id }, { balance: user.balance + profit, [`streaks/coinflip`]: user.streaks.coinflip + 1 },)
+    User.updateOne({ discordID: message.author.id }, { balance: user.balance + profit, [`streaks/coinflip`]: user.streaks.coinflip + 1 });
 
     embed.setColor(config.colors.green).setDescription(embedDesc);
     message.channel.send(embed);
@@ -65,7 +65,18 @@ const sendLoss = (message: Discord.Message, user: any, client: Client, embed: Di
         return message.channel.send(embed);
     }
 
-    embed.setColor(config.colors.red);
+    embed
+        .setColor(config.colors.red)
+        .setDescription(
+            user.streaks.coinflip
+                ? `You  lost your streak and **$${formatMoney(cost)}**!`
+                : `Your streak remains at 0`
+        );
+
+    return User.updateOne({ discordID: message.author.id }, {
+        balance: user.balance - cost,
+        [`streaks/coinflip`]: 0
+    });
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
