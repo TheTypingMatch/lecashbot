@@ -79,6 +79,13 @@ const sendLoss = (message: Discord.Message, user: any, client: Client, embed: Di
     });
 };
 
+const takeReward = (message: Discord.Message, client: Client, user: any, embed: Discord.MessageEmbed) => {
+    embed.setColor(config.colors.green).setDescription(`You won!`);
+
+    User.updateOne({ discordID: message.author.id }, { balance: user.balance + calcReward(user.streaks.coinflip), [`streaks/coinflip`]: 0 });
+    message.channel.send(embed);
+};
+
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const m = `${message.author} »`;
 };
