@@ -1,11 +1,14 @@
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const formatMoney = (num: number) => {
-    // First, round the balance.
+    // First, round the number.
     num = Math.round(num);
 
     let a = 0;
-    let formattedNum = ``;
+    let formattedNum = num < 0 ? `-` : ``;
+
+    // Convert negative numbers to positive (as it's already handled above).
+    if (num < 0) num = Math.abs(num);
 
     for (const n of num.toString().split(``).reverse()) {
         a++;
