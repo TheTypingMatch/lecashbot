@@ -57,7 +57,7 @@ const sendReward = (message: Discord.Message, user: any, embed: Discord.MessageE
     message.channel.send(embed);
 };
 
-const sendLoss = (message: Discord.Message, user: any, client: Client, embed: Discord.MessageEmbed) => {
+const sendLoss = (message: Discord.Message, user: any, embed: Discord.MessageEmbed) => {
     const cost = user.streaks.coinflip ? Math.round(100 * (2 ^ user.streaks.coinflip)) : 0;
 
     if (user.balance < cost) {
@@ -88,6 +88,7 @@ const takeReward = (message: Discord.Message, client: Client, user: any, embed: 
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const m = `${message.author} »`;
+    const flip = Math.random();
 
     const user = await User.findOne({ discordID: message.author.id });
     if (!user) return message.channel.send(`${m} You don't have an account!`);
@@ -101,8 +102,16 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         .setAuthor(`Coinflip`, message.author.avatarURL())
         .setTimestamp(new Date())
         .setFooter(config.footer);
-    
-    if (args[0])
+
+    if (args[0] && args[0].toLowerCase() === `take`) {
+        return user.streaks.coinflip > 2
+            ? takeReward(message, client, user, flipEmbed)
+            : message.channel.send(flipEmbed.setColor(config.colors.yellow).setDescription(`Your streak is not high enough!`));
+    }
+
+    return flip > 0.499
+        ? sendReward(message, user, flipEmbed, recordEmbed)
+        : sendLoss(message, user, flipEmbed);
 };
 
 export {
