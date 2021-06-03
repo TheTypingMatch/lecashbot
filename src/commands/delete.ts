@@ -35,8 +35,9 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
             .setTimestamp(new Date())
             .setFooter(config.footer);
 
+        User.deleteOne({ discordID: message.author.id });
         message.channel.send(sEmbed);
-    });
+    }).catch(() => message.channel.send(`${m} Invalid verification code. Aborting account deletion.`));
 };
 
 export {
