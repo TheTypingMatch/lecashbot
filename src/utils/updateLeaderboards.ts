@@ -24,9 +24,6 @@ const createLeaderboard = async (client: Client) => {
     const users = await User.find({ banned: false });
     if (!users) return lb;
 
-    // Delete all existing leaderboards.
-    Leaderboard.deleteMany({});
-
     for (const user of users) {
         const discordUser: Discord.User = await client.users.fetch(user.discordID);
 
@@ -66,6 +63,10 @@ const sortLeaderboard = async (type: string, lb: LeaderboardUser[]) => {
 
 const updateLeaderboards = async (client: Client, callback?: any) => {
     log(`cyan`, `Updating leaderboards...`);
+
+    // Delete all existing leaderboards.
+    const leaderboards = await Leaderboard.find({});
+    for (const leaderboard of leaderboards) leaderboard.delete();
 
     const leaderboard = await createLeaderboard(client);
     if (!leaderboard || leaderboard.length === 0) {
