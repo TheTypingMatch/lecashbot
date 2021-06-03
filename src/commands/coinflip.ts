@@ -12,12 +12,14 @@ const cmd: CommandConfig = {
     category: `economy`
 };
 
-const calcCost = (coinflipStreak: number) => coinflipStreak ? Math.round(100 * (2 ^ coinflipStreak)) : 0;
+const calcCost = (coinflipStreak: number) => coinflipStreak === 0 ? Math.round(100 * (2 ^ coinflipStreak)) : 0;
 const calcReward = (coinflipStreak: number) => Math.round(100 * (3 ^ (coinflipStreak - 1)) + (coinflipStreak * 150));
 
 const sendReward = (message: Discord.Message, user: any, embed: Discord.MessageEmbed, recordEmbed: Discord.MessageEmbed) => {
     const cost = calcCost(user.streaks.coinflip);
     const reward = calcReward(user.streaks.coinflip);
+
+    console.log(cost, reward);
 
     const streakChance = Math.round((100 / (2 ^ (user.streaks.coinflip + 1))) * 100) / 100;
     const profit = reward - cost;
@@ -35,7 +37,7 @@ const sendReward = (message: Discord.Message, user: any, embed: Discord.MessageE
 
     const description = {
         reward: `**${message.author.username}** just earned **$${formatMoney(reward)}**.`,
-        streak: `with a streak of **${user.streaks.coinflip + 1}!`,
+        streak: `with a streak of **${user.streaks.coinflip + 1}**!`,
         chance: `The chances of winning this is **${streakChance}%**!`,
         nextCostMsg: `Your next coinflip will cost **$${formatMoney(nextCost)}**.`,
         nextRewardMsg: `If you win it, you will win **$${formatMoney(nextReward)}**.`
@@ -46,7 +48,7 @@ const sendReward = (message: Discord.Message, user: any, embed: Discord.MessageE
     if (user.streaks.coinflip + 1 > user.highscores.coinflip) {
         User.updateOne({ discordID: message.author.id }, { [`highscores/coinflip`]: user.streaks.coinflip + 1 });
 
-        recordEmbed.setDescription(`New highest coinflip streak of **${user.streaks.coinflip}`);
+        recordEmbed.setDescription(`New highest coinflip streak of **${user.streaks.coinflip}**!`);
         message.channel.send(recordEmbed);
     }
 
