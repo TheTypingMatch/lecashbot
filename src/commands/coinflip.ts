@@ -9,8 +9,7 @@ import log from '../utils/log';
 
 const cmd: CommandConfig = {
     desc: `Flip a coin for money.`,
-    category: `economy`,
-    usage: `<amount>`
+    category: `economy`
 };
 
 const calcCost = (coinflipStreak: number) => coinflipStreak ? Math.round(100 * (2 ^ coinflipStreak)) : 0;
