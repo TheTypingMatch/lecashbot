@@ -16,7 +16,7 @@ const desc = `A Discord.js bot based on the NitroType currency.\nPlease consider
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const helpSplash: Discord.MessageEmbed = new Discord.MessageEmbed()
-        .setColor(config.colors.yellow)
+        .setColor(config.colors.green)
         .setAuthor(`Help Menu`, message.author.avatarURL(), `https://docs.lecashbot.cf/`)
         .setDescription(desc)
         .addField(`Categories`, `\n\`$help Register\`\n\`$help Guides\`\n\`$help Economy\`\n\`$help Games\`\n\`$help Misc\``)
