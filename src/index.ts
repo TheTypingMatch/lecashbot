@@ -20,9 +20,9 @@ process.on(`uncaughtException`, e => log(`red`, e.stack));
 
 // Bot startup.
 const startBot = async () => {
-    logExtra.logSplash(async () => {
-        loader.loadCommands(client, async () => {
-            loader.loadEvents(client, async () => {
+    logExtra.logSplash(() => {
+        loader.loadCommands(client, () => {
+            loader.loadEvents(client, () => {
                 logExtra.logHeader(async () => {
                     await mongoose.connect(process.env.MONGODB_URI, {
                         useNewUrlParser: true,
