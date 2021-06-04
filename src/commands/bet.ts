@@ -2,10 +2,12 @@ import * as Discord from 'discord.js';
 import { Client, CommandConfig } from '../types/discord';
 
 import config from '../../config/config';
+import log from '../utils/log';
+
 import User from '../models/user.model';
 
 import { formatMoney } from '../utils/text';
-import log from '../utils/log';
+import { calcBetChance } from '../utils/gamble';
 
 const cmd: CommandConfig = {
     desc: `Gamble money.`,
@@ -25,7 +27,7 @@ const sendRecordEmbed = async (message: Discord.Message, previousBet: number) =>
 };
 
 const sendBetEmbed = async (message: Discord.Message, bet: number, didWin: boolean) => {
-    const chance = calcChance(bet);
+    const chance = calcBetChance(bet);
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(didWin ? config.colors.green : config.colors.red)
@@ -37,15 +39,13 @@ const sendBetEmbed = async (message: Discord.Message, bet: number, didWin: boole
     return await message.channel.send(sEmbed);
 };
 
-const calcChance = (bet: number) => Math.round((695 / bet) + (695 / Math.sqrt(bet)) * 100) / 100 + 3;
-
 const getHighestBet = async (message: Discord.Message) => {
     const user = await User.findOne({ discordID: message.author.id });
-    return message.channel.send(`Your highest bet is **$${formatMoney(user.highscores.bet)}** with a chance of ${calcChance(user.highscores.bet)}.`);
+    return message.channel.send(`Your highest bet is **$${formatMoney(user.highscores.bet)}** with a chance of ${calcBetChance(user.highscores.bet)}.`);
 };
 
 const calcBet = (bet: number) => {
-    const chance = calcChance(bet);
+    const chance = calcBetChance(bet);
     const randomNum = Math.random() * 100;
 
     return randomNum < chance;

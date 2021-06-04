@@ -7,6 +7,12 @@ import User from '../models/user.model';
 import { formatMoney } from '../utils/text';
 import log from '../utils/log';
 
+import {
+    calcCoinflipCost,
+    calcCoinflipReward,
+    calcCoinflipStreakBonus
+} from '../utils/gamble';
+
 const cmd: CommandConfig = {
     desc: `Flip a coin for money.`,
     category: `economy`,
@@ -14,15 +20,11 @@ const cmd: CommandConfig = {
     aliases: [`cf`]
 };
 
-const calcCost = (coinflipStreak: number) => coinflipStreak !== 0 ? Math.round(100 * (2 ^ (coinflipStreak))) : 0;
-const calcReward = (coinflipStreak: number) => Math.round(100 * (3 ^ coinflipStreak) + ((coinflipStreak) * 150));
-const calcStreakBonus = (coinflipStreak: number) => Math.round((100 / (2 ** (coinflipStreak + 1))) * 100) / 100;
-
 const sendReward = (message: Discord.Message, user: any, embed: Discord.MessageEmbed, recordEmbed: Discord.MessageEmbed) => {
-    const cost = calcCost(user.streaks.coinflip);
-    const reward = calcReward(user.streaks.coinflip);
+    const cost = calcCoinflipCost(user.streaks.coinflip);
+    const reward = calcCoinflipReward(user.streaks.coinflip);
 
-    const streakChance = calcStreakBonus(user.streaks.coinflip); // This is super inaccurate???
+    const streakChance = calcCoinflipStreakBonus(user.streaks.coinflip); // This is super inaccurate???
     const profit = reward - cost;
 
     if (user.balance < cost) {
@@ -33,8 +35,8 @@ const sendReward = (message: Discord.Message, user: any, embed: Discord.MessageE
 
     log(`blue`, `${message.author.tag} [${message.author.id}] coinflipped with a streak of ${user.streaks.coinflip} and won.`);
 
-    const nextCost = calcCost(user.streaks.coinflip + 1);
-    const nextReward = calcReward(user.streaks.coinflip + 1);
+    const nextCost = calcCoinflipCost(user.streaks.coinflip + 1);
+    const nextReward = calcCoinflipReward(user.streaks.coinflip + 1);
 
     const description = {
         reward: `**${message.author.username}** just earned **$${formatMoney(reward)}**`,
@@ -63,7 +65,7 @@ const sendReward = (message: Discord.Message, user: any, embed: Discord.MessageE
 };
 
 const sendLoss = (message: Discord.Message, user: any, embed: Discord.MessageEmbed) => {
-    const cost = calcCost(user.streaks.coinflip);
+    const cost = calcCoinflipCost(user.streaks.coinflip);
 
     if (user.balance < cost) {
         embed.setColor(config.colors.orange).setDescription(`You do not have enough money to coinflip!`);
@@ -88,7 +90,7 @@ const sendLoss = (message: Discord.Message, user: any, embed: Discord.MessageEmb
 const takeReward = (message: Discord.Message, client: Client, user: any, embed: Discord.MessageEmbed) => {
     embed.setColor(config.colors.green).setDescription(`You took your reward!`);
 
-    user.balance += calcReward(user.streaks.coinflip);
+    user.balance += calcCoinflipReward(user.streaks.coinflip);
     user.streaks.coinflip = 0;
 
     user.save();
