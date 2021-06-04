@@ -4,7 +4,7 @@ import { Client, CommandConfig } from '../types/discord';
 import config from '../../config/config';
 
 const cmd: CommandConfig = {
-    desc: `Invite the bot to your server!.`,
+    desc: `Invite the bot to your server.`,
     category: `guides`
 };
 

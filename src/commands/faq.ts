@@ -5,7 +5,7 @@ import config from '../../config/config';
 import { faqInfo } from '../../config/embeds';
 
 const cmd: CommandConfig = {
-    desc: `View frequently asked questions!`,
+    desc: `View frequently asked questions.`,
     category: `guides`
 };
 
