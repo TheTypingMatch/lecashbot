@@ -59,6 +59,8 @@ const sortLeaderboard = async (type: string, lb: LeaderboardUser[]) => {
             lb.sort((a, b) => (a.balance > b.balance) ? 1 : (b.balance > a.balance) ? -1 : 0);
             break;
     }
+
+    return lb;
 };
 
 const updateLeaderboards = async (client: Client, callback?: any) => {
