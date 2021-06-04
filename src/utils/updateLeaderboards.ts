@@ -2,20 +2,10 @@ import User from '../models/user.model';
 import Leaderboard from '../models/leaderboard.model';
 
 import { Client } from '../types/discord';
+import { LeaderboardUser } from '../types/leaderboard';
+
 import * as Discord from 'discord.js';
-
 import log from './log';
-
-interface LeaderboardUser {
-    username: string;
-    discordTag: string;
-
-    balance: number;
-    highestBet: number;
-
-    dailyStreak: number;
-    coinflipStreak: number;
-}
 
 const createLeaderboard = async (client: Client) => {
     const lb: LeaderboardUser[] = [];

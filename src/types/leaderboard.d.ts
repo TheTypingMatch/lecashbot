@@ -19,9 +19,22 @@ interface Daily extends Leaderboard {
     streak: number;
 }
 
+interface LeaderboardUser {
+    username: string;
+    discordTag: string;
+
+    balance: number;
+    highestBet: number;
+
+    dailyStreak: number;
+    coinflipStreak: number;
+}
+
 export {
     Balance,
     Bet,
     Coinflip,
-    Daily
+    Daily,
+
+    LeaderboardUser
 };
