@@ -88,7 +88,10 @@ const sendLoss = (message: Discord.Message, user: any, embed: Discord.MessageEmb
 const takeReward = (message: Discord.Message, client: Client, user: any, embed: Discord.MessageEmbed) => {
     embed.setColor(config.colors.green).setDescription(`You took your reward!`);
 
-    User.updateOne({ discordID: message.author.id }, { balance: user.balance + calcReward(user.streaks.coinflip), [`streaks/coinflip`]: 0 });
+    user.balance += calcReward(user.streaks.coinflip);
+    user.streaks.coinflip = 0;
+
+    user.save();
     message.channel.send(embed);
 };
 
