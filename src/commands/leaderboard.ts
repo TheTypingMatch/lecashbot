@@ -29,8 +29,6 @@ const sendDefaultEmbed = (message: Discord.Message) => {
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
-    const m = `${message.author} »`;
-
     if (!args[0] || args[0] === `help`) sendDefaultEmbed(message);
 };
 
