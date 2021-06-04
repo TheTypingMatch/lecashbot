@@ -32,7 +32,15 @@ export default async (client: Client, message: Discord.Message) => {
                 return message.channel.send(`${m} You are currently banned from the bot!`);
             } else if (user.cooldowns[cmd.name]) {
                 const timeRemaining = new Date().valueOf() - new Date(user.cooldowns[cmd.name]).valueOf();
-                if (timeRemaining < config.cooldowns.commands[cmd.name]) return message.channel.send(`${m} You must wait another ${formatTime(config.cooldowns.commands[cmd.name] - timeRemaining)} before using that command!`);
+                if (timeRemaining < config.cooldowns.commands[cmd.name]) {
+                    const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
+                        .setColor(config.colors.orange)
+                        .setAuthor(`Whoa, there buddy...`, message.author.avatarURL())
+                        .setDescription(`You must wait another ${formatTime(config.cooldowns.commands[cmd.name] - timeRemaining)} before using that command!`)
+                        .setTimestamp(new Date())
+                        .setFooter(config.footer);
+                    return message.channel.send(sEmbed);
+                }
             }
         }
 
