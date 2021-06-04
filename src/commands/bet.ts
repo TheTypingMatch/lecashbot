@@ -65,18 +65,19 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     if (user.balance < bet) return message.channel.send(`${m} You can't bet more than you have!`);
 
     const didWin = calcBet(bet);
+    const previousBet = user.highscores.bet;
 
     log(`blue`, `${message.author.tag} [${message.author.id}] bet $${bet} and ${didWin ? `won` : `lost`}.`);
 
-    const previousBet = user.highscores.bet;
-    const previousBal = user.balance;
-
     if (didWin && previousBet < bet) {
-        await User.updateOne({ discordID: message.author.id }, { [`highscores/bet`]: bet });
+        user.highscores.bet = bet;
         await sendRecordEmbed(message, previousBet);
     }
 
-    await User.updateOne({ discordID: message.author.id }, { balance: (previousBal + bet * (didWin ? 1 : -1)), [`cooldowns/bet`]: new Date().toString() });
+    user.balance += bet * (didWin ? 1 : -1);
+    user.cooldowns.bet = new Date().toString();
+
+    await user.save();
     sendBetEmbed(message, bet, didWin);
 };
 
