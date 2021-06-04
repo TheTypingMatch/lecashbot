@@ -30,7 +30,7 @@ const createLeaderboard = async (client: Client) => {
         // Add users to the generic leaderboard.
         lb.push({
             username: user.username,
-            discordTag: discordUser.tag,
+            discordTag: discordUser?.tag || `Deleted User#0000`,
 
             balance: user.balance,
 
@@ -50,13 +50,13 @@ const sortLeaderboard = async (type: string, lb: LeaderboardUser[]) => {
         case `bet`:
             break;
         case `coinflip`:
-            lb.sort((a, b) => (a.coinflipStreak > b.coinflipStreak) ? 1 : (b.coinflipStreak > a.coinflipStreak) ? -1 : 0);
+            lb.sort((a, b) => (a.coinflipStreak <= b.coinflipStreak) ? 1 : -1);
             break;
         case `daily`:
-            lb.sort((a, b) => (a.dailyStreak > b.dailyStreak) ? 1 : (b.dailyStreak > a.dailyStreak) ? -1 : 0);
+            lb.sort((a, b) => (a.dailyStreak <= b.dailyStreak) ? 1 : -1);
             break;
         default:
-            lb.sort((a, b) => (a.balance > b.balance) ? 1 : (b.balance > a.balance) ? -1 : 0);
+            lb.sort((a, b) => (a.balance <= b.balance) ? 1 : -1);
             break;
     }
 
