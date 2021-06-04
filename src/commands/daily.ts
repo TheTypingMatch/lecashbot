@@ -21,6 +21,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const reward = (user.streaks.daily * 25) + 100;
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
+        .setColor(config.colors.green)
         .setAuthor(`Daily`, message.author.avatarURL())
         .setDescription(`**${user.username}** just earned **$${formatMoney(reward)}** with a streak of **${user.streaks.daily + 1}**!\nDon't forget to vote [**here**](https://top.gg/bot/586645522614583306/vote)!`)
         .setTimestamp(new Date())
