@@ -11,7 +11,7 @@ import { calcBetChance } from '../utils/gamble';
 
 const cmd: CommandConfig = {
     desc: `Gamble money.`,
-    category: `economy`,
+    category: `games`,
     usage: `<amount>`
 };
 

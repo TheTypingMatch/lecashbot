@@ -15,7 +15,7 @@ import {
 
 const cmd: CommandConfig = {
     desc: `Flip a coin for money.`,
-    category: `economy`,
+    category: `games`,
     usage: `[take]`,
     aliases: [`cf`]
 };
