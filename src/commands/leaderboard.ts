@@ -1,11 +1,11 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../types/discord';
-
 import config from '../../config/config';
 
-import { addCommandField } from '../utils/field';
-import { formatMoney } from '../utils/text';
+import { Client, CommandConfig } from '../types/discord';
 import Leaderboard from '../models/leaderboard.model';
+
+import { addCommandField } from '../utils/field';
+import { capitalize, formatMoney } from '../utils/text';
 
 const cmd: CommandConfig = {
     desc: `View global leaderboards.`,
@@ -31,27 +31,32 @@ const sendDefaultEmbed = (message: Discord.Message) => {
     message.channel.send(defaultEmbed);
 };
 
-// const formatFlipLB = (msg, topTen) => {
-//     topTen.reverse().forEach(({ coinflipBestStreak, name }, pos) => {
-//         const coinflipAmount = (coinflipBestStreak) ? Math.round((100 * (3 ** (coinflipBestStreak - 2))) + ((coinflipBestStreak - 1) * 150)) : 0;
-//         const coinflipChance = (coinflipBestStreak) ? Math.round((100 / (2 ** coinflipBestStreak)) * 100) / 100 : 0;
-
-//         desc += `#**${pos + 1}** ${name} - **${coinflipBestStreak}** - $**${currency(coinflipAmount)}** - ${coinflipChance}%\n`;
-//     });
-// };
-
-// const formatBetLB = (msg, topTen) => {
-//     topTen.reverse().forEach(({ highestBet, name }, pos) => {
-//         const betAmount = currency(highestBet.amount);
-//         const betChance = Math.round(highestBet.chance * 100) / 100;
-//         desc += `#**${pos + 1}** ${name} - $**${betAmount}** - ${betChance}%\n`;
-//     });
-// };
-
-const formatCashLB = (msg, topTen) => {
+const formatLB = (type: string, users: any[]) => {
     let content = ``;
-    topTen.reverse().forEach((user, pos) => {
-        content += `#**${pos + 1}** ${user.name} - $**${formatMoney(user.balance)}**\n`;
+
+    // forEach is slower than for...of, but is more practical here. Any ideas?
+    users.forEach((user, pos) => {
+        let data: string;
+
+        switch (type) {
+            case `bet`:
+                data = `${user.coinflipStreak}`;
+                break;
+            case `cash`:
+                data = `$${formatMoney(user.balance)}`;
+                break;
+            case `coinflip`:
+                data = `${formatMoney(user.coinflipStreak)}`;
+                break;
+            case `daily`:
+                data = `${formatMoney(user.dailyStreak)}`;
+                break;
+            default:
+                data = null;
+                break;
+        }
+
+        content += `${pos < 3 ? [`🥇`, `🥈`, `🥉`][pos] : `🏅`} **${user.discordTag}** - ${data}\n`;
     });
 
     return content;
@@ -62,21 +67,29 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
 
     const lbEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
-        .setAuthor(`Leaderboard`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
 
     const lbInfo = await Leaderboard.findOne({});
-    console.log(lbInfo);
 
     switch (args[0]) {
+        case `bet`:
+            lbEmbed.setDescription(formatLB(`bet`, lbInfo.bet.splice(0, 10)));
+            break;
         case `cash`:
-            lbEmbed.setDescription(formatCashLB(message, lbInfo.balance));
+            lbEmbed.setDescription(formatLB(`cash`, lbInfo.balance.splice(0, 10)));
+            break;
+        case `coinflip`:
+            lbEmbed.setDescription(formatLB(`coinflip`, lbInfo.coinflip.splice(0, 10)));
+            break;
+        case `daily`:
+            lbEmbed.setDescription(formatLB(`daily`, lbInfo.daily.splice(0, 10)));
             break;
         default:
             return sendDefaultEmbed(message);
     }
 
+    lbEmbed.setAuthor(`Leaderboard | ${capitalize(args[0])}`, message.author.avatarURL());
     message.channel.send(lbEmbed);
 };
 
