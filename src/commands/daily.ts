@@ -7,7 +7,7 @@ import User from '../models/user.model';
 import { formatMoney } from '../utils/text';
 
 const cmd: CommandConfig = {
-    desc: `Claim your daily reward!.`,
+    desc: `Claim your daily reward.`,
     category: `economy`,
     usage: ``
 };
@@ -23,7 +23,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
         .setAuthor(`Daily`, message.author.avatarURL())
-        .setDescription(`**${user.username}** just earned **$${formatMoney(reward)}** with a streak of **${user.streaks.daily + 1}**!\nDon't forget to vote [**here**](https://top.gg/bot/586645522614583306/vote)!`)
+        .setDescription(`**${message.author.username}** just earned **$${formatMoney(reward)}** with a streak of **${user.streaks.daily + 1}**!\nDon't forget to vote [**here**](https://top.gg/bot/586645522614583306/vote)!`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
 
