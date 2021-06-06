@@ -22,7 +22,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const user = await User.findOne(query);
     if (!user) return message.channel.send(`${m} That user does not have an account!`);
 
-    const discordUser = await client.users.cache.get(user.discordID);
+    const discordUser = await client.users.fetch(user.discordID);
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
