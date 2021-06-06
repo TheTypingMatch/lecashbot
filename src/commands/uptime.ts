@@ -11,9 +11,9 @@ const cmd: CommandConfig = {
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const uptimeFormat = {
         days: `${Math.floor(client.uptime / 864e5)}`,
-        hours: `${Math.floor(client.uptime / 36e5)}`,
-        minutes: `${Math.floor(client.uptime / 6e4)}`,
-        seconds: `${Math.floor(client.uptime / 1e3)}`
+        hours: `${Math.floor((client.uptime / 36e5) % 24)}`,
+        minutes: `${Math.floor((client.uptime / 1e3) % 60)}`,
+        seconds: `${Math.floor(client.uptime % 1e3)}`
     };
 
     const uptimeEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
