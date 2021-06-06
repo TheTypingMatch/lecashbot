@@ -6,7 +6,7 @@ import { formatMoney } from '../utils/text';
 
 const cmd: CommandConfig = {
     desc: `View bot statistics.`,
-    category: `guides`
+    category: `misc`
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
