@@ -5,7 +5,7 @@ import config from '../../config/config';
 
 const cmd: CommandConfig = {
     desc: `Show bot latency.`,
-    category: `guides`
+    category: `misc`
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
