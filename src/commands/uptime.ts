@@ -9,17 +9,17 @@ const cmd: CommandConfig = {
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
-    const uptimeFormat = {
-        days: `${Math.floor(client.uptime / 864e5)}`,
-        hours: `${Math.floor((client.uptime / 36e5) % 24)}`,
-        minutes: `${Math.floor((client.uptime / 1e3) % 60)}`,
-        seconds: `${Math.floor(client.uptime % 1e3)}`
+    const uptime = {
+        days: `**${Math.floor(client.uptime / 864e5)}** Days`,
+        hours: `**${Math.floor((client.uptime / 36e5) % 24)}** Hours`,
+        minutes: `**${Math.floor((client.uptime / 1e3) % 60)}** Minutes`,
+        seconds: `**${Math.floor(client.uptime % 1e3)}** Seconds`
     };
 
     const uptimeEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
         .setAuthor(`Client Uptime`, message.author.avatarURL())
-        .setDescription(`**${uptimeFormat.days}** Days\n**${uptimeFormat.hours}** Hours\n**${uptimeFormat.minutes}** Minutes\n**${uptimeFormat.seconds}** Seconds`)
+        .setDescription(Object.values(uptime).map(value => `${value}`))
         .setTimestamp(new Date())
         .setFooter(config.footer);
 
