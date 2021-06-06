@@ -18,7 +18,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
 
     const statsEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
-        .setAuthor(`Stats`, message.author.avatarURL())
+        .setAuthor(`Client Stats`, message.author.avatarURL())
         .setDescription(Object.values(stats).map(value => `${value}`))
         .setTimestamp(new Date())
         .setFooter(config.footer);
