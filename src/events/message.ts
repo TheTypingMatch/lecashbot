@@ -50,8 +50,14 @@ export default async (client: Client, message: Discord.Message) => {
             }
         }
 
+        // Start typing.
+        message.channel.startTyping();
+
         // Execute the command.
         log(`magenta`, `${message.author.tag} [${message.author.id}] ran command ${command} in ${message.guild.name}.`);
-        cmd.run(client, message, args);
+        await cmd.run(client, message, args);
+
+        // Stop typing.
+        message.channel.stopTyping(true);
     }
 };
