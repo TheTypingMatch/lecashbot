@@ -1,4 +1,11 @@
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+const capitalize = (str: string) => {
+    const words = str.split(` `);
+
+    const newPhrase: string[] = [];
+    for (const word of words) newPhrase.push(word.charAt(0).toUpperCase() + word.slice(1));
+
+    return newPhrase.join(` `);
+};
 
 const formatMoney = (num: number) => {
     // First, round the number.
