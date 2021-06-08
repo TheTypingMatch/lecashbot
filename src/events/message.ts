@@ -54,7 +54,7 @@ export default async (client: Client, message: Discord.Message) => {
         message.channel.startTyping();
 
         // Execute the command.
-        log(`magenta`, `${message.author.tag} [${message.author.id}] ran command ${command} in ${message.guild.name}.`);
+        log(`magenta`, `${message.author.tag} [${message.author.id}] ran command ${cmd.name} in ${message.guild.name}.`);
         await cmd.run(client, message, args);
 
         // Stop typing.
