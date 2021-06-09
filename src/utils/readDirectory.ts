@@ -2,8 +2,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const readDirectory = (dir: any) => {
-    let results = [];
+    let results: string[] = [];
     const files = fs.readdirSync(dir);
+
     for (const file of files) {
         const filePath = path.resolve(dir, file);
         const stat = fs.statSync(filePath);
@@ -12,6 +13,7 @@ const readDirectory = (dir: any) => {
             results = results.concat(res);
         } else results.push(filePath);
     }
+
     return results;
 };
 
