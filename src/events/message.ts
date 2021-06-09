@@ -28,7 +28,7 @@ export default async (client: Client, message: Discord.Message) => {
 
     if (user) {
         if (user.banned) {
-            log(`yellow`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is blacklisted.`);
+            log(`yellow`, `${message.author.tag} attempted to run ${cmd.name} in ${message.guild.name} but is blacklisted.`);
             const bannedEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
                 .setColor(config.colors.red)
                 .setAuthor(`Command Failed`, message.author.avatarURL())
@@ -52,7 +52,7 @@ export default async (client: Client, message: Discord.Message) => {
         }
 
         if (cmd.admin && !user.badges.admin) {
-            log(`yellow`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is not an administrator.`);
+            log(`yellow`, `${message.author.tag} attempted to run ${cmd.name} in ${message.guild.name} but has no permission.`);
             const notAdminEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
                 .setColor(config.colors.red)
                 .setAuthor(`No Permission!`, message.author.avatarURL())
