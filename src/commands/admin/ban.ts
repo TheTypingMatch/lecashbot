@@ -21,7 +21,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     if (!banUser) return message.channel.send(`${m} That user does not have an account!`);
 
     if (banUser.banned) return message.channel.send(`${m} That user is already banned!`);
-    if (banUser.discordID === message.author.id) return message.channel.send(`${m} You cannot ban yourself!`);
+    if (banUser.badges.owner || banUser.badges.dev || banUser.badges.admin) return message.channel.send(`${m} You cannot ban that person!`);
 
     const discordUser = await client.users.fetch(banUser.discordID);
     const banEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
