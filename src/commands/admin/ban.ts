@@ -15,7 +15,6 @@ const cmd: CommandConfig = {
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const m = `${message.author} »`;
-
     const query = getQuery(message, args);
 
     const banUser = await User.findOne(query);
@@ -25,7 +24,6 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     if (banUser.discordID === message.author.id) return message.channel.send(`${m} You cannot ban yourself!`);
 
     const discordUser = await client.users.fetch(banUser.discordID);
-
     const banEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.red)
         .setAuthor(`User Banned`, message.author.avatarURL())
