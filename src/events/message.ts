@@ -23,31 +23,43 @@ export default async (client: Client, message: Discord.Message) => {
     if (!cmd) return;
 
     if ((cmd.config.usage) && args.length < (cmd.config.usage.split(`<`).length) - 1) return message.channel.send(`${m} Proper usage is \`${config.prefix + cmd.name} ${cmd.config.usage}\`.`);
-    else {
-        const user = await User.findOne({ discordID: message.author.id });
 
-        if (user) {
-            if (user.banned) {
-                log(`yellow`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is blacklisted.`);
-                const bannedEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-                    .setColor(config.colors.red)
-                    .setAuthor(`Command Failed`, message.author.avatarURL())
-                    .setDescription(`You are currently banned from the bot!\nPlease message a LeCashBot developer if you wish to be unbanned.`)
+    const user = await User.findOne({ discordID: message.author.id });
+
+    if (user) {
+        if (user.banned) {
+            log(`yellow`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is blacklisted.`);
+            const bannedEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
+                .setColor(config.colors.red)
+                .setAuthor(`Command Failed`, message.author.avatarURL())
+                .setDescription(`You are currently banned from the bot!\nPlease message a LeCashBot developer if you wish to be unbanned.`)
+                .setTimestamp(new Date())
+                .setFooter(config.footer);
+            return message.channel.send(bannedEmbed);
+        }
+
+        if (user.cooldowns[cmd.name]) {
+            const timeRemaining = new Date().valueOf() - new Date(user.cooldowns[cmd.name]).valueOf();
+            if (timeRemaining < config.cooldowns.commands[cmd.name]) {
+                const cooldownEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
+                    .setColor(config.colors.orange)
+                    .setAuthor(`Whoa there, buddy...`, message.author.avatarURL())
+                    .setDescription(`You must wait another ${formatTime(config.cooldowns.commands[cmd.name] - timeRemaining)} before using that command!`)
                     .setTimestamp(new Date())
                     .setFooter(config.footer);
-                return message.channel.send(bannedEmbed);
-            } else if (user.cooldowns[cmd.name]) {
-                const timeRemaining = new Date().valueOf() - new Date(user.cooldowns[cmd.name]).valueOf();
-                if (timeRemaining < config.cooldowns.commands[cmd.name]) {
-                    const cooldownEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
-                        .setColor(config.colors.orange)
-                        .setAuthor(`Whoa there, buddy...`, message.author.avatarURL())
-                        .setDescription(`You must wait another ${formatTime(config.cooldowns.commands[cmd.name] - timeRemaining)} before using that command!`)
-                        .setTimestamp(new Date())
-                        .setFooter(config.footer);
-                    return message.channel.send(cooldownEmbed);
-                }
+                return message.channel.send(cooldownEmbed);
             }
+        }
+
+        if (cmd.admin && !user.badges.admin) {
+            log(`yellow`, `${message.author.tag} attempted to run ${command} in ${message.guild.name} but is not an administrator.`);
+            const notAdminEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
+                .setColor(config.colors.red)
+                .setAuthor(`No Permission!`, message.author.avatarURL())
+                .setDescription(`You must be a bot administrator to run this command!`)
+                .setTimestamp(new Date())
+                .setFooter(config.footer);
+            return message.channel.send(notAdminEmbed);
         }
 
         // Start typing.

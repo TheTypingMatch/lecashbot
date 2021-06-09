@@ -8,6 +8,7 @@ interface CommandConfig {
 }
 interface Command {
     name: string;
+    admin: boolean;
     config: CommandConfig;
     run: any;
 }

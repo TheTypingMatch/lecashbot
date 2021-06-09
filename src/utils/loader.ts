@@ -22,6 +22,7 @@ const loadCommands = async (client: Client, callback?: any) => {
         const command = await import(file);
         client.commands.push({
             name: fileName,
+            admin: file.split(`\\`).includes(`admin`),
             config: {
                 desc: command.cmd.desc,
                 category: command.cmd.category,
