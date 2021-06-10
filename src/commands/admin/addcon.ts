@@ -1,9 +1,10 @@
 import * as Discord from 'discord.js';
 import { Client, CommandConfig } from '../../types/discord';
 
-import config from '../../../config/config';
+// import config from '../../../config/config';
+// import log from '../../utils/log';
+
 import User from '../../models/user.model';
-import log from '../../utils/log';
 
 import getQuery from '../../utils/getQuery';
 
