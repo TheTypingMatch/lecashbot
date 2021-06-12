@@ -1,6 +1,6 @@
 import { author, version } from '../../package.json';
 
-const logSplash = (callback?: any) => {
+const logSplash = () => {
     console.log(`\x1b[34m`, `
 
     ██╗     ███████╗ ██████╗ █████╗ ███████╗██╗  ██╗██████╗  ██████╗ ████████╗
@@ -12,14 +12,10 @@ const logSplash = (callback?: any) => {
                                                                                                                                                                                 
                    Created by ${author} | v${version}
     `);
-
-    if (callback !== undefined) return callback();
 };
 
-const logHeader = (callback?: any) => {
+const logHeader = () => {
     console.log(`\x1b[34m`, `--------------------------------------------------`);
-
-    if (callback !== undefined) return callback();
 };
 
 export {
