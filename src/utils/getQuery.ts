@@ -6,7 +6,7 @@ const getQuery = (message: Discord.Message, args: string[]) => {
 
     if (queryParam) query = { discordID: queryParam };
     else {
-        queryParam = args[0];
+        queryParam = args[0].toLowerCase();
         if (queryParam) {
             const isID = parseInt(queryParam);
             query = isID ? { discordID: queryParam } : { username: queryParam.toLowerCase() };
