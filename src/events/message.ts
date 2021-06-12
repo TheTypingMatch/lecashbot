@@ -61,15 +61,15 @@ export default async (client: Client, message: Discord.Message) => {
                 .setFooter(config.footer);
             return message.channel.send(notAdminEmbed);
         }
-
-        // Start typing.
-        message.channel.startTyping();
-
-        // Execute the command.
-        log(`magenta`, `${message.author.tag} [${message.author.id}] ran command ${cmd.name} in ${message.guild.name}.`);
-        await cmd.run(client, message, args);
-
-        // Stop typing.
-        message.channel.stopTyping(true);
     }
+
+    // Start typing.
+    message.channel.startTyping();
+
+    // Execute the command.
+    log(`magenta`, `${message.author.tag} [${message.author.id}] ran command ${cmd.name} in ${message.guild.name}.`);
+    await cmd.run(client, message, args);
+
+    // Stop typing.
+    message.channel.stopTyping(true);
 };
