@@ -5,8 +5,8 @@ import { LeaderboardDoc } from '../types/models';
 const leaderboardSchema = new Mongoose.Schema({
     creationDate: { type: String, required: false, default: new Date().toString() },
 
-    balance: { type: Array, required: true },
     bet: { type: Array, required: true },
+    cash: { type: Array, required: true },
     coinflip: { type: Array, required: true },
     daily: { type: Array, required: true },
 

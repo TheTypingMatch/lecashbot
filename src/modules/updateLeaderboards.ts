@@ -39,6 +39,9 @@ const sortLeaderboard = async (type: string, lb: LeaderboardUser[]) => {
     switch (type) {
         case `bet`:
             break;
+        case `balance`:
+            lb.sort((a, b) => (a.balance <= b.balance) ? 1 : -1);
+            break;
         case `coinflip`:
             lb.sort((a, b) => (a.coinflipStreak <= b.coinflipStreak) ? 1 : -1);
             break;
@@ -46,8 +49,7 @@ const sortLeaderboard = async (type: string, lb: LeaderboardUser[]) => {
             lb.sort((a, b) => (a.dailyStreak <= b.dailyStreak) ? 1 : -1);
             break;
         default:
-            lb.sort((a, b) => (a.balance <= b.balance) ? 1 : -1);
-            break;
+            return null;
     }
 
     return lb;
@@ -69,8 +71,8 @@ const updateLeaderboards = async (client: Client) => {
     for (const user of users) totalBalance += user.balance;
 
     const lb = new Leaderboard({
-        balance: await sortLeaderboard(`balance`, leaderboard),
         bet: await sortLeaderboard(`bet`, leaderboard),
+        cash: await sortLeaderboard(`balance`, leaderboard),
         coinflip: await sortLeaderboard(`coinflip`, leaderboard),
         daily: await sortLeaderboard(`daily`, leaderboard),
 
