@@ -1,3 +1,5 @@
+import config from '../../config/config';
+
 import Lottery from '../models/lottery.model';
 import User from '../models/user.model';
 
@@ -5,7 +7,7 @@ import { capitalize, formatMoney } from '../utils/text';
 import log from '../utils/log';
 
 import { Client } from '../types/discord';
-import { DiscordAPIError, MessageEmbed } from 'discord.js';
+import { MessageEmbed } from 'discord.js';
 
 const createLottery = async (type: string, client: Client) => {
     const tomorrow = new Date().getTime() + 864e5;
@@ -59,11 +61,11 @@ const endLottery = async (client: Client, type: string) => {
     const winnerID = lottery.entries[Math.floor(Math.random() * lottery.entries.length)];
 
     const winner = await User.findOne({ discordID: winnerID });
-    const winnerUser = await client.users.fetch(winnerID); 
+    const winnerUser = await client.users.fetch(winnerID);
 
     const prize = formatMoney(lottery.entryFee * lottery.entries.length);
 
-    await User.updateOne({ discordID: winnerID }, { balance: winner.balance + (lottery.entryFee * entries.length) });
+    await User.updateOne({ discordID: winnerID }, { balance: winner.balance + (lottery.entryFee * lottery.entries.length) });
     await Lottery.updateOne({ type }, { previousWinner: (winnerUser?.tag || winner.username) });
 
     const winnerEmbed: MessageEmbed = new MessageEmbed()
