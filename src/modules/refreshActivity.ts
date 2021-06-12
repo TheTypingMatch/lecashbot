@@ -1,7 +1,7 @@
 import { Client } from '../types/discord';
 import log from '../utils/log';
 
-const refreshActivity = async (client: Client, callback?: any) => {
+const refreshActivity = async (client: Client) => {
     log(`cyan`, `Updating status...`);
 
     await client.user.setPresence({
@@ -14,7 +14,6 @@ const refreshActivity = async (client: Client, callback?: any) => {
     });
 
     log(`green`, `Status updated.`);
-    if (callback !== undefined) callback();
 };
 
 export default refreshActivity;

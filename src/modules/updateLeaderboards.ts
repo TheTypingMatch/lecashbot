@@ -53,7 +53,7 @@ const sortLeaderboard = async (type: string, lb: LeaderboardUser[]) => {
     return lb;
 };
 
-const updateLeaderboards = async (client: Client, callback?: any) => {
+const updateLeaderboards = async (client: Client) => {
     log(`cyan`, `Updating leaderboards...`);
 
     // Delete all existing leaderboards.
@@ -61,12 +61,7 @@ const updateLeaderboards = async (client: Client, callback?: any) => {
     for (const leaderboard of leaderboards) leaderboard.delete();
 
     const leaderboard = await createLeaderboard(client);
-    if (!leaderboard || leaderboard.length === 0) {
-        log(`yellow`, `No active users found. Skipping...`);
-
-        if (callback !== undefined) callback();
-        return;
-    }
+    if (!leaderboard || leaderboard.length === 0) return log(`yellow`, `No active users found. Skipping...`);
 
     const users = await User.find({ banned: false });
 
@@ -84,8 +79,6 @@ const updateLeaderboards = async (client: Client, callback?: any) => {
 
     await lb.save();
     log(`green`, `Leaderboards updated.`);
-
-    if (callback !== undefined) return callback();
 };
 
 export default updateLeaderboards;

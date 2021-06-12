@@ -2,14 +2,13 @@ import User from '../models/user.model';
 
 import log from '../utils/log';
 
-const resetDailyStreak = async (callback?: any) => {
+const resetDailyStreak = async () => {
     log(`cyan`, `Updating daily streaks...`);
 
     const users = await User.find({ banned: false });
     if (!users || users.length === 0) {
         log(`yellow`, `No active users found. Skipping...`);
 
-        if (callback !== undefined) callback();
         return;
     }
 
@@ -18,12 +17,11 @@ const resetDailyStreak = async (callback?: any) => {
             log(`blue`, `Daily streak reset for user ${user.username} [${user.discordID}].`);
 
             user.streaks.daily = 0;
-            user.save();
+            await user.save();
         }
     }
 
     log(`green`, `Daily streaks updated.`);
-    if (callback !== undefined) return callback();
 };
 
 export default resetDailyStreak;
