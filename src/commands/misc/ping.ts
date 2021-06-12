@@ -18,7 +18,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         .setTimestamp(new Date())
         .setFooter(config.footer);
 
-    msg.edit(sEmbed);
+    msg.edit(``, sEmbed);
 };
 
 export {
