@@ -1,7 +1,7 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../types/discord';
+import { Client, CommandConfig } from '../../types/discord';
 
-import config from '../../config/config';
+import config from '../../../config/config';
 
 const cmd: CommandConfig = {
     desc: `View client uptime.`,

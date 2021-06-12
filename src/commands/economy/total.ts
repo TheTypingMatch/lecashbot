@@ -1,10 +1,10 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../types/discord';
+import { Client, CommandConfig } from '../../types/discord';
 
-import config from '../../config/config';
+import config from '../../../config/config';
 
-import Leaderboard from '../models/leaderboard.model';
-import { formatMoney } from '../utils/text';
+import Leaderboard from '../../models/leaderboard.model';
+import { formatMoney } from '../../utils/text';
 
 const cmd: CommandConfig = {
     desc: `View the global cash pool.`,

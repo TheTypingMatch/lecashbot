@@ -1,11 +1,11 @@
 import * as Discord from 'discord.js';
-import config from '../../config/config';
+import config from '../../../config/config';
 
-import { Client, CommandConfig } from '../types/discord';
-import Leaderboard from '../models/leaderboard.model';
+import { Client, CommandConfig } from '../../types/discord';
+import Leaderboard from '../../models/leaderboard.model';
 
-import { addCommandField } from '../utils/field';
-import { capitalize, formatMoney } from '../utils/text';
+import { addCommandField } from '../../utils/field';
+import { capitalize, formatMoney } from '../../utils/text';
 
 const cmd: CommandConfig = {
     desc: `View global leaderboards.`,

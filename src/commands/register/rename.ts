@@ -1,11 +1,11 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../types/discord';
+import { Client, CommandConfig } from '../../types/discord';
 
-import config from '../../config/config';
-import User from '../models/user.model';
+import config from '../../../config/config';
+import User from '../../models/user.model';
 
-import randomString from '../utils/randomString';
-import log from '../utils/log';
+import randomString from '../../utils/randomString';
+import log from '../../utils/log';
 
 const cmd: CommandConfig = {
     desc: `Change your linked NT account.`,

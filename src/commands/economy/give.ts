@@ -1,12 +1,12 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../types/discord';
+import { Client, CommandConfig } from '../../types/discord';
 
-import config from '../../config/config';
-import User from '../models/user.model';
-import log from '../utils/log';
+import config from '../../../config/config';
+import User from '../../models/user.model';
+import log from '../../utils/log';
 
-import getQuery from '../utils/getQuery';
-import { formatMoney } from '../utils/text';
+import getQuery from '../../utils/getQuery';
+import { formatMoney } from '../../utils/text';
 
 const cmd: CommandConfig = {
     desc: `Gift another user money.`,
