@@ -5,7 +5,7 @@ import { Client } from '../types/discord';
 import { LeaderboardUser } from '../types/leaderboard';
 
 import * as Discord from 'discord.js';
-import log from './log';
+import log from '../utils/log';
 
 const createLeaderboard = async (client: Client) => {
     const lb: LeaderboardUser[] = [];

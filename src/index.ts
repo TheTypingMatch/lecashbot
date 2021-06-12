@@ -5,7 +5,7 @@ import { Client } from './types/discord';
 import log from './utils/log';
 
 import * as logExtra from './utils/logExtra';
-import * as loader from './utils/loader';
+import * as loader from './modules/loader';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
