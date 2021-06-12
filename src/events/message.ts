@@ -51,7 +51,7 @@ export default async (client: Client, message: Discord.Message) => {
             }
         }
 
-        if (cmd.admin && !user.badges.admin) {
+        if (cmd.admin && (!user.badges.owner && !user.badges.dev && !user.badges.admin)) {
             log(`yellow`, `${message.author.tag} attempted to run command ${cmd.name} in ${message.guild.name} but has no permission.`);
             const notAdminEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
                 .setColor(config.colors.red)
