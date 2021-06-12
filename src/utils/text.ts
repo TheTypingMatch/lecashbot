@@ -37,8 +37,19 @@ const formatTime = (num: number) => {
     return str;
 };
 
+const formatTimeString = (ms: number) => {
+    const seconds = Math.floor((ms / 1000) % 60).toString().padStart(2, `0`);
+    const minutes = Math.floor((ms / (1000 * 60)) % 60).toString().padStart(2, `0`);
+    const hours = Math.floor((ms / (1000 * 60 * 60)) % 24).toString().padStart(2, `0`);
+    const days = Math.floor((ms / (1000 * 60 * 60 * 24)) % 365).toString().padStart(2, `0`);
+
+    return `${days ? `**${days}**d ` : ``}**${hours}**h **${minutes}**m **${seconds}**s`;
+};
+
 export {
     capitalize,
     formatMoney,
-    formatTime
+
+    formatTime,
+    formatTimeString
 };
