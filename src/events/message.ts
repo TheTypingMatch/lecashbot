@@ -52,10 +52,10 @@ export default async (client: Client, message: Discord.Message) => {
         }
 
         if (cmd.admin && !user.badges.admin) {
-            log(`yellow`, `${message.author.tag} attempted to run ${cmd.name} in ${message.guild.name} but has no permission.`);
+            log(`yellow`, `${message.author.tag} attempted to run command ${cmd.name} in ${message.guild.name} but has no permission.`);
             const notAdminEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
                 .setColor(config.colors.red)
-                .setAuthor(`No Permission!`, message.author.avatarURL())
+                .setAuthor(`No Permission`, message.author.avatarURL())
                 .setDescription(`You must be a bot administrator to run this command!`)
                 .setTimestamp(new Date())
                 .setFooter(config.footer);
