@@ -57,26 +57,24 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         .setTimestamp(new Date())
         .setFooter(config.footer);
 
-    for (const type of lotteryTypes) {
-        const lottery = await Lottery.findOne({ type });
-        const prizePool = lottery.entryFee * lottery.entries.length;
+    const lottery = await Lottery.findOne({ type: lotteryChoice });
+    const prizePool = lottery.entryFee * lottery.entries.length;
 
-        const previousWinner = lottery.previousWinner ? `**${lottery.previousWinner}**` : `No entries in previous lottery.`;
-        const timeLeft = formatTimeString(new Date(lottery.endDate).valueOf() - new Date().valueOf());
+    const previousWinner = lottery.previousWinner ? `**${lottery.previousWinner}**` : `No entries in previous lottery.`;
+    const timeLeft = formatTimeString(new Date(lottery.endDate).valueOf() - new Date().valueOf());
 
-        lotteryEmbed.setDescription(`
-            **${capitalize(type)}**
-            ${lottery.entries.includes(message.author.id) ? `You have entered this lottery!` : `To enter this lottery, type \`${config.prefix}lottery <type> enter\`.`}
+    lotteryEmbed.setDescription(`
+        **${capitalize(lotteryChoice)}**
+        ${lottery.entries.includes(message.author.id) ? `You have entered this lottery!` : `To enter this lottery, type \`${config.prefix}lottery <type> enter\`.`}
 
-            Ends in ${timeLeft}
-            Entries: ${lottery.entries.length}
+        Ends in ${timeLeft}
+        Entries: ${lottery.entries.length}
 
-            Entry Fee: $${formatMoney(lottery.entryFee)}
-            Prize Pool: $${formatMoney(prizePool) || `Error`}
+        Entry Fee: $${formatMoney(lottery.entryFee)}
+        Prize Pool: $${formatMoney(prizePool) || `Error`}
 
-            Previous Winner: ${previousWinner}
-        `);
-    }
+        Previous Winner: ${previousWinner}
+    `);
 
     message.channel.send(lotteryEmbed);
 };
