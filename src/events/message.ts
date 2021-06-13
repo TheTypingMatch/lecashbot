@@ -63,9 +63,6 @@ export default async (client: Client, message: Discord.Message) => {
         }
     }
 
-    // If the user does not have an account, just don't allow them to know the command exists.
-    if (!user && cmd.admin) return;
-
     // Start typing.
     message.channel.startTyping();
 

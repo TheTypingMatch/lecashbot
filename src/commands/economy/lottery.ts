@@ -66,13 +66,14 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     lotteryEmbed.setDescription(`
         **${capitalize(lotteryChoice)}**
         ${lottery.entries.includes(message.author.id) ? `You have entered this lottery!` : `To enter this lottery, type \`${config.prefix}lottery <type> enter\`.`}
+
         Ends in ${timeLeft}
+        Entries: ${lottery.entries.length}
 
-        **Entry Fee**: $${formatMoney(lottery.entryFee)}
-        **Prize Pool**: $${formatMoney(prizePool) || `Error`}
+        Entry Fee: $${formatMoney(lottery.entryFee)}
+        Prize Pool: $${formatMoney(prizePool) || `Error`}
 
-        **Entries**: ${lottery.entries.length}
-        **Previous Winner**: ${previousWinner}
+        Previous Winner: ${previousWinner}
     `);
 
     message.channel.send(lotteryEmbed);
