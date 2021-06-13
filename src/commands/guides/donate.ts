@@ -9,7 +9,8 @@ import { formatMoney } from '../../utils/text';
 const cmd: CommandConfig = {
     desc: `Donate to the bot.`,
     category: `guides`,
-    aliases: [`donors`]
+    aliases: [`donors`],
+    usage: `[page]`
 };
 
 const getDonors = async () => {
@@ -35,14 +36,18 @@ const addField = async (userData: any[], client: Client) => {
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const donors = await getDonors();
+    const page = args[0] ? parseInt(args[0]) - 1 : null;
+
+    const donorPages = [];
+    for (let i = 0; i < donors.length; i += 10) donorPages.push(donors.slice(i, i += 10));
 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
         .setAuthor(`Donate`, message.author.avatarURL())
         .setDescription(`Donate to LeCashBot **[here](https://donate.lecashbot.cf)**.`)
-        .addField(`Donors`, await addField(donors, client))
+        .addField(`Donors`, page ? (await addField(donorPages[page], client)) : `To view a list of donors, do \`${config.prefix}donate [page]\`.`)
         .setTimestamp(new Date())
-        .setFooter(config.footer);
+        .setFooter(`${config.footer} ${page ? `| Page ${args[0]} of ${donorPages.length}` : ``}`);
 
     message.channel.send(sEmbed);
 };
