@@ -1,10 +1,8 @@
+import * as Discord from 'discord.js';
 import config from '../../../config/config';
 
-import * as Discord from 'discord.js';
 import { Client, CommandConfig } from '../../types/discord';
-
 import Leaderboard from '../../models/leaderboard.model';
-import { LeaderboardUser } from '../../types/leaderboard';
 
 import { addCommandField } from '../../utils/field';
 import { capitalize, formatMoney } from '../../utils/text';
@@ -37,12 +35,12 @@ const formatLB = (type: string, users: any[]) => {
     let content = ``;
 
     // forEach is slower than for...of, but is more practical here. Any ideas?
-    users.forEach((user: LeaderboardUser, pos) => {
+    users.forEach((user, pos) => {
         let data: string;
 
         switch (type) {
             case `bet`:
-                data = `$${formatMoney(user.highestBet)}`;
+                data = `${user.coinflipStreak}`;
                 break;
             case `cash`:
                 data = `$${formatMoney(user.balance)}`;
