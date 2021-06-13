@@ -86,7 +86,7 @@ const endLottery = async (client: Client, type: string) => {
     return resetLottery(type);
 };
 
-const updateLottery = async (client: Client) => {
+const updateLottery = async (client: Client, callback?: any) => {
     log(`cyan`, `Updating lottery...`);
 
     const lotteryTypes = [`daily`, `weekly`, `monthly`];
@@ -102,6 +102,7 @@ const updateLottery = async (client: Client) => {
     }
 
     log(`green`, `Lotteries updated.`);
+    if (callback !== undefined) callback();
 };
 
 export default updateLottery;

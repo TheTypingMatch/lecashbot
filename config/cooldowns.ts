@@ -10,8 +10,7 @@ const cooldowns = {
     utils: {
         dailyReset: 1296e5,
         refreshActivity: 6e5,
-        updateLeaderboards: 3e5,
-        updateLottery: 6e4
+        lbUpdate: 3e5
     }
 };
 
