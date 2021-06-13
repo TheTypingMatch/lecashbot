@@ -44,7 +44,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const contributorEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
         .setAuthor(`Contributor Added`, message.author.avatarURL())
-        .setDescription(`Succesfully added rank \`${contribution}\` to \`${user.username}\`. ${contribution === `donor` ? `\nDonation Amount: **$${formatMoney(parseInt(args[2]))}` : ``}`)
+        .setDescription(`Succesfully added rank \`${contribution}\` to \`${user.username}\`. ${contribution === `donor` ? `\nDonation Amount: **$${formatMoney(parseInt(args[1]))}` : ``}`)
         .setTimestamp(new Date())
         .setFooter(config.footer);
 
