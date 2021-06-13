@@ -1,6 +1,6 @@
 import User from '../models/user.model';
 
-import log from '../utils/log';
+import log from './log';
 
 const resetDailyStreak = async (callback?: any) => {
     log(`cyan`, `Updating daily streaks...`);

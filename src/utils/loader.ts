@@ -2,10 +2,10 @@ import * as path from 'path';
 
 import { Client } from '../types/discord';
 
-import log from '../utils/log';
-import { logHeader } from '../utils/logExtra';
+import log from './log';
+import { logHeader } from './logExtra';
 
-import readDirectory from '../utils/readDirectory';
+import readDirectory from './readDirectory';
 
 const loadCommands = async (client: Client, callback?: any) => {
     logHeader();
