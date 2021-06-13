@@ -3,7 +3,7 @@
 <p>
   <img src="https://img.shields.io/discord/689241652916912138?style=flat">
   <img src="https://github.com/TheTypingMatch/lecashbot/workflows/Build/badge.svg">
-  <img src="https://github.com/TheTypingMatch/lecashbot/workflows/Test/badge.svg">
+  <img src="https://github.com/TheTypingMatch/lecashbot/workflows/Lint/badge.svg">
 </p>
 <p>
   A Discord.js bot based on the <a href="https://www.nitrotype.com/">NitroType</a> currency.
@@ -48,14 +48,14 @@
 | --- | --- | --- |
 | Node.js | [nodejs.org/en/download](https://nodejs.org/en/download/) | [nodejs.org/en/docs](https://nodejs.org/en/docs/) |
 | MongoDB | [docs.mongodb.com/manual/installation](https://docs.mongodb.com/manual/installation/) | [docs.mongodb.com](https://docs.mongodb.com/) |
-| Discord.js | *N/A* | [discord.js.org/#/docs](https://discord.js.org/#/docs/main/master/general/Welcome) |
+| Discord.js | `yarn add discord.js` | [discord.js.org/#/docs](https://discord.js.org/#/docs/main/master/general/Welcome) |
 
 ## Contributing
 1. Fork the repository
 2. Clone the repository & install required dependencies:
 ```bash
 git clone git@github.com:YOUR_GITHUB_USERNAME/lecashbot.git
-yarn install
+yarn
 ```
 
 ### Setup
@@ -64,8 +64,8 @@ yarn install
 1. Create a `.env` in the root directory of the repository.
 2. Inside of the `.env` file, include the following:
 ```
-TOKEN="<token>"
-URI="<uri>"
+DISCORD_TOKEN="<token>"
+MONGODB_URI="<uri>"
 ```
 Replace `<uri>` and `<token>` with your MongoDB database connection URI and bot token.
 3. Run the bot.
