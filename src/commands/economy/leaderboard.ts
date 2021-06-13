@@ -33,37 +33,35 @@ const sendDefaultEmbed = (message: Discord.Message) => {
     message.channel.send(defaultEmbed);
 };
 
+const getLBData = (user: LeaderboardUser, type: string) => {
+    switch (type) {
+        case `bet`:
+            return `$${formatMoney(user.highestBet)}`;
+        case `cash`:
+            return `$${formatMoney(user.balance)}`;
+        case `coinflip`:
+            return `${formatMoney(user.coinflipStreak)}`;
+        case `daily`:
+            return `${formatMoney(user.dailyStreak)}`;
+        default:
+            return null;
+    }
+};
+
 const formatLB = async (message: Discord.Message, type: string) => {
     const lbInfo = await Leaderboard.findOne();
     let content = ``;
 
     const users: LeaderboardUser[] = lbInfo[type].slice(0, 10);
     users.forEach((user: LeaderboardUser, pos: number) => {
-        let data: string;
-
-        switch (type) {
-            case `bet`:
-                data = `$${formatMoney(user.highestBet)}`;
-                break;
-            case `cash`:
-                data = `$${formatMoney(user.balance)}`;
-                break;
-            case `coinflip`:
-                data = `${formatMoney(user.coinflipStreak)}`;
-                break;
-            case `daily`:
-                data = `${formatMoney(user.dailyStreak)}`;
-                break;
-            default:
-                data = null;
-                break;
-        }
-
-        content += `${pos < 3 ? [`🥇`, `🥈`, `🥉`][pos] : `🏅`} **${user.discordTag}** - ${data}\n`;
+        const data = getLBData(user, type);
+        content += `${pos < 3 ? [`🥇`, `🥈`, `🥉`][pos] : `🏅`} - **${user.discordTag}** - ${data}\n`;
     });
 
-    // console.log(map);
-    // if (!users.map((user: any) => user.discordTag).includes(message.author.tag))
+    if (!users.map((user: LeaderboardUser) => user.discordTag).includes(message.author.tag)) {
+        const user = users.find(user => user.discordTag === message.author.tag);
+        content += `\n#${users.indexOf(user) + 1} - **${user.discordTag}** - ${getLBData(user, type)}`;
+    }
 
     return content;
 };
