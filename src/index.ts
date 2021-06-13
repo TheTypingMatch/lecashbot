@@ -11,7 +11,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const client: Client = new Discord.Client({
-    allowedMentions: { parse: ['users'] },
+    disableMentions: `everyone`,
     fetchAllMembers: true
 });
 
