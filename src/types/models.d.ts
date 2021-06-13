@@ -61,8 +61,8 @@ interface LotteryDoc extends Mongoose.Document {
 interface LeaderboardDoc extends Mongoose.Document {
     creationDate: string;
 
+    balance: Leaderboard.Balance[];
     bet: Leaderboard.Bet[];
-    cash: Leaderboard.Cash[];
     coinflip: Leaderboard.Coinflip[];
     daily: Leaderboard.Daily[];
 

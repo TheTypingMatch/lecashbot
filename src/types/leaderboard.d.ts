@@ -3,12 +3,12 @@ interface Leaderboard {
     discordID: string;
 }
 
-interface Bet extends Leaderboard {
-    bet: number;
+interface Balance extends Leaderboard {
+    balance: number;
 }
 
-interface Cash extends Leaderboard {
-    cash: number;
+interface Bet extends Leaderboard {
+    bet: number;
 }
 
 interface Coinflip extends Leaderboard {
@@ -31,8 +31,8 @@ interface LeaderboardUser {
 }
 
 export {
+    Balance,
     Bet,
-    Cash,
     Coinflip,
     Daily,
 

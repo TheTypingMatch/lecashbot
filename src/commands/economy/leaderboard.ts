@@ -33,12 +33,11 @@ const sendDefaultEmbed = (message: Discord.Message) => {
     message.channel.send(defaultEmbed);
 };
 
-const formatLB = async (message: Discord.Message, type: string) => {
-    const lbInfo = await Leaderboard.findOne();
+const formatLB = (type: string, users: any[]) => {
     let content = ``;
 
-    const users: LeaderboardUser[] = lbInfo[type].slice(0, 10);
-    users.forEach((user: LeaderboardUser, pos: number) => {
+    // forEach is slower than for...of, but is more practical here. Any ideas?
+    users.forEach((user: LeaderboardUser, pos) => {
         let data: string;
 
         switch (type) {
@@ -62,27 +61,37 @@ const formatLB = async (message: Discord.Message, type: string) => {
         content += `${pos < 3 ? [`🥇`, `🥈`, `🥉`][pos] : `🏅`} **${user.discordTag}** - ${data}\n`;
     });
 
-    const map = users.map((user: LeaderboardUser) => user);
-    console.log(map);
-    // if (!users.map((user: any) => user.discordTag).includes(message.author.tag))
-
     return content;
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
-    const lbTypes = [`bet`, `cash`, `coinflip`, `daily`];
-    const lbType = args[0]?.toLowerCase();
-
-    if (!lbType || lbType === `help`) return sendDefaultEmbed(message);
-    if (!lbTypes.includes(lbType)) return sendDefaultEmbed(message);
+    if (!args[0] || args[0] === `help`) return sendDefaultEmbed(message);
 
     const lbEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
-        .setAuthor(`Leaderboard | ${capitalize(args[0])}`, message.author.avatarURL())
-        .setDescription(await formatLB(message, lbType))
         .setTimestamp(new Date())
         .setFooter(config.footer);
 
+    const lbInfo = await Leaderboard.findOne({});
+
+    switch (args[0]) {
+        case `bet`:
+            lbEmbed.setDescription(formatLB(`bet`, lbInfo.bet.splice(0, 10)));
+            break;
+        case `cash`:
+            lbEmbed.setDescription(formatLB(`cash`, lbInfo.balance.splice(0, 10)));
+            break;
+        case `coinflip`:
+            lbEmbed.setDescription(formatLB(`coinflip`, lbInfo.coinflip.splice(0, 10)));
+            break;
+        case `daily`:
+            lbEmbed.setDescription(formatLB(`daily`, lbInfo.daily.splice(0, 10)));
+            break;
+        default:
+            return sendDefaultEmbed(message);
+    }
+
+    lbEmbed.setAuthor(`Leaderboard | ${capitalize(args[0])}`, message.author.avatarURL());
     message.channel.send(lbEmbed);
 };
 
