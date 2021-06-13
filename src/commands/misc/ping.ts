@@ -14,7 +14,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
         .setAuthor(`Ping`, message.author.avatarURL())
-        .setDescription(`API: \`${Math.abs(Math.round(client.ws.ping))}ms\`\nGateway: \`${Math.abs(Math.round(new Date().valueOf() - msg.createdTimestamp.valueOf()))}ms\``)
+        .setDescription(`API: \`:${Math.abs(Math.round(client.ws.ping))}ms\`\nGateway: \`${Math.abs(Math.round(new Date().valueOf() - msg.createdTimestamp.valueOf()))}ms\``)
         .setTimestamp(new Date())
         .setFooter(config.footer);
 
