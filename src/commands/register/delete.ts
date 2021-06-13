@@ -35,7 +35,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
             .setTimestamp(new Date())
             .setFooter(config.footer);
 
-        await user.delete();
+        User.deleteOne({ discordID: message.author.id });
         message.channel.send(sEmbed);
     }).catch(() => message.channel.send(`${m} You did not respond in time. Aborting account deletion.`));
 };
