@@ -38,8 +38,8 @@ const enterUser = async (client: Client, message: Discord.Message, type: string,
     user.balance -= cost;
     lottery.entries.push(message.author.id);
 
-    user.save();
-    lottery.save();
+    await user.save();
+    await lottery.save();
 
     message.channel.send(`${m} You have entered the ${type} lottery!`);
 };
