@@ -27,14 +27,13 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         time: 1e4,
         errors: [`time`]
     }).then(msgs => {
-        if (msgs.first().content !== verificationCode) return message.channel.send(`${m} Invalid verification code. Aborting account deletion.`);
+        if (msgs.first().content !== verificationCode) return message.channel.send(`${m} Invalid verification code. Aborting account rename.`);
+        log(`blue`, `${message.author.tag} changed their NT account from ${user.username} to ${args[0].toLowerCase()}.`);
 
-        user.delete(err => {
-            if (err) {
-                log(`red`, err);
-                return message.channel.send(`${m} There was an error changing your linked NT account.\nPlease notify your local LeCashBot developer.`);
-            }
-        });
+        user.cooldowns.rename = new Date().toString();
+        user.username = args[0].toLowerCase();
+
+        user.save();
 
         const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
             .setColor(config.colors.orange)
