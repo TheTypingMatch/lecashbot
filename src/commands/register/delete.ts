@@ -25,7 +25,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         max: 1,
         time: 1e4,
         errors: [`time`]
-    }).then(async (msgs) => {
+    }).then(msgs => {
         if (msgs.first().content !== verificationCode) return message.channel.send(`${m} Invalid verification code. Aborting account deletion.`);
 
         const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
