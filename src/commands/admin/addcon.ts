@@ -26,7 +26,6 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
 
     if (!user) return message.channel.send(`${m} That user does not have an account!`);
     if (user.badges[contribution] && contribution !== `donor`) return message.channel.send(`${m} That user already has that contribution!`);
-    if (user.badges[contribution] === undefined) return message.channel.send(`${m} That contribution does not exist!`);
 
     if (contribution === `donor`) {
         if (!args[2]) return message.channel.send(`${m} Donation amount not specified!`);
@@ -36,10 +35,8 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     if (contribution === `owner`) return message.channel.send(`${m} This can only be assigned through the database!`);
     if (!perpetrator.badges.owner && (contribution === `dev` || contribution === `admin`)) return message.channel.send(`${m} This role can only be assigned by an owner!`);
 
-    if (user.badges[contribution] === `donor`) user.donations = parseInt(args[2]);
-    user.badges[contribution] = true;
-
-    await user.save();
+    user[contribution] = true;
+    if (user[contribution] === `donor`) user.donations = parseInt(args[2]);
 
     const contributorEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setColor(config.colors.green)
