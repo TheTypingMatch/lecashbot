@@ -38,7 +38,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
         const sEmbed: Discord.MessageEmbed = new Discord.MessageEmbed()
             .setColor(config.colors.orange)
             .setAuthor(`Renamed Account`, message.author.avatarURL())
-            .setDescription(`Your NT account has been succesfully changed.\nWe are sorry to see you go.`)
+            .setDescription(`Your NT account has been succesfully changed.`)
             .setTimestamp(new Date())
             .setFooter(config.footer);
 
