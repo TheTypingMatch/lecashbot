@@ -13,7 +13,7 @@ const cmd: CommandConfig = {
 };
 
 const getDonors = async () => {
-    const donors = await User.find({ banned: false, [`badges.donor`]: true });
+    const donors = await User.find({ banned: false, [`badges/donor`]: true });
     return donors.map((donor) => ({
         discordID: donor.discordID,
         amount: donor.donations
