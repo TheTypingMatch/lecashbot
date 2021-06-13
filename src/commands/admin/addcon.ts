@@ -20,7 +20,7 @@ const run = async (client: Client, message: Discord.Message, args: string[]) => 
     const query = getQuery(message, args);
 
     const user = await User.findOne(query);
-    const perpetrator = await User.findOne({ discordID: message.author.id });
+    const perpetrator = await User.findOne({ discordiD: message.author.id });
 
     const contribution = args[1];
 
