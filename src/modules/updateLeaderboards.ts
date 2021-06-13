@@ -38,6 +38,7 @@ const createLeaderboard = async (client: Client) => {
 const sortLeaderboard = async (type: string, lb: LeaderboardUser[]) => {
     switch (type) {
         case `bet`:
+            lb.sort((a, b) => (a.highestBet <= b.highestBet) ? 1 : -1);
             break;
         case `balance`:
             lb.sort((a, b) => (a.balance <= b.balance) ? 1 : -1);

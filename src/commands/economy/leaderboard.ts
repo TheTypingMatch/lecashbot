@@ -62,8 +62,7 @@ const formatLB = async (message: Discord.Message, type: string) => {
         content += `${pos < 3 ? [`🥇`, `🥈`, `🥉`][pos] : `🏅`} **${user.discordTag}** - ${data}\n`;
     });
 
-    const map = users.map((user: LeaderboardUser) => user);
-    console.log(map);
+    // console.log(map);
     // if (!users.map((user: any) => user.discordTag).includes(message.author.tag))
 
     return content;
