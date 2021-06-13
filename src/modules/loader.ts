@@ -7,7 +7,7 @@ import { logHeader } from '../utils/logExtra';
 
 import readDirectory from '../utils/readDirectory';
 
-const loadCommands = async (client: Client) => {
+const loadCommands = async (client: Client, callback?: any) => {
     logHeader();
 
     // Initialize the commands array.
@@ -32,9 +32,11 @@ const loadCommands = async (client: Client) => {
             run: command.run
         });
     }
+
+    if (callback !== undefined) return callback();
 };
 
-const loadEvents = async (client: Client) => {
+const loadEvents = async (client: Client, callback?: any) => {
     logHeader();
 
     // Initialize client events.
@@ -54,6 +56,8 @@ const loadEvents = async (client: Client) => {
             callback: event
         });
     }
+
+    if (callback !== undefined) return callback();
 };
 
 export {
