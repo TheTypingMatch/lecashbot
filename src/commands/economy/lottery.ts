@@ -40,8 +40,6 @@ const enterUser = async (client: Client, message: Discord.Message, type: string,
 
     user.save();
     lottery.save();
-
-    message.channel.send(`${m} You have entered the ${type} lottery!`);
 };
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
