@@ -3,7 +3,8 @@ import * as Mongoose from 'mongoose';
 import { LotteryDoc } from '../types/models';
 
 const lotterySchema = new Mongoose.Schema({
-    type: { type: String, required: true },
+    // The type of lottery (daily, weekly, monthly).
+    name: { type: String, required: true },
 
     creationDate: { type: String, required: false, default: new Date().toString() },
     endDate: { type: String, required: true },
