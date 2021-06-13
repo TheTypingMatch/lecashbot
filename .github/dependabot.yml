@@ -6,10 +6,9 @@ updates:
       interval: "daily"
     reviewers:
       - "ryan-harrington"
-      - "DamienVesper"
     assignees:
       - "ryan-harrington"
-      - "DamienVesper"
+    target-branch: "dev"
     labels:
       - "priority: medium"
       - "dependencies"
