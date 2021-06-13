@@ -17,7 +17,6 @@ const client: Client = new Discord.Client({
 
 // Uncaught exception handler.
 process.on(`uncaughtException`, e => log(`red`, e.stack));
-process.on(`unhandledRejection`, e => log(`red`, e));
 
 // Bot startup.
 const startBot = async () => {
