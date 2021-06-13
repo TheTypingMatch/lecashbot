@@ -32,7 +32,7 @@ const createLottery = async (type: string, client: Client) => {
         entryFee: entryFees[type]
     });
 
-    newLottery.save();
+    await newLottery.save();
     log(`yellow`, `created ${type} lottery.`);
 };
 
