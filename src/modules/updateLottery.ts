@@ -83,11 +83,12 @@ const endLottery = async (client: Client, type: string) => {
         else user.send(winnerEmbed).catch(() => log(`yellow`, `Unable to send user lottery winner.`));
     }
 
-    log(`cyan`, `Ended ${type} lottery.`);
     return resetLottery(type);
 };
 
 const updateLottery = async (client: Client) => {
+    log(`cyan`, `Updating lottery...`);
+
     const lotteryTypes = [`daily`, `weekly`, `monthly`];
     for (const type of lotteryTypes) {
         const lottery = await Lottery.findOne({ type });
@@ -99,6 +100,8 @@ const updateLottery = async (client: Client) => {
         const timeLeft = new Date(lottery.endDate).valueOf() - new Date().valueOf();
         if (timeLeft <= 0) await endLottery(client, type);
     }
+
+    log(`green`, `Lotteries updated.`);
 };
 
 export default updateLottery;
