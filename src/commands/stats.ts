@@ -1,8 +1,8 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../../types/discord';
+import { Client, CommandConfig } from '../types/discord';
 
-import config from '../../../config/config';
-import { formatMoney } from '../../utils/text';
+import config from '../../config/config';
+import { formatMoney } from '../utils/text';
 
 const cmd: CommandConfig = {
     desc: `View bot statistics.`,

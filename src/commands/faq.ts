@@ -1,8 +1,8 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../../types/discord';
+import { Client, CommandConfig } from '../types/discord';
 
-import config from '../../../config/config';
-import { faqInfo } from '../../../config/embeds';
+import config from '../../config/config';
+import { faqInfo } from '../../config/embeds';
 
 const cmd: CommandConfig = {
     desc: `View frequently asked questions.`,

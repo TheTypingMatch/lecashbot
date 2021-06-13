@@ -1,10 +1,10 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../../types/discord';
+import { Client, CommandConfig } from '../types/discord';
 
-import config from '../../../config/config';
+import config from '../../config/config';
 
-import User from '../../models/user.model';
-import randomString from '../../utils/randomString';
+import User from '../models/user.model';
+import randomString from '../utils/randomString';
 
 const cmd: CommandConfig = {
     desc: `Delete your account.`,

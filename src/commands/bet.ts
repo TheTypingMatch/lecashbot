@@ -1,13 +1,13 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../../types/discord';
+import { Client, CommandConfig } from '../types/discord';
 
-import config from '../../../config/config';
-import log from '../../utils/log';
+import config from '../../config/config';
+import log from '../utils/log';
 
-import User from '../../models/user.model';
+import User from '../models/user.model';
 
-import { formatMoney } from '../../utils/text';
-import { calcBetChance } from '../../utils/gamble';
+import { formatMoney } from '../utils/text';
+import { calcBetChance } from '../utils/gamble';
 
 const cmd: CommandConfig = {
     desc: `Gamble money.`,

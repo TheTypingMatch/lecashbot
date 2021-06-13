@@ -1,10 +1,10 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../../types/discord';
+import { Client, CommandConfig } from '../types/discord';
 
-import config from '../../../config/config';
-import User from '../../models/user.model';
+import config from '../../config/config';
+import User from '../models/user.model';
 
-import { formatMoney } from '../../utils/text';
+import { formatMoney } from '../utils/text';
 
 const cmd: CommandConfig = {
     desc: `Donate to the bot.`,

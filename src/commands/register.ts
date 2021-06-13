@@ -1,11 +1,11 @@
 import * as Discord from 'discord.js';
-import { Client, CommandConfig } from '../../types/discord';
+import { Client, CommandConfig } from '../types/discord';
 
-import config from '../../../config/config';
+import config from '../../config/config';
 // import axios from 'axios';
 
-import User from '../../models/user.model';
-import log from '../../utils/log';
+import User from '../models/user.model';
+import log from '../utils/log';
 
 const cmd: CommandConfig = {
     desc: `Register an account.`,
