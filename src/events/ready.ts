@@ -11,6 +11,8 @@ import updateLottery from '../modules/updateLottery';
 
 export default async (client: Client) => {
     log(`green`, `Client has started, with ${client.users.cache.size} user(s) in ${client.guilds.cache.size} guild(s).`);
+    client.channels.cache.get("689241653516435495").setRateLimitPerUser(2) // general channel
+    client.channels.cache.get("689245998370914503".setRateLimitPerUser(1) // testing channel
 
     logHeader();
 
