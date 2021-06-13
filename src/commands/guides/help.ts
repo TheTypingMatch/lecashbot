@@ -12,7 +12,7 @@ const cmd: CommandConfig = {
     aliases: [`?`]
 };
 
-const desc = `A Discord.js bot based on the NitroType currency.\n\nClick [**here**](https://invite.lecashbot.cf/) to invite the bot.`;
+const desc = `A Discord.js bot based on the NitroType currency.\nPlease consider supporting the bot by [**donating here**](https://patreon.lecashbot.cf)!\n\nClick [**here**](https://invite.lecashbot.cf/) to invite the bot.`;
 
 const run = async (client: Client, message: Discord.Message, args: string[]) => {
     const helpSplash: Discord.MessageEmbed = new Discord.MessageEmbed()
