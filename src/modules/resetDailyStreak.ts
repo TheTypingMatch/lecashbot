@@ -1,6 +1,5 @@
-import config from '../../config/config';
-
 import User from '../models/user.model';
+
 import log from '../utils/log';
 
 const resetDailyStreak = async () => {
@@ -14,7 +13,7 @@ const resetDailyStreak = async () => {
     }
 
     for (const user of users) {
-        if ((new Date().valueOf() - new Date(user.cooldowns.daily).valueOf()) > config.cooldowns.utils.dailyReset) {
+        if (new Date().valueOf() - new Date(user.cooldowns.daily).valueOf()) {
             log(`blue`, `Daily streak reset for user ${user.username} [${user.discordID}].`);
 
             user.streaks.daily = 0;
