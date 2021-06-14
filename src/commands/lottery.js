@@ -17,13 +17,9 @@ const enterUser = async (client, msg, type, cost) => {
     const user = await User.findOne({ discordId: msg.author.id });
     const userFee = cost + lottery.entries.filter(id => id == msg.author.id).length * (cost * 0.05)
 
-    /* if (lottery.entries.includes(msg.author.id)) {
-        return msg.reply('You are already entered!');
-    }*/
-
     if (user.balance < userFee) {
         return msg.reply('You do not have enough to enter this lottery.');
-    }
+    };
 
     client.logger.log(`(${msg.author.id}) entered the ${type} lottery.`);
     await User.updateOne({ discordId: msg.author.id }, {
@@ -43,7 +39,7 @@ export default async (msg, client, args) => {
 
     if (args[1] === 'enter' && lotteryTypes.includes(lotteryChoice)) {
         return await enterUser(client, msg, lotteryChoice, entryFees[lotteryChoice]);
-    }
+    };
 
     const lotteryEmbed = new MessageEmbed()
         .setColor(colors.green)
@@ -69,7 +65,7 @@ export default async (msg, client, args) => {
             Prize Pool: **$${currency(prizePool) || 'Error'}**
             Previous Winner: ${previousWinner}
         `);
-    }
+    };
 
     lotteryEmbed.setDescription(`
         **How to Enter**
@@ -77,4 +73,4 @@ export default async (msg, client, args) => {
     `);
 
   return msg.channel.send(lotteryEmbed);
-}
+};
