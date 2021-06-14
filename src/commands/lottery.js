@@ -15,55 +15,58 @@ const entryFees = {
 const enterUser = async (client, msg, type, cost) => {
     const lottery = await Lottery.findOne({ type });
     const user = await User.findOne({ discordId: msg.author.id });
+    const userFee = cost + lottery.entries.filter(id => id == msg.author.id).length * (cost * 0.05)
 
-    if (lottery.entries.includes(msg.author.id)) {
-        return msg.reply(`You are already entered!`);
-    }
+    /* if (lottery.entries.includes(msg.author.id)) {
+        return msg.reply('You are already entered!');
+    }*/
 
-    if (user.balance < cost) {
-        return msg.reply(`You do not have enough to enter this lottery.`);
+    if (user.balance < userFee) {
+        return msg.reply('You do not have enough to enter this lottery.');
     }
 
     client.logger.log(`(${msg.author.id}) entered the ${type} lottery.`);
     await User.updateOne({ discordId: msg.author.id }, {
-        balance: user.balance - cost
+        balance: user.balance - userFee
     });
 
     await Lottery.updateOne({ type }, {
         entries: [...lottery.entries, msg.author.id]
     });
 
-    return msg.reply(`You have been entered! 🍀`);
+    return msg.reply('You have been entered! 🍀');
 };
 
 export default async (msg, client, args) => {
-    const lotteryTypes = [`daily`, `weekly`, `monthly`];
-    const lotteryChoice = (args[0]) ? args[0].toLowerCase() : ``;
+    const lotteryTypes = ['daily', 'weekly', 'monthly'];
+    const lotteryChoice = (args[0]) ? args[0].toLowerCase() : '';
 
-    if (args[1] === `enter` && lotteryTypes.includes(lotteryChoice)) {
+    if (args[1] === 'enter' && lotteryTypes.includes(lotteryChoice)) {
         return await enterUser(client, msg, lotteryChoice, entryFees[lotteryChoice]);
     }
 
     const lotteryEmbed = new MessageEmbed()
         .setColor(colors.green)
         .setFooter(`LeCashBot v${version}`)
-        .setAuthor(`Lottery!`, msg.author.avatarURL())
+        .setAuthor('Lottery!', msg.author.avatarURL())
         .setTimestamp(new Date());
 
-    const description = ``;
+    const description = '';
     for (const type of lotteryTypes) {
         const lottery = await Lottery.findOne({ type });
         const timeLeft = formatTime(subtractDate(lottery.endDate));
         const prizePool = (lottery.entryFee || 0) * (lottery.entries.length || 0);
-        const previousWinner = lottery.previousWinner ? `**${lottery.previousWinner}**` : `*No entries in previous lottery.*`;
+        const userFee = lottery.entries.filter(id => id == msg.author.id).length * (lottery.entryFee * 0.05)
+        const numOfEntries = lottery.entries.filter(id => id == msg.author.id).length
+        const previousWinner = lottery.previousWinner ? `**${lottery.previousWinner}**` : '*No entries in previous lottery.*';
 
         lotteryEmbed.addField(`
             **${capitalize(type)}**`, `
             Ends in: ${timeLeft}
             Entries: **${lottery.entries.length}**
-            Entered: **${lottery.entries.includes(msg.author.id) ? `Yes` : `No`}**
-            Entry Fee: **$${currency(lottery.entryFee)}**
-            Prize Pool: $**${currency(prizePool) || `Error`}**
+            Entered: **${lottery.entries.includes(msg.author.id) ? `Yes - ${numOfEntries} entr${numOfEntries > 1 ? "ies" : "y"}` : 'No'}**
+            Entry Fee: **$${currency(lottery.entryFee)}${numOfEntries == 0 ? "" : ` + $${userFee}`}**
+            Prize Pool: **$${currency(prizePool) || 'Error'}**
             Previous Winner: ${previousWinner}
         `);
     }
@@ -73,5 +76,5 @@ export default async (msg, client, args) => {
         \`$lottery <type> enter\` (e.g. \`$lottery daily enter\`)
     `);
 
-    return msg.channel.send(lotteryEmbed);
-};
+  return msg.channel.send(lotteryEmbed);
+}
