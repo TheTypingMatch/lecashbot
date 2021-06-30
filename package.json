@@ -40,6 +40,6 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-standard": "^5.0.0",
     "jest": "^27.0.6",
-    "nodemon": "^2.0.8"
+    "nodemon": "^2.0.9"
   }
 }
