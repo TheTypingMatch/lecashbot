@@ -1,9 +1,9 @@
 import { User } from '../models/user.model';
-const fetch = require(`node-fetch`);
+const cloudscraper = require(`cloudscraper`);
 
-const urlExists = async url => await fetch(url)
-    .then((res) => res.text())
-    .then((res) => res.includes(`RACER_INFO`));
+const urlExists = async url => await cloudscraper.get(url)
+    .then((res) => res.includes(`RACER_INFO`))
+    .catch((err) => false); // apparently it returns a captcha error if the racer doens't exist
 
 const registerUser = (msg, ntLink) => {
     const user = new User({
