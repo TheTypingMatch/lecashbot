@@ -24,7 +24,7 @@
     "dotenv": "^10.0.0",
     "format-duration": "^1.4.0",
     "moment": "^2.24.0",
-    "mongoose": "^5.13.5",
+    "mongoose": "^5.13.6",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
